@@ -18234,6 +18234,12 @@ input:checked~.star:before {
     fill: #fff
 }
 
+@supports (-ms-ime-align:auto) {
+    .share-this-popover {
+        left: auto !important
+    }
+}
+
 @-webkit-keyframes from-up {
     0% {
         -webkit-transform: translateY(-3em);
