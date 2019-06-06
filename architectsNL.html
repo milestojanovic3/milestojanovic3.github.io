@@ -1,0 +1,1805 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head data-n-head>
+    <title>InfoQ | Software Development News, Guides, Videos</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta data-hid="description" name="description" content="InfoQ.com is a practitioner-driven community news site focused on facilitating the spread of knowledge and innovation in professional software development.">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="styles/style.css" rel="stylesheet" media="screen">
+    <link href="styles/icons.css" rel="stylesheet" media="screen">
+    <link href="styles/print.css" rel="stylesheet" media="print">
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default"></script>
+    <script src="polyfills.js" type="text/javascript"></script>
+    <script src="infoq.js" type="text/javascript"></script>
+    <script>
+        var JSi18n = window.JSi18n || {},
+            CommonUtils = {
+                encodeAuthorName: function(e) {
+                    return e.replace(" ", "-")
+                }
+            },
+            InfoQConstants = {
+                userToken: "lDZwKGgJkVvj51FMiZ8u6lKKqmI4jJSX",
+                uidToShow: 39485652,
+                pageSizes: {
+                    all: 10,
+                    fu: 10,
+                    ft: 10,
+                    f: 10,
+                    lc: 10,
+                    cmo: 10,
+                    cml: 10,
+                    news: 10,
+                    articles: 10,
+                    presentations: 10,
+                    interviews: 10,
+                    guides: 10,
+                    research: 10,
+                    podcasts: 10,
+                    reviews: 10
+                }
+            },
+            loggedIn = !(JSi18n.FE = {
+                labels: {
+                    follow: "Follow",
+                    followTopic: "Follow Topic",
+                    unfollow: "Unfollow",
+                    unfollowTopic: "Unfollow Topic",
+                    following: "Following",
+                    followers: "Followers",
+                    like: "Like",
+                    likes: "Likes",
+                    liked: "Liked",
+                    unlike: "Unliked",
+                    topics: "Topics",
+                    users: "Users",
+                    people: "People",
+                    authors: "Authors",
+                    showMore: "Show more",
+                    showLess: "Show less",
+                    moreAuthors: "And %s more",
+                    hide: "Hide item",
+                    hidden: "%s was hidden on your profile page.",
+                    undo: "Undo",
+                    comments: "Comments",
+                    reviews: "Reviews",
+                    articles: "Articles",
+                    news: "News",
+                    presentations: "Presentations",
+                    interviews: "Interviews",
+                    podcasts: "Podcasts",
+                    minibooks: "Minibooks",
+                    reviewed: "Reviewed",
+                    research: "Research",
+                    authored: "Authored",
+                    allActivity: "All Activity",
+                    myActivity: "My Activity",
+                    noUser: "You are currently not following any peers",
+                    noTopic: "You are currently not following any topics",
+                    chooseOne: "Choose one..."
+                },
+                adbStrings: ["We notice you’re using an ad blocker", "We understand why you use ad blockers. However to keep InfoQ free we need your support. InfoQ will not provide your data to third parties without individual opt-in consent. We only work with advertisers relevant to our readers. Please consider whitelisting us."]
+            }),
+            currentUserId = 101975445,
+            usersInPage = [{
+                ref: "author-George-Doe",
+                id: "author-1",
+                name: "George Doe",
+                minibio: "Content writer at InfoQ",
+                imgSrc: "author-1-image.jpg",
+                url: "https://www.infoq.com/profile/author-x",
+                followers: 22,
+                followedByCurrentUser: !1
+            }, {
+                ref: "author-Johnatan-Doe",
+                id: "author-3x",
+                name: "Johnatan Doe",
+                minibio: "Content writer at InfoQ",
+                url: "https://www.infoq.com/profile/author-x",
+                followers: 22,
+                followedByCurrentUser: !1
+            }, {
+                ref: "author-Daniel-Bryant",
+                id: "daniel-bryant",
+                name: "Daniel Bryant",
+                minibio: "Content writer at InfoQ",
+                imgSrc: "author-1-image.jpg",
+                url: "https://www.infoq.com/profile/author-x",
+                followers: 322,
+                followedByCurrentUser: !0
+            }, {
+                ref: "author-Andrew-Morgan",
+                id: "author-2",
+                name: "Andrew Morgan",
+                minibio: "Content director at InfoQ",
+                imgSrc: "author-2-image.jpg",
+                url: "https://www.infoq.com/profile/author-x",
+                followers: 170,
+                followedByCurrentUser: !0
+            }, {
+                ref: "author-Charles-Humble",
+                id: "author-3",
+                name: "Charles Humble",
+                minibio: "Content director at InfoQ",
+                imgSrc: "",
+                url: "https://www.infoq.com/profile/author-x",
+                followers: 1337,
+                followedByCurrentUser: !0
+            }, {
+                ref: "author-Srini-Penchikala",
+                id: "author-4",
+                name: "Helen Blue",
+                minibio: "Content director at InfoQ",
+                url: "https://www.infoq.com/profile/author-x",
+                followers: 317,
+                followedByCurrentUser: !0
+            }, {
+                ref: "author-Erick-Braumer",
+                id: "author-5",
+                name: "Erick Braumer",
+                imgSrc: "author-5-image.jpg",
+                url: "https://www.infoq.com/profile/author-x",
+                followers: 93,
+                followedByCurrentUser: !1
+            }, {
+                ref: "author-infoq",
+                id: "infoq",
+                name: "InfoQ",
+                url: "https://www.infoq.com/profile/infoq",
+                followers: 1e8,
+                followedByCurrentUser: !0
+            }, {
+                ref: "author-Thomas-Betts",
+                id: "thomas-betts",
+                name: "Thomas Betts",
+                url: "https://www.infoq.com/profile/thomas-betts",
+                followers: 300,
+                followedByCurrentUser: !1
+            }, {
+                ref: "author-Colart-Miles",
+                id: "colart-miles",
+                name: "Colart Miles",
+                url: "https://www.infoq.com/profile/colart-miles",
+                followers: 110,
+                followedByCurrentUser: !1
+            }, {
+                ref: "author-Shane-Hastie",
+                id: "shane-hastie",
+                name: "Shane Hastie",
+                url: "https://www.infoq.com/profile/shane-hastie",
+                followers: 301,
+                followedByCurrentUser: !1
+            }, {
+                ref: "author-John-Doe",
+                id: "johnatan-doe",
+                name: "John Doe",
+                imgSrc: "author-5-image.jpg",
+                url: "https://www.infoq.com/profile/author-x",
+                followers: 247,
+                followedByCurrentUser: !1
+            }, {
+                ref: "author-Katy-Saulpaugh",
+                id: "katy-saulpaugh",
+                name: "Katy Saulpaugh",
+                imgSrc: "author-5-image.jpg",
+                url: "https://www.infoq.com/profile/author-x",
+                followers: 2427,
+                followedByCurrentUser: !0
+            }, {
+                ref: "author-Andrew-Translator",
+                id: "translator-1",
+                name: "Andrew Translator",
+                minibio: "Content director at InfoQ",
+                imgSrc: "author-3-image.jpg",
+                url: "https://www.infoq.com/profile/author-x",
+                followers: 17,
+                followedByCurrentUser: !0
+            }],
+            topicsInPage = [{
+                id: "development",
+                name: "Development",
+                url: "https://www.infoq.com/development",
+                followers: 34442,
+                followedByCurrentUser: !0
+            }, {
+                id: "architecture-design",
+                name: "Architecture & Design",
+                url: "https://www.infoq.com/architecture-design",
+                followers: 13240,
+                followedByCurrentUser: !1
+            }, {
+                id: "devops",
+                name: "DevOps",
+                url: "https://www.infoq.com/devops",
+                followers: 9140,
+                followedByCurrentUser: !1
+            }, {
+                id: "data-science",
+                name: "Data Science",
+                url: "https://www.infoq.com/data-science",
+                followers: 2247,
+                followedByCurrentUser: !1
+            }, {
+                id: "culture-methods",
+                name: "Culture & Methods",
+                url: "https://www.infoq.com/culture-methods",
+                followers: 13240,
+                followedByCurrentUser: !1
+            }, {
+                id: "architecture-design",
+                name: "Architecture & Design",
+                url: "https://www.infoq.com/architecture-design",
+                followers: 13240,
+                followedByCurrentUser: !1
+            }, {
+                id: "java",
+                name: "Java",
+                url: "https://www.infoq.com/java",
+                followers: 1111,
+                followedByCurrentUser: !0
+            }, {
+                id: "java9",
+                name: "Java 9",
+                url: "https://www.infoq.com/java9",
+                followers: 0,
+                followedByCurrentUser: !1
+            }, {
+                id: "machine-learning",
+                name: "Machine Learning",
+                url: "https://www.infoq.com/machine-learning",
+                followers: 783,
+                followedByCurrentUser: !0
+            }],
+            userContentLikesInPage = ["agility-in-containers--how-work-evolves-with-docker", "reactor-by-example", "undefined", "removing-friction-in-the-developer-experience--adrian-trenaman-shares-experience-from-hbc-at-qcon-ny"],
+            userCommentsLikesInPage = ["comment-1", "comment-2"],
+            allCountries = [{
+                id: 3,
+                name: "Afghanistan"
+            }, {
+                id: 244,
+                name: "Åland"
+            }, {
+                id: 6,
+                name: "Albania"
+            }, {
+                id: 61,
+                name: "Algeria"
+            }, {
+                id: 13,
+                name: "American Samoa"
+            }, {
+                id: 1,
+                name: "Andorra"
+            }, {
+                id: 9,
+                name: "Angola"
+            }, {
+                id: 5,
+                name: "Anguilla"
+            }, {
+                id: 11,
+                name: "Antarctica"
+            }, {
+                id: 4,
+                name: "Antigua and Barbuda"
+            }, {
+                id: 12,
+                name: "Argentina"
+            }, {
+                id: 7,
+                name: "Armenia"
+            }, {
+                id: 16,
+                name: "Aruba"
+            }, {
+                id: 10,
+                name: "Asia/Pacific Region"
+            }, {
+                id: 15,
+                name: "Australia"
+            }, {
+                id: 14,
+                name: "Austria"
+            }, {
+                id: 17,
+                name: "Azerbaijan"
+            }, {
+                id: 31,
+                name: "Bahamas"
+            }, {
+                id: 24,
+                name: "Bahrain"
+            }, {
+                id: 20,
+                name: "Bangladesh"
+            }, {
+                id: 19,
+                name: "Barbados"
+            }, {
+                id: 35,
+                name: "Belarus"
+            }, {
+                id: 21,
+                name: "Belgium"
+            }, {
+                id: 36,
+                name: "Belize"
+            }, {
+                id: 26,
+                name: "Benin"
+            }, {
+                id: 27,
+                name: "Bermuda"
+            }, {
+                id: 32,
+                name: "Bhutan"
+            }, {
+                id: 29,
+                name: "Bolivia"
+            }, {
+                id: 254,
+                name: "Bonaire, Sint Eustatius, and Saba"
+            }, {
+                id: 18,
+                name: "Bosnia and Herzegovina"
+            }, {
+                id: 34,
+                name: "Botswana"
+            }, {
+                id: 33,
+                name: "Bouvet Island"
+            }, {
+                id: 30,
+                name: "Brazil"
+            }, {
+                id: 104,
+                name: "British Indian Ocean Territory"
+            }, {
+                id: 28,
+                name: "Brunei Darussalam"
+            }, {
+                id: 23,
+                name: "Bulgaria"
+            }, {
+                id: 22,
+                name: "Burkina Faso"
+            }, {
+                id: 25,
+                name: "Burundi"
+            }, {
+                id: 114,
+                name: "Cambodia"
+            }, {
+                id: 46,
+                name: "Cameroon"
+            }, {
+                id: 37,
+                name: "Canada"
+            }, {
+                id: 52,
+                name: "Cape Verde"
+            }, {
+                id: 121,
+                name: "Cayman Islands"
+            }, {
+                id: 40,
+                name: "Central African Republic"
+            }, {
+                id: 207,
+                name: "Chad"
+            }, {
+                id: 45,
+                name: "Chile"
+            }, {
+                id: 47,
+                name: "China"
+            }, {
+                id: 53,
+                name: "Christmas Island"
+            }, {
+                id: 38,
+                name: "Cocos (Keeling) Islands"
+            }, {
+                id: 48,
+                name: "Colombia"
+            }, {
+                id: 116,
+                name: "Comoros"
+            }, {
+                id: 39,
+                name: "Congo (Democratic Republic)"
+            }, {
+                id: 41,
+                name: "Congo (People's Republic)"
+            }, {
+                id: 44,
+                name: "Cook Islands"
+            }, {
+                id: 49,
+                name: "Costa Rica"
+            }, {
+                id: 43,
+                name: "Cote D'Ivoire"
+            }, {
+                id: 97,
+                name: "Croatia"
+            }, {
+                id: 51,
+                name: "Cuba"
+            }, {
+                id: 253,
+                name: "Curaçao"
+            }, {
+                id: 54,
+                name: "Cyprus"
+            }, {
+                id: 55,
+                name: "Czech Republic"
+            }, {
+                id: 58,
+                name: "Denmark"
+            }, {
+                id: 57,
+                name: "Djibouti"
+            }, {
+                id: 59,
+                name: "Dominica"
+            }, {
+                id: 60,
+                name: "Dominican Republic"
+            }, {
+                id: 213,
+                name: "East Timor"
+            }, {
+                id: 62,
+                name: "Ecuador"
+            }, {
+                id: 64,
+                name: "Egypt"
+            }, {
+                id: 203,
+                name: "El Salvador"
+            }, {
+                id: 87,
+                name: "Equatorial Guinea"
+            }, {
+                id: 66,
+                name: "Eritrea"
+            }, {
+                id: 63,
+                name: "Estonia"
+            }, {
+                id: 68,
+                name: "Ethiopia"
+            }, {
+                id: 72,
+                name: "Falkland Islands (Malvinas)"
+            }, {
+                id: 74,
+                name: "Faroe Islands"
+            }, {
+                id: 71,
+                name: "Fiji"
+            }, {
+                id: 70,
+                name: "Finland"
+            }, {
+                id: 75,
+                name: "France"
+            }, {
+                id: 80,
+                name: "French Guiana"
+            }, {
+                id: 170,
+                name: "French Polynesia"
+            }, {
+                id: 208,
+                name: "French Southern Territories"
+            }, {
+                id: 76,
+                name: "Gabon"
+            }, {
+                id: 84,
+                name: "Gambia"
+            }, {
+                id: 79,
+                name: "Georgia"
+            }, {
+                id: 56,
+                name: "Germany"
+            }, {
+                id: 81,
+                name: "Ghana"
+            }, {
+                id: 82,
+                name: "Gibraltar"
+            }, {
+                id: 88,
+                name: "Greece"
+            }, {
+                id: 83,
+                name: "Greenland"
+            }, {
+                id: 78,
+                name: "Grenada"
+            }, {
+                id: 86,
+                name: "Guadeloupe"
+            }, {
+                id: 91,
+                name: "Guam"
+            }, {
+                id: 90,
+                name: "Guatemala"
+            }, {
+                id: 249,
+                name: "Guernsey"
+            }, {
+                id: 85,
+                name: "Guinea"
+            }, {
+                id: 92,
+                name: "Guinea-Bissau"
+            }, {
+                id: 93,
+                name: "Guyana"
+            }, {
+                id: 98,
+                name: "Haiti"
+            }, {
+                id: 95,
+                name: "Heard Island and McDonald Islands"
+            }, {
+                id: 96,
+                name: "Honduras"
+            }, {
+                id: 94,
+                name: "Hong Kong"
+            }, {
+                id: 99,
+                name: "Hungary"
+            }, {
+                id: 107,
+                name: "Iceland"
+            }, {
+                id: 103,
+                name: "India"
+            }, {
+                id: 100,
+                name: "Indonesia"
+            }, {
+                id: 106,
+                name: "Iran"
+            }, {
+                id: 105,
+                name: "Iraq"
+            }, {
+                id: 101,
+                name: "Ireland"
+            }, {
+                id: 245,
+                name: "Isle of Man"
+            }, {
+                id: 102,
+                name: "Israel"
+            }, {
+                id: 108,
+                name: "Italy"
+            }, {
+                id: 109,
+                name: "Jamaica"
+            }, {
+                id: 111,
+                name: "Japan"
+            }, {
+                id: 250,
+                name: "Jersey"
+            }, {
+                id: 110,
+                name: "Jordan"
+            }, {
+                id: 122,
+                name: "Kazakhstan"
+            }, {
+                id: 112,
+                name: "Kenya"
+            }, {
+                id: 115,
+                name: "Kiribati"
+            }, {
+                id: 243,
+                name: "Kosovo"
+            }, {
+                id: 120,
+                name: "Kuwait"
+            }, {
+                id: 113,
+                name: "Kyrgyzstan"
+            }, {
+                id: 123,
+                name: "Laos"
+            }, {
+                id: 132,
+                name: "Latvia"
+            }, {
+                id: 124,
+                name: "Lebanon"
+            }, {
+                id: 129,
+                name: "Lesotho"
+            }, {
+                id: 128,
+                name: "Liberia"
+            }, {
+                id: 133,
+                name: "Libya"
+            }, {
+                id: 126,
+                name: "Liechtenstein"
+            }, {
+                id: 130,
+                name: "Lithuania"
+            }, {
+                id: 131,
+                name: "Luxembourg"
+            }, {
+                id: 143,
+                name: "Macau"
+            }, {
+                id: 139,
+                name: "Macedonia"
+            }, {
+                id: 137,
+                name: "Madagascar"
+            }, {
+                id: 151,
+                name: "Malawi"
+            }, {
+                id: 153,
+                name: "Malaysia"
+            }, {
+                id: 150,
+                name: "Maldives"
+            }, {
+                id: 140,
+                name: "Mali"
+            }, {
+                id: 148,
+                name: "Malta"
+            }, {
+                id: 138,
+                name: "Marshall Islands"
+            }, {
+                id: 145,
+                name: "Martinique"
+            }, {
+                id: 146,
+                name: "Mauritania"
+            }, {
+                id: 149,
+                name: "Mauritius"
+            }, {
+                id: 238,
+                name: "Mayotte"
+            }, {
+                id: 152,
+                name: "Mexico"
+            }, {
+                id: 73,
+                name: "Micronesia"
+            }, {
+                id: 136,
+                name: "Moldova"
+            }, {
+                id: 135,
+                name: "Monaco"
+            }, {
+                id: 142,
+                name: "Mongolia"
+            }, {
+                id: 246,
+                name: "Montenegro"
+            }, {
+                id: 147,
+                name: "Montserrat"
+            }, {
+                id: 134,
+                name: "Morocco"
+            }, {
+                id: 154,
+                name: "Mozambique"
+            }, {
+                id: 141,
+                name: "Myanmar"
+            }, {
+                id: 155,
+                name: "Namibia"
+            }, {
+                id: 164,
+                name: "Nauru"
+            }, {
+                id: 163,
+                name: "Nepal"
+            }, {
+                id: 161,
+                name: "Netherlands"
+            }, {
+                id: 8,
+                name: "Netherlands Antilles"
+            }, {
+                id: 156,
+                name: "New Caledonia"
+            }, {
+                id: 166,
+                name: "New Zealand"
+            }, {
+                id: 160,
+                name: "Nicaragua"
+            }, {
+                id: 157,
+                name: "Niger"
+            }, {
+                id: 159,
+                name: "Nigeria"
+            }, {
+                id: 165,
+                name: "Niue"
+            }, {
+                id: 158,
+                name: "Norfolk Island"
+            }, {
+                id: 118,
+                name: "North Korea"
+            }, {
+                id: 144,
+                name: "Northern Mariana Islands"
+            }, {
+                id: 162,
+                name: "Norway"
+            }, {
+                id: 167,
+                name: "Oman"
+            }, {
+                id: 173,
+                name: "Pakistan"
+            }, {
+                id: 180,
+                name: "Palau"
+            }, {
+                id: 178,
+                name: "Palestinian Territory"
+            }, {
+                id: 168,
+                name: "Panama"
+            }, {
+                id: 171,
+                name: "Papua New Guinea"
+            }, {
+                id: 181,
+                name: "Paraguay"
+            }, {
+                id: 169,
+                name: "Peru"
+            }, {
+                id: 172,
+                name: "Philippines"
+            }, {
+                id: 176,
+                name: "Pitcairn"
+            }, {
+                id: 174,
+                name: "Poland"
+            }, {
+                id: 179,
+                name: "Portugal"
+            }, {
+                id: 177,
+                name: "Puerto Rico"
+            }, {
+                id: 182,
+                name: "Qatar"
+            }, {
+                id: 183,
+                name: "Reunion"
+            }, {
+                id: 184,
+                name: "Romania"
+            }, {
+                id: 185,
+                name: "Russian Federation"
+            }, {
+                id: 186,
+                name: "Rwanda"
+            }, {
+                id: 193,
+                name: "Saint Helena"
+            }, {
+                id: 117,
+                name: "Saint Kitts and Nevis"
+            }, {
+                id: 125,
+                name: "Saint Lucia"
+            }, {
+                id: 251,
+                name: "Saint Martin"
+            }, {
+                id: 175,
+                name: "Saint Pierre and Miquelon"
+            }, {
+                id: 229,
+                name: "Saint Vincent and the Grenadines"
+            }, {
+                id: 247,
+                name: "Saint-Barthélemy"
+            }, {
+                id: 236,
+                name: "Samoa"
+            }, {
+                id: 198,
+                name: "San Marino"
+            }, {
+                id: 202,
+                name: "Sao Tome and Principe"
+            }, {
+                id: 187,
+                name: "Saudi Arabia"
+            }, {
+                id: 199,
+                name: "Senegal"
+            }, {
+                id: 248,
+                name: "Serbia"
+            }, {
+                id: 50,
+                name: "Serbia and Montenegro"
+            }, {
+                id: 189,
+                name: "Seychelles"
+            }, {
+                id: 197,
+                name: "Sierra Leone"
+            }, {
+                id: 192,
+                name: "Singapore"
+            }, {
+                id: 252,
+                name: "Sint Maarten"
+            }, {
+                id: 196,
+                name: "Slovakia"
+            }, {
+                id: 194,
+                name: "Slovenia"
+            }, {
+                id: 188,
+                name: "Solomon Islands"
+            }, {
+                id: 200,
+                name: "Somalia"
+            }, {
+                id: 239,
+                name: "South Africa"
+            }, {
+                id: 89,
+                name: "South Georgia and the South Sandwich Islands"
+            }, {
+                id: 119,
+                name: "South Korea"
+            }, {
+                id: 255,
+                name: "South Sudan"
+            }, {
+                id: 67,
+                name: "Spain"
+            }, {
+                id: 127,
+                name: "Sri Lanka"
+            }, {
+                id: 190,
+                name: "Sudan"
+            }, {
+                id: 201,
+                name: "Suriname"
+            }, {
+                id: 195,
+                name: "Svalbard and Jan Mayen"
+            }, {
+                id: 205,
+                name: "Swaziland"
+            }, {
+                id: 191,
+                name: "Sweden"
+            }, {
+                id: 42,
+                name: "Switzerland"
+            }, {
+                id: 204,
+                name: "Syria"
+            }, {
+                id: 220,
+                name: "Taiwan"
+            }, {
+                id: 211,
+                name: "Tajikistan"
+            }, {
+                id: 221,
+                name: "Tanzania"
+            }, {
+                id: 210,
+                name: "Thailand"
+            }, {
+                id: 209,
+                name: "Togo"
+            }, {
+                id: 212,
+                name: "Tokelau"
+            }, {
+                id: 216,
+                name: "Tonga"
+            }, {
+                id: 218,
+                name: "Trinidad and Tobago"
+            }, {
+                id: 215,
+                name: "Tunisia"
+            }, {
+                id: 217,
+                name: "Turkey"
+            }, {
+                id: 214,
+                name: "Turkmenistan"
+            }, {
+                id: 206,
+                name: "Turks and Caicos Islands"
+            }, {
+                id: 219,
+                name: "Tuvalu"
+            }, {
+                id: 223,
+                name: "Uganda"
+            }, {
+                id: 222,
+                name: "Ukraine"
+            }, {
+                id: 2,
+                name: "United Arab Emirates"
+            }, {
+                id: 77,
+                name: "United Kingdom"
+            }, {
+                id: 224,
+                name: "United States Minor Outlying Islands"
+            }, {
+                id: 226,
+                name: "Uruguay"
+            }, {
+                id: 225,
+                name: "USA"
+            }, {
+                id: 227,
+                name: "Uzbekistan"
+            }, {
+                id: 234,
+                name: "Vanuatu"
+            }, {
+                id: 228,
+                name: "Vatican City (Holy See)"
+            }, {
+                id: 230,
+                name: "Venezuela"
+            }, {
+                id: 233,
+                name: "Vietnam"
+            }, {
+                id: 231,
+                name: "Virgin Islands (British)"
+            }, {
+                id: 232,
+                name: "Virgin Islands (U.S.)"
+            }, {
+                id: 235,
+                name: "Wallis and Futuna"
+            }, {
+                id: 65,
+                name: "Western Sahara"
+            }, {
+                id: 237,
+                name: "Yemen"
+            }, {
+                id: 241,
+                name: "Zaire"
+            }, {
+                id: 240,
+                name: "Zambia"
+            }, {
+                id: 242,
+                name: "Zimbabwe"
+            }],
+            gdprCountriesIds = [196, 194, 191, 184, 179, 174, 161, 148, 132, 131, 130, 108, 101, 99, 97, 88, 77, 75, 70, 67, 63, 58, 56, 55, 54, 23, 21, 14],
+            userCountryId = "88"
+    </script>
+    <script>
+        var followedUsersInPage = ["author-Charles-Humble"]
+    </script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!window || !window.infoq) return
+            infoq.init()
+        })
+    </script>
+</head>
+
+<body>
+
+
+
+    <div id="infoq" class="infoq">
+        <section class="section container promo">
+            <div class="container__inner">
+                <div class="actions">
+                    <div class="actions__left">
+                        <div class="ribbon">New</div>
+                        <p>Early adopter or innovator? InfoQ has been working on some new features for you. <a>Learn more</a></p>
+                    </div>
+                    <div class="actions__right"><button aria-label="Close" class="close button button__unstyled button__icon icon icon__close-white icon--only">Close </button></div>
+                </div>
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+            </div>
+        </section>
+        <header class="header"><button aria-label="Toggle Navigation" tabindex="0" class="burger header__toggle button">Toggle Navigation <span></span><span></span><span></span></button>
+            <div class="header__container container">
+                <div class="container__inner">
+                    <div class="actions header__top">
+                        <div class="actions__left">
+                            <p class="header__desc">Facilitating the spread of knowledge and innovation in professional software development</p>
+                            <div class="button__dropdown dropdown header__more dropdown__center"><button aria-label="More" class="button button__unstyled button__small">More </button>
+                                <div class="dropdown__holder">
+                                    <!---->
+                                    <div class="dropdown__content">
+                                        <ul class="no-style dropdown__nav">
+                                            <li><a href="about-infoq.html">About InfoQ</a></li>
+                                            <li><a href="our-audience.html">Our Audience</a></li>
+                                            <li><a href="contribute.html">Contribute</a></li>
+                                            <li><a href="about-c4media.html">About C4Media</a></li>
+                                        </ul>
+                                    </div>
+                                    <!---->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="actions__right">
+                            <div>
+                                <form id="searchForm" name="search-form" action="/search.action" enctype="multipart/form-data" class="search icon__search icon icon__green">
+                                    <div class="field search__bar input__text input__no-label input__small"><label for="search" class="label field__label">Search<span class="input__req">*</span></label><input id="search" placeholder="Search" class="input field__input" type="text">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                    </div><input value="Go" type="submit" disabled class="search__go">
+                                </form>
+                            </div>
+                            <div class="button__dropdown dropdown user__login"><button aria-label="Sign Up / Login" class="button button__small button__green button__arrow arrow__true button__icon icon icon__user icon--only">Sign Up / Login </button>
+                                <div class="dropdown__holder">
+                                    <!---->
+                                    <div class="dropdown__content">
+                                        <div class="login__dropdown">
+                                            <div data-vv-scope="login" class="login__module">
+                                                <!---->
+                                                <div class="login__username">
+                                                    <!---->
+                                                    <form class="login__form form"><input type="hidden" name="loginWidgetOrigin" id="loginWidgetOrigin" value="mainLogin"><input type="hidden" name="fromP13N"><input type="hidden" name="fromP13NId"><input type="hidden" name="fromP13NType">
+                                                        <div class="field form__row input__text input__small"><label for="email" class="label field__label">Email<span class="input__req">*</span></label><input id="email" placeholder class="input field__input" type="text">
+                                                            <!---->
+                                                            <!---->
+                                                            <!---->
+                                                        </div>
+                                                        <div class="field form__row input__password input__small"><label for="password" class="label field__label">Password<span class="input__req">*</span></label><input type="password" id="password" placeholder class="input field__input">
+                                                            <!---->
+                                                            <!---->
+                                                            <!---->
+                                                        </div>
+                                                        <div class="login__actions"><input type="submit" value="Login" class="form__row button button__medium button__green"><a href="architectsNL.html#" class="forgot button button__unstyled">Forgot your password?</a></div>
+                                                    </form>
+                                                    <form data-vv-scope="forgot" class="forgot__form form">
+                                                        <div class="field form__row input__text input__small"><label for="email-forgot" class="label field__label">InfoQ Account Email<span class="input__req">*</span></label><input id="email-forgot" placeholder class="input field__input" type="text">
+                                                            <!---->
+                                                            <!---->
+                                                            <!---->
+                                                        </div><input type="submit" value="Send Recovery Email" class="button button__medium button__green">
+                                                        <p class="login__actions"><button aria-label="Back to login" class="back-to-login button button__unstyled">Back to login </button></p>
+                                                    </form>
+                                                </div>
+                                                <div class="login__social">
+                                                    <h4 class="heading subsection__heading">Login with:</h4>
+                                                    <div class="login__socials">
+                                                        <div class="social__connect form__row login__socials">
+                                                            <!----><a href="https://google.com" class="button button__medium button__gray button__icon icon icon__google"> Google</a><a href="https://microsoft.com" class="button button__medium button__icon icon icon__microsoft"> Microsoft</a><a href="https://twitter.com" class="button button__medium button__icon icon icon__twitter"> Twitter</a><a href="https://facebook.com" class="button button__medium button__icon icon icon__facebook"> Facebook</a></div>
+                                                    </div>
+                                                    <p class="meta gdpr">When signing in using social media accounts, those accounts may use information for their own purposes. We recommend you view the privacy notice of those social media accounts.</p>
+                                                </div>
+                                                <form class="form login__signup">
+                                                    <h4 class="heading">Don&apos;t have an InfoQ account?</h4><a href="signup.html" class="button button__medium button__green">Sign up</a>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!---->
+                                </div>
+                            </div>
+                            <div class="button__dropdown dropdown user__notifications"><button aria-label="Notifications" class="button button__small button__green button__icon icon icon__notifications icon--only">Notifications <div class="badge"><span class="notifications__badge">1</span></div> </button>
+                                <div class="dropdown__holder">
+                                    <div class="dropdown__header">
+                                        <div class="heading__container actions notifications__header">
+                                            <div class="actions__left">
+                                                <h5 class="heading">Login to unlock InfoQ&#x2019;s new features</h5>
+                                                <!---->
+                                            </div>
+                                            <!---->
+                                        </div>
+                                    </div>
+                                    <div class="dropdown__content">
+                                        <ul class="notifications__welcome no-style">
+                                            <li class="icon__up-to-date">Stay up to date and get notified</li>
+                                            <li class="icon__like-content">Like your favorite content</li>
+                                            <li class="icon__follow-favorites">Follow your favorite editors and peers</li>
+                                        </ul><button aria-label="Login" class="login button button__medium button__green">Login </button><a href="register.html" class="button button__unstyled">Don&apos;t have an account? Register</a>
+                                    </div>
+                                    <!---->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header__middle">
+                        <div class="logo header__logo"><a href="index.html" class="logo__symbol active">Logo - Back to homepage</a>
+                            <ul class="language__switcher no-style logo__languages">
+                                <li><a>En</a></li>
+                                <li><a>&#x4E2D;&#x6587;</a></li>
+                                <li><a>&#x65E5;&#x672C;</a></li>
+                                <li><a>Fr</a></li>
+                                <li class="active"><a>Br</a></li>
+                            </ul>
+                            <div class="logo__data">1,309,499 Nov unique visitors</div>
+                        </div>
+                        <div class="content-items"><a href="news_.html" class="icon icon__news">News</a><a href="articles_.html" class="icon icon__articles">Articles</a><a href="presentations_.html" class="icon icon__presentations">Presentations</a><a href="podcasts_.html" class="icon icon__podcasts">Podcasts</a><a href="guides_.html" class="icon icon__guides">Guides</a></div>
+                        <div class="header__items columns">
+                            <div>
+                                <h3 class="widget__heading">Topics</h3>
+                                <nav class="nav header__nav topics">
+                                    <li class="has--subnav"><a href="topic_development.html" class="nav__category">Development
+                                            <!----></a>
+                                        <div class="nav__subnav subnav">
+                                            <ul class="subnav__categories no-style">
+                                                <li><a href="topic_java.html">Java</a></li>
+                                                <li><a href="topic_clojure.html">Clojure</a></li>
+                                                <li><a href="topic_scala.html">Scala</a></li>
+                                                <li><a href="topic_c-.html">C#</a></li>
+                                                <li><a href="topic_mobile.html">Mobile</a></li>
+                                                <li><a href="topic_android.html">Android</a></li>
+                                                <li><a href="topic_ios.html">iOS</a></li>
+                                                <li><a href="topic_iot.html">IoT</a></li>
+                                                <li><a href="topic_html5.html">HTML5</a></li>
+                                                <li><a href="topic_javascript.html">JavaScript</a></li>
+                                                <li><a href="topic_functional-programming.html">Functional Programming</a></li>
+                                                <li><a href="topic_web-api.html">Web API</a></li>
+                                            </ul>
+                                            <div data-id="development" class="subnav__content">
+                                                <div class="heading__container actions">
+                                                    <div class="actions__left">
+                                                        <h3 class="heading section__heading">Featured in Development</h3>
+                                                        <!---->
+                                                    </div>
+                                                    <!---->
+                                                </div>
+                                                <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
+                                                    <li data-id="key-takeaway-points-and-lessons-learned-from-qcon-london-2017">
+                                                        <!---->
+                                                        <div class="card__content">
+                                                            <!---->
+                                                            <!---->
+                                                            <div class="card__data">
+                                                                <!---->
+                                                                <!---->
+                                                                <h4 class="card__title"><a href="article_key-takeaway-points-and-lessons-learned-from-qcon-london-2017.html">Key Takeaway Points and Lessons Learned from QCon London 2017</a></h4>
+                                                                <p class="card__excerpt">This year was the 11th for QCon London; it was also our largest London event to date. Including our 140 speakers we had 1435 team leads, architects, and project managers attending 112 technical sessions across 18 concurrent editorial tracks and 16 in-depth workshops.</p>
+                                                                <!---->
+                                                                <!---->
+                                                            </div><a href="article_key-takeaway-points-and-lessons-learned-from-qcon-london-2017.html" class="card__header"><img src="./styles/img/d11169c.jpg" alt="Key Takeaway Points and Lessons Learned from QCon London 2017" class="card__image">
+                                                                <!----></a>
+                                                        </div>
+                                                        <!---->
+                                                        <!---->
+                                                    </li>
+                                                    <!---->
+                                                </ul><a href="topic_development.html" styl="has-transition" class="button__more button button__large button__arrow arrow__right">All in Development</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="has--subnav"><a href="topic_architecture-design.html" class="nav__category">Architecture &amp; Design
+                                            <!----></a>
+                                        <div class="nav__subnav subnav">
+                                            <ul class="subnav__categories no-style">
+                                                <li><a href="topic_architecture.html">Architecture</a></li>
+                                                <li><a href="topic_enterprise-architecture.html">Enterprise Architecture</a></li>
+                                                <li><a href="topic_scalability-performance.html">Scalability/Performance</a></li>
+                                                <li><a href="topic_design.html">Design</a></li>
+                                                <li><a href="topic_case-studies.html">Case Studies</a></li>
+                                                <li><a href="topic_microservices.html">Microservices</a></li>
+                                                <li><a href="topic_patterns.html">Patterns</a></li>
+                                                <li><a href="topic_security.html">Security</a></li>
+                                            </ul>
+                                            <div data-id="architecture-design" class="subnav__content">
+                                                <div class="heading__container actions">
+                                                    <div class="actions__left">
+                                                        <h3 class="heading section__heading">Featured in Architecture &amp; Design</h3>
+                                                        <!---->
+                                                    </div>
+                                                    <!---->
+                                                </div>
+                                                <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
+                                                    <li data-id="latency-sensitive-microservices">
+                                                        <!---->
+                                                        <div class="card__content">
+                                                            <!---->
+                                                            <!---->
+                                                            <div class="card__data">
+                                                                <!---->
+                                                                <!---->
+                                                                <h4 class="card__title"><a href="article_latency-sensitive-microservices.html">Latency Sensitive Microservices</a></h4>
+                                                                <p class="card__excerpt">Peter Lawrey looks at the differences between microservices and monolith architectures and their relative benefits and disadvantage. He looks at design patterns which will allow us to utilize these different strategies as a deployment concern without significant changes to the business logic.</p>
+                                                                <!---->
+                                                                <!---->
+                                                            </div><a href="article_latency-sensitive-microservices.html" class="card__header"><img src="./styles/img/d5f6c74.jpg" alt="Latency Sensitive Microservices" class="card__image">
+                                                                <!----></a>
+                                                        </div>
+                                                        <!---->
+                                                        <!---->
+                                                    </li>
+                                                    <!---->
+                                                </ul><a href="topic_architecture-design.html" styl="has-transition" class="button__more button button__large button__arrow arrow__right">All in Architecture &amp; Design</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="has--subnav"><a href="topic_ai-ml.html" class="nav__category">AI, ML and Data Engineering
+                                            <!----></a>
+                                        <div class="nav__subnav subnav">
+                                            <ul class="subnav__categories no-style">
+                                                <li><a href="topic_big-data.html">Big Data</a></li>
+                                                <li><a href="topic_machine-learning.html">Machine Learning</a></li>
+                                                <li><a href="topic_nosql.html">NoSQL</a></li>
+                                                <li><a href="topic_database.html">Database</a></li>
+                                                <li><a href="topic_data-analytics.html">Data Analytics</a></li>
+                                                <li><a href="topic_streaming.html">Streaming</a></li>
+                                            </ul>
+                                            <div data-id="16690" class="subnav__content">
+                                                <div class="heading__container actions">
+                                                    <div class="actions__left">
+                                                        <h3 class="heading section__heading">Featured in AI, ML and Data Engineering</h3>
+                                                        <!---->
+                                                    </div>
+                                                    <!---->
+                                                </div>
+                                                <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
+                                                    <li data-id="do-we-need-another-key-value-store-">
+                                                        <!---->
+                                                        <div class="card__content">
+                                                            <!---->
+                                                            <!---->
+                                                            <div class="card__data">
+                                                                <!---->
+                                                                <!---->
+                                                                <h4 class="card__title"><a href="article_do-we-need-another-key-value-store-.html">Do We Need Another Key-Value Store?</a></h4>
+                                                                <p class="card__excerpt">Hendrik Muhs introduces Keyvi, a key-value store based on &apos;finite state&apos;, describing the concepts, explaining what makes it different and where it is useful.</p>
+                                                                <!---->
+                                                                <!---->
+                                                            </div><a href="article_do-we-need-another-key-value-store-.html" class="card__header"><img src="./styles/img/37a83cc.jpg" alt="Do We Need Another Key-Value Store?" class="card__image">
+                                                                <!----></a>
+                                                        </div>
+                                                        <!---->
+                                                        <!---->
+                                                    </li>
+                                                    <!---->
+                                                </ul><a href="topic_ai-ml.html" styl="has-transition" class="button__more button button__large button__arrow arrow__right">All in AI, ML and Data Engineering</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="has--subnav"><a href="topic_culture-methods.html" class="nav__category">Culture &amp; Methods
+                                            <!----></a>
+                                        <div class="nav__subnav subnav">
+                                            <ul class="subnav__categories no-style">
+                                                <li><a href="topic_agile.html">Agile</a></li>
+                                                <li><a href="topic_leadership.html">Leadership</a></li>
+                                                <li><a href="topic_team-collaboration.html">Team Collaboration</a></li>
+                                                <li><a href="topic_testing.html">Testing</a></li>
+                                                <li><a href="topic_project-management.html">Project Management</a></li>
+                                                <li><a href="topic_ux.html">UX</a></li>
+                                                <li><a href="topic_scrum.html">Scrum</a></li>
+                                                <li><a href="topic_lean-kanban.html">Lean/Kanban</a></li>
+                                                <li><a href="topic_personal-growth.html">Personal Growth</a></li>
+                                            </ul>
+                                            <div data-id="culture-methods" class="subnav__content">
+                                                <div class="heading__container actions">
+                                                    <div class="actions__left">
+                                                        <h3 class="heading section__heading">Featured in Culture &amp; Methods</h3>
+                                                        <!---->
+                                                    </div>
+                                                    <!---->
+                                                </div>
+                                                <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
+                                                    <li data-id="always-be-publishing--continuous-integration---collaboration-in-code-repositories-for-rest-api-docs">
+                                                        <!---->
+                                                        <div class="card__content">
+                                                            <!---->
+                                                            <!---->
+                                                            <div class="card__data">
+                                                                <!---->
+                                                                <!---->
+                                                                <h4 class="card__title"><a href="article_always-be-publishing--continuous-integration---collaboration-in-code-repositories-for-rest-api-docs.html">Always Be Publishing: Continuous Integration &amp; Collaboration in Code Repositories for REST API Docs</a></h4>
+                                                                <p class="card__excerpt">API documentation is an often overlooked part of making any API a success. This article explores how to make the documentation part of a continuous integration pipeline keeping it closer to the code itself.</p>
+                                                                <!---->
+                                                                <!---->
+                                                            </div><a href="article_always-be-publishing--continuous-integration---collaboration-in-code-repositories-for-rest-api-docs.html" class="card__header"><img src="./styles/img/85486c5.jpg" alt="Always Be Publishing: Continuous Integration &amp; Collaboration in Code Repositories for REST API Docs" class="card__image">
+                                                                <!----></a>
+                                                        </div>
+                                                        <!---->
+                                                        <!---->
+                                                    </li>
+                                                    <!---->
+                                                </ul><a href="topic_culture-methods.html" styl="has-transition" class="button__more button button__large button__arrow arrow__right">All in Culture &amp; Methods</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="has--subnav"><a href="topic_devops.html" class="nav__category">DevOps
+                                            <!----></a>
+                                        <div class="nav__subnav subnav">
+                                            <ul class="subnav__categories no-style">
+                                                <li><a href="topic_infrastructure.html">Infrastructure</a></li>
+                                                <li><a href="topic_continous-delivery.html">Continous Delivery</a></li>
+                                                <li><a href="topic_automation.html">Automation</a></li>
+                                                <li><a href="topic_containers.html">Containers</a></li>
+                                                <li><a href="topic_cloud.html">Cloud</a></li>
+                                            </ul>
+                                            <div data-id="devops" class="subnav__content">
+                                                <div class="heading__container actions">
+                                                    <div class="actions__left">
+                                                        <h3 class="heading section__heading">Featured in DevOps</h3>
+                                                        <!---->
+                                                    </div>
+                                                    <!---->
+                                                </div>
+                                                <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
+                                                    <li data-id="spotify-lessons--learning-to-let-go-of-machines">
+                                                        <!---->
+                                                        <div class="card__content">
+                                                            <!---->
+                                                            <!---->
+                                                            <div class="card__data">
+                                                                <!---->
+                                                                <!---->
+                                                                <h4 class="card__title"><a href="article_spotify-lessons--learning-to-let-go-of-machines.html">Spotify Lessons: Learning to Let Go of Machines</a></h4>
+                                                                <p class="card__excerpt">James Wen tells the story of how Spotify&#x2019;s infrastructure evolved from teams owning and doting on groups of long-running servers to a distinctive separation of business code and value from the underlying machines all of Spotify&apos;s services actually run on. He examines how this evolution also changed the way that Spotify developers write code and the vast increase in iteration and shipping speed.</p>
+                                                                <!---->
+                                                                <!---->
+                                                            </div><a href="article_spotify-lessons--learning-to-let-go-of-machines.html" class="card__header"><img src="./styles/img/9bad9ee.jpg" alt="Spotify Lessons: Learning to Let Go of Machines" class="card__image">
+                                                                <!----></a>
+                                                        </div>
+                                                        <!---->
+                                                        <!---->
+                                                    </li>
+                                                    <!---->
+                                                </ul><a href="topic_devops.html" styl="has-transition" class="button__more button button__large button__arrow arrow__right">All in DevOps</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li><a href="podcasts.html" class="nav__category">Videos with Transcripts<span class="nav__new">New</span></a>
+                                        <!---->
+                                    </li>
+                                </nav>
+                            </div>
+                            <div>
+                                <h3 class="widget__heading">Helpful links</h3>
+                                <ul class="no-style header__nav">
+                                    <li><a href="about-infoq.html">About InfoQ</a></li>
+                                    <li><a href="our-audience.html">Our Audience</a></li>
+                                    <li><a href="contribute.html">Contribute</a></li>
+                                    <li><a href="about-c4media.html">About C4Media</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 class="widget__heading">QCons from around the world</h3>
+                                <div class="qcons">
+                                    <div class="qcon__logo-holder">
+                                        <div class="qcon__logo">QCon</div>
+                                        <!---->
+                                    </div>
+                                    <ul class="qcons__list no-style">
+                                        <p>Software Dev Conference</p>
+                                        <li class="qcon"><a href="https://qconlondon.com">London<span class="qcon__date">Mar 4 - 8</span></a></li>
+                                        <li class="qcon"><a href="https://qcon.ai">San Francisco<span class="qcon__date">Apr 15 - 17</span></a></li>
+                                        <li class="qcon"><a href="https://qconsp.com">Sao Paulo<span class="qcon__date">May 6 - 8</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="widget__heading">Choose your language</h3>
+                                <ul class="language__switcher no-style">
+                                    <li><a>En</a></li>
+                                    <li><a>&#x4E2D;&#x6587;</a></li>
+                                    <li><a>&#x65E5;&#x672C;</a></li>
+                                    <li><a>Fr</a></li>
+                                    <li class="active"><a>Br</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="actions header__bottom">
+                        <div class="actions__left"><span class="icon icon__trending trending__title">Featured:</span>
+                            <nav class="trending"><button id="trendingNav" class="button__unstyled trending__more">More</button>
+                                <ul class="no-style">
+                                    <li><a href="topic_mobile.html">Mobile</a></li>
+                                    <li><a href="topic_html5.html">HTML5</a></li>
+                                    <li><a href="topic_javascript.html">Javascript</a></li>
+                                    <li><a href="topic_apm.html">APM</a></li>
+                                    <li><a href="topic_devops.html">DevOps</a></li>
+                                    <li><a href="topic_cloud.html">Cloud</a></li>
+                                    <li><a href="topic_internet-of-things.html">IoT</a></li>
+                                    <li><a href="topic_dot-net.html">.NET</a></li>
+                                    <li><a href="topic_database.html">Database</a></li>
+                                    <li class="emphasis"><a href="topics.html">All topics</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="actions__right">
+                            <div class="special"><a href="architects-newsletter?utm_source=greybar&amp;utm_medium=link&amp;utm_campaign=architectsnewsletter.html" class="special__link">The Architects&apos; Newsletter</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <section class="section container architects white">
+                <div class="container__inner">
+                    <div class="columns">
+                        <div data-col="1/2">
+                            <h1 class="heading">The Architects&#x2019; Newsletter</h1>
+                            <p>The role of a modern software architect is continually shifting, and so too are the underlying frameworks, platforms and tools that are used as part of the craft.</p>
+                            <p>The InfoQ Architects&apos; Newsletter is your monthly guide to all the topics, technologies and techniques that every professional or aspiring software architect needs to know about.</p>
+                            <div class="newsletter__subscribe">
+                                <form class="form gdpr">
+                                    <div class="field newsletter__mail email input__text input__no-label input__medium"><label for="email-newsletter-unnamed" class="label field__label">Enter your e-mail address<span class="input__req">*</span></label><input id="email-newsletter-unnamed" placeholder="Enter your e-mail address" class="input field__input" type="text">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                    <div class="hidden"><span aria-required="false" class="input__select field country"><label for="demo::replace" class="label field__label">Select your country
+                                                <!----></label><select id="demo::replace" class="select field__input">
+                                                <option value class="select__option">Please select one...</option>
+                                            </select>
+                                            <p class="input__message field__desc"></p>
+                                        </span><span class="input__checkbox field hidden"><input type="checkbox" id="gdpr-consent-unnamed"><label for="gdpr-consent-unnamed" class="label"><span>I consent to InfoQ.com handling my data as explained in this Privacy Notice.</span>
+                                                <!----></label>
+                                            <!----></span></div><input type="submit" value="Subscribe" class="button button__medium button__red">
+                                </form>
+                                <p class="meta"><a href="privacy-policy.html">We protect your privacy.</a></p>
+                            </div>
+                            <p class="meta"><small>We require your email for the delivery of the newsletter. We will review analytical data for performance purposes but will not use your data for any behavioral targeting. If you are based in the EEA, please contact us so we can provide you with the protections afforded to you under EEA protection laws.</small></p>
+                        </div>
+                        <div data-col="1/2"><img src="./styles/img/7e52869.jpg" alt="Architects&apos; Newsletter"></div>
+                    </div>
+                    <div class="columns">
+                        <div data-col="1/3">
+                            <p class="center"><img src="./styles/img/8c7f828.jpg" width="102" height="102" alt="What is the Architects&apos; Newsletter"><br> <strong>WHAT</strong><br>More than just a collection of links, consolidated &amp; summarized core insights and takeaways.</p>
+                        </div>
+                        <div data-col="1/3">
+                            <p class="center"><img src="./styles/img/3250d7c.jpg" width="102" height="102" alt="Who is the Architects&apos; Newsletter for"><br> <strong>WHO</strong><br>Over 200,000 software architects, team leads, CTOs are subscribed to the newsletter</p>
+                        </div>
+                        <div data-col="1/3">
+                            <p class="center"><img src="./styles/img/803f37e.jpg" width="102" height="102" alt="How often do you send the Architects&apos; Newsletter"><br> <strong>WHEN</strong><br>Last Friday of every month</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <h1 class="center">Curated by practicing software architects</h1>
+                    <ul class="columns authors no-style">
+                        <li data-id="author-Daniel-Bryant" data-col="1/3">
+                            <div class="author__card"><a href="profile_julie.html" class="avatar author__avatar"><img src="./styles/img/138a286.jpg"></a>
+                                <div class="author__info">
+                                    <h4 class="author__name"><a href="profile_daniel-bryant.html" class="author__link">Daniel Bryant</a></h4><span class="author__role green">Independent Technical Consultant</span>
+                                    <!---->
+                                </div>
+                            </div>
+                        </li>
+                        <li data-id="author-Thomas-Betts" data-col="1/3">
+                            <div class="author__card"><a href="profile_julie.html" class="avatar author__avatar"><img src="./styles/img/138a286.jpg"></a>
+                                <div class="author__info">
+                                    <h4 class="author__name"><a href="profile_thomas-betts.html" class="author__link">Thomas Betts</a></h4><span class="author__role green">Principal Software Engineer at IHS Markit</span>
+                                    <!---->
+                                </div>
+                            </div>
+                        </li>
+                        <li data-id="author-Charles-Humble" data-col="1/3">
+                            <div class="author__card"><a href="profile_julie.html" class="avatar author__avatar"><img src="./styles/img/138a286.jpg"></a>
+                                <div class="author__info">
+                                    <h4 class="author__name"><a href="profile_charles-humble.html" class="author__link">Charles Humble</a></h4><span class="author__role green">Editor-in-chief for InfoQ.com</span>
+                                    <!---->
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <hr>
+                    <h1 class="center">Past Issues</h1> <a target="_blank" href="https://assets.infoq.com/newsletter/architect/en/newsletter_sample/15Architects_NL_October_2018.html" class="architect-item">
+                        <h3>Issue 15 - October 2018</h3> <span>Read more</span>
+                    </a> <a target="_blank" href="https://assets.infoq.com/newsletter/architect/en/newsletter_sample/14Architects_NL_September_2018.html" class="architect-item">
+                        <h3>Issue 14 - September 2018</h3> <span>Read more</span>
+                    </a> <a target="_blank" href="https://assets.infoq.com/newsletter/architect/en/newsletter_sample/14Architects-NL-August2018.html" class="architect-item">
+                        <h3>Issue 13 - August 2018</h3> <span>Read more</span>
+                    </a> <a target="_blank" href="https://assets.infoq.com/newsletter/architect/en/newsletter_sample/13Architects-NL-July2018.html" class="architect-item">
+                        <h3>Issue 12 - July 2018</h3> <span>Read more</span>
+                    </a> <a target="_blank" href="https://assets.infoq.com/newsletter/architect/en/newsletter_sample/12Architects-NL-June2018.html" class="architect-item">
+                        <h3>Issue 11 - June 2018</h3> <span>Read more</span>
+                    </a> <a target="_blank" href="https://assets.infoq.com/newsletter/architect/en/newsletter_sample/11Architects-NL-May2018.html" class="architect-item">
+                        <h3>Issue 10 - May 2018</h3> <span>Read more</span>
+                    </a> <a target="_blank" href="https://assets.infoq.com/newsletter/architect/en/newsletter_sample/10Architects-NL-April2018.html" class="architect-item">
+                        <h3>Issue 9 - April 2018</h3> <span>Read more</span>
+                    </a> <a target="_blank" href="https://assets.infoq.com/newsletter/architect/en/newsletter_sample/09Architects-NL-March2018.html" class="architect-item">
+                        <h3>Issue 8 - March 2018</h3> <span>Read more</span>
+                    </a> <a target="_blank" href="https://assets.infoq.com/newsletter/architect/en/newsletter_sample/08Architects-NL-February2018.html" class="architect-item">
+                        <h3>Issue 7 - February 2018</h3> <span>Read more</span>
+                    </a> <a target="_blank" href="https://assets.infoq.com/newsletter/architect/en/newsletter_sample/07Architects-NL-January2018.html" class="architect-item">
+                        <h3>Issue 6 - January 2018</h3> <span>Read more</span>
+                    </a> <a target="_blank" href="https://assets.infoq.com/newsletter/architect/en/newsletter_sample/06Architects-NL-December2017-A.html" class="architect-item">
+                        <h3>Issue 5 - December 2017</h3> <span>Read more</span>
+                    </a> <a target="_blank" href="https://assets.infoq.com/newsletter/architect/en/newsletter_sample/05Architects-NL-November2017-A.html" class="architect-item">
+                        <h3>Issue 4 - November 2017</h3> <span>Read more</span>
+                    </a> <a target="_blank" href="https://assets.infoq.com/newsletter/architect/en/newsletter_sample/04Architects-NL-October2017.html" class="architect-item">
+                        <h3>Issue 3 - October 2017</h3> <span>Read more</span>
+                    </a> <a target="_blank" href="https://assets.infoq.com/newsletter/architect/en/newsletter_sample/02Architects-NL-September2017.html" class="architect-item">
+                        <h3>Issue 2 - September 2017</h3> <span>Read more</span>
+                    </a> <a target="_blank" href="https://assets.infoq.com/newsletter/architect/en/newsletter_sample/01Architects-NL-August2017.html" class="architect-item">
+                        <h3>Issue 1 - August 2017</h3> <span>Read more</span>
+                    </a>
+                    <!---->
+                    <!---->
+                    <!---->
+                    <!---->
+                    <!---->
+                    <!---->
+                    <!---->
+                    <!---->
+                </div>
+            </section>
+        </main>
+        <footer class="footer">
+            <!---->
+            <section class="section container">
+                <div class="container__inner">
+                    <ul data-cols="5" class="no-style columns boxes topic__boxes">
+                        <li class="development">
+                            <div class="box__header"><a href="topic_development.html">Development</a></div>
+                            <div class="box__content">
+                                <ul class="box__list small no-style">
+                                    <li>
+                                        <h5><a href="article_git-2-11-improves-sha-1-name-handling--performance-and-more.html">Git 2.11 Improves SHA-1 Name Handling, Performance and More</a></h5>
+                                    </li>
+                                    <li>
+                                        <h5><a href="article_rxjava-2-0-released-with-support-for-reactive-streams-specification.html">RxJava 2.0 Released with Support for Reactive Streams Specification</a></h5>
+                                    </li>
+                                    <li>
+                                        <h5><a href="article_github-new-organization-membership-apis-now-in-preview.html">GitHub New Organization Membership APIs Now in Preview</a></h5>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="architecture-design">
+                            <div class="box__header"><a href="topic_architecture-design.html">Architecture &amp; Design</a></div>
+                            <div class="box__content">
+                                <ul class="box__list small no-style">
+                                    <li>
+                                        <h5><a href="article_technologies-for-the-future-of-software-engineering.html">Technologies for the Future of Software Engineering</a></h5>
+                                    </li>
+                                    <li>
+                                        <h5><a href="article_git-2-11-improves-sha-1-name-handling--performance-and-more.html">Git 2.11 Improves SHA-1 Name Handling, Performance and More</a></h5>
+                                    </li>
+                                    <li>
+                                        <h5><a href="article_rxjava-2-0-released-with-support-for-reactive-streams-specification.html">RxJava 2.0 Released with Support for Reactive Streams Specification</a></h5>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="culture-methods">
+                            <div class="box__header"><a href="topic_culture-methods.html">Culture &amp; Methods</a></div>
+                            <div class="box__content">
+                                <ul class="box__list small no-style">
+                                    <li>
+                                        <h5><a href="article_technologies-for-the-future-of-software-engineering.html">Technologies for the Future of Software Engineering</a></h5>
+                                    </li>
+                                    <li>
+                                        <h5><a href="article_git-2-11-improves-sha-1-name-handling--performance-and-more.html">Git 2.11 Improves SHA-1 Name Handling, Performance and More</a></h5>
+                                    </li>
+                                    <li>
+                                        <h5><a href="article_q-a-on-the--practice-of-system-and-network-administration--3rd-edition-.html">Q&amp;A on the &#x200B;Practice of System and Network Administration (3rd Edition)</a></h5>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="data-science">
+                            <div class="box__header"><a href="topic_data-science.html">Data Science</a></div>
+                            <div class="box__content">
+                                <ul class="box__list small no-style">
+                                    <li>
+                                        <h5><a href="article_reactor-by-example.html">Reactor by Example</a></h5>
+                                    </li>
+                                    <li>
+                                        <h5><a href="article_amazon-announces-mxnet-as-deep-learning-framework-of-choice-at-aws.html">Amazon Announces MXNet as Deep Learning Framework of Choice at AWS</a></h5>
+                                    </li>
+                                    <li>
+                                        <h5><a href="article_couchbase-4-6-developer-adds-real-time-connectors-for-apache-spark-2-0-and-kafka.html">Couchbase 4.6 Developer Adds Real-Time Connectors for Apache Spark 2.0 and Kafka</a></h5>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="devops">
+                            <div class="box__header"><a href="topic_devops.html">DevOPS</a></div>
+                            <div class="box__content">
+                                <ul class="box__list small no-style">
+                                    <li>
+                                        <h5><a href="article_pcf-dev--spring-cloud-services-in-your-pocket.html">PCF Dev: Spring Cloud Services in Your Pocket</a></h5>
+                                    </li>
+                                    <li>
+                                        <h5><a href="article_git-2-11-improves-sha-1-name-handling--performance-and-more.html">Git 2.11 Improves SHA-1 Name Handling, Performance and More</a></h5>
+                                    </li>
+                                    <li>
+                                        <h5><a href="article_lawyer-com--early-adopter-of-http-2--speaks-to-infoq.html">Lawyer.com: Early Adopter of HTTP/2, Speaks to InfoQ</a></h5>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="section container section__newsletter">
+                <div class="container__inner columns">
+                    <div id="infoq-nl" data-col="1/2" class="newsletter">
+                        <h2 class="heading"><strong>The InfoQ</strong> Newsletter</h2>
+                        <p class="intro">A round-up of last week&#x2019;s content on InfoQ sent out every Tuesday. Join a community of over 250,000 senior developers. <a href="#">View an example.</a></p>
+                        <ul class="newsletter__features">
+                            <li>Get a quick overview of content published on a variety of innovator and early adopter technologies</li>
+                            <li>Learn what you don&#x2019;t know that you don&#x2019;t know</li>
+                            <li>Stay up to date with the latest information from the topics you are interested in</li>
+                        </ul>
+                        <div class="newsletter__subscribe">
+                            <form class="form gdpr">
+                                <div class="field newsletter__mail email input__text input__no-label input__medium"><label for="email-newsletter-infoq-nl" class="label field__label">Enter your e-mail address<span class="input__req">*</span></label><input id="email-newsletter-infoq-nl" placeholder="Enter your e-mail address" class="input field__input" type="text">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                </div>
+                                <div class="hidden"><span aria-required="false" class="input__select field country"><label for="demo::replace" class="label field__label">Select your country
+                                            <!----></label><select id="demo::replace" class="select field__input">
+                                            <option value class="select__option">Please select one...</option>
+                                        </select>
+                                        <p class="input__message field__desc"></p>
+                                    </span><span class="input__checkbox field hidden"><input type="checkbox" id="gdpr-consent-infoq-nl"><label for="gdpr-consent-infoq-nl" class="label"><span>I consent to InfoQ.com handling my data as explained in this Privacy Notice.</span>
+                                            <!----></label>
+                                        <!----></span></div><input type="submit" value="Subscribe" class="button button__medium button__red">
+                            </form>
+                            <p class="meta"><a href="privacy-policy.html">We protect your privacy.</a></p>
+                        </div>
+                    </div>
+                    <!---->
+                    <!---->
+                    <div data-col="1/2" data-bg="london" class="event__container">
+                        <h2 class="event__description heading">QCons Worldwide</h2>
+                        <div class="event__next">
+                            <p class="event__tag">Next Event</p><a href="https://qconlondon.com" class="event__title">QCon London</a>
+                            <p class="event__desc">International Software Development Conference</p>
+                            <p class="event__date">Mar 4 - 8</p>
+                        </div>
+                        <h4 class="event__subheading heading">Upcoming QCons</h4>
+                        <div class="event__list"><a href="https://qcon.ai" data-col="1/2">San Francisco <span>/</span> Apr 15 - 17</a><a href="https://qconsp.com" data-col="1/2">Sao Paulo <span>/</span> May 6 - 8</a><a href="https://qconnewyork.com" data-col="1/2">New York <span>/</span> Jun 24 - 28</a><a href="https://2019.qconbeijing.com/" data-col="1/2">Beijing <span>/</span> Apr 23 - 27</a><a href="http://qconshanghai.com/" data-col="1/2">Shanghai <span>/</span> Oct 17 - 19</a></div>
+                    </div>
+                    <!---->
+                    <!---->
+                    <!---->
+                    <!---->
+                    <!---->
+                    <!---->
+                    <!---->
+                    <!---->
+                </div>
+            </section>
+            <!---->
+            <section class="section container footer__subfooter align__left">
+                <div class="container__inner columns">
+                    <div data-col="1/3" class="columns">
+                        <div class="footer__links"><a href="index.html" class="active">Home</a><a href="signup.html" class="emphasis">Create Account</a><button aria-label="Login" class="login">Login </button><a href="all-topics.html">All Topics</a><a href="contribute.html">Contribute</a><a href="audience.html">Our Audience</a><a href="about.html">About InfoQ</a><a href="qcons.html">QCon Conferences</a><a href="about-us.html">About C4Media</a><a href="privacy-policy.html">Privacy Policy</a></div>
+                        <div data-col="1/2" class="qcons__worldwide">
+                            <h4 class="heading footer__heading">QCons Worldwide</h4>
+                            <ul class="qcons__list no-style">
+                                <li><span class="icon flag uk"></span>
+                                    <div class="qcon__detail">
+                                        <h5 class="heading"><a href="https://qconlondon.com">QCon London</a></h5><span class="meta date">Mar 4 - 8</span>
+                                    </div>
+                                </li>
+                                <li><span class="icon flag us"></span>
+                                    <div class="qcon__detail">
+                                        <h5 class="heading"><a href="https://qcon.ai">QCon San Francisco</a></h5><span class="meta date">Apr 15 - 17</span>
+                                    </div>
+                                </li>
+                                <li><span class="icon flag br"></span>
+                                    <div class="qcon__detail">
+                                        <h5 class="heading"><a href="https://qconsp.com">QCon Sao Paulo</a></h5><span class="meta date">May 6 - 8</span>
+                                    </div>
+                                </li>
+                                <li><span class="icon flag us"></span>
+                                    <div class="qcon__detail">
+                                        <h5 class="heading"><a href="https://qconnewyork.com">QCon New York</a></h5><span class="meta date">Jun 24 - 28</span>
+                                    </div>
+                                </li>
+                                <li><span class="icon flag cn"></span>
+                                    <div class="qcon__detail">
+                                        <h5 class="heading"><a href="https://2019.qconbeijing.com/">QCon Beijing</a></h5><span class="meta date">Apr 23 - 27</span>
+                                    </div>
+                                </li>
+                                <li><span class="icon flag cn"></span>
+                                    <div class="qcon__detail">
+                                        <h5 class="heading"><a href="http://qconshanghai.com/">QCon Shanghai</a></h5><span class="meta date">Oct 17 - 19</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div data-col="1/3" class="footer__sm">
+                        <h4 class="heading footer__heading">Follow us on</h4>
+                        <div class="social__links columns"><a href="youtube"><span class="icon icon__large icon__social icon__youtube"></span><span class="social__count">124k</span><span class="social__followers">followers</span></a><a href="linkedin"><span class="icon icon__large icon__social icon__linkedin"></span><span class="social__count">6.5k</span><span class="social__followers">followers</span></a><a href="rss"><span class="icon icon__large icon__social icon__rss"></span><span class="social__count">19k</span><span class="social__followers">readers</span></a><a href="twitter"><span class="icon icon__large icon__social icon__twitter"></span><span class="social__count">33k</span><span class="social__followers">followers</span></a><a href="fb"><span class="icon icon__large icon__social icon__fb"></span><span class="social__count">16k</span><span class="social__followers">likes</span></a><a href="alexa"><span class="icon icon__large icon__social icon__alexa"></span><span class="social__count">Alexa</span><span class="social__followers">New</span></a></div>
+                    </div>
+                    <div data-col="1/3" class="oneP">
+                        <div class="oneP__bg"></div>
+                        <div class="oneP__container">
+                            <div>
+                                <p class="heading"><span class="oneP__percent">1<em>%</em></span> for a Better World</p>
+                            </div>
+                            <div>
+                                <p>We care about the world in which we live and we want to make it a better place.</p>
+                                <p>We are doing so by <strong>fulfilling our mission to accelerate the human side of software development</strong>.</p>
+                                <p>We also <strong>donate 1% of our profit to different causes</strong>, which we as a company, as well as our employees, strongly believe in.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+                    <!---->
+                    <!---->
+                    <!---->
+                    <!---->
+                    <!---->
+                    <!---->
+                    <!---->
+                </div>
+            </section>
+            <section class="container footer__bottom section white align__left">
+                <div class="container__inner columns">
+                    <div data-col="2/3" class="column">
+                        <div class="footer__contact contact columns"><span data-col="1/6">General Feedback<a href="mailto:feedback@infoq.com">feedback@infoq.com</a></span><span data-col="1/6">Advertising<a href="mailto:sales@infoq.com">sales@infoq.com</a></span><span data-col="1/6">Editorial<a href="mailto:editors@infoq.com">editors@infoq.com</a></span><span data-col="1/6">Marketing<a href="mailto:marketing@infoq.com">marketing@infoq.com</a></span></div>
+                    </div>
+                    <div data-col="1/3" class="column">
+                        <p class="footer__more">InfoQ.com and all content copyright &#xA9; 2006-2019 C4Media Inc. InfoQ.com hosted at <a href="http://www.contegix.com">Contegix</a>, the best ISP we&apos;ve ever worked with.<br> <a href="privacy-notice.html">Privacy Notice</a>, <a href="terms-and-conditions.html">Terms And Conditions</a>, <a href="cookie-policy.html">Cookie Policy</a></p>
+                    </div>
+                </div>
+            </section>
+        </footer>
+        <div class="popups">
+            <div data-target-urihash="popupdisplayed" data-expires="1500">
+                <h3 class="heading">Registration complete</h3>
+                <p class="fieldset__description">A verified account on InfoQ with the same email as your <s class="span connected__badge icon icon__fb">Facebook account (<a href="mailto:lol@this.com" class="email">lol@this.com</a>)</s>. To save you time we have associated your <span class="connected__badge icon icon__google">Google account (<a href="mailto:lol@this.com" class="email">lol@this.com</a>)</span> with this past account and profile data and we have logged you in. You can edit your profile information anytime on <a href="preferences.html">the preferences page</a>. <br>Thank you!</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

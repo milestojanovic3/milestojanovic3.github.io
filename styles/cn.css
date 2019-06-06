@@ -1,0 +1,70 @@
+.event__container[data-bg=cn]:before,
+.newsletter[data-bg=cn]:before {
+    background-image: url(static/images/ui/footer/cn-1x.jpg) !important
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
+    font-family: Arial, Helvetica, 'Microsoft YaHei New', 'Microsoft Yahei', '微软雅黑', '宋体', SimSun, STXihei, '华文细黑', sans-serif
+}
+
+.header_banner_conferences div {
+    width: 200px;
+    height: 100px;
+    display: block;
+    top: 10px;
+    right: 0;
+    bottom: auto;
+    left: auto;
+    position: absolute
+}
+
+#newsGridSection .card__title {
+    margin-bottom: 6px
+}
+
+.cards[data-tax=news]:not(.boxes):not([data-cols="3"])[data-size=large]>li {
+    margin-bottom: 4px
+}
+
+.cards[data-tax=news]:not(.boxes):not([data-cols="3"])[data-size=large] .card__content {
+    padding: 8px 12px
+}
+
+.cards[data-size=large].boxes[data-horizontal=true] .card__content {
+    padding: 8px 16px
+}
+
+.popular__cards>li {
+    padding: 8px 20px 8px 40px
+}
+
+.cards[data-horizontal=true][data-size=large] .card__header,
+.cards[data-horizontal=true][data-size=medium] .card__header {
+    width: 60px;
+    height: 60px;
+    min-width: 60px
+}
+
+.social__links>a:not(:first-child) {
+    margin-left: 0
+}
+
+.social__links {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+.social__links>a {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 1 70px;
+    -ms-flex: 0 1 70px;
+    flex: 0 1 70px
+}
