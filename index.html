@@ -12,13 +12,27 @@
     <link rel="stylesheet" href="dist/css/styles.css">
 </head>
 <body>
+  <div class="navigation">
+    <div class="container">
+      <div class="navigation_inner">
+                    <a href="https://infoq.com" target="_blank"><img src="dist/images/infoq-logo.svg" class="logo" alt="InfoQ logo"></a>
+                    <ul>
+                      <li><a href="#">What you will learn</a></li>
+                      <li><a href="#">Podcasts</a></li>
+                      <li><a href="#">Other Resources</a></li>
+                    </ul>
+                    <div class="sub-btn-nav">
+                      <a href="#" class="btn sub-button">SUBSCRIBE</a>
+                    </div>
+                  </div>
+      </div>
+  </div>
     <header>
         <div class="container">
             <div class="header__inner">
-                <img src="dist/images/infoq-logo_white.svg" class="logo" alt="InfoQ logo">
                 <h1 class="h1">The InfoQ Podcast</h1>
                 <h4 class="h4 light">5 essential software architecture podcasts to listen to in 2019</h4>
-                <a href="#" class="btn btn__jumbo mt-4">LISTEN ON SOUNDCLOUD</a>
+                <a href="https://soundcloud.com/infoq-channel" class="btn btn__jumbo-outline mt-4">LISTEN ON SOUNDCLOUD</a>
             </div>
         </div>
     </header>
@@ -28,10 +42,10 @@
             <div class="section_inner ai-start">
                 <div class="section_60 pr-40">
                     <p>
-                        During the last few months, InfoQ has talked with some of the most well known and respected figures in Software Architecture trying to identify new trends coming up or discussing the evolution of the ones that have been gaining wider adoption. From basic principles that are still so important like Domain Driven Design and a Clean Software Architecture to Microservices and Service Meshes, we picked the brain of people like Martin Fowler, Uncle Bob or Vaughn Vernon in an effort to empower the community to innovate faster and build better software.
+                        During the last few months, InfoQ has talked with some of the most well known and respected figures in Software Architecture trying to identify new trends coming up or discussing the evolution of the ones that have been gaining wider adoption. To cover topics from  basic principles that are still important such as  Domain Driven Design and Refactoring, to Microservices,Service Meshes, and Site Reliability Engineering we picked the brains of people like Martin Fowler, Tanya Reilly,  and Vaughn Vernon in an effort to empower the community to innovate faster and build better software.
                     </p>
                     <p>
-                        If you decide to make the investment and put aside 2 hours to go to this playlist or enjoy them separately (30 minutes each) you will be inspired. Hopefully, you will also share the knowledge with your teams and accelerate the software side of our progress, putting your company at the front of this development.
+                      If you decide to make the investment and put aside 2 hours to go to this playlist or enjoy them separately (30 minutes each) we hope you will be inspired., and perhaps  you will also share the knowledge you have acquired with your teams and accelerate the software side of progress, putting your company at the front of this development.
                     </p>
                 </div>
                 <div class="section_40">
@@ -45,12 +59,12 @@
             <div class="section_inner">
                 <div class="section_60 pr-40">
                     <h2 class="h2">Things you will learn from these podcasts</h2>
-                    <ul>
-                        <li>Evolutionary architecture is a broad principle that architecture is constantly changing. While related to Microservices, it’s not Microservices by another name. You could evolve towards or away from Microservices for example.</li>
-                        <li>Services do not form an architecture. They form a deployment pattern that is a way of decoupling and therefore has no impact on the idea of clean architecture.</li>
-                        <li>Vlingo is an open source system for building distributed, concurrent, event-driven, reactive microservices that supports (at the framework level) Domain Driven Design.</li>
-                        <li>The operating system of today is really unchanged since the Sun workstation of the 90’s. Yet everything else about software has really changed such as automation, build pipelines, and delivery.</li>
-                        <li>Consul is first and foremost a centralized service registry that provides discovery. While it has a key-value store, it is Consul’s least important feature.</li>
+                    <ul class="big-list">
+                        <li><a href="">Evolutionary architecture</a> is a broad principle that architecture is constantly changing. While related to Microservices, it’s not Microservices by another name. You could evolve towards or away from Microservices for example.</li>
+                        <li>Services do not form an <a href="">architecture</a>. They form a deployment pattern that is a way of decoupling and therefore has no impact on the idea of clean architecture.</li>
+                        <li>Vlingo is an open source system for building distributed, concurrent, event-driven, reactive microservices that supports (at the framework level) <a href="">Domain Driven Design</a>.</li>
+                        <li>The <a href="">operating system</a> of today is really unchanged since the Sun workstation of the 90’s. Yet everything else about software has really changed such as automation, build pipelines, and delivery.</li>
+                        <li><a href="">Consul</a> is first and foremost a centralized service registry that provides discovery. While it has a key-value store, it is Consul’s least important feature.</li>
                     </ul>
                 </div>
                 <div class="section_40 text-center">
@@ -69,11 +83,11 @@
                     <div class="podcast-item__inner">
                         <h4 class="h4">Martin Fowler Discusses New Edition of Refactoring, along with Thoughts on Evolutionary Architecture</h4>
                         <p>
-                            <img src="dist/images/quote.png" class="quote"> The core idea of refactoring hasn't changed: a sequence of small things allows you to make a big change. Many of those "small things" are still the same, such as Extract Function
+                            <img src="dist/images/quote.png" class="quote"> The core idea of refactoring hasn't changed: a sequence of small things allows you to make a big change. Many of those "small things" are still the same, such as Extract Function.
                         </p>
-                        <a href="https://www.infoq.com/podcasts/refactoring-evolutionary-architecture">Listen now with shownotes</a>
+                        <a href="https://www.infoq.com/podcasts/refactoring-evolutionary-architecture" target="_blank">Listen now with shownotes</a>
                         <div class="author">
-                            <img src="dist/images/martin.jpg" class="author_image">
+                            <img src="dist/images/martin.png" class="author_image">
                             <div>
                                 <span class="author_name">Martin Fowler</span>
                                 <span class="author_position">Author, speaker, and general loud mouth on Software Development.</span>
@@ -83,16 +97,16 @@
                 </div>
                 <div class="podcast-item">
                     <div class="podcast-item__inner">
-                        <h4 class="h4">Uncle Bob Martin on Clean Software, Craftsperson, Origins of SOLID, DDD, & Software Ethics</h4>
+                        <h4 class="h4">Tanya Reilly on Site Reliability Engineering and the Evolution of the New York City Fire Code</h4>
                         <p>
-                            <img src="dist/images/quote.png" class="quote"> Services do not form an architecture; they form a deployment pattern: a decoupling.
+                            <img src="dist/images/quote.png" class="quote"> The role of SRE is to define how to do things in a really reliable way. The focus is to make the majority of the operations work go away, and, for the things that can’t go away, it’s as easy as possible.
                         </p>
-                        <a href="https://www.infoq.com/podcasts/uncle-bob-solid-ddd">Listen now with shownotes</a>
+                        <a href="https://www.infoq.com/podcasts/uncle-bob-solid-ddd" target="_blank">Listen now with shownotes</a>
                         <div class="author">
-                            <img src="dist/images/unclebob.jpg" class="author_image">
+                            <img src="dist/images/tanya.png" class="author_image">
                             <div>
-                                <span class="author_name">Uncle Bob Martin</span>
-                                <span class="author_position">Software Craftsman</span>
+                                <span class="author_name">Tanya Reilly</span>
+                                <span class="author_position">Principal Engineer at Squarespace and previously a staff SRE at Google</span>
                             </div>
                         </div>
                     </div>
@@ -103,9 +117,9 @@
                         <p>
                             <img src="dist/images/quote.png" class="quote"> I was working on a Vlingo like vision seven years ago, and I was speaking at SpringOne, and I gave a talk on DDD along with talks on reactive.
                         </p>
-                        <a href="https://www.infoq.com/podcasts/ddd-microservices-framework">Listen now with shownotes</a>
+                        <a href="https://www.infoq.com/podcasts/ddd-microservices-framework" target="_blank">Listen now with shownotes</a>
                         <div class="author">
-                            <img src="dist/images/vaughn.jpg" class="author_image">
+                            <img src="dist/images/vaughn.png" class="author_image">
                             <div>
                                 <span class="author_name">Vaughn Vernon</span>
                                 <span class="author_position">Founder and Lead Architect/Developer vlingo/platform</span>
@@ -119,9 +133,9 @@
                         <p>
                             <img src="dist/images/quote.png" class="quote"> There is a dream of a transparent distributed systems layer that sits like an operating system above everything.
                         </p>
-                        <a href="https://www.infoq.com/podcasts/justin-cormack-decomposing-modern-operating-systems">Listen now with shownotes</a>
+                        <a href="https://www.infoq.com/podcasts/justin-cormack-decomposing-modern-operating-systems" target="_blank">Listen now with shownotes</a>
                         <div class="author">
-                            <img src="dist/images/justin.jpg" class="author_image">
+                            <img src="dist/images/justin.png" class="author_image">
                             <div>
                                 <span class="author_name">Justin Cormack</span>
                                 <span class="author_position">Security, open source, cloud native, Noise protocol, LinuxKit, unikernels, security engineer @docker</span>
@@ -135,9 +149,9 @@
                         <p>
                             <img src="dist/images/quote.png" class="quote"> It's very important when getting started with a service mesh to understand both the data plane and the control plane. Consul is trying to solve the control plane problem. While there is an included proxy, that's only for the getting started experience.
                         </p>
-                        <a href="https://www.infoq.com/podcasts/consul-modern-service-mesh">Listen now with shownotes</a>
+                        <a href="https://www.infoq.com/podcasts/consul-modern-service-mesh" target="_blank">Listen now with shownotes</a>
                         <div class="author">
-                            <img src="dist/images/mitchel.jpeg" class="author_image">
+                            <img src="dist/images/mitchel.png" class="author_image">
                             <div>
                                 <span class="author_name">Mitchell Hashimoto</span>
                                 <span class="author_position">Founder of @HashiCorp. Creator of Vagrant, Packer, Serf, Consul, Terraform, Vault, and Nomad. Lover of open source</span>
@@ -149,12 +163,12 @@
             <hr class="hr-seperate">
             <h3 class="h3 text-center">Keep up with the trends in 30 minutes a week. <br> Subscribe to the InfoQ Podcast.</h3>
             <div class="podcast_links">
-                <a href=""><img src="dist/images/apple.svg" class="">Apple podcasts</a>
-                <a href=""><img src="dist/images/google.svg" class="">Google podcasts</a>
-                <a href=""><img src="dist/images/soundcloud.svg" class="">Soundcloud</a>
-                <a href=""><img src="dist/images/spotify.svg" class="">Spotify</a>
-                <a href=""><img src="dist/images/overcast.svg" class="">Overcast</a>
-                <a href=""><img src="dist/images/RSS.svg" class="">RSS</a>
+                <a href="https://podcasts.apple.com/gb/podcast/the-infoq-podcast/id1106971805?mt=2" target="_blank"><img src="dist/images/apple.svg" class="">Apple podcasts</a>
+                <a href="https://podcasts.google.com/?feed=aHR0cDovL2ZlZWRzLnNvdW5kY2xvdWQuY29tL3VzZXJzL3NvdW5kY2xvdWQ6dXNlcnM6MjE1NzQwNDUwL3NvdW5kcy5yc3M" target="_blank"><img src="dist/images/google.svg" class="">Google podcasts</a>
+                <a href="https://soundcloud.com/infoq-channel" target="_blank"><img src="dist/images/soundcloud.svg" class="">Soundcloud</a>
+                <a href="https://open.spotify.com/show/4NhWaYYpPWgWRDAOqeRQbj" target="_blank"><img src="dist/images/spotify.svg" class="">Spotify</a>
+                <a href="https://overcast.fm/itunes1106971805/the-infoq-podcast" target="_blank"><img src="dist/images/overcast.svg" class="">Overcast</a>
+                <a href="https://feed.infoq.com/channel_infoq/podcasts" target="_blank"><img src="dist/images/RSS.svg" class="">RSS</a>
             </div>
         </div>
     </div>
