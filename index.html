@@ -1,257 +1,252 @@
 <!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>InfoQ: The InfoQ Podcast | 5 essential software architecture podcasts to listen to in 2019</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="dist/images/favicon.ico" type="image/x-icon" />
-    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,500i,700,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="dist/css/styles.css">
-    <!-- Google Tag Manager -->
-    <script>
-        var gtmProfile = "GTM-W9GJ5DL";
-        (function(w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({
-                'gtm.start': new Date().getTime(),
-                event: 'gtm.js'
-            });
-            var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s),
-                dl = l != 'dataLayer' ? '&l=' + l : '';
-            j.async = true;
-            j.src =
-                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', gtmProfile);
-    </script>
-    <!-- End Google Tag Manager -->
-</head>
-
-<body>
-    <div class="navigation">
-        <div class="container">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>InfoQ: The InfoQ Podcast | 5 essential software architecture podcasts to listen to in 2019</title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="shortcut icon" href="dist/images/favicon.ico" type="image/x-icon" />
+      <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,500i,700,900&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="dist/css/styles.css">
+      <!-- Google Tag Manager -->
+      <script>
+         var gtmProfile = "GTM-W9GJ5DL";
+         (function(w, d, s, l, i) {
+             w[l] = w[l] || [];
+             w[l].push({
+                 'gtm.start': new Date().getTime(),
+                 event: 'gtm.js'
+             });
+             var f = d.getElementsByTagName(s)[0],
+                 j = d.createElement(s),
+                 dl = l != 'dataLayer' ? '&l=' + l : '';
+             j.async = true;
+             j.src =
+                 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+             f.parentNode.insertBefore(j, f);
+         })(window, document, 'script', 'dataLayer', gtmProfile);
+      </script>
+      <!-- End Google Tag Manager -->
+   </head>
+   <body>
+      <div class="navigation">
+         <div class="container">
             <div class="navigation_inner">
-                <a href="https://www.infoq.com/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank"><img src="dist/images/infoq-logo.svg" class="logo" alt="InfoQ logo"></a>
-                <ul class="desktop-links">
-                    <li><a href="#learn">What you will learn</a></li>
-                    <li><a href="#podcasts">Podcasts</a></li>
-                    <li><a href="#resources">Other Resources</a></li>
-                </ul>
-                <div class="sub-btn-nav desktop-sub">
-                    <a href="#subscribe" class="btn sub-button">SUBSCRIBE</a>
-                </div>
+               <a href="https://www.infoq.com/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank"><img src="dist/images/infoq-logo.svg" class="logo" alt="InfoQ logo"></a>
+               <ul class="desktop-links">
+                  <li><a href="#learn">What you will learn</a></li>
+                  <li><a href="#podcasts">Podcasts</a></li>
+                  <li><a href="#resources">Other Resources</a></li>
+               </ul>
+               <div class="sub-btn-nav desktop-sub">
+                  <a href="#subscribe" class="btn sub-button">SUBSCRIBE</a>
+               </div>
             </div>
-        </div>
-        <div class="mobile-links" id="mobileNav">
-          <ul>
-              <li><a href="#learn">What you will learn</a></li>
-              <li><a href="#podcasts">Podcasts</a></li>
-              <li><a href="#resources">Other Resources</a></li>
-          </ul>
-          <div class="sub-btn-mobile">
-            <a href="#subscribe" class="btn sub-button">SUBSCRIBE</a>
-          </div>
-        </div>
-        <a href="javascript:void(0);" class="mobile-icon" onclick="mobileNavigation()">
-          <img src="dist/images/menu-icon.png" width="24px">
-        </a>
-    </div>
-    <header>
-        <div class="container">
+         </div>
+         <div class="mobile-links" id="mobileNav">
+            <ul>
+               <li><a href="#learn">What you will learn</a></li>
+               <li><a href="#podcasts">Podcasts</a></li>
+               <li><a href="#resources">Other Resources</a></li>
+            </ul>
+            <div class="sub-btn-mobile">
+               <a href="#subscribe" class="btn sub-button">SUBSCRIBE</a>
+            </div>
+         </div>
+         <a href="javascript:void(0);" class="mobile-icon" onclick="mobileNavigation()">
+         <img src="dist/images/menu-icon.png" width="24px">
+         </a>
+      </div>
+      <header>
+         <div class="container">
             <div class="header__inner">
-                <h1 class="h1">The InfoQ Podcast</h1>
-                <h4 class="h4 light">5 essential software architecture podcasts to listen to in 2019</h4>
-                <a href="https://soundcloud.com/infoq-channel/sets/5-essential-software-architecture-podcasts" target="_blank" class="btn btn__jumbo-outline mt-4">LISTEN ON SOUNDCLOUD</a>
+               <h1 class="h1">The InfoQ Podcast</h1>
+               <h4 class="h4 light">5 essential software architecture podcasts to listen to in 2019</h4>
+               <a href="https://soundcloud.com/infoq-channel/sets/5-essential-software-architecture-podcasts" target="_blank" class="btn btn__jumbo-outline mt-4">LISTEN ON SOUNDCLOUD</a>
             </div>
-        </div>
-    </header>
-
-    <div class="section">
-        <div class="container">
+         </div>
+      </header>
+      <div class="section">
+         <div class="container">
             <div class="section_inner ai-start">
-                <div class="section_60 pr-40">
-                    <p>
-                        During the last few months, InfoQ has talked with some of the most well known and respected figures in Software Architecture trying to identify new trends coming up or discussing the evolution of the ones that have been gaining wider adoption. To cover topics from basic principles that are still important such as Domain Driven Design and Refactoring, to Microservices,Service Meshes, and Site Reliability Engineering we picked the brains of people like Martin Fowler, Tanya Reilly, and Vaughn Vernon in an effort to empower the community to innovate faster and build better software.
-                    </p>
-                    <p>
-                        If you decide to make the investment and put aside 2 hours to go to this playlist or enjoy them separately (30 minutes each) we hope you will be inspired., and perhaps you will also share the knowledge you have acquired with your teams and accelerate the software side of progress, putting your company at the front of this development.
-                    </p>
-                </div>
-                <div class="section_40">
-                    <img src="dist/images/podcast_image.png" class="img-width">
-                </div>
+               <div class="section_60 pr-40">
+                  <p>
+                     During the last few months, InfoQ has talked with some of the most well known and respected figures in Software Architecture trying to identify new trends coming up or discussing the evolution of the ones that have been gaining wider adoption. To cover topics from basic principles that are still important such as Domain Driven Design and Refactoring, to Microservices,Service Meshes, and Site Reliability Engineering we picked the brains of people like Martin Fowler, Tanya Reilly, and Vaughn Vernon in an effort to empower the community to innovate faster and build better software.
+                  </p>
+                  <p>
+                     If you decide to make the investment and put aside 2 hours to go to this playlist or enjoy them separately (30 minutes each) we hope you will be inspired., and perhaps you will also share the knowledge you have acquired with your teams and accelerate the software side of progress, putting your company at the front of this development.
+                  </p>
+               </div>
+               <div class="section_40">
+                  <img src="dist/images/podcast_image.png" class="img-width">
+               </div>
             </div>
-        </div>
-    </div>
-    <div class="section blue_bg" id="learn">
-        <div class="container">
+         </div>
+      </div>
+      <div class="section blue_bg" id="learn">
+         <div class="container">
             <div class="section_inner">
-                <div class="section_60 pr-40">
-                    <h2 class="h2">Things you will learn from these podcasts</h2>
-                    <ul class="big-list">
-                        <li><a href="https://www.infoq.com/podcasts/refactoring-evolutionary-architecture/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Evolutionary architecture</a> is a broad principle that architecture is constantly changing. While related to Microservices, it’s not Microservices by another name. You could evolve towards or away from Microservices for example.</li>
-                        <li><a href="https://www.infoq.com/podcasts/site-reliability-engineer/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">The role of SRE</a> is to define how to do things in a really reliable way. The focus is to make the majority of the operations work go away, and, for the things that can’t go away, it’s as easy as possible</li>
-                        <li>Vlingo is an open source system for building distributed, concurrent, event-driven, reactive microservices that supports (at the framework level) <a href="https://www.infoq.com/podcasts/ddd-microservices-framework/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Domain Driven Design</a>.</li>
-                        <li>The <a href="https://www.infoq.com/podcasts/justin-cormack-decomposing-modern-operating-systems/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">operating system</a> of today is really unchanged since the Sun workstation of the 90’s. Yet everything else about software has really changed such as automation, build pipelines, and delivery.</li>
-                        <li><a href="https://www.infoq.com/podcasts/consul-modern-service-mesh/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Consul</a> is first and foremost a centralized service registry that provides discovery. While it has a key-value store, it is Consul’s least important feature.</li>
-                    </ul>
-                </div>
-                <div class="section_40 text-center">
-                    <img src="dist/images/podcast-infoq.png" width="360px">
-                </div>
+               <div class="section_60 pr-40">
+                  <h2 class="h2">Things you will learn from these podcasts</h2>
+                  <ul class="big-list">
+                     <li><a href="https://www.infoq.com/podcasts/refactoring-evolutionary-architecture/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Evolutionary architecture</a> is a broad principle that architecture is constantly changing. While related to Microservices, it’s not Microservices by another name. You could evolve towards or away from Microservices for example.</li>
+                     <li><a href="https://www.infoq.com/podcasts/site-reliability-engineer/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">The role of SRE</a> is to define how to do things in a really reliable way. The focus is to make the majority of the operations work go away, and, for the things that can’t go away, it’s as easy as possible</li>
+                     <li>Vlingo is an open source system for building distributed, concurrent, event-driven, reactive microservices that supports (at the framework level) <a href="https://www.infoq.com/podcasts/ddd-microservices-framework/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Domain Driven Design</a>.</li>
+                     <li>The <a href="https://www.infoq.com/podcasts/justin-cormack-decomposing-modern-operating-systems/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">operating system</a> of today is really unchanged since the Sun workstation of the 90’s. Yet everything else about software has really changed such as automation, build pipelines, and delivery.</li>
+                     <li><a href="https://www.infoq.com/podcasts/consul-modern-service-mesh/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Consul</a> is first and foremost a centralized service registry that provides discovery. While it has a key-value store, it is Consul’s least important feature.</li>
+                  </ul>
+               </div>
+               <div class="section_40 text-center">
+                  <img src="dist/images/podcast-infoq.png" width="360px">
+               </div>
             </div>
-        </div>
-    </div>
-
-    <div class="section" id="podcasts">
-        <div class="container">
+         </div>
+      </div>
+      <div class="section" id="podcasts">
+         <div class="container">
             <img src="dist/images/podcast_icon.png" width="60px" class="center mb-2">
             <h2 class="h2 text-center">Podcasts</h2>
             <div class="podcast_container">
-                <div class="podcast-item">
-                    <div class="podcast-item__inner">
-                        <h4 class="h4"><a href="https://www.infoq.com/podcasts/refactoring-evolutionary-architecture/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Martin Fowler Discusses New Edition of Refactoring, along with Thoughts on Evolutionary Architecture</a></h4>
-                        <p>
-                            <img src="dist/images/quote.png" class="quote"> The core idea of refactoring hasn't changed: a sequence of small things allows you to make a big change. Many of those "small things" are still the same, such as Extract Function.
-                        </p>
-                        <a href="https://www.infoq.com/podcasts/refactoring-evolutionary-architecture/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Listen now with shownotes</a>
-                        <div class="author">
-                            <img src="dist/images/martin.png" class="author_image">
-                            <div>
-                                <span class="author_name">Martin Fowler</span>
-                                <span class="author_position">Author, speaker, and general loud mouth on Software Development.</span>
-                            </div>
+               <div class="podcast-item">
+                  <div class="podcast-item__inner">
+                     <h4 class="h4"><a href="https://www.infoq.com/podcasts/refactoring-evolutionary-architecture/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Martin Fowler Discusses New Edition of Refactoring, along with Thoughts on Evolutionary Architecture</a></h4>
+                     <p>
+                        <img src="dist/images/quote.png" class="quote"> The core idea of refactoring hasn't changed: a sequence of small things allows you to make a big change. Many of those "small things" are still the same, such as Extract Function.
+                     </p>
+                     <a href="https://www.infoq.com/podcasts/refactoring-evolutionary-architecture/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Listen now with shownotes</a>
+                     <div class="author">
+                        <img src="dist/images/martin.png" class="author_image">
+                        <div>
+                           <span class="author_name">Martin Fowler</span>
+                           <span class="author_position">Author, speaker, and general loud mouth on Software Development.</span>
                         </div>
-                    </div>
-                </div>
-                <div class="podcast-item">
-                    <div class="podcast-item__inner">
-                        <h4 class="h4"><a href="https://www.infoq.com/podcasts/site-reliability-engineer/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Tanya Reilly on Site Reliability Engineering and the Evolution of the New York City Fire Code</a></h4>
-                        <p>
-                            <img src="dist/images/quote.png" class="quote"> The role of SRE is to define how to do things in a really reliable way. The focus is to make the majority of the operations work go away, and, for the things that can’t go away, it’s as easy as possible.
-                        </p>
-                        <a href="https://www.infoq.com/podcasts/site-reliability-engineer/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Listen now with shownotes</a>
-                        <div class="author">
-                            <img src="dist/images/tanya.png" class="author_image">
-                            <div>
-                                <span class="author_name">Tanya Reilly</span>
-                                <span class="author_position">Principal Engineer at Squarespace and previously a staff SRE at Google</span>
-                            </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="podcast-item">
+                  <div class="podcast-item__inner">
+                     <h4 class="h4"><a href="https://www.infoq.com/podcasts/site-reliability-engineer/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Tanya Reilly on Site Reliability Engineering and the Evolution of the New York City Fire Code</a></h4>
+                     <p>
+                        <img src="dist/images/quote.png" class="quote"> The role of SRE is to define how to do things in a really reliable way. The focus is to make the majority of the operations work go away, and, for the things that can’t go away, it’s as easy as possible.
+                     </p>
+                     <a href="https://www.infoq.com/podcasts/site-reliability-engineer/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Listen now with shownotes</a>
+                     <div class="author">
+                        <img src="dist/images/tanya.png" class="author_image">
+                        <div>
+                           <span class="author_name">Tanya Reilly</span>
+                           <span class="author_position">Principal Engineer at Squarespace and previously a staff SRE at Google</span>
                         </div>
-                    </div>
-                </div>
-                <div class="podcast-item">
-                    <div class="podcast-item__inner">
-                        <h4 class="h4"><a href="https://www.infoq.com/podcasts/ddd-microservices-framework/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019">Vaughn Vernon on Developing a Domain Driven Design First Actor-Based Microservices Framework</a></h4>
-                        <p>
-                            <img src="dist/images/quote.png" class="quote"> I was working on a Vlingo like vision seven years ago, and I was speaking at SpringOne, and I gave a talk on DDD along with talks on reactive.
-                        </p>
-                        <a href="https://www.infoq.com/podcasts/ddd-microservices-framework/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Listen now with shownotes</a>
-                        <div class="author">
-                            <img src="dist/images/vaughn.png" class="author_image">
-                            <div>
-                                <span class="author_name">Vaughn Vernon</span>
-                                <span class="author_position">Founder and Lead Architect/Developer vlingo/platform</span>
-                            </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="podcast-item">
+                  <div class="podcast-item__inner">
+                     <h4 class="h4"><a href="https://www.infoq.com/podcasts/ddd-microservices-framework/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019">Vaughn Vernon on Developing a Domain Driven Design First Actor-Based Microservices Framework</a></h4>
+                     <p>
+                        <img src="dist/images/quote.png" class="quote"> I was working on a Vlingo like vision seven years ago, and I was speaking at SpringOne, and I gave a talk on DDD along with talks on reactive.
+                     </p>
+                     <a href="https://www.infoq.com/podcasts/ddd-microservices-framework/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Listen now with shownotes</a>
+                     <div class="author">
+                        <img src="dist/images/vaughn.png" class="author_image">
+                        <div>
+                           <span class="author_name">Vaughn Vernon</span>
+                           <span class="author_position">Founder and Lead Architect/Developer vlingo/platform</span>
                         </div>
-                    </div>
-                </div>
-                <div class="podcast-item">
-                    <div class="podcast-item__inner">
-                        <h4 class="h4"><a href="https://www.infoq.com/podcasts/justin-cormack-decomposing-modern-operating-systems/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019">Justin Cormack on Decomposing the Modern Operating System</a></h4>
-                        <p>
-                            <img src="dist/images/quote.png" class="quote"> There is a dream of a transparent distributed systems layer that sits like an operating system above everything.
-                        </p>
-                        <a href="https://www.infoq.com/podcasts/justin-cormack-decomposing-modern-operating-systems/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Listen now with shownotes</a>
-                        <div class="author">
-                            <img src="dist/images/justin.png" class="author_image">
-                            <div>
-                                <span class="author_name">Justin Cormack</span>
-                                <span class="author_position">Security, open source, cloud native, Noise protocol, LinuxKit, unikernels, security engineer @docker</span>
-                            </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="podcast-item">
+                  <div class="podcast-item__inner">
+                     <h4 class="h4"><a href="https://www.infoq.com/podcasts/justin-cormack-decomposing-modern-operating-systems/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019">Justin Cormack on Decomposing the Modern Operating System</a></h4>
+                     <p>
+                        <img src="dist/images/quote.png" class="quote"> There is a dream of a transparent distributed systems layer that sits like an operating system above everything.
+                     </p>
+                     <a href="https://www.infoq.com/podcasts/justin-cormack-decomposing-modern-operating-systems/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Listen now with shownotes</a>
+                     <div class="author">
+                        <img src="dist/images/justin.png" class="author_image">
+                        <div>
+                           <span class="author_name">Justin Cormack</span>
+                           <span class="author_position">Security, open source, cloud native, Noise protocol, LinuxKit, unikernels, security engineer @docker</span>
                         </div>
-                    </div>
-                </div>
-                <div class="podcast-item">
-                    <div class="podcast-item__inner">
-                        <h4 class="h4"><a href="https://www.infoq.com/podcasts/consul-modern-service-mesh/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019">Mitchell Hashimoto on Consul since 1.2 and its Role as a Modern Service Mesh</a></h4>
-                        <p>
-                            <img src="dist/images/quote.png" class="quote"> It's very important when getting started with a service mesh to understand both the data plane and the control plane. Consul is trying to solve the control plane problem. While there is an included proxy, that's only for the getting started experience.
-                        </p>
-                        <a href="https://www.infoq.com/podcasts/consul-modern-service-mesh/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Listen now with shownotes</a>
-                        <div class="author">
-                            <img src="dist/images/mitchel.png" class="author_image">
-                            <div>
-                                <span class="author_name">Mitchell Hashimoto</span>
-                                <span class="author_position">Founder of @HashiCorp. Creator of Vagrant, Packer, Serf, Consul, Terraform, Vault, and Nomad. Lover of open source</span>
-                            </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="podcast-item">
+                  <div class="podcast-item__inner">
+                     <h4 class="h4"><a href="https://www.infoq.com/podcasts/consul-modern-service-mesh/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019">Mitchell Hashimoto on Consul since 1.2 and its Role as a Modern Service Mesh</a></h4>
+                     <p>
+                        <img src="dist/images/quote.png" class="quote"> It's very important when getting started with a service mesh to understand both the data plane and the control plane. Consul is trying to solve the control plane problem. While there is an included proxy, that's only for the getting started experience.
+                     </p>
+                     <a href="https://www.infoq.com/podcasts/consul-modern-service-mesh/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Listen now with shownotes</a>
+                     <div class="author">
+                        <img src="dist/images/mitchel.png" class="author_image">
+                        <div>
+                           <span class="author_name">Mitchell Hashimoto</span>
+                           <span class="author_position">Founder of @HashiCorp. Creator of Vagrant, Packer, Serf, Consul, Terraform, Vault, and Nomad. Lover of open source</span>
                         </div>
-                    </div>
-                </div>
+                     </div>
+                  </div>
+               </div>
             </div>
             <hr class="hr-seperate" id="subscribe">
             <h3 class="h3 text-center">Keep up with the trends in 30 minutes a week. <br> Subscribe to the InfoQ Podcast.</h3>
             <div class="podcast_links">
-                <a href="https://itunes.apple.com/gb/podcast/the-infoq-podcast/id1106971805?mt=2" target="_blank"><img src="dist/images/apple.svg" class="">Apple podcasts</a>
-                <a href="https://www.google.com/podcasts?feed=aHR0cDovL2ZlZWRzLnNvdW5kY2xvdWQuY29tL3VzZXJzL3NvdW5kY2xvdWQ6dXNlcnM6MjE1NzQwNDUwL3NvdW5kcy5yc3M" target="_blank"><img src="dist/images/google.svg" class="">Google podcasts</a>
-                <a href="https://soundcloud.com/infoq-channel" target="_blank"><img src="dist/images/soundcloud.svg" class="">Soundcloud</a>
-                <a href="https://open.spotify.com/show/4NhWaYYpPWgWRDAOqeRQbj" target="_blank"><img src="dist/images/spotify.svg" class="">Spotify</a>
-                <a href="https://overcast.fm/itunes1106971805/the-infoq-podcast" target="_blank"><img src="dist/images/overcast.svg" class="">Overcast</a>
-                <a href="https://feed.infoq.com/channel_infoq/podcasts" target="_blank"><img src="dist/images/RSS.svg" class="">RSS</a>
+               <a href="https://itunes.apple.com/gb/podcast/the-infoq-podcast/id1106971805?mt=2" target="_blank"><img src="dist/images/apple.svg" class="">Apple podcasts</a>
+               <a href="https://www.google.com/podcasts?feed=aHR0cDovL2ZlZWRzLnNvdW5kY2xvdWQuY29tL3VzZXJzL3NvdW5kY2xvdWQ6dXNlcnM6MjE1NzQwNDUwL3NvdW5kcy5yc3M" target="_blank"><img src="dist/images/google.svg" class="">Google podcasts</a>
+               <a href="https://soundcloud.com/infoq-channel" target="_blank"><img src="dist/images/soundcloud.svg" class="">Soundcloud</a>
+               <a href="https://open.spotify.com/show/4NhWaYYpPWgWRDAOqeRQbj" target="_blank"><img src="dist/images/spotify.svg" class="">Spotify</a>
+               <a href="https://overcast.fm/itunes1106971805/the-infoq-podcast" target="_blank"><img src="dist/images/overcast.svg" class="">Overcast</a>
+               <a href="https://feed.infoq.com/channel_infoq/podcasts" target="_blank"><img src="dist/images/RSS.svg" class="">RSS</a>
             </div>
-        </div>
-    </div>
-    <div class="section blue_bg pb-01 " id="resources">
-        <div class="container">
+         </div>
+      </div>
+      <div class="section blue_bg pb-01 " id="resources">
+         <div class="container">
             <h2 class="h2 text-center">Other resources</h2>
             <p class="subtitle center text-center">Go one level further and get ready to implement some of the key takeaways in your teams and jump in front of your competition:</p>
             <div class="section_inner mt-4">
-                <div class="full-flex text-center">
-                    <img src="dist/images/img1.png" alt="" class="resources-img" height="215px">
-                    <h4 class="h4 mb-2"><a href="https://www.infoq.com/minibooks/operationalizing-microservices/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Operationalizing Microservices</a></h4>
-                    <a href="https://www.infoq.com/minibooks/operationalizing-microservices/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" class="btn" target="_blank">READ MORE</a>
-                </div>
-                <div class="full-flex text-center">
-                    <img src="dist/images/img2.png" alt="" class="resources-img" height="215px">
-                    <h4 class="h4 mb-2"><a href="https://www.infoq.com/minibooks/emag-kubernetes/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Kubernetes: Past, Present and Future</a></h4>
-                    <a href="https://www.infoq.com/minibooks/emag-kubernetes/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" class="btn">READ MORE</a>
-                </div>
-                <div class="full-flex text-center">
-                    <img src="dist/images/img3.png" class="resources-img" alt="" height="215px">
-                    <h4 class="h4 mb-2"><a href="https://www.infoq.com/minibooks/emag-domain-driven-design/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Domain-Driven Design in Practice</a></h4>
-                    <a href="https://www.infoq.com/minibooks/emag-domain-driven-design/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" class="btn">READ MORE</a>
-                </div>
+               <div class="full-flex text-center">
+                  <img src="dist/images/img1.png" alt="" class="resources-img" height="215px">
+                  <h4 class="h4 mb-2"><a href="https://www.infoq.com/minibooks/operationalizing-microservices/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Operationalizing Microservices</a></h4>
+                  <a href="https://www.infoq.com/minibooks/operationalizing-microservices/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" class="btn" target="_blank">READ MORE</a>
+               </div>
+               <div class="full-flex text-center">
+                  <img src="dist/images/img2.png" alt="" class="resources-img" height="215px">
+                  <h4 class="h4 mb-2"><a href="https://www.infoq.com/minibooks/emag-kubernetes/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Kubernetes: Past, Present and Future</a></h4>
+                  <a href="https://www.infoq.com/minibooks/emag-kubernetes/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" class="btn">READ MORE</a>
+               </div>
+               <div class="full-flex text-center">
+                  <img src="dist/images/img3.png" class="resources-img" alt="" height="215px">
+                  <h4 class="h4 mb-2"><a href="https://www.infoq.com/minibooks/emag-domain-driven-design/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Domain-Driven Design in Practice</a></h4>
+                  <a href="https://www.infoq.com/minibooks/emag-domain-driven-design/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" class="btn">READ MORE</a>
+               </div>
             </div>
             <hr class="hr-seperate xs-none">
-
-        </div>
-    </div>
-    <div class="section blue_bg pt-0 mobile-section-bgsection_inner">
-        <div class="container">
+         </div>
+      </div>
+      <div class="section blue_bg pt-0 mobile-section-bgsection_inner">
+         <div class="container">
             <h4 class="h4 text-center">Follow the topics on</h4>
             <img src="dist/images/infoq-logo.svg" class="center" alt="InfoQ logo">
             <div class="topics_links">
-                <div class="topics_links_inner">
-                    <a href="https://www.infoq.com/refactoring/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Refactoring in Software</a>
-                    <a href="https://www.infoq.com/evolutionary-design/" target="_blank">Evolutionary Software Architecture</a>
-                    <a href="https://www.infoq.com/microservices/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Microservices</a>
-                    <a href="https://www.infoq.com/sre/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Site Reliability Engineering</a>
-                    <a href="https://www.infoq.com/domain-driven-design/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Domain Driven Design</a>
-                    <a href="https://www.infoq.com/java/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Java Virtual Machine</a>
-                    <a href="https://www.infoq.com/linux/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">LinuxKit</a>
-                    <a href="https://www.infoq.com/programming-languages/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">eBPF</a>
-                    <a href="https://www.infoq.com/programming-languages/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">XDP</a>
-                    <a href="https://www.infoq.com/servicemesh/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Service Mesh</a>
-                    <a href="https://www.infoq.com/golang/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Go Language</a>
-                </div>
+               <div class="topics_links_inner">
+                  <a href="https://www.infoq.com/refactoring/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Refactoring in Software</a>
+                  <a href="https://www.infoq.com/evolutionary-design/" target="_blank">Evolutionary Software Architecture</a>
+                  <a href="https://www.infoq.com/microservices/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Microservices</a>
+                  <a href="https://www.infoq.com/sre/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Site Reliability Engineering</a>
+                  <a href="https://www.infoq.com/domain-driven-design/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Domain Driven Design</a>
+                  <a href="https://www.infoq.com/java/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Java Virtual Machine</a>
+                  <a href="https://www.infoq.com/linux/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">LinuxKit</a>
+                  <a href="https://www.infoq.com/programming-languages/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">eBPF</a>
+                  <a href="https://www.infoq.com/programming-languages/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">XDP</a>
+                  <a href="https://www.infoq.com/servicemesh/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Service Mesh</a>
+                  <a href="https://www.infoq.com/golang/?utm_source=landingpage&utm_medium=softarch&utm_campaign=summerseries2019" target="_blank">Go Language</a>
+               </div>
             </div>
-        </div>
-    </div>
-<script src="dist/js/main.min.js"></script>
-</body>
+         </div>
+      </div>
+      <script src="dist/js/main.min.js"></script>
+   </body>
 </html>
