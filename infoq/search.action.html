@@ -78,9 +78,7 @@
                     myActivity: "My Activity",
                     noUser: "You are currently not following any peers",
                     noTopic: "You are currently not following any topics",
-                    chooseOne: "Choose one...",
-                    bookmarked: "Content Bookmarked",
-                    unbookmarked: "Content Unbookmarked"
+                    chooseOne: "Choose one..."
                 },
                 adbStrings: ["We notice you’re using an ad blocker", "We understand why you use ad blockers. However to keep InfoQ free we need your support. InfoQ will not provide your data to third parties without individual opt-in consent. We only work with advertisers relevant to our readers. Please consider whitelisting us."]
             }),
@@ -1467,18 +1465,18 @@
                 <div class="container__inner">
                     <div id="postAjaxCall" class="search_page results">
                         <div id="topicLinksSearchArea">
-                            <h1 id="sanitizedQueryContainer" class="general">Topic results for<span propertyname="sanitizedQuery" class="jqDataBind">java</span>:</h1>
+                            <h1 id="sanitizedQueryContainer_topicLinks" class="general">Topic results for<span propertyname="sanitizedQuery" class="jqDataBind">java</span>:</h1>
                             <div class="preload topics">
                                 <ul class="ul__border no-style"></ul>
                             </div>
-                            <h1 id="sanitizedQueryContainer" class="general">Page results for<span propertyname="sanitizedQuery" class="jqDataBind">java</span>:</h1>
-                            <div class="search__sort"><label class="label">Order results by:</label>
-                                <div class="tab__switcher">
-                                    <ul class="no-style">
-                                        <li><a id="orderResultsByRelevanceLink" href="javascript:newSearch.orderResults(1);" class="active">Relevance</a></li>
-                                        <li><a id="orderResultsByDateLink" href="javascript:newSearch.orderResults(1,&apos;date&apos;);">Date</a></li>
-                                    </ul>
-                                </div>
+                        </div>
+                        <h1 id="sanitizedQueryContainer" class="general">Page results for<span propertyname="sanitizedQuery" class="jqDataBind">java</span>:</h1>
+                        <div class="search__sort"><label class="label">Order results by:</label>
+                            <div class="tab__switcher">
+                                <ul class="no-style">
+                                    <li><a id="orderResultsByRelevanceLink" href="javascript:newSearch.orderResults(1);" class="active">Relevance</a></li>
+                                    <li><a id="orderResultsByDateLink" href="javascript:newSearch.orderResults(1,&apos;date&apos;);">Date</a></li>
+                                </ul>
                             </div>
                         </div>
                         <div id="searchResultsArea">

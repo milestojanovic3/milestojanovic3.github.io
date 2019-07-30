@@ -78,9 +78,7 @@
                     myActivity: "My Activity",
                     noUser: "You are currently not following any peers",
                     noTopic: "You are currently not following any topics",
-                    chooseOne: "Choose one...",
-                    bookmarked: "Content Bookmarked",
-                    unbookmarked: "Content Unbookmarked"
+                    chooseOne: "Choose one..."
                 },
                 adbStrings: ["We notice you’re using an ad blocker", "We understand why you use ad blockers. However to keep InfoQ free we need your support. InfoQ will not provide your data to third parties without individual opt-in consent. We only work with advertisers relevant to our readers. Please consider whitelisting us."]
             }),
@@ -1463,7 +1461,7 @@
             </div>
         </header>
         <main>
-            <section class="section container">
+            <section class="section container presentations">
                 <div class="container__inner">
                     <p class="crumbs"><span><a href="index.html">InfoQ Homepage</a></span><span class="active">presentations</span></p>
                     <div class="items">
@@ -1471,7 +1469,7 @@
                             <div class="actions__left">
                                 <h1 class="heading heading__rss">Presentations</h1><span class="rss icon icon__rss-feed"><a href="#rss">RSS Feed</a></span>
                             </div>
-                            <div class="actions__right"><a href="presentations.html#" class="button button__unstyled button__small button__arrow arrow__left">Newer</a><a href="presentations.html#" class="button button__unstyled button__small button__arrow arrow__right">Older</a></div>
+                            <div class="actions__right"><a href="presentations.html#" class="button button__small button__arrow arrow__left button__disabled">Newer</a><a href="presentations.html#" class="button button__small button__arrow arrow__right">Older</a></div>
                         </div>
                         <!---->
                         <div class="items__content columns">
@@ -1697,9 +1695,11 @@
                                     <!---->
                                 </ul>
                                 <!---->
+                                <!---->
+                                <!---->
                                 <div class="actions items__navigator">
-                                    <div class="actions__left"><a href="presentations.html#" class="items__newer button button__arrow arrow__left button__disabled">Load newer presentations items</a></div>
-                                    <div class="actions__right"><a href="presentations.html#" class="items__older button button__arrow arrow__right">Load older presentations items</a></div>
+                                    <div class="actions__left"><a href="presentations.html#" class="items__newer button button__arrow arrow__left button__disabled">Less presentations</a></div>
+                                    <div class="actions__right"><a href="presentations.html#" class="items__older button button__arrow arrow__right">More presentations</a></div>
                                 </div>
                             </div>
                             <div data-col="1/4" class="items sponsored__items box__border">
@@ -1851,6 +1851,8 @@
                                             </li>
                                             <!---->
                                         </ul>
+                                        <!---->
+                                        <!---->
                                         <!---->
                                         <!---->
                                     </div>
