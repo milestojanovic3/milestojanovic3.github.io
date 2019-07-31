@@ -81,7 +81,9 @@
                     myActivity: "My Activity",
                     noUser: "You are currently not following any peers",
                     noTopic: "You are currently not following any topics",
-                    chooseOne: "Choose one..."
+                    chooseOne: "Choose one...",
+                    bookmarked: "Content Bookmarked",
+                    unbookmarked: "Content Unbookmarked"
                 },
                 adbStrings: ["We notice you’re using an ad blocker", "We understand why you use ad blockers. However to keep InfoQ free we need your support. InfoQ will not provide your data to third parties without individual opt-in consent. We only work with advertisers relevant to our readers. Please consider whitelisting us."]
             }),
@@ -1460,7 +1462,11 @@
                         <!---->
                         <div class="article__actions actions">
                             <div class="actions__left"><button aria-label="Like" class="like button button__gray button__icon icon icon__like">Like </button>
-                                <!----><a href="article_developing-a-secure-and-scalable-web-ecosystem-at-linkedin.html#theCommentsSection" class="button button__gray button__icon icon icon__discuss">Discuss</a><button aria-label="Print" class="button button__gray button__icon icon icon__print icon--only">Print </button><a href="bookmarks.html" class="button button__gray button__icon icon icon__bookmark">Bookmarks</a><button aria-label="Bookmark" class="button button__green button__icon icon icon__bookmark icon--only">Bookmark </button></div>
+                                <!----><a href="article_developing-a-secure-and-scalable-web-ecosystem-at-linkedin.html#theCommentsSection" class="button button__gray button__icon icon icon__discuss">Discuss</a><button aria-label="Print" class="button button__gray button__icon icon icon__print icon--only">Print </button><a href="bookmarks.html" class="button button__gray button__icon icon icon__bookmark">Bookmarks</a><button aria-label="Bookmark" id="bookmarkBtn" class="button button__gray button__icon icon icon__bookmark icon--only">Bookmark </button>
+                                <div id="toastContainer" class="toast-none toast-hide">
+                                    <div class="toast"><span></span></div>
+                                </div>
+                            </div>
                             <div class="actions__right"></div>
                         </div>
                         <!---->
@@ -1856,7 +1862,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div>
+                                <div class="widget">
                                     <h3 class="widget__heading">Educational Content</h3>
                                     <div id="educational" class="tabs">
                                         <div data-title="All" class="tab">
