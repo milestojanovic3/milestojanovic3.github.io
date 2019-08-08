@@ -7111,13 +7111,6 @@ button.liked {
     }
 }
 
-.article[data-type=interview]:not([data-early]):not(.presentation--demo) .article__main,
-.article[data-type=presentation]:not([data-early]):not(.presentation--demo) .article__main {
-    -webkit-align-self: stretch;
-    -ms-flex-item-align: stretch;
-    align-self: stretch
-}
-
 @media only screen and (min-width:1023px) {
 
     .article[data-type=interview]:not([data-early]):not(.presentation--demo) .article__main,
@@ -17276,7 +17269,8 @@ input:checked~.star:before {
 }
 
 .relatedVendor {
-    background: #f5f7f9
+    background: #f5f7f9;
+    margin-bottom: 30px
 }
 
 @media only screen and (max-width:1080px) {
@@ -18977,6 +18971,10 @@ input:checked~.star:before {
     -webkit-flex-basis: 100%;
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%
+}
+
+.sponsoredContent_side {
+    margin-bottom: 30px
 }
 
 .sponsoredContent_side .widget__heading {
