@@ -7111,6 +7111,13 @@ button.liked {
     }
 }
 
+.article[data-type=interview]:not([data-early]):not(.presentation--demo) .article__main,
+.article[data-type=presentation]:not([data-early]):not(.presentation--demo) .article__main {
+    -webkit-align-self: stretch;
+    -ms-flex-item-align: stretch;
+    align-self: stretch
+}
+
 @media only screen and (min-width:1023px) {
 
     .article[data-type=interview]:not([data-early]):not(.presentation--demo) .article__main,
