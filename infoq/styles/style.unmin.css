@@ -8715,6 +8715,7 @@ a.video-block {
 .grid {
     display: grid;
     display: -ms-grid;
+    -ms-grid-columns: 1fr;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     grid-column-gap: 20px;
@@ -8726,6 +8727,7 @@ a.video-block {
 }
 
 .grid--conference__banner {
+    -ms-grid-columns: 1fr;
     grid-template-columns: 1fr;
     grid-template-areas: 'logo''date''social'
 }
@@ -8743,6 +8745,7 @@ a.video-block {
 }
 
 .grid--conference__intro {
+    -ms-grid-columns: 1fr 255px;
     grid-template-columns: 1fr 255px;
     grid-column-end: -1;
     grid-template-areas: "title button""paragraph button"
@@ -8756,6 +8759,7 @@ a.video-block {
 
 @media only screen and (max-width:500px) {
     .grid--conference__intro {
+        -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
         grid-template-areas: "title""button""paragraph"
     }
@@ -8774,6 +8778,7 @@ a.video-block {
 }
 
 .grid--conference__highlights {
+    -ms-grid-columns: 255px 1fr 1fr;
     grid-template-columns: 255px 1fr 1fr;
     grid-template-areas: "sidebar mustSee editorsPicks"
 }
@@ -8801,6 +8806,7 @@ a.video-block {
 }
 
 .grid--conference__news {
+    -ms-grid-columns: 255px 1fr;
     grid-template-columns: 255px 1fr;
     grid-template-areas: "sidebar newsGrid"
 }
@@ -8812,6 +8818,7 @@ a.video-block {
 }
 
 .grid--conference__list {
+    -ms-grid-columns: 255px 1fr;
     grid-template-columns: 255px 1fr;
     grid-template-areas: "titleKeynotes listItems""titlePresentation presentations""titleUpcoming upcoming"
 }
@@ -8847,12 +8854,14 @@ a.video-block {
 }
 
 .grid--conference__slider {
+    -ms-grid-columns: 255px 1fr;
     grid-template-columns: 255px 1fr;
     grid-template-areas: "title sliderContent"
 }
 
 @media only screen and (max-width:1080px) {
     .grid--conference__slider {
+        -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
         grid-template-areas: "title ""sliderContent"
     }
@@ -8871,6 +8880,7 @@ a.video-block {
 }
 
 .grid--conference__nextEvent {
+    -ms-grid-columns: 1fr;
     grid-template-columns: 1fr;
     grid-template-areas: "date ""title ""paragraph ""button "
 }
@@ -8892,6 +8902,7 @@ a.video-block {
 }
 
 .grid--conference__yearList {
+    -ms-grid-columns: 255px 1fr;
     grid-template-columns: 255px 1fr;
     grid-template-areas: "title contentPresentations"
 }
