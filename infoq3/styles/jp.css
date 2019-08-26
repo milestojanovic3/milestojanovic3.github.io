@@ -6,6 +6,61 @@ body {
     padding: 8px 20px 8px 40px
 }
 
+p {
+    line-height: 1.5rem
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Arial, Helvetica, Roboto, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', Osaka, 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+    font-weight: 600
+}
+
+h1 {
+    font-size: 1.5rem
+}
+
+h1 {
+    font-size: 1.625rem;
+    line-height: 2.375rem
+}
+
+h1 {
+    font-size: 2rem;
+    line-height: 2.625rem
+}
+
+.h2,
+h2 {
+    font-size: 1.125rem
+}
+
+.h2,
+h2 {
+    font-size: 1.375rem;
+    line-height: 1.75rem
+}
+
+.h4,
+h4 {
+    font-size: 1rem
+}
+
+.section__heading,
+.widget.popular .heading,
+.widget__heading {
+    font-weight: 600;
+    letter-spacing: normal
+}
+
+.tabs.vertical>.tab__switcher li {
+    font-size: .8125rem
+}
+
 .oneP__container>div:first-child .heading {
     padding-left: 65px
 }
@@ -30,6 +85,12 @@ body {
     -webkit-flex: 0 1 70px;
     -ms-flex: 0 1 70px;
     flex: 0 1 70px
+}
+
+.button,
+button {
+    font-size: .625rem;
+    letter-spacing: normal
 }
 
 .profile .badges .editor {

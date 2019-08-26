@@ -3,6 +3,13 @@
     background-image: url(static/images/ui/footer/sp-1x.jpg) !important
 }
 
+.homepage .cards[data-tax=presentations]>li:nth-child(9) {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex
+}
+
 .homepage .cards[data-tax=presentations]>li:nth-child(3n) {
     margin-right: 16px
 }
@@ -13,6 +20,10 @@
 
 .homepage .cards[data-tax=presentations]>li:nth-child(4n) {
     margin-right: 0
+}
+
+.header__nav>li>a {
+    font-size: 1rem
 }
 
 .oneP__container .heading {
@@ -35,6 +46,26 @@
     -webkit-flex: 0 1 70px;
     -ms-flex: 0 1 70px;
     flex: 0 1 70px
+}
+
+.article__actions .button,
+.article__actions button {
+    font-size: .625rem
+}
+
+.article__actions .actions__left>* {
+    margin-left: 1px;
+    margin-right: 1px
+}
+
+.article__actions .actions__left>* {
+    margin-left: 4px;
+    margin-right: 4px
+}
+
+.article__actions .actions__left>* {
+    margin-left: 8px;
+    margin-right: 8px
 }
 
 .profile .badges .editor {

@@ -1448,6 +1448,7 @@
                         <div class="actions">
                             <div class="actions__left">
                                 <div class="article__category development"><a href="topic_development.html" class="article__tag">Development</a></div>
+                                <!---->
                             </div>
                             <!---->
                         </div>
@@ -1461,14 +1462,12 @@
                         <!---->
                         <div class="article__actions actions">
                             <div class="actions__left"><button aria-label="Like" class="like button button__gray button__icon icon icon__like">Like </button>
-                                <!----><a href="article_transforming-from-projects-to-products.html#theCommentsSection" class="button button__gray button__icon icon icon__discuss">Discuss</a><button aria-label="Print" class="button button__gray button__icon icon icon__print icon--only">Print </button><a href="bookmarks.html" class="button button__gray button__icon icon icon__bookmark">My Reading List</a><button aria-label="Bookmark" id="bookmarkBtn" class="button button__gray button__icon icon icon__bookmark icon--only">Bookmark </button>
+                                <!----><a href="article_transforming-from-projects-to-products.html#theCommentsSection" class="button button__gray button__icon icon icon__discuss">Discuss</a><button aria-label="Print" class="button button__gray button__icon icon icon__print icon--only">Print </button><a href="bookmarks.html" class="button button__gray button__icon icon icon__bookmark">Bookmarks</a><button aria-label="Bookmark" id="bookmarkBtn" class="button button__gray button__icon icon icon__bookmark icon--only">Bookmark </button>
                                 <div id="toastContainer" class="toast-none toast-hide">
                                     <div class="toast"><span></span></div>
                                 </div>
                             </div>
-                            <div class="actions__right">
-                                <div class="addthis_inline_share_toolbox"></div>
-                            </div>
+                            <div class="actions__right"></div>
                         </div>
                         <!---->
                         <!---->
@@ -1480,7 +1479,7 @@
                                     <!---->
                                     <!---->
                                     <p class="article__readTime date">Mar 22, 2017<span class="dot"></span>5 min read</p>
-                                    <div class="widget article__authors">
+                                    <div class="article__authors">
                                         <div>
                                             <p class="meta">by</p>
                                             <ul class="authors no-style">
@@ -1492,11 +1491,8 @@
                                         <div>
                                             <p class="meta">translated by</p>
                                             <ul class="authors no-style">
-                                                <li data-id="author-joe">
-                                                    <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">joe</a> </span></p>
-                                                </li>
-                                                <li data-id="author-xx">
-                                                    <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">xx</a> </span></p>
+                                                <li data-id="author-John-Yorke">
+                                                    <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">John Yorke</a> </span></p>
                                                 </li>
                                             </ul>
                                         </div>
@@ -1511,7 +1507,11 @@
                                     </div>
                                     <div class="widgets">
                                         <!---->
-                                        <!---->
+                                        <div class="widget article__authors">
+                                            <!---->
+                                            <!---->
+                                            <!---->
+                                        </div>
                                         <!---->
                                         <!---->
                                     </div>
@@ -1563,6 +1563,24 @@
                                         <h2>Impact on Project Managers and Business Analysts</h2>
                                         <h4>It is particularly difficult for Project Managers.</h4>
                                         <p>But bespoke software is far more complex and is generally dealing with many unpredictable variables, the biggest variable being the end state. In the majority of cases the end state is not known at the outset and emerges in the course of the product being developed. The true end state needed to fulfil a need or want can very often be significantly larger or smaller than initially anticipated. &#xA0;The ability and flexibility to pivot based on emerging information is crucial for delivering value and the product being a success.</p>
+                                        <p></p>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <td>Heading 1</td>
+                                                    <td>Heading 2</td>
+                                                    <td>Heading 3</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Body 1</td>
+                                                    <td>Body 2</td>
+                                                    <td>Body 3</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <p></p>
                                         <p>Business Analysts similarly must adapt, project planning generally relies on knowing as much as possible at the time of planning, and so there is heavy reliance on the Business Analyst. Product Development is again a mindshift for a Business Analyst, there is no longer a need for detail up front, in fact in most cases it is a waste due to the likely and frequent change of direction and priority as we learn so much as the product emerges.</p>
                                         <p>Transition for Business Analysts is easier, their role doesn&#x2019;t change drastically it is more the timing, the conversations with the customers are closer to when the work will be done and BAs often make very good Product Owners as they share a focus on identifying what the customer needs.</p>
                                         <p>Agile is a mindset far more than anything else, and when you start to look into it, there is nothing new, nothing original, and you will be surprised to find that whilst the word Agile has been used a lot by the software industry in the last 20 years or so, the practices and behaviours are just the good practices and behaviours of general management going back a century and possibly even a millennium or two.</p>
@@ -1683,7 +1701,9 @@
                                     <li>
                                         <div class="related__sponsor">
                                             <h4 class="heading">Related Sponsor</h4><a href="sponsor" class="related__img"><img src="./styles/img/2d5493d.png"></a>
-                                            <p class="related__desc"><a href="http://compose">Compose</a> makes it simple to deploy production-ready databases in minutes in the cloud or on your own servers.</p>
+                                            <div class="related__desc">
+                                                <p><a href="http://compose">Compose</a> makes it simple to deploy production-ready databases in minutes in the cloud or on your own servers.</p>
+                                            </div>
                                         </div>
                                     </li>
                                 </ul>
@@ -1874,7 +1894,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div>
+                                <div class="widget">
                                     <h3 class="widget__heading">Educational Content</h3>
                                     <div id="educational" class="tabs">
                                         <div data-title="All" class="tab">
