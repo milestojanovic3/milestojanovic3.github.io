@@ -8207,7 +8207,8 @@ button.liked {
     max-width: 100% !important;
     -webkit-flex-basis: 100% !important;
     -ms-flex-preferred-size: 100% !important;
-    flex-basis: 100% !important
+    flex-basis: 100% !important;
+    min-width: 50% !important
 }
 
 @media only screen and (min-width:768px) {
@@ -8216,6 +8217,7 @@ button.liked {
         -webkit-flex-basis: 50% !important;
         -ms-flex-preferred-size: 50% !important;
         flex-basis: 50% !important;
+        min-width: 50% !important;
         margin: 0;
         margin-right: 0 !important;
         padding-right: 10px;
@@ -8226,6 +8228,7 @@ button.liked {
 
 @media only screen and (min-width:1080px) {
     .editorsPicks li {
+        min-width: 100% !important;
         padding-right: 0;
         padding-left: 0;
         margin-bottom: 32px
@@ -8720,7 +8723,9 @@ a.video-block {
     grid-template-columns: 1fr;
     -ms-grid-rows: auto;
     grid-template-rows: auto;
+    -ms-grid-column: 20px;
     grid-column-gap: 20px;
+    -ms-grid-row: 0;
     grid-row-gap: 0;
     -webkit-box-align: start;
     -webkit-align-items: start;
