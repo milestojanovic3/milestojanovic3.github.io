@@ -8378,6 +8378,24 @@ button.liked {
     margin-bottom: 11px
 }
 
+@media screen and (-ms-high-contrast:active),
+(-ms-high-contrast:none) {
+    .mustSeePresentations {
+        padding-right: 30px
+    }
+
+    .grid .heading__container.actions {
+        padding-right: 20px;
+        display: block;
+        vertical-align: top
+    }
+
+    .speakers.speaker {
+        width: 50%;
+        margin-bottom: 10px
+    }
+}
+
 @media only screen and (min-width:600px) and (max-width:1080px) {
     .elementInRow ul li:nth-child(4) {
         display: none
@@ -8785,7 +8803,7 @@ a.video-block {
     grid-area: title
 }
 
-.grid--conference__intro .button__outline_white {
+.grid--conference__intro .follow__btn {
     -ms-grid-row: 1;
     -ms-grid-row-span: 2;
     -ms-grid-column: 2;
@@ -8989,6 +9007,7 @@ a.video-block {
     grid-area: title
 }
 
+.grid--conference__slider .presentationSlide,
 .grid--conference__slider .slide-container {
     -ms-grid-row: 1;
     -ms-grid-column: 2;
@@ -9079,7 +9098,7 @@ a.video-block {
         -ms-grid-column: 1
     }
 
-    .grid--conference__intro .button__outline_white {
+    .grid--conference__intro .follow__btn {
         -ms-grid-row: 1;
         -ms-grid-row-span: 1;
         -ms-grid-column: 2
@@ -9125,7 +9144,7 @@ a.video-block {
         -ms-grid-column: 1
     }
 
-    .grid--conference__intro .button__outline_white {
+    .grid--conference__intro .follow__btn {
         -ms-grid-row: 2;
         -ms-grid-row-span: 1;
         -ms-grid-column: 1
@@ -9171,6 +9190,7 @@ a.video-block {
         -ms-grid-column: 1
     }
 
+    .grid--conference__slider .presentationSlide,
     .grid--conference__slider .slide-container {
         -ms-grid-row: 2;
         -ms-grid-column: 1
@@ -11397,6 +11417,13 @@ a.video-block {
 
 .static-page .topic__boxes a {
     width: 100%
+}
+
+@media only screen and (-ms-high-contrast:active) and (min-width:768px),
+only screen and (-ms-high-contrast:none) and (min-width:768px) {
+    .speakers.speaker {
+        width: 25%
+    }
 }
 
 .announcement {
