@@ -7978,46 +7978,17 @@ button.liked {
     height: 100%
 }
 
-.conference_banner .conference_banner_inner {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-align-content: center;
-    -ms-flex-line-pack: center;
-    align-content: center;
-    -webkit-box-pack: start;
-    -webkit-justify-content: flex-start;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
-    position: relative;
-    min-height: 220px;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap
-}
-
-.conference_banner .conference_banner_inner .conference_logo {
+.conference_banner .grid--conference__banner .conference_logo {
     height: 70px
 }
 
-.conference_banner .conference_banner_inner .share_links {
-    position: absolute;
-    right: 0;
-    bottom: 0
-}
-
-.conference_banner .conference_banner_inner .next_event {
+.conference_banner .grid--conference__banner .next_event {
     display: block;
     width: 100%;
     text-align: left
 }
 
-.conference_banner .conference_banner_inner .next_event span {
+.conference_banner .grid--conference__banner .next_event span {
     color: #fff;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -8025,6 +7996,15 @@ button.liked {
     font-size: 1.125rem;
     display: block;
     width: 100%
+}
+
+.conference_banner .grid--conference__banner .share_links {
+    position: relative;
+    text-align: right
+}
+
+.conference_banner .grid--conference__banner .share_links a {
+    margin-left: 10px
 }
 
 .next_event_banner {
@@ -8060,10 +8040,6 @@ button.liked {
     -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
     -ms-flex-align: center;
@@ -8071,15 +8047,8 @@ button.liked {
     -webkit-align-content: center;
     -ms-flex-line-pack: center;
     align-content: center;
-    -webkit-box-pack: start;
-    -webkit-justify-content: flex-start;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
     position: relative;
     min-height: 220px;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
     color: #fff
 }
 
@@ -8411,6 +8380,67 @@ button.liked {
     }
 }
 
+.follow__btn {
+    text-align: right
+}
+
+.conference_banner_inner {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-align-content: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    position: relative;
+    min-height: 220px;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap
+}
+
+.conference_banner_inner .conference_logo {
+    height: 70px
+}
+
+.conference_banner_inner .next_event {
+    display: block;
+    width: 100%;
+    text-align: left
+}
+
+.conference_banner_inner .next_event span {
+    color: #fff;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-weight: 600;
+    font-size: 1.125rem;
+    display: block;
+    width: 100%
+}
+
+.conference_banner_inner .share_links {
+    text-align: right
+}
+
+.conference_banner_inner .share_links a {
+    margin-left: 10px
+}
+
+.conference_banner_inner .share_links {
+    position: absolute;
+    right: 0;
+    bottom: 0
+}
+
 .top10 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -8680,6 +8710,204 @@ a.video-block {
     line-height: 1.2;
     color: #fff;
     margin: 0
+}
+
+.grid {
+    display: grid;
+    display: -ms-grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-column-gap: 20px;
+    grid-row-gap: 0;
+    -webkit-box-align: start;
+    -webkit-align-items: start;
+    -ms-flex-align: start;
+    align-items: start
+}
+
+.grid--conference__banner {
+    grid-template-columns: 1fr;
+    grid-template-areas: 'logo''date''social'
+}
+
+.grid--conference__banner .conference_logo {
+    grid-area: logo
+}
+
+.grid--conference__banner .next_event {
+    grid-area: date
+}
+
+.grid--conference__banner .share_links {
+    grid-area: social
+}
+
+.grid--conference__intro {
+    grid-template-columns: 1fr 255px;
+    grid-column-end: -1;
+    grid-template-areas: "title button""paragraph button"
+}
+
+@media only screen and (min-width:500px) and (max-width:1080px) {
+    .grid--conference__intro {
+        grid-template-areas: "title button""paragraph paragraph"
+    }
+}
+
+@media only screen and (max-width:500px) {
+    .grid--conference__intro {
+        grid-template-columns: 1fr;
+        grid-template-areas: "title""button""paragraph"
+    }
+}
+
+.grid--conference__intro .heading__container {
+    grid-area: title
+}
+
+.grid--conference__intro .button__outline_white {
+    grid-area: button
+}
+
+.grid--conference__intro p {
+    grid-area: paragraph
+}
+
+.grid--conference__highlights {
+    grid-template-columns: 255px 1fr 1fr;
+    grid-template-areas: "sidebar mustSee editorsPicks"
+}
+
+@media only screen and (max-width:1080px) {
+    .grid--conference__highlights {
+        grid-template-areas: "sidebar sidebar sidebar""mustSee mustSee mustSee""editorsPicks editorsPicks editorsPicks"
+    }
+}
+
+.grid .sidebar_conference {
+    grid-area: sidebar
+}
+
+.grid .mustsee__presentations {
+    grid-area: mustSee
+}
+
+.grid .editor__picks {
+    grid-area: editorsPicks
+}
+
+.grid .news__grid {
+    grid-area: newsGrid
+}
+
+.grid--conference__news {
+    grid-template-columns: 255px 1fr;
+    grid-template-areas: "sidebar newsGrid"
+}
+
+@media only screen and (max-width:1080px) {
+    .grid--conference__news {
+        grid-template-areas: "sidebar sidebar""newsGrid newsGrid"
+    }
+}
+
+.grid--conference__list {
+    grid-template-columns: 255px 1fr;
+    grid-template-areas: "titleKeynotes listItems""titlePresentation presentations""titleUpcoming upcoming"
+}
+
+@media only screen and (max-width:1080px) {
+    .grid--conference__list {
+        grid-template-areas: "titleKeynotes titleKeynotes""listItems listItems ""titlePresentation titlePresentation ""presentations presentations ""titleUpcoming titleUpcoming ""upcoming upcoming "
+    }
+}
+
+.grid--conference__list .sidebar_keynotes {
+    grid-area: titleKeynotes
+}
+
+.grid--conference__list .sidebar_presentations {
+    grid-area: titlePresentation
+}
+
+.grid--conference__list .sidebar_upcoming {
+    grid-area: titleUpcoming
+}
+
+.grid--conference__list .conference__grid-ListItems {
+    grid-area: listItems
+}
+
+.grid--conference__list .conference__grid-presentations {
+    grid-area: presentations
+}
+
+.grid--conference__list .conference__grid-upcoming {
+    grid-area: upcoming
+}
+
+.grid--conference__slider {
+    grid-template-columns: 255px 1fr;
+    grid-template-areas: "title sliderContent"
+}
+
+@media only screen and (max-width:1080px) {
+    .grid--conference__slider {
+        grid-template-columns: 1fr;
+        grid-template-areas: "title ""sliderContent"
+    }
+}
+
+.grid--conference__slider .heading__container {
+    grid-area: title
+}
+
+.grid--conference__slider .slide-container {
+    grid-area: sliderContent
+}
+
+.grid--conference__slider .tns-horizontal.tns-subpixel {
+    white-space: inherit
+}
+
+.grid--conference__nextEvent {
+    grid-template-columns: 1fr;
+    grid-template-areas: "date ""title ""paragraph ""button "
+}
+
+.grid--conference__nextEvent span {
+    grid-area: date
+}
+
+.grid--conference__nextEvent h2 {
+    grid-area: title
+}
+
+.grid--conference__nextEvent .event_paragraph {
+    grid-area: paragraph
+}
+
+.grid--conference__nextEvent button {
+    grid-area: button
+}
+
+.grid--conference__yearList {
+    grid-template-columns: 255px 1fr;
+    grid-template-areas: "title contentPresentations"
+}
+
+@media only screen and (max-width:1080px) {
+    .grid--conference__yearList {
+        grid-template-areas: "title title""contentPresentations contentPresentations"
+    }
+}
+
+.grid--conference__yearList .content__presentations-list {
+    grid-area: contentPresentations
+}
+
+.grid--conference__yearList .heading__container {
+    grid-area: title
 }
 
 .container {
@@ -19999,6 +20227,10 @@ input:checked~.star:before {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex
+}
+
+.speakers .speaker {
+    padding-bottom: 3px
 }
 
 .speakers .speaker__photo {
