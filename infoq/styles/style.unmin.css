@@ -8390,7 +8390,7 @@ button.liked {
         vertical-align: top
     }
 
-    .speakers.speaker {
+    .speakers .speaker {
         width: 50%;
         margin-bottom: 10px
     }
@@ -11421,7 +11421,7 @@ a.video-block {
 
 @media only screen and (-ms-high-contrast:active) and (min-width:768px),
 only screen and (-ms-high-contrast:none) and (min-width:768px) {
-    .speakers.speaker {
+    .speakers .speaker {
         width: 25%
     }
 }
