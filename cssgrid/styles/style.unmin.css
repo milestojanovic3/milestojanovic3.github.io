@@ -8687,6 +8687,13 @@ a.video-block {
     width: 100%
 }
 
+.grid--guide .r-article__authors .authors .meta {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1
+}
+
 .grid--presentation {
     -ms-grid-columns: 1fr;
     grid-template-columns: 1fr;
