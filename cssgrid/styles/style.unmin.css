@@ -8676,11 +8676,15 @@ a.video-block {
     max-width: 100% !important
 }
 
-.grid--guide .article[data-type=guide] .article__metadata .widgets .newsletter {
+.grid--guide .article__metadata .widgets .newsletter {
     display: -webkit-box !important;
     display: -webkit-flex !important;
     display: -ms-flexbox !important;
     display: flex !important
+}
+
+.grid--guide .article__metadata .widgets .newsletter__subscribe>form {
+    width: 100%
 }
 
 .grid--presentation {
