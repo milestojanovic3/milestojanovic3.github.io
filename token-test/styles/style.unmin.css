@@ -11653,8 +11653,11 @@ a.video-block {
 .tokenfield .tokenfield-input {
     margin-bottom: 5px;
     border: none;
-    outline: 0;
-    float: left
+    outline: 0
+}
+
+.tokenfield .tokenfield-input float left {
+    font-size: .875rem
 }
 
 .tokenfield .tokenfield-suggest {
