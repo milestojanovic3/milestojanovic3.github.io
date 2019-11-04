@@ -12,6 +12,9 @@
     <link href="styles/print.css" rel="stylesheet" media="print">
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default"></script>
     <script src="scripts/infoq.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        loggedIn = true
+    </script>
     <script>
         var JSi18n = window.JSi18n || {},
             CommonUtils = {
@@ -1084,48 +1087,24 @@
                                     </div><input value="Go" type="submit" disabled class="search__go">
                                 </form>
                             </div>
-                            <div class="button__dropdown dropdown user__login"><button aria-label="Sign Up / Login" class="button button__small button__green button__arrow arrow__true button__icon icon icon__user icon--only">Sign Up / Login </button>
+                            <div class="button__dropdown dropdown user__login"><button aria-label="Dorian" class="button button__small button__green button__arrow arrow__true button__icon icon icon__user icon--only">Dorian </button>
                                 <div class="dropdown__holder">
                                     <!---->
                                     <div class="dropdown__content">
                                         <div class="login__dropdown">
-                                            <div data-vv-scope="login" class="login__module">
-                                                <!---->
-                                                <div class="login__username">
-                                                    <!---->
-                                                    <form class="login__form form"><input type="hidden" name="loginWidgetOrigin" id="loginWidgetOrigin" value="mainLogin"><input type="hidden" name="fromP13N"><input type="hidden" name="fromP13NId"><input type="hidden" name="fromP13NType">
-                                                        <div class="field form__row input__text input__small"><label for="email" class="label field__label">Email<span class="input__req">*</span></label><input id="email" placeholder class="input field__input" type="text">
-                                                            <!---->
-                                                            <!---->
-                                                            <!---->
-                                                        </div>
-                                                        <div class="field form__row input__password input__small"><label for="password" class="label field__label">Password<span class="input__req">*</span></label><input type="password" id="password" placeholder class="input field__input">
-                                                            <!---->
-                                                            <!---->
-                                                            <!---->
-                                                        </div>
-                                                        <div class="login__actions"><input type="submit" value="Login" class="form__row button button__medium button__green"><a href="grid_presentation.html#" class="forgot button button__unstyled">Forgot your password?</a></div>
-                                                    </form>
-                                                    <form data-vv-scope="forgot" class="forgot__form form">
-                                                        <div class="field form__row input__text input__small"><label for="email-forgot" class="label field__label">InfoQ Account Email<span class="input__req">*</span></label><input id="email-forgot" placeholder class="input field__input" type="text">
-                                                            <!---->
-                                                            <!---->
-                                                            <!---->
-                                                        </div><input type="submit" value="Send Recovery Email" class="button button__medium button__green">
-                                                        <p class="login__actions"><button aria-label="Back to login" class="back-to-login button button__unstyled">Back to login </button></p>
-                                                    </form>
-                                                </div>
-                                                <div class="login__social">
-                                                    <h4 class="heading subsection__heading">Login with:</h4>
-                                                    <div class="login__socials">
-                                                        <div class="social__connect form__row login__socials">
-                                                            <!----><a href="/gridhttps://google.com" class="button button__medium button__gray button__icon icon icon__google"> Google</a><a href="/gridhttps://microsoft.com" class="button button__medium button__icon icon icon__microsoft"> Microsoft</a><a href="/gridhttps://twitter.com" class="button button__medium button__icon icon icon__twitter"> Twitter</a><a href="/gridhttps://facebook.com" class="button button__medium button__icon icon icon__facebook"> Facebook</a></div>
-                                                    </div>
-                                                    <p class="meta gdpr">When signing in using social media accounts, those accounts may use information for their own purposes. We recommend you view the privacy notice of those social media accounts.</p>
-                                                </div>
-                                                <form class="form login__signup">
-                                                    <h4 class="heading">Don&apos;t have an InfoQ account?</h4><a href="signup.html" class="button button__medium button__green">Sign up</a>
-                                                </form>
+                                            <div class="user__menu">
+                                                <h4 class="user__welcome">Welcome <span class="user__name"></span></h4>
+                                                <ul class="user__actions no-style dropdown__nav">
+                                                    <li><a href="profile.html">Profile</a></li>
+                                                    <li><a href="settings.html">Settings</a></li>
+                                                    <li><a href="bookmarks.html">Reading List</a></li>
+                                                    <li class="separator separator__line">
+                                                        <!---->
+                                                    </li>
+                                                    <li><a href="settings.html#topics-you-follow">Topics you follow</a></li>
+                                                    <li><a href="settings.html#peers-you-follow">Peers you follow</a></li>
+                                                    <li><a href="settings.html#editors-picks">Editor&apos;s picks</a></li>
+                                                </ul><a href="signout.html" class="button button__gray">Sign out</a>
                                             </div>
                                         </div>
                                     </div>
@@ -1137,20 +1116,18 @@
                                     <div class="dropdown__header">
                                         <div class="heading__container actions notifications__header">
                                             <div class="actions__left">
-                                                <h5 class="heading">Login to unlock InfoQ&#x2019;s new features</h5>
+                                                <h5 class="heading">Welcome, Dorian</h5>
+                                                <!---->
+                                                <p>To get you started with what InfoQ has to offer, we recommend you follow:</p>
                                                 <!---->
                                             </div>
                                             <!---->
                                         </div>
                                     </div>
                                     <div class="dropdown__content">
-                                        <ul class="notifications__welcome no-style">
-                                            <li class="icon__up-to-date">Stay up to date and get notified</li>
-                                            <li class="icon__like-content">Like your favorite content</li>
-                                            <li class="icon__follow-favorites">Follow your favorite editors and peers</li>
-                                        </ul><button aria-label="Login" class="login button button__medium button__green">Login </button><a href="register.html" class="button button__unstyled">Don&apos;t have an account? Register</a>
+                                        <div class="picks"></div>
                                     </div>
-                                    <!---->
+                                    <div class="dropdown__footer"><button aria-label="Dismiss" class="notifications__footer button button__unstyled button__medium">Dismiss </button></div>
                                 </div>
                             </div>
                         </div>
@@ -1465,26 +1442,14 @@
             <div>
                 <section class="section container white">
                     <div class="container__inner">
-                        <article data-type="presentation" class="article grid">
+                        <article data-type="presentation" class="article grid authenticated early needsAuthForEarly">
                             <div class="crumbs"><span><a href="index.html">InfoQ Homepage</a></span><span><a href="grid.html" class="active">grid</a></span><span class="active">presentation</span></div><a href="grid_Development.html" class="article__tag">Development</a>
                             <div class="notice">NOTICE: The next QCon is in <a href="https://qconsf.com">San Francisco Nov 13-17, 2017</a>. Join us!</div>
                             <h1>CSS Grid Presentation Layout</h1>
                             <!---->
                             <div class="article__actions"><button aria-label="Like" class="like button button__gray button__icon icon icon__like">Like </button><a href="grid_presentation.html#theCommentsSection" class="button button__gray button__icon icon icon__discuss">Discuss</a><a href="bookmarks.html" class="button button__gray button__icon icon icon__bookmark">Bookmarks</a><button aria-label="Bookmark" id="bookmarkBtn" class="button button__gray button__icon icon icon__bookmark icon--only">Bookmark </button></div>
-                            <div class="presentation__switch"><label class="label">View presentation:</label>
-                                <ul class="no-style">
-                                    <li><button aria-label="Vertical" data-tip="Vertical" data-tip-placement="top" data-key="pres-2-cols" class="button button__unstyled button__tooltip tooltip__top button__icon icon icon__pres-2-cols icon--only active">Vertical </button></li>
-                                    <li><button aria-label="Horizontal" data-tip="Horizontal" data-tip-placement="top" data-key="pres-1-col" class="button button__unstyled button__tooltip tooltip__top button__icon icon icon__pres-1-col icon--only">Horizontal </button></li>
-                                    <li><button aria-label="Full" data-tip="Full" data-tip-placement="top" data-key="pres-fs" class="button button__unstyled button__tooltip tooltip__top button__icon icon icon__pres-fs icon--only">Full </button></li>
-                                </ul>
-                            </div>
-                            <div class="speed"><label>Speed:</label>
-                                <ul class="no-style">
-                                    <li><button aria-label="1x" class="button button__unstyled active">1x </button></li>
-                                    <li><button aria-label="1.5x" class="button button__unstyled">1.5x </button></li>
-                                    <li><button aria-label="2x" class="button button__unstyled">2x </button></li>
-                                </ul>
-                            </div>
+                            <!---->
+                            <!---->
                             <div class="player"><video id="video" controls width="100%" height="100%" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4"></video>
                                 <div class="actions player__actions">
                                     <div class="actions__left"><label class="label">Download:</label>
@@ -1499,15 +1464,15 @@
                                 </div>
                             </div>
                             <!---->
+                            <form class="early__login">
+                                <div class="field input__text"><label for="demo::replace" class="label field__label">Please enter your QCon London 2018 unique ID you received in an email during the conference:<span class="input__req">*</span></label><input id="demo::replace" placeholder class="input field__input" type="text">
+                                    <!---->
+                                    <!---->
+                                    <p class="field__desc">You only need to provide this once, after entering your account will be authenticated as a QCon London 2018 attendee. If you attended QCon London 2018 and can&apos;t find your ID, email conference-attendees@infoq.com with your first name and last name and we&apos;ll send you a new one</p>
+                                </div><input type="submit" value="Login" class="button">
+                            </form>
                             <!---->
-                            <div class="intro slides"><img src="./styles/img/3f2e0b2.jpg" class="intro__img">
-                                <!---->
-                                <!---->
-                            </div>
-                            <div class="summary">
-                                <h2 class="heading">Summary</h2>
-                                <p>Katy Saulpaugh discusses how to approach reorganizations for Agile teams and minimize the pain using change management techniques.</p>
-                            </div>
+                            <!---->
                             <div class="bio">
                                 <h2 class="heading">Bio</h2>
                                 <p>Kingsley Davies is a partner at Underscore Consulting, who build scalable systems using functional programming to deliver value to their clients. Additionally, he co-founded GoodTechConf which is a conference about ethics, technology and social responsibility as well as co-hosting the future tech podcast Breakpoint Radio.</p>
@@ -1664,11 +1629,7 @@
                     <div class="container__inner">
                         <div class="comments section__center">
                             <form class="form comment__form">
-                                <div class="unregistered">
-                                    <h2 class="heading">Hello, stranger!</h2>
-                                    <p>You need to <a href="register.html">Register an InfoQ account</a> or <a data-ref="commentsLogin" class="login">Login</a> to post comments. But there&apos;s so much more behind being registered.</p>
-                                    <p><strong>Get the most out of the InfoQ experience.</strong></p>
-                                </div>
+                                <!---->
                                 <div class="form__row field"><label class="field__label">
                                         <div class="heading__container actions">
                                             <div class="actions__left">
@@ -1678,12 +1639,16 @@
                                             <!---->
                                         </div>
                                     </label>
-                                    <div class="field__comment"><input placeholder="Please enter a subject" aria-label="Please enter a subject" class="field__subject input" type="text"><textarea placeholder="Message" disabled class="field__message"></textarea></div>
+                                    <div class="field__comment"><input placeholder="Please enter a subject" aria-label="Please enter a subject" class="field__subject input" type="text"><textarea placeholder="Message" class="field__message"></textarea></div>
                                     <p>Allowed html: a,b,br,blockquote,i,li,pre,u,ul,p</p>
                                 </div>
-                                <!---->
+                                <div class="form__row field"><span class="input__checkbox field"><input type="checkbox" id="watchreplies-mine" checked><label for="watchreplies-mine" class="label"><span>Email me replies to any of my messages in this thread</span>
+                                            <!----></label>
+                                        <!----></span></div>
                                 <div class="actions">
-                                    <div class="actions__left"></div>
+                                    <div class="actions__left"><input type="submit" value="Post Message" class="button">
+                                        <!---->
+                                    </div>
                                     <!---->
                                 </div>
                             </form>
@@ -1762,10 +1727,11 @@
                                         <div class="field__comment"><input placeholder="Please enter a subject" aria-label="Please enter a subject" class="field__subject input" type="text"><textarea placeholder="Message" class="field__message"></textarea></div>
                                         <p>Allowed html: a,b,br,blockquote,i,li,pre,u,ul,p</p>
                                     </div>
-                                    <!---->
+                                    <div class="form__row field"><span class="input__checkbox field"><input type="checkbox" id="watchreplies-replybox"><label for="watchreplies-replybox" class="label"><span>Email me replies to any of my messages in this thread</span>
+                                                <!----></label>
+                                            <!----></span></div>
                                     <div class="actions">
-                                        <div class="actions__left">
-                                            <!----><button aria-label="Cancel" class="button button__unstyled">Cancel </button></div>
+                                        <div class="actions__left"><input type="submit" value="Post Message" class="button"><button aria-label="Cancel" class="button button__unstyled">Cancel </button></div>
                                         <!---->
                                     </div>
                                 </form>
