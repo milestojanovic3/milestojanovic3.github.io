@@ -1442,7 +1442,7 @@
             <div>
                 <section class="section container white">
                     <div class="container__inner">
-                        <article data-type="presentation" class="article grid authenticated early">
+                        <article data-type="presentation" class="article grid early authenticated">
                             <div class="crumbs"><span><a href="index.html">InfoQ Homepage</a></span><span><a href="grid.html" class="active">grid</a></span><span class="active">presentation</span></div><a href="grid_Development.html" class="article__tag">Development</a>
                             <div class="notice">NOTICE: The next QCon is in <a href="https://qconsf.com">San Francisco Nov 13-17, 2017</a>. Join us!</div>
                             <h1>CSS Grid Presentation Layout</h1>
@@ -1465,8 +1465,8 @@
                                             <p>You have<strong>a total of 30 available shares</strong> for the whole conference, which you can all use on this video or multiple videos.</p>
                                         </div>
                                     </div><input id="swf" name="shareEmail" class="share-email">
-                                    <div class="swf__bottom field field--error actions__left"><input type="submit" value="SUBMIT" class="button button__medium">
-                                        <p class="input__message">Error message</p>
+                                    <div class="swf__bottom field field--error actions__left"><input type="submit" disabled id="shareSubmit" value="SUBMIT" class="button button__medium button__disabled">
+                                        <p id="errorMessageShare" class="input__message"></p>
                                     </div>
                                 </div>
                             </div>
