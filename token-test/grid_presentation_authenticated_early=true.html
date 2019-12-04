@@ -82,7 +82,9 @@
                     noTopic: "You are currently not following any topics",
                     chooseOne: "Choose one...",
                     bookmarked: "Content Bookmarked",
-                    unbookmarked: "Content Unbookmarked"
+                    unbookmarked: "Content Unbookmarked",
+                    invalidShare: "Remove invalid emails first!",
+                    maxShare: "Maximum nuber of shares exceeded!"
                 },
                 adbStrings: ["We notice you’re using an ad blocker", "We understand why you use ad blockers. However to keep InfoQ free we need your support. InfoQ will not provide your data to third parties without individual opt-in consent. We only work with advertisers relevant to our readers. Please consider whitelisting us."]
             }),
@@ -1457,15 +1459,15 @@
                                                 <p>Enter the email address of a friend and they will receive a free token to watch this presentation. Type emails you want to share with:</p>
                                             </div>
                                         </div>
-                                        <p class="actions__right swf__actions-share_right meta"><strong><span>0/30</span> shares used</strong></p>
+                                        <p class="actions__right swf__actions-share_right meta"><strong><span id="token-added">0</span>/<span id="max-tokens">30</span> shares used</strong></p>
                                     </div>
                                     <div class="swf__tooltip announcement">
                                         <div><button aria-label="Close" class="close button button__unstyled button__icon icon icon__close-white icon--only">Close </button>
                                             <h4 class="heading">Share a video with a friend</h4>
-                                            <p>You have<strong>a total of 30 available shares</strong> for the whole conference, which you can all use on this video or multiple videos.</p>
+                                            <p>You have<strong> a total of 30 available shares</strong> for the whole conference, which you can all use on this video or multiple videos.</p>
                                         </div>
-                                    </div><input id="swf" name="shareEmail" class="share-email">
-                                    <div class="swf__bottom field field--error actions__left"><input type="submit" disabled id="shareSubmit" value="SUBMIT" class="button button__medium button__disabled">
+                                    </div><input id="swf" name="shareEmailtoken">
+                                    <div class="swf__bottom field field--error actions__left"><input type="submit" id="shareSubmit" value="SUBMIT" class="button button__medium">
                                         <p id="errorMessageShare" class="input__message"></p>
                                     </div>
                                 </div>
