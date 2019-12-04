@@ -112,11 +112,8 @@
         height: auto !important
     }
 
-    .article__content p code {
-        display: inline !important
-    }
-
     .article__content code>*,
+    .article__content p code,
     .article__content pre>* {
         display: inline !important
     }

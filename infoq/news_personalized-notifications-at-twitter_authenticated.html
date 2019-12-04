@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head data-n-head>
+<head>
     <title>InfoQ | Software Development News, Guides, Videos</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,8 +11,7 @@
     <link href="styles/icons.css" rel="stylesheet" media="screen">
     <link href="styles/print.css" rel="stylesheet" media="print">
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default"></script>
-    <script src="polyfills.js" type="text/javascript"></script>
-    <script src="infoq.js" type="text/javascript"></script>
+    <script src="scripts/infoq.js" type="text/javascript"></script>
     <script type="text/javascript">
         loggedIn = true
     </script>
@@ -87,7 +86,7 @@
                 },
                 adbStrings: ["We notice you’re using an ad blocker", "We understand why you use ad blockers. However to keep InfoQ free we need your support. InfoQ will not provide your data to third parties without individual opt-in consent. We only work with advertisers relevant to our readers. Please consider whitelisting us."]
             }),
-            currentUserId = 101975445,
+            currentUserId = "daniel-bryant",
             usersInPage = [{
                 ref: "author-George-Doe",
                 id: "author-1",
@@ -1176,7 +1175,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="key-takeaway-points-and-lessons-learned-from-qcon-london-2017">
+                                                    <li data-id="key-takeaway-points-and-lessons-learned-from-qcon-london-2017" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1221,7 +1220,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="latency-sensitive-microservices">
+                                                    <li data-id="latency-sensitive-microservices" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1264,7 +1263,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="do-we-need-another-key-value-store-">
+                                                    <li data-id="do-we-need-another-key-value-store-" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1310,7 +1309,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="always-be-publishing--continuous-integration---collaboration-in-code-repositories-for-rest-api-docs">
+                                                    <li data-id="always-be-publishing--continuous-integration---collaboration-in-code-repositories-for-rest-api-docs" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1352,7 +1351,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="spotify-lessons--learning-to-let-go-of-machines">
+                                                    <li data-id="spotify-lessons--learning-to-let-go-of-machines" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1444,7 +1443,7 @@
             <article data-type="news" class="article">
                 <section class="section container white">
                     <div class="container__inner">
-                        <p class="crumbs"><span><a href="index.html">InfoQ Homepage</a></span><span><a href="news.html" class="active">news</a></span><span class="active">personalized notifications at twitter</span></p>
+                        <div class="crumbs"><span><a href="index.html">InfoQ Homepage</a></span><span><a href="news.html" class="active">news</a></span><span class="active">personalized notifications at twitter</span></div>
                         <div class="actions">
                             <div class="actions__left">
                                 <div class="article__category development"><a href="topic_development.html" class="article__tag">Development</a></div>
@@ -1479,7 +1478,7 @@
                                     <!---->
                                     <!---->
                                     <p class="article__readTime date">Mar 22, 2017<span class="dot"></span>5 min read</p>
-                                    <div class="widget article__authors">
+                                    <div class="article__authors">
                                         <div>
                                             <p class="meta">by</p>
                                             <ul class="authors no-style">
@@ -1494,11 +1493,11 @@
                                         <div>
                                             <p class="meta">translated by</p>
                                             <ul class="authors no-style">
-                                                <li data-id="author-joe">
-                                                    <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">joe</a> </span></p>
+                                                <li data-id="author-Andrew-Morgan">
+                                                    <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">Andrew Morgan</a> </span></p>
                                                 </li>
-                                                <li data-id="author-xx">
-                                                    <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">xx</a> </span></p>
+                                                <li data-id="author-Andrew-Morgan">
+                                                    <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">Andrew Morgan</a> </span></p>
                                                 </li>
                                             </ul>
                                         </div>
@@ -1516,7 +1515,11 @@
                                     </div>
                                     <div class="widgets">
                                         <!---->
-                                        <!---->
+                                        <div class="widget article__authors">
+                                            <!---->
+                                            <!---->
+                                            <!---->
+                                        </div>
                                         <!---->
                                         <!---->
                                     </div>
@@ -1546,7 +1549,105 @@
                                     <!---->
                                     <!---->
                                     <div class="article__data">
-                                        <p>Gary Lam, staff engineer at Twitter, spoke about <a href="https://www.infoq.com/presentations/twitter-notifications">personalized notifications</a> at QCon London 2017. .</p>
+                                        <div class="takeaways">
+                                            <h3 class="icon icon__takeaways heading">Key Takeaways</h3>
+                                            <ul>
+                                                <li>Java SE 10 (March 2018) introduced <a href="https://openjdk.java.net/jeps/286"><em>type inference for local variables</em></a>, one of the most frequently requested features for Java in recent.&#xA0;</li>
+                                                <li>Type inference is a technique used by statically typed languages, where the types of variables may be inferred from context by the compiler.</li>
+                                                <li>Type inference in Java is <em>local</em>; the scope over which constraints are gathered and solved is restricted to a narrow portion of the program, such as a single expression or statement.</li>
+                                                <li>Stuart Marks, of the Java Libraries team, has compiled a useful <a href="https://openjdk.java.net/projects/amber/LVTIstyle.html">style guide</a> and <a href="https://openjdk.java.net/projects/amber/LVTIFAQ.html">FAQ</a> to help understand the trade-offs surrounding type inference for locals.</li>
+                                                <li>Correctly used, type inference can make your code both more concise <em>and</em> more readable.</li>
+                                            </ul>
+                                            <div class="separator separator__three-dots center"></div>
+                                        </div>
+                                        <p>In <a href="https://www.infoq.com/presentations/java-futures-2019/">Java Futures</a> at QCon New York, Java Language Architect Brian Goetz took us on a whirlwind tour of some recent and future features in the Java Language. In this article, he dives into Local Variable Type Inference.</p>
+                                        <p>Java SE 10 (March 2018) introduced<em> <a href="https://openjdk.java.net/jeps/286">type inference for local variables</a></em>. Previously, declaring a local variable required a manifest (explicit) type declaration. Now, type inference empowers the compiler to choose the static type of the variable, based on the type of its initializer:</p>
+                                        <pre class="language-java"><code class="language-java">var names <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>String<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                                        <p>In this simple example, the variable <code>names</code> will have the type <code>ArrayList&lt;String&gt;</code>.</p>
+                                        <p>Despite the syntactic similarity to a similar feature in JavaScript, this is not dynamic typing&#x2014;all variables in Java still have a static type. Local variable type inference merely allows us to ask the compiler to figure this type out for us, rather than forcing us to provide it explicitly.</p>
+                                        <h2>Type Inference in Java</h2>
+                                        <p>Type inference is a technique used by statically typed languages, where the types of variables may be inferred from context by the compiler. Languages vary in their use and interpretation of type inference. Type inference generally provides the programmer with an option, not an obligation; we are free to choose between manifest and inferred types, and we should make this choice responsibly, using type inference where it enhances readability and avoiding it where it might create confusion.</p>
+                                        <p>Type names in Java can be long, either because the class name itself is long, has complex generic type parameters, or both. It is a general fact of programming languages that the more interesting your types are, the less fun they are to write down &#x2014; which is why languages with more sophisticated type systems tend to lean more heavily on type inference.</p>
+                                        <p>Java started with a limited form of type inference in Java 5, and its scope has steadily expanded over the years. In Java 5, when generic methods were introduced, we also introduced the ability to infer the generic type parameters at the use site; we typically say:</p>
+                                        <pre class="language-java"><code class="language-java">List<span class="token operator">&lt;</span>String<span class="token operator">&gt;</span> list <span class="token operator">=</span> Collection<span class="token punctuation">.</span><span class="token function">emptyList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                                        <p>rather than providing explicit type witnesses:</p>
+                                        <pre class="language-java"><code class="language-java">List<span class="token operator">&lt;</span>String<span class="token operator">&gt;</span> list <span class="token operator">=</span> Collection<span class="token punctuation">.</span>&lt;String<span class="token operator">&gt;</span><span class="token function">emptyList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                                        <p>In fact, the inferred form is so common, that some Java developers have never even seen the explicit form!</p>
+                                        <p>In Java 7, we extended the scope of type inference to infer type parameters of generic constructor invocations (also known as &quot;diamond&quot;); we can say</p>
+                                        <pre class="language-java"><code class="language-java">List<span class="token operator">&lt;</span>String<span class="token operator">&gt;</span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                                        <p>as a shorthand for the more explicit</p>
+                                        <pre class="language-java"><code class="language-java">List<span class="token operator">&lt;</span>String<span class="token operator">&gt;</span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>String<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                                        <p>In Java 8, when we introduced lambda expressions, we also introduced the ability to infer the types of the formal parameters of lambda expressions. So, we could say:</p>
+                                        <pre class="language-java"><code class="language-java">list<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>s <span class="token operator">-</span><span class="token operator">&gt;</span> System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+                                        <p>as a shorthand for the more explicit</p>
+                                        <pre class="language-java"><code class="language-java">list<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>String s<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+                                        <p>And, in Java 10, we further extended type inference to the declaration of local variables.</p>
+                                        <p>Some developers might think routine use of inferred types is better, because it results in a more concise program; others might think it&#x2019;s worse because it removes potentially useful information from view. But, both of these views are simplistic. Sometimes, the information that would be inferred is merely clutter that would otherwise just get in the way (no one complains that we routinely use type inference for generic type parameters), and in these cases, type inference makes our code <em>more </em>readable. In other cases, the type information provides vital clues about what is going on, or reflects creative choices by the developer; in these cases, it is better to stick with manifest types.</p>
+                                        <p>While we&apos;ve expanded the scope of type inference over the years, one design principle we&apos;ve followed is only using type inference for implementation details, not declaration of API elements; the types of fields, method parameters, and method returns must always be manifestly typed, because we don&apos;t want API contracts subtly changing based on changes in the implementation. But, inside the implementation of method bodies, it&#x2019;s reasonable to have more latitude to make choices on the basis of what is more readable.</p>
+                                        <h2>How Does Type Inference Work?</h2>
+                                        <p>Type inference is frequently misunderstood as something close to magic or mind-reading; developers often anthropomorphize the compiler and ask &quot;why couldn&apos;t the compiler figure out what I wanted.&quot; In reality, type inference is something much simpler: constraint solving.</p>
+                                        <p>Different languages use type inference differently, but the basic concept is the same across all languages: gather constraints on unknown types, and at some point, solve for them. Where language designers have latitude is <em>where </em>type inference can be used, <em>what constraints</em> are gathered, and <em>over what scope </em>the constraints are solved.</p>
+                                        <p>Type inference in Java is <em>local</em>; the scope over which we gather constraints and when we solve them is restricted to a narrow portion of the program, such as a single expression or statement. For example, for local variables, the scope over which we gather constraints and solve is the declaration of the local itself &#x2014; regardless of other assignments to that local. Other languages pursue a more global approach to type inference, considering all uses of the variable before attempting to solve for its type. While at first this might seem better because it is more precise, it is frequently harder to use. If the types of variables can be influenced by each of their uses, when things go wrong (such as the type being overconstrained because of a programming error), the error messages are often quite unhelpful, and can pop up far away from either the declaration of the variable whose type is being inferred or the site of its erroneous use. These choices illustrate one of the fundamental trade-offs language designers face when using type inference &#x2014; we are always trading precision and predictive power for complexity and predictability. We can tweak the algorithm to increase the prevalence of the compiler &quot;getting it right&quot; (say, by gathering more constraints or solving over a larger scope), but the consequence is almost always more unpleasantness when it fails.</p>
+                                        <p>As a simple example, consider a diamond invocation:</p>
+                                        <pre class="language-java"><code class="language-java">List<span class="token operator">&lt;</span>String<span class="token operator">&gt;</span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                                        <p>We know that the type of <code>list</code> is <code>List&lt;String&gt;</code>, because it has a manifest type. We are trying to infer the type parameter of <code>ArrayList</code>, which we&apos;ll write as <code>x</code>. So, the type of the right-hand side is <code>ArrayList&lt;x&gt;</code>. Because we&apos;re assigning the right to the left, the type of the right must be a subtype of the left, so we gather the constraint:</p>
+                                        <pre class="language-java"><code class="language-java">ArrayList<span class="token operator">&lt;</span>x<span class="token operator">&gt;</span> <span class="token operator">&lt;</span><span class="token operator">:</span> List<span class="token operator">&lt;</span>String<span class="token operator">&gt;</span></code></pre>
+                                        <p>Where <code>&lt;:</code> means &quot;subtype of&quot;. (We also gather the trivial bound <code>x &lt;: Object</code>, from the fact that <code>x</code> is a generic type variable, whose implicit bound is <code>Object</code>.) We also know from the declaration of <code>ArrayList</code> that <code>List&lt;x&gt;</code> is a supertype of <code>ArrayList&lt;x&gt;</code>. From these, we can derive the bound constraint <code>x &lt;: String</code> (<a href="https://docs.oracle.com/javase/specs/jls/se13/html/jls-18.html#jls-18.2.3">JLS 18.2.3</a>) and because this is our only constraint on <code>x</code>, we can conclude <code>x=String</code>.</p>
+                                        <p>Here&apos;s a more complicated example:</p>
+                                        <pre class="language-java"><code class="language-java">List<span class="token operator">&lt;</span>String<span class="token operator">&gt;</span> list <span class="token operator">=</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> Set<span class="token operator">&lt;</span>String<span class="token operator">&gt;</span> set <span class="token operator">=</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> var v <span class="token operator">=</span> List<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>list<span class="token punctuation">,</span> set<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                                        <p>Here, the right-hand side is a generic method call, so we are inferring the generic type parameter from the following method in <code>List</code>:</p>
+                                        <pre class="language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>X<span class="token operator">&gt;</span> List<span class="token operator">&lt;</span>X<span class="token operator">&gt;</span> <span class="token function">of</span><span class="token punctuation">(</span>X<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> values<span class="token punctuation">)</span></code></pre>
+                                        <p>Here, we have more information to work with than in the preview example &#x2014; the parameter types, which are <code>List&lt;String&gt;</code> and <code>Set&lt;String&gt;</code>. So, we can gather the constraints:</p>
+                                        <pre class="language-java"><code class="language-java">List<span class="token operator">&lt;</span>String<span class="token operator">&gt;</span> <span class="token operator">&lt;</span><span class="token operator">:</span> x Set<span class="token operator">&lt;</span>String<span class="token operator">&gt;</span> <span class="token operator">&lt;</span><span class="token operator">:</span> x</code></pre>
+                                        <p>Given this set of constraints, we solve for <code>x</code> by computing the <em>least upper bound</em> (<a href="https://docs.oracle.com/javase/specs/jls/se13/html/jls-4.html#jls-4.10.4">JLS 4.10.4</a>) &#x2014; the most precise type that is a supertype of both &#x2014; which in this case is <code>Collection&lt;String&gt;</code>. So, the type of <code>v</code> is <code>List&lt;Collection&lt;String&gt;&gt;</code>.</p>
+                                        <h3>Which constraints do we gather?</h3>
+                                        <p>When designing a type inference algorithm, a key choice is how we gather constraints from the program. For some program constructs, such as assignment, the type on the right side must be compatible with the type on the left, so we would surely gather constraints from that. Similarly, for parameters of generic methods, we can gather constraints from their types. But there are other sources of information we might choose to ignore in certain circumstances.</p>
+                                        <p>At first, this sounds surprising; wouldn&apos;t gathering more constraints be better, because it leads to a more precise answer? Again, precision is not always the most important goal; gathering more constraints may also increase the likelihood of an overconstrained solution (in which case inference fails, or picks a fallback answer like <code>Object</code>), as well as leading to greater instability in the program (small changes in the implementation can lead to surprising changes in typing or overload resolution elsewhere.) As with the scope over which we solve, we are trading off precision and predictive power against complexity and predictability &#x2014; which is a subjective task.</p>
+                                        <p>As a concrete example of when it makes sense to ignore a possible source of constraints, consider a related example: method overload resolution when lambdas are passed as method parameters. We <em>could </em>use the exceptions thrown by the lambda bodies to narrow the set of applicable methods (greater precision), but this would also make it possible for small changes in the lambda body implementation to change the result of overload selection, which would be surprising (reduced predictability.) In this case, the increased precision did not pay for the reduced predictability, so this constraint was not considered when making overload resolution decisions.</p>
+                                        <h2>The Fine Print</h2>
+                                        <p>Now that we understand how type inference works in general, let&apos;s dive into some details of how it applies to local variable declarations. For a local variable declared with <code>var</code>, we first compute the <em>standalone type</em> of the initializer. (The standalone type is the type we get by computing the type of an expression &quot;bottom up,&quot; ignoring the assignment target. Some expressions, such as lambdas and method references, do not have a standalone type, and hence cannot be the initializer for a local whose type is inferred.)</p>
+                                        <p>For most expressions, we just use the standalone type of the initializer as the type of the local. However, in several cases &#x2014; specifically when the standalone type is <em>non-denotable</em> &#x2014; we may refine or reject this type.</p>
+                                        <p>A non-denotable type is one that we cannot write down in the syntax of the language. Non-denotable types in Java include intersection types (<code>Runnable &amp; Serializable</code>), capture types (those that derive from wildcard capture conversion), anonymous class types (the type of an anonymous class creation expression), and the <em>Null</em> type (the type of the <code>null</code> literal.) At first, we considered rejecting inference on all non-denotable types, under the theory that <code>var</code> should just be a shorthand for a manifest type. But, it turned out that non-denotable types were so pervasive in real programs, that such a restriction would make the feature less useful and more frustrating. This means that programs using <code>var</code> are not necessarily merely a shorthand for a program that uses explicit types &#x2014; there are some programs that are expressible with <code>var</code> that are not expressible directly.</p>
+                                        <p>As an example of such a program, consider the anonymous class declaration:</p>
+                                        <pre class="language-java"><code class="language-java">var v <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Runnable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> &#x2026; <span class="token punctuation">}</span> <span class="token keyword">void</span> <span class="token function">runTwice</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">;</span> v<span class="token punctuation">.</span><span class="token function">runTwice</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                                        <p>Were we to provide a manifest type &#x2013; the obvious choice being <code>Runnable</code> &#x2013; the <code>runTwice()</code> method would not be accessible through the variable v because it is not a member of Runnable.&#xA0; But with an inferred type, we are able to infer the sharper type of the anonymous class creation expression, and therefore are able to access the method.</p>
+                                        <p>Each category of non-denotable type is its own story. For the Null type (which is what we&apos;d infer from <code>var x = null</code>), we simply reject the declaration. This is because the only value that inhabits the Null type is <code>null</code> &#x2014; and it&#x2019;s quite unlikely that what was intended was a variable that can only hold <code>null</code>. Because we don&apos;t want to &quot;guess&quot; at the intent by inferring <code>Object</code> or some other type, we reject this case so the developer can provide the correct type.</p>
+                                        <p>For anonymous class types and intersection types, we simply use the inferred type; these types are weird and novel but fundamentally harmless. This means we are now more widely exposed to some &quot;weird&quot; types that previously remained below the waterline. As an example, suppose we have:</p>
+                                        <pre class="language-java"><code class="language-java">var list <span class="token operator">=</span> List<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3.14d</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                                        <p>This looks like the earlier example, so we know how this is going to play out &#x2014; we&apos;re going to take the least upper bound of <code>Integer</code> and <code>Double</code>. This turns out to be the somewhat ugly type <code>Number &amp; Comparable&lt;? extends Number &amp; Comparable&lt;?&gt;&gt;</code>.&#xA0;So, the type of <code>list</code> is <code>List&lt;Number &amp; Comparable&lt;? extends Number &amp; Comparable&lt;?&gt;&gt;&gt;</code></p>
+                                        <p>As you can see, even a simple example can give rise to some surprisingly complicated types &#x2014; including some which cannot explicitly write down.</p>
+                                        <p>The trickiest case is what we do with <em>wildcard capture types</em>. Capture types come from the dark corners of generics; they stem from the fact that each use of <code>?</code> in a program corresponds to a different type. Consider this method declaration:</p>
+                                        <pre class="language-java"><code class="language-java"><span class="token keyword">void</span> <span class="token function">m</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">&gt;</span> a<span class="token punctuation">,</span> List<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">&gt;</span> b<span class="token punctuation">)</span></code></pre>
+                                        <p>Even though the types of <code>a</code> and <code>b</code> are textually identical, they are not actually the same type &#x2014; because we have no reason to believe that both lists are of the same kind of element. (If we wanted the two lists to be the same type, we&apos;d make <code>m()</code> a generic method in <code>T</code>, and use <code>List&lt;T&gt;</code> for both.) So, the compiler invents a placeholder, called a &quot;capture,&quot; for each use of <code>?</code> in the program, so we can keep distinct uses of wildcards separate. Until now, capture types stayed in the darkness where they belong, but if we allowed them to escape into the wild, they could spread confusion.</p>
+                                        <p>For example, suppose we have this code in class <code>MyClass</code>:</p>
+                                        <pre class="language-java"><code class="language-java">var c <span class="token operator">=</span> <span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                                        <p>We might expect that the type of <code>c</code> would be <code>Class&lt;?&gt;</code>, but the type of the expression on the right-hand side is actually <code>Class&lt;capture&lt;?&gt;&gt;</code>. Setting that type loose in our program would not help anyone.</p>
+                                        <p>Banning inference of capture types seemed attractive at first, but again, there were too many cases where these types popped up. So instead, we chose to sanitize them, using a transform known as <em>upward projection</em> (<a href="https://docs.oracle.com/javase/specs/jls/se13/html/jls-4.html#jls-4.10.5">JLS 4.10.5</a>), which takes a type that might include capture types, and produces a supertype of that type with no capture types. In the case of the above example, upward projection sanitizes the type of <code>c</code> to <code>Class&lt;?&gt;</code>, which is a more well-behaved type.</p>
+                                        <p>Sanitizing types is a pragmatic solution, but it is not without compromise. By inferring a different type than the natural type of the expression, it means if we were to refactor a complex expression <code>f(e)</code> into <code>var x = e; f(x)</code> using an &quot;extract variable&quot; refactoring, this could change downstream type inference or overload selection decisions. Most of the time this is not a problem, but it is a risk we take when we tinker with the &quot;natural&quot; type of an expression. In the case of capture types, the side-effects of the cure were better than the disease.</p>
+                                        <h2>Divergent Opinions</h2>
+                                        <p>Compared to something like lambdas, or generics, type inference for local variables is a pretty small feature (though, as you&apos;ve seen, the details are more complicated than most people give them credit for.) But, the controversy around this feature was anything but small.</p>
+                                        <p>For several years, this was one of the most frequently requested features for Java; developers got used to this feature from C#, or Scala, or later, Kotlin, and missed it terribly when coming back to Java &#x2014; and they were quite vocal about it. We decided to move forward on the basis of its popularity, that it had been proven to work well in other Java-like languages, and that it had a relatively small scope for interaction with other language features.</p>
+                                        <p>Perhaps surprisingly, as soon as we announced we were moving forward on this, another vocal faction appeared &#x2014; those who clearly thought this was the dumbest idea they&apos;d ever seen. It was described as &quot;giving in to fashion&quot; or &quot;encouraging laziness&quot; (and worse), and dire predictions were made about a dystopian future of unreadable code. And both the proponents and the antagonists justified their position by appealing to the same core value: readability.</p>
+                                        <p>After delivering the feature, the reality was not remotely so dire; while there is an initial learning curve where developers have to find the right way to use the new feature (just as with every other feature), for the most part developers can easily internalize some reasonable guidelines about when the feature adds value, and when it does not, and use it accordingly.</p>
+                                        <h2>Style Advice</h2>
+                                        <p>Stuart Marks, of the Java Libraries team at Oracle, has compiled a useful <a href="https://openjdk.java.net/projects/amber/LVTIstyle.html">style guide</a> to help understand the trade-offs surrounding type inference for locals.</p>
+                                        <p>As with most sensible style guides, this one focuses on making clear the trade-offs involved. Explicitness is a trade-off; one the one hand, an explicit type provides an unambiguous and precise statement of a variable&apos;s type, but on the other hand, sometimes the type is obvious or unimportant, and the explicit type may vie with more important information for the reader&apos;s attention.</p>
+                                        <p>General principles outlined in the style guide include:</p>
+                                        <ul>
+                                            <li><strong>Choose good variable names</strong>. If we choose expressive names for local variables, it&#x2019;s more likely the type declaration is unnecessary, or even in the way. On the other hand, if we choose variable names like <code>x</code> and <code>a3</code>, then taking away the type information may very well render the code harder to understand.</li>
+                                            <li><strong>Minimize the scope of local variables</strong>. The greater the distance between a variable&apos;s declaration and its use, the more likely we are to reason about it imprecisely. Using <code>var</code> to declare local variables whose scope spans many lines is more likely to result in oversights than those that have smaller scopes, or have explicit types.</li>
+                                            <li><strong>Consider <code>var</code> when the initializer provides sufficient information to the reader</strong>. For many local variable declarations, the initializer expression makes it completely obvious what is going on (such as <code>var names = new ArrayList&lt;String&gt;()</code>),&#xA0;and hence the need for an explicit type is lessened.</li>
+                                            <li><strong>Don&apos;t worry too much about &quot;programming to the interface.&quot;</strong> A common worry among developers is that we&apos;ve long been encouraged to use abstract types (like <code>List</code>) for variables, rather than more specific implementation types (like <code>ArrayList</code>), but if we allow the compiler to infer the type, it will infer the more specific type. But, we shouldn&apos;t worry too much about this, because this advice is much more important for APIs (such as method return types) than for local variables in the implementation &#x2014; especially if you&apos;ve followed the previous advice about keeping scopes small.</li>
+                                            <li><strong>Beware of interactions between <code>var</code><em> </em>and diamond inference.</strong> Both <code>var</code> and &quot;diamond&quot; ask the compiler to infer types for us, and it&apos;s perfectly OK to use them together &#x2014; <em>if</em> there&apos;s enough type information present to infer the desired type, such as in the types of the constructor arguments.</li>
+                                            <li><strong>Watch out for combining <code>var</code> with numeric literals.</strong> Numeric literals are <em>poly expressions</em>, meaning their type can be dependent on the type to which they are being assigned. (For example, we can write <code>short x = 0</code>, and the literal <code>0</code> is compatible with <code>int</code>, <code>long</code>, <code>short</code>, and <code>byte</code>.) But, without a target type, the standalone type of a numeric literal is <code>int</code>, so changing short <code>s = 0</code> to <code>var s = 0</code> will result in the type of <code>s</code> changing.</li>
+                                            <li><strong>Use <code>var</code> to break up chained or nested expressions</strong>. When declaring a fresh local for a subexpression is burdensome, it increases the temptation to create complex expression with chaining and/or nesting, sometimes at the expense of readability. By lowering the cost of declaring a subexpression, local variable type inference makes it less tempting to do the wrong thing, thus increasing readability.</li>
+                                        </ul>
+                                        <p>The last item illustrates an important point that is often missed in the debate over programming language features. When evaluating the consequences of a new feature, we often consider only the most superficial ways in which it might be used; in the case of local variable type inference, that would be replacing manifest types in existing programs with <code>var</code>. But, the programming style we adopt is influenced by many things, including the relative cost of various constructs. If we lower the cost of declaring local variables, it stands to reason that we might re-equilibrate in a place where we use more local variables, and this has the potential to make programs more readable. But, such second-order effects are rarely considered in the vocal debate over whether a feature will help or hurt.</p>
+                                        <p>Many of these guidelines are just good style advice anyway &#x2014; picking good variable names is one of the most effective ways to make code more readable, with or without inference.</p>
+                                        <h2>Wrap-up</h2>
+                                        <p>As we&apos;ve seen, type inference for local variables is not quite as simple a feature as its syntax suggests; while some might want it to let us ignore types, it actually requires us to have a better understanding of Java&apos;s type system. But, if you understand how it works, and follow some reasonable style guidelines, it can help make your code both more concise <em>and</em> more readable.</p>
+                                        <h2>About the Author</h2>
+                                        <p><strong><img _href="img://1Brian-Goetz-1572336986581.jpg" alt data-src="articles/java-local-variable-type-inference/en/resources/1Brian-Goetz-1572336986581.jpg" style="margin-left:10px;margin-right:10px;float:left;width:85px;height:100px" src="https://res.infoq.com/articles/java-local-variable-type-inference/en/resources/1Brian-Goetz-1572336986581.jpg" rel="share">Brian Goetz</strong> is the Java Language Architect at Oracle, and was the specification lead for JSR-335 (Lambda Expressions for the Java Programming Language.) He is the author of the best-selling Java Concurrency in Practice, and has been fascinated by programming since Jimmy Carter was President.</p>
                                     </div>
                                     <!---->
                                     <form class="form rate box__border box">
@@ -1639,7 +1740,9 @@
                                     <li>
                                         <div class="related__sponsor">
                                             <h4 class="heading">Related Sponsor</h4><a href="sponsor" class="related__img"><img src="./styles/img/2d5493d.png"></a>
-                                            <p class="related__desc"><a href="http://compose">Compose</a> makes it simple to deploy production-ready databases in minutes in the cloud or on your own servers.</p>
+                                            <div class="related__desc">
+                                                <p><a href="http://compose">Compose</a> makes it simple to deploy production-ready databases in minutes in the cloud or on your own servers.</p>
+                                            </div>
                                         </div>
                                     </li>
                                 </ul>
@@ -1752,10 +1855,9 @@
                                             <!---->
                                             <!---->
                                         </li>
-                                        <li data-id="an-open-api-initiative-update">
+                                        <li data-id="an-open-api-initiative-update" class="articles">
                                             <!---->
-                                            <div class="card__content">
-                                                <!---->
+                                            <div class="card__content"><span class="card__icon">Icon</span>
                                                 <!---->
                                                 <div class="card__data">
                                                     <!---->

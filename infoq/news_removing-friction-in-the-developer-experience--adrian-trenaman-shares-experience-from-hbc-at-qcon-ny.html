@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head data-n-head>
+<head>
     <title>InfoQ | Software Development News, Guides, Videos</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,8 +11,7 @@
     <link href="styles/icons.css" rel="stylesheet" media="screen">
     <link href="styles/print.css" rel="stylesheet" media="print">
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default"></script>
-    <script src="polyfills.js" type="text/javascript"></script>
-    <script src="infoq.js" type="text/javascript"></script>
+    <script src="scripts/infoq.js" type="text/javascript"></script>
     <script>
         var JSi18n = window.JSi18n || {},
             CommonUtils = {
@@ -84,7 +83,7 @@
                 },
                 adbStrings: ["We notice you’re using an ad blocker", "We understand why you use ad blockers. However to keep InfoQ free we need your support. InfoQ will not provide your data to third parties without individual opt-in consent. We only work with advertisers relevant to our readers. Please consider whitelisting us."]
             }),
-            currentUserId = 101975445,
+            currentUserId = "daniel-bryant",
             usersInPage = [{
                 ref: "author-George-Doe",
                 id: "author-1",
@@ -1199,7 +1198,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="key-takeaway-points-and-lessons-learned-from-qcon-london-2017">
+                                                    <li data-id="key-takeaway-points-and-lessons-learned-from-qcon-london-2017" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1244,7 +1243,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="latency-sensitive-microservices">
+                                                    <li data-id="latency-sensitive-microservices" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1287,7 +1286,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="do-we-need-another-key-value-store-">
+                                                    <li data-id="do-we-need-another-key-value-store-" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1333,7 +1332,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="always-be-publishing--continuous-integration---collaboration-in-code-repositories-for-rest-api-docs">
+                                                    <li data-id="always-be-publishing--continuous-integration---collaboration-in-code-repositories-for-rest-api-docs" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1375,7 +1374,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="spotify-lessons--learning-to-let-go-of-machines">
+                                                    <li data-id="spotify-lessons--learning-to-let-go-of-machines" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1467,7 +1466,7 @@
             <article data-type="news" class="article">
                 <section class="section container white">
                     <div class="container__inner">
-                        <p class="crumbs"><span><a href="index.html">InfoQ Homepage</a></span><span><a href="news.html" class="active">news</a></span><span class="active">removing friction in the developer experience adrian trenaman shares experience from hbc at qcon ny</span></p>
+                        <div class="crumbs"><span><a href="index.html">InfoQ Homepage</a></span><span><a href="news.html" class="active">news</a></span><span class="active">removing friction in the developer experience adrian trenaman shares experience from hbc at qcon ny</span></div>
                         <div class="actions">
                             <div class="actions__left">
                                 <div class="article__category culture-methods"><a href="topic_culture---methods.html" class="article__tag">Culture &amp; Methods</a></div>
@@ -1502,7 +1501,7 @@
                                     <!---->
                                     <!---->
                                     <p class="article__readTime date">Jul 01, 2017<span class="dot"></span>5 min read</p>
-                                    <div class="widget article__authors">
+                                    <div class="article__authors">
                                         <div>
                                             <p class="meta">by</p>
                                             <ul class="authors no-style">
@@ -1529,11 +1528,23 @@
                                         <div>
                                             <p class="meta">translated by</p>
                                             <ul class="authors no-style">
-                                                <li data-id="author-joe">
-                                                    <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">joe</a> </span></p>
+                                                <li data-id="author-Daniel-Bryant">
+                                                    <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">Daniel Bryant</a> </span></p>
                                                 </li>
-                                                <li data-id="author-xx">
-                                                    <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">xx</a> </span></p>
+                                                <li data-id="author-Johnatan-Doe">
+                                                    <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">Johnatan Doe</a> </span></p>
+                                                </li>
+                                                <li data-id="author-Daniel-Bryant">
+                                                    <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">Daniel Bryant</a> </span></p>
+                                                </li>
+                                                <li data-id="author-Johnatan-Doe">
+                                                    <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">Johnatan Doe</a> </span></p>
+                                                </li>
+                                                <li data-id="author-Daniel-Bryant">
+                                                    <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">Daniel Bryant</a> </span></p>
+                                                </li>
+                                                <li data-id="author-Johnatan-Doe">
+                                                    <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">Johnatan Doe</a> </span></p>
                                                 </li>
                                             </ul>
                                         </div>
@@ -1563,7 +1574,11 @@
                                     </div>
                                     <div class="widgets">
                                         <!---->
-                                        <!---->
+                                        <div class="widget article__authors">
+                                            <!---->
+                                            <!---->
+                                            <!---->
+                                        </div>
                                         <!---->
                                         <!---->
                                     </div>
@@ -1599,14 +1614,14 @@
                                             <p>... build an organisation and architecture that allows you to deploy change frequently, swiftly and safely to production, and own the impact of that change</p>
                                         </blockquote>
                                         <p>A &quot;Developer Hierarchy of Needs&quot; was presented, with basics including things like access to a laptop, WiFi, and (standing) desk. Perks include free food and beanbags, but the really important need is self actualisation - the ability to get stuff done and have cool stories to impress your friends and the industry at large.</p>
-                                        <p><img _href="img://1developer_hiearchy_needs.jpg" alt="Developer Hierarchy of Needs" src="https://res.infoq.com/news/2017/07/remove-friction-dev-ex/en/resources/1developer_hiearchy_needs.jpg" style="width:600px;height:341px"></p>
+                                        <p><img _href="img://1developer_hiearchy_needs.jpg" alt="Developer Hierarchy of Needs" src="https://res.infoq.com/news/2017/07/remove-friction-dev-ex/en/resources/1developer_hiearchy_needs.jpg" class="zoom-image" style="width:600px;height:341px"></p>
                                         <p>Trenaman discussed how code is the primary artifact from a software development department, and everything should be organised to support this goal, including the leadership structure: development teams are responsible for building, running, and owning services; Directors within the organisation should be accountable for services (and should also write code for at least a percentage of their work time); and Technical Executives are informed on service.</p>
                                         <div class="box box__sponsored">
                                             <h2>Sponsored by Atomist</h2>
                                             <p>Annoyed by delivery pipelines? Frustrated with the toil of configuring CI/CD tools? Get the delivery experience you&#x2019;ve always wanted with <a href="https://infoq.link/atomist_podcast_text">Atomist</a>.<br>Atomist: It&apos;s how teams deliver software.</p>
                                         </div>
                                         <p>Operating testing and staging environments can be a large resource drain on an organisation, and often do not prevent issues when deploying code to production. Instead, Trenaman recommended that development teams should prefer to test in production. Borrowing from <a href="https://www.infoq.com/minibooks/emag-lean-kanban">Lean Manufacturing</a>, the concept of minimising waste was discussed, with a core takeaway being to reduce hand-offs between development, test and operations teams.</p>
-                                        <p><img _href="img://muda_reduce_waste.jpg" alt="Reduce waste in software development" src="https://res.infoq.com/news/2017/07/remove-friction-dev-ex/en/resources/muda_reduce_waste.jpg" style="width:600px;height:450px"></p>
+                                        <p><img _href="img://muda_reduce_waste.jpg" alt="Reduce waste in software development" class="zoom-image" src="https://res.infoq.com/news/2017/07/remove-friction-dev-ex/en/resources/muda_reduce_waste.jpg" style="width:600px;height:450px"></p>
                                         <p>Teams should test services in production by initially launching dark canaries, launching canaries taking a percentage of user traffic, releasing and observing, and providing automated mechanisms to roll-back if necessary. Teams should be seen as internal startups that provide services to other development teams, and must clearly document the contract and SLAs offered by a service, and also offer accurate and well-maintained sandboxes for external teams to test against.</p>
                                         <p>Multi-tenant design can be exploited in order to allow confident testing in production - a new instance of an application/service/account can be created, and experimentation conducted here is isolated from other tenants. Teams should also be given secure, unfettered access control over their own infrastructure, with segregation and command and control applied only where necessary, for example, when dealing with Personally Identifiable Information (PII) or payment processing (PCI-DSS).</p>
                                         <p>Where possible, technology choice should not be forced onto teams. Instead, prefer voluntary adoption. Trenaman discussed that HBC have created a &quot;Virtual Architecture Board&quot; that is composed of technical leaders across the organisation, who regularly meet and are consulted on architectural and technology choice. In collaboration with the rest of the organisation this team generates an internal Technology Radar, much like the now famous <a href="https://www.thoughtworks.com/radar">ThoughWorks&apos; Technology Radar</a>.</p>
@@ -1707,7 +1722,9 @@
                                     <li>
                                         <div class="related__sponsor">
                                             <h4 class="heading">Related Sponsor</h4><a href="sponsor" class="related__img"><img src="./styles/img/2d5493d.png"></a>
-                                            <p class="related__desc"><a href="http://compose">Compose</a> makes it simple to deploy production-ready databases in minutes in the cloud or on your own servers.</p>
+                                            <div class="related__desc">
+                                                <p><a href="http://compose">Compose</a> makes it simple to deploy production-ready databases in minutes in the cloud or on your own servers.</p>
+                                            </div>
                                         </div>
                                     </li>
                                 </ul>
@@ -1820,10 +1837,9 @@
                                             <!---->
                                             <!---->
                                         </li>
-                                        <li data-id="an-open-api-initiative-update">
+                                        <li data-id="an-open-api-initiative-update" class="articles">
                                             <!---->
-                                            <div class="card__content">
-                                                <!---->
+                                            <div class="card__content"><span class="card__icon">Icon</span>
                                                 <!---->
                                                 <div class="card__data">
                                                     <!---->

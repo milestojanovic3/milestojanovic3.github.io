@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head data-n-head>
+<head>
     <title>InfoQ | Software Development News, Guides, Videos</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,8 +11,7 @@
     <link href="styles/icons.css" rel="stylesheet" media="screen">
     <link href="styles/print.css" rel="stylesheet" media="print">
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default"></script>
-    <script src="polyfills.js" type="text/javascript"></script>
-    <script src="infoq.js" type="text/javascript"></script>
+    <script src="scripts/infoq.js" type="text/javascript"></script>
     <script>
         var JSi18n = window.JSi18n || {},
             CommonUtils = {
@@ -84,7 +83,7 @@
                 },
                 adbStrings: ["We notice you’re using an ad blocker", "We understand why you use ad blockers. However to keep InfoQ free we need your support. InfoQ will not provide your data to third parties without individual opt-in consent. We only work with advertisers relevant to our readers. Please consider whitelisting us."]
             }),
-            currentUserId = 101975445,
+            currentUserId = "daniel-bryant",
             usersInPage = [{
                 ref: "author-George-Doe",
                 id: "author-1",
@@ -1199,7 +1198,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="key-takeaway-points-and-lessons-learned-from-qcon-london-2017">
+                                                    <li data-id="key-takeaway-points-and-lessons-learned-from-qcon-london-2017" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1244,7 +1243,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="latency-sensitive-microservices">
+                                                    <li data-id="latency-sensitive-microservices" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1287,7 +1286,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="do-we-need-another-key-value-store-">
+                                                    <li data-id="do-we-need-another-key-value-store-" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1333,7 +1332,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="always-be-publishing--continuous-integration---collaboration-in-code-repositories-for-rest-api-docs">
+                                                    <li data-id="always-be-publishing--continuous-integration---collaboration-in-code-repositories-for-rest-api-docs" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1375,7 +1374,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="spotify-lessons--learning-to-let-go-of-machines">
+                                                    <li data-id="spotify-lessons--learning-to-let-go-of-machines" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1467,7 +1466,7 @@
             <article data-type="presentation" data-layout="pres-2-cols" data-early="true" class="article">
                 <section class="section container white">
                     <div class="container__inner">
-                        <p class="crumbs"><span><a href="index.html">InfoQ Homepage</a></span><span><a href="presentation.html" class="active">presentation</a></span><span class="active">agile reorgs a survival guide</span></p>
+                        <div class="crumbs"><span><a href="index.html">InfoQ Homepage</a></span><span><a href="presentation.html" class="active">presentation</a></span><span class="active">agile reorgs a survival guide</span></div>
                         <div class="actions">
                             <div class="actions__left">
                                 <div class="article__category culture-methods"><a href="topic_culture---methods.html" class="article__tag">Culture &amp; Methods</a></div>
@@ -1506,7 +1505,7 @@
                                     <!---->
                                     <!---->
                                     <p class="article__readTime date">Jul 02, 2017<span class="dot"></span>5 min read</p>
-                                    <div class="widget article__authors">
+                                    <div class="article__authors">
                                         <div>
                                             <p class="meta">by</p>
                                             <ul class="authors no-style">
@@ -1518,11 +1517,8 @@
                                         <div>
                                             <p class="meta">translated by</p>
                                             <ul class="authors no-style">
-                                                <li data-id="author-joe">
-                                                    <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">joe</a> </span></p>
-                                                </li>
-                                                <li data-id="author-xx">
-                                                    <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">xx</a> </span></p>
+                                                <li data-id="author-Katy-Saulpaugh">
+                                                    <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">Katy Saulpaugh</a> </span></p>
                                                 </li>
                                             </ul>
                                         </div>
@@ -1537,7 +1533,11 @@
                                     </div>
                                     <div class="widgets">
                                         <!---->
-                                        <!---->
+                                        <div class="widget article__authors">
+                                            <!---->
+                                            <!---->
+                                            <!---->
+                                        </div>
                                         <!---->
                                         <!---->
                                     </div>
@@ -1595,31 +1595,11 @@
                                     <!---->
                                     <p class="meta">by</p>
                                     <div class="article__authors">
-                                        <div>
-                                            <p class="meta">by</p>
-                                            <ul class="authors no-style">
-                                                <li data-id="author-Katy-Saulpaugh">
-                                                    <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">Katy Saulpaugh</a> </span></p>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div>
-                                            <p class="meta">translated by</p>
-                                            <ul class="authors no-style">
-                                                <li data-id="author-Katy-Saulpaugh">
-                                                    <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">Katy Saulpaugh</a> </span></p>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div>
-                                            <p class="meta">reviewed by</p>
-                                            <ul class="authors no-style">
-                                                <li data-id="author-Katy-Saulpaugh">
-                                                    <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">Katy Saulpaugh</a> </span></p>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                        <!---->
+                                        <!---->
+                                        <!---->
                                     </div>
+                                    <!---->
                                 </div>
                                 <!---->
                             </div>

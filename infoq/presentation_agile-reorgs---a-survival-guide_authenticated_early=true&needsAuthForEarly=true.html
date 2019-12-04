@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head data-n-head>
+<head>
     <title>InfoQ | Software Development News, Guides, Videos</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,8 +11,7 @@
     <link href="styles/icons.css" rel="stylesheet" media="screen">
     <link href="styles/print.css" rel="stylesheet" media="print">
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default"></script>
-    <script src="polyfills.js" type="text/javascript"></script>
-    <script src="infoq.js" type="text/javascript"></script>
+    <script src="scripts/infoq.js" type="text/javascript"></script>
     <script type="text/javascript">
         loggedIn = true
     </script>
@@ -87,7 +86,7 @@
                 },
                 adbStrings: ["We notice you’re using an ad blocker", "We understand why you use ad blockers. However to keep InfoQ free we need your support. InfoQ will not provide your data to third parties without individual opt-in consent. We only work with advertisers relevant to our readers. Please consider whitelisting us."]
             }),
-            currentUserId = 101975445,
+            currentUserId = "daniel-bryant",
             usersInPage = [{
                 ref: "author-George-Doe",
                 id: "author-1",
@@ -1176,7 +1175,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="key-takeaway-points-and-lessons-learned-from-qcon-london-2017">
+                                                    <li data-id="key-takeaway-points-and-lessons-learned-from-qcon-london-2017" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1221,7 +1220,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="latency-sensitive-microservices">
+                                                    <li data-id="latency-sensitive-microservices" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1264,7 +1263,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="do-we-need-another-key-value-store-">
+                                                    <li data-id="do-we-need-another-key-value-store-" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1310,7 +1309,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="always-be-publishing--continuous-integration---collaboration-in-code-repositories-for-rest-api-docs">
+                                                    <li data-id="always-be-publishing--continuous-integration---collaboration-in-code-repositories-for-rest-api-docs" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1352,7 +1351,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="spotify-lessons--learning-to-let-go-of-machines">
+                                                    <li data-id="spotify-lessons--learning-to-let-go-of-machines" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1444,7 +1443,7 @@
             <article data-type="presentation" data-layout="pres-2-cols" data-early="true" class="article">
                 <section class="section container white">
                     <div class="container__inner">
-                        <p class="crumbs"><span><a href="index.html">InfoQ Homepage</a></span><span><a href="presentation.html" class="active">presentation</a></span><span class="active">agile reorgs a survival guide</span></p>
+                        <div class="crumbs"><span><a href="index.html">InfoQ Homepage</a></span><span><a href="presentation.html" class="active">presentation</a></span><span class="active">agile reorgs a survival guide</span></div>
                         <div class="actions">
                             <div class="actions__left">
                                 <div class="article__category culture-methods"><a href="topic_culture---methods.html" class="article__tag">Culture &amp; Methods</a></div>
@@ -1472,14 +1471,18 @@
                                     <!---->
                                     <!---->
                                     <p class="article__readTime date">Jul 02, 2017<span class="dot"></span>5 min read</p>
-                                    <div class="widget article__authors">
+                                    <div class="article__authors">
                                         <!---->
                                         <!---->
                                         <!---->
                                     </div>
                                     <div class="widgets">
                                         <!---->
-                                        <!---->
+                                        <div class="widget article__authors">
+                                            <!---->
+                                            <!---->
+                                            <!---->
+                                        </div>
                                         <!---->
                                         <!---->
                                     </div>
@@ -1545,6 +1548,7 @@
                                         <!---->
                                         <!---->
                                     </div>
+                                    <!---->
                                 </div>
                                 <!---->
                             </div>
@@ -1633,7 +1637,9 @@
                                         <li>
                                             <div class="related__sponsor">
                                                 <h4 class="heading">Related Sponsor</h4><a href="sponsor" class="related__img"><img src="./styles/img/2d5493d.png"></a>
-                                                <p class="related__desc"><a href="http://compose">Compose</a> makes it simple to deploy production-ready databases in minutes in the cloud or on your own servers.</p>
+                                                <div class="related__desc">
+                                                    <p><a href="http://compose">Compose</a> makes it simple to deploy production-ready databases in minutes in the cloud or on your own servers.</p>
+                                                </div>
                                             </div>
                                         </li>
                                     </ul>

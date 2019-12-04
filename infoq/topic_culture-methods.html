@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head data-n-head>
+<head>
     <title>InfoQ | Software Development News, Guides, Videos</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,8 +11,7 @@
     <link href="styles/icons.css" rel="stylesheet" media="screen">
     <link href="styles/print.css" rel="stylesheet" media="print">
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default"></script>
-    <script src="polyfills.js" type="text/javascript"></script>
-    <script src="infoq.js" type="text/javascript"></script>
+    <script src="scripts/infoq.js" type="text/javascript"></script>
     <script>
         var JSi18n = window.JSi18n || {},
             CommonUtils = {
@@ -84,7 +83,7 @@
                 },
                 adbStrings: ["We notice you’re using an ad blocker", "We understand why you use ad blockers. However to keep InfoQ free we need your support. InfoQ will not provide your data to third parties without individual opt-in consent. We only work with advertisers relevant to our readers. Please consider whitelisting us."]
             }),
-            currentUserId = 101975445,
+            currentUserId = "daniel-bryant",
             usersInPage = [{
                 ref: "author-George-Doe",
                 id: "author-1",
@@ -1198,7 +1197,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="key-takeaway-points-and-lessons-learned-from-qcon-london-2017">
+                                                    <li data-id="key-takeaway-points-and-lessons-learned-from-qcon-london-2017" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1243,7 +1242,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="latency-sensitive-microservices">
+                                                    <li data-id="latency-sensitive-microservices" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1286,7 +1285,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="do-we-need-another-key-value-store-">
+                                                    <li data-id="do-we-need-another-key-value-store-" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1332,7 +1331,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="always-be-publishing--continuous-integration---collaboration-in-code-repositories-for-rest-api-docs">
+                                                    <li data-id="always-be-publishing--continuous-integration---collaboration-in-code-repositories-for-rest-api-docs" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1374,7 +1373,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="spotify-lessons--learning-to-let-go-of-machines">
+                                                    <li data-id="spotify-lessons--learning-to-let-go-of-machines" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1465,7 +1464,7 @@
         <main>
             <section class="section container topics">
                 <div class="container__inner">
-                    <p class="crumbs"><span><a href="index.html">InfoQ Homepage</a></span><span><a href="topic.html" class="active">topic</a></span><span class="active">culture methods</span></p>
+                    <div class="crumbs"><span><a href="index.html">InfoQ Homepage</a></span><span><a href="topic.html" class="active">topic</a></span><span class="active">culture methods</span></div>
                     <div data-id="culture-methods" data-trk-ref="topic_page" class="heading__container actions heading__actions">
                         <div class="actions__left">
                             <h1 class="heading heading__rss">Culture &amp; Methods</h1><span class="rss icon icon__rss-feed"><a href="#rss">RSS Feed</a></span>
@@ -1661,9 +1660,7 @@
                                             <!---->
                                         </li>
                                         <!---->
-                                    </ul>
-                                    <!---->
-                                    <!----><a href="presentations.html" class="button__more button button__arrow arrow__right">More presentations</a>
+                                    </ul><a href="presentations.html" class="button__more button button__arrow arrow__right">More presentations</a>
                                     <!---->
                                 </div>
                                 <!---->
@@ -1681,7 +1678,7 @@
                                 <!---->
                                 <div>
                                     <ul data-size="large" data-hoverables="true" data-tax="news" data-cols="3" class="cards no-style">
-                                        <li data-id="lending-privilege-for-increasing-diversity-and-inclusion" data-path="/news/lending-privilege-for-increasing-diversity-and-inclusion">
+                                        <li data-id="lending-privilege-for-increasing-diversity-and-inclusion" data-path="/news/lending-privilege-for-increasing-diversity-and-inclusion" class="newss">
                                             <!---->
                                             <div class="card__content">
                                                 <!---->
@@ -1705,7 +1702,7 @@
                                             <!---->
                                             <!---->
                                         </li>
-                                        <li data-id="hiring-tools-and-tips-from-google" data-path="/news/hiring-tools-and-tips-from-google">
+                                        <li data-id="hiring-tools-and-tips-from-google" data-path="/news/hiring-tools-and-tips-from-google" class="newss">
                                             <!---->
                                             <div class="card__content">
                                                 <!---->
@@ -1729,7 +1726,7 @@
                                             <!---->
                                             <!---->
                                         </li>
-                                        <li data-id="improving-work-life-with-organizational-hacks" data-path="/news/improving-work-life-with-organizational-hacks">
+                                        <li data-id="improving-work-life-with-organizational-hacks" data-path="/news/improving-work-life-with-organizational-hacks" class="newss">
                                             <!---->
                                             <div class="card__content">
                                                 <!---->
@@ -1753,7 +1750,7 @@
                                             <!---->
                                             <!---->
                                         </li>
-                                        <li data-id="atlassian-opens-up-team-health-monitors-and-team-playbook-blueprints" data-path="/news/atlassian-opens-up-team-health-monitors-and-team-playbook-blueprints">
+                                        <li data-id="atlassian-opens-up-team-health-monitors-and-team-playbook-blueprints" data-path="/news/atlassian-opens-up-team-health-monitors-and-team-playbook-blueprints" class="newss">
                                             <!---->
                                             <div class="card__content">
                                                 <!---->
@@ -1777,7 +1774,7 @@
                                             <!---->
                                             <!---->
                                         </li>
-                                        <li data-id="doing-safe-to-fail-experiments" data-path="/news/doing-safe-to-fail-experiments">
+                                        <li data-id="doing-safe-to-fail-experiments" data-path="/news/doing-safe-to-fail-experiments" class="newss">
                                             <!---->
                                             <div class="card__content">
                                                 <!---->
@@ -1801,7 +1798,7 @@
                                             <!---->
                                             <!---->
                                         </li>
-                                        <li data-id="lean-organisations-for-the-digital-age" data-path="/news/lean-organisations-for-the-digital-age">
+                                        <li data-id="lean-organisations-for-the-digital-age" data-path="/news/lean-organisations-for-the-digital-age" class="newss">
                                             <!---->
                                             <div class="card__content">
                                                 <!---->
@@ -1825,7 +1822,7 @@
                                             <!---->
                                             <!---->
                                         </li>
-                                        <li data-id="evolving-the-engineering-culture-at-criteo" data-path="/news/evolving-the-engineering-culture-at-criteo">
+                                        <li data-id="evolving-the-engineering-culture-at-criteo" data-path="/news/evolving-the-engineering-culture-at-criteo" class="newss">
                                             <!---->
                                             <div class="card__content">
                                                 <!---->
@@ -1849,7 +1846,7 @@
                                             <!---->
                                             <!---->
                                         </li>
-                                        <li data-id="evolving-apis-for-scale-with-dropbox" data-path="/news/evolving-apis-for-scale-with-dropbox">
+                                        <li data-id="evolving-apis-for-scale-with-dropbox" data-path="/news/evolving-apis-for-scale-with-dropbox" class="newss">
                                             <!---->
                                             <div class="card__content">
                                                 <!---->
@@ -1874,9 +1871,7 @@
                                             <!---->
                                         </li>
                                         <!---->
-                                    </ul>
-                                    <!---->
-                                    <!----><a href="news.html" class="button__more button button__arrow arrow__right">More news</a>
+                                    </ul><a href="news.html" class="button__more button button__arrow arrow__right">More news</a>
                                     <!---->
                                 </div>
                                 <!---->
@@ -2056,9 +2051,7 @@
                                             <!---->
                                         </li>
                                         <!---->
-                                    </ul>
-                                    <!---->
-                                    <!----><a href="articles.html" class="button__more button button__arrow arrow__right">More articles</a>
+                                    </ul><a href="articles.html" class="button__more button button__arrow arrow__right">More articles</a>
                                     <!---->
                                 </div>
                                 <!---->
@@ -2224,9 +2217,7 @@
                                             <!---->
                                         </li>
                                         <!---->
-                                    </ul>
-                                    <!---->
-                                    <!----><a href="guides.html" class="button__more button button__arrow arrow__right">More guides</a>
+                                    </ul><a href="guides.html" class="button__more button button__arrow arrow__right">More guides</a>
                                     <!---->
                                 </div>
                                 <!---->
@@ -2441,9 +2432,7 @@
                                             <!---->
                                         </li>
                                         <!---->
-                                    </ul>
-                                    <!---->
-                                    <!----><a href="podcasts.html" class="button__more button button__arrow arrow__right">More podcasts</a>
+                                    </ul><a href="podcasts.html" class="button__more button button__arrow arrow__right">More podcasts</a>
                                     <!---->
                                 </div>
                                 <!---->

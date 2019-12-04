@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head data-n-head>
+<head>
     <title>InfoQ | Software Development News, Guides, Videos</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,8 +11,7 @@
     <link href="styles/icons.css" rel="stylesheet" media="screen">
     <link href="styles/print.css" rel="stylesheet" media="print">
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default"></script>
-    <script src="polyfills.js" type="text/javascript"></script>
-    <script src="infoq.js" type="text/javascript"></script>
+    <script src="scripts/infoq.js" type="text/javascript"></script>
     <script type="text/javascript">
         loggedIn = true
     </script>
@@ -87,7 +86,7 @@
                 },
                 adbStrings: ["We notice you’re using an ad blocker", "We understand why you use ad blockers. However to keep InfoQ free we need your support. InfoQ will not provide your data to third parties without individual opt-in consent. We only work with advertisers relevant to our readers. Please consider whitelisting us."]
             }),
-            currentUserId = 101975445,
+            currentUserId = "daniel-bryant",
             usersInPage = [{
                 ref: "author-George-Doe",
                 id: "author-1",
@@ -1176,7 +1175,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="key-takeaway-points-and-lessons-learned-from-qcon-london-2017">
+                                                    <li data-id="key-takeaway-points-and-lessons-learned-from-qcon-london-2017" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1221,7 +1220,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="latency-sensitive-microservices">
+                                                    <li data-id="latency-sensitive-microservices" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1264,7 +1263,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="do-we-need-another-key-value-store-">
+                                                    <li data-id="do-we-need-another-key-value-store-" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1310,7 +1309,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="always-be-publishing--continuous-integration---collaboration-in-code-repositories-for-rest-api-docs">
+                                                    <li data-id="always-be-publishing--continuous-integration---collaboration-in-code-repositories-for-rest-api-docs" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1352,7 +1351,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="spotify-lessons--learning-to-let-go-of-machines">
+                                                    <li data-id="spotify-lessons--learning-to-let-go-of-machines" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1444,7 +1443,7 @@
             <article data-type="article" class="article">
                 <section class="section container white">
                     <div class="container__inner">
-                        <p class="crumbs"><span><a href="index.html">InfoQ Homepage</a></span><span><a href="article.html" class="active">article</a></span><span class="active">developing a secure and scalable web ecosystem at linkedin</span></p>
+                        <div class="crumbs"><span><a href="index.html">InfoQ Homepage</a></span><span><a href="article.html" class="active">article</a></span><span class="active">developing a secure and scalable web ecosystem at linkedin</span></div>
                         <div class="actions">
                             <div class="actions__left">
                                 <div class="article__category development"><a href="topic_development.html" class="article__tag">Development</a></div>
@@ -1479,7 +1478,7 @@
                                     <!---->
                                     <!---->
                                     <p class="article__readTime date">Mar 22, 2017<span class="dot"></span>5 min read</p>
-                                    <div class="widget article__authors">
+                                    <div class="article__authors">
                                         <div>
                                             <p class="meta">by</p>
                                             <ul class="authors no-style">
@@ -1494,11 +1493,11 @@
                                         <div>
                                             <p class="meta">translated by</p>
                                             <ul class="authors no-style">
-                                                <li data-id="author-joe">
-                                                    <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">joe</a> </span></p>
+                                                <li data-id="author-Mira-Thambireddy">
+                                                    <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">Mira Thambireddy</a> Information security engineer at LinkedIn</span></p>
                                                 </li>
-                                                <li data-id="author-xx">
-                                                    <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">xx</a> </span></p>
+                                                <li data-id="author-James-Baker">
+                                                    <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">James Baker</a> </span></p>
                                                 </li>
                                             </ul>
                                         </div>
@@ -1516,7 +1515,11 @@
                                     </div>
                                     <div class="widgets">
                                         <!---->
-                                        <!---->
+                                        <div class="widget article__authors">
+                                            <!---->
+                                            <!---->
+                                            <!---->
+                                        </div>
                                         <!---->
                                         <!---->
                                     </div>
@@ -1671,7 +1674,9 @@
                                     <li>
                                         <div class="related__sponsor">
                                             <h4 class="heading">Related Sponsor</h4><a href="sponsor" class="related__img"><img src="./styles/img/2d5493d.png"></a>
-                                            <p class="related__desc"><a href="http://compose">Compose</a> makes it simple to deploy production-ready databases in minutes in the cloud or on your own servers.</p>
+                                            <div class="related__desc">
+                                                <p><a href="http://compose">Compose</a> makes it simple to deploy production-ready databases in minutes in the cloud or on your own servers.</p>
+                                            </div>
                                         </div>
                                     </li>
                                 </ul>
@@ -1784,10 +1789,9 @@
                                             <!---->
                                             <!---->
                                         </li>
-                                        <li data-id="an-open-api-initiative-update">
+                                        <li data-id="an-open-api-initiative-update" class="articles">
                                             <!---->
-                                            <div class="card__content">
-                                                <!---->
+                                            <div class="card__content"><span class="card__icon">Icon</span>
                                                 <!---->
                                                 <div class="card__data">
                                                     <!---->
@@ -1867,7 +1871,7 @@
                                     <div id="educational" class="tabs">
                                         <div data-title="All" class="tab">
                                             <ul data-size="medium" data-horizontal="true" data-hoverables="true" data-tax class="cards no-style">
-                                                <li data-id="security-implications-of-permission-models-in-smart-home-application-frameworks">
+                                                <li data-id="security-implications-of-permission-models-in-smart-home-application-frameworks" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -1894,7 +1898,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="q-a-on-the-book--it-s-all-upside-down-">
+                                                <li data-id="q-a-on-the-book--it-s-all-upside-down-" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -1918,7 +1922,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="actionable-analytics-for-lean-project-management">
+                                                <li data-id="actionable-analytics-for-lean-project-management" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -1945,7 +1949,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="key-abstractions-for-iot-oriented-software-engineering">
+                                                <li data-id="key-abstractions-for-iot-oriented-software-engineering" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -1971,7 +1975,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="benchmarks-don-t-have-to-die">
+                                                <li data-id="benchmarks-don-t-have-to-die" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2004,7 +2008,7 @@
                                         </div>
                                         <div data-title="Articles" class="tab">
                                             <ul data-size="medium" data-horizontal="true" data-hoverables="true" data-tax class="cards no-style">
-                                                <li data-id="ultimate-kanban--scaling-agile-without-frameworks-at-ultimate-software">
+                                                <li data-id="ultimate-kanban--scaling-agile-without-frameworks-at-ultimate-software" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2029,7 +2033,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="from-raw-data-to-data-science--adding-structure-to-unstructured-data-to-support">
+                                                <li data-id="from-raw-data-to-data-science--adding-structure-to-unstructured-data-to-support" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2056,7 +2060,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="key-abstractions-for-iot-oriented-software-engineering">
+                                                <li data-id="key-abstractions-for-iot-oriented-software-engineering" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2083,7 +2087,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="benchmarks-don-t-have-to-die">
+                                                <li data-id="benchmarks-don-t-have-to-die" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2110,7 +2114,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="ultimate-kanban--scaling-agile-without-frameworks-at-ultimate-software">
+                                                <li data-id="ultimate-kanban--scaling-agile-without-frameworks-at-ultimate-software" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2143,7 +2147,7 @@
                                         </div>
                                         <div data-title="Presentations" class="tab">
                                             <ul data-size="medium" data-horizontal="true" data-hoverables="true" data-tax class="cards no-style">
-                                                <li data-id="the-history-and-future-of-wearable-computing-and-virtual-experience">
+                                                <li data-id="the-history-and-future-of-wearable-computing-and-virtual-experience" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2170,7 +2174,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="agility-in-containers--how-work-evolves-with-docker">
+                                                <li data-id="agility-in-containers--how-work-evolves-with-docker" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2197,7 +2201,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="the-history-and-future-of-wearable-computing-and-virtual-experience">
+                                                <li data-id="the-history-and-future-of-wearable-computing-and-virtual-experience" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2224,7 +2228,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="validation-methodology-of-large-unstructured-unsupervised-">
+                                                <li data-id="validation-methodology-of-large-unstructured-unsupervised-" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2251,7 +2255,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="the-history-and-future-of-wearable-computing-and-virtual-experience">
+                                                <li data-id="the-history-and-future-of-wearable-computing-and-virtual-experience" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2284,7 +2288,7 @@
                                         </div>
                                         <div data-title="Interviews" class="tab">
                                             <ul data-size="medium" data-horizontal="true" data-hoverables="true" data-tax class="cards no-style">
-                                                <li data-id="amir-chaudhry-on-unikernels--docker">
+                                                <li data-id="amir-chaudhry-on-unikernels--docker" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2311,7 +2315,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="adam-tornhill-on-code-as-a-crime-scene--git-and-static-analysis--clojure">
+                                                <li data-id="adam-tornhill-on-code-as-a-crime-scene--git-and-static-analysis--clojure" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2338,7 +2342,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="mark-burgess-on-computer-immunology-and-configuration-management">
+                                                <li data-id="mark-burgess-on-computer-immunology-and-configuration-management" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2365,7 +2369,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="yao-yue-on-making-twitter-s-pelikan-cache-fast-and-reliable">
+                                                <li data-id="yao-yue-on-making-twitter-s-pelikan-cache-fast-and-reliable" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2392,7 +2396,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="peter-bourgon-discusses-coding-in-idiomatic-go--building-microservices-with-go-kit--and-weave-net">
+                                                <li data-id="peter-bourgon-discusses-coding-in-idiomatic-go--building-microservices-with-go-kit--and-weave-net" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2425,7 +2429,7 @@
                                         </div>
                                         <div data-title="Guides" class="tab">
                                             <ul data-size="medium" data-horizontal="true" data-hoverables="true" data-tax class="cards no-style">
-                                                <li data-id="the-infoq-emag--introduction-to-machine-learning">
+                                                <li data-id="the-infoq-emag--introduction-to-machine-learning" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2452,7 +2456,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="the-morning-paper-issue-4---computer-science-applied">
+                                                <li data-id="the-morning-paper-issue-4---computer-science-applied" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2479,7 +2483,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="the-infoq-emag--getting-a-handle-on-data-science">
+                                                <li data-id="the-infoq-emag--getting-a-handle-on-data-science" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2506,7 +2510,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="the-infoq-emag--reactive-programming-with-java">
+                                                <li data-id="the-infoq-emag--reactive-programming-with-java" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2533,7 +2537,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="the-morning-paper-issue-3---computer-science-applied">
+                                                <li data-id="the-morning-paper-issue-3---computer-science-applied" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2566,7 +2570,7 @@
                                         </div>
                                         <div data-title="Podcasts" class="tab">
                                             <ul data-size="medium" data-horizontal="true" data-hoverables="true" data-tax class="cards no-style">
-                                                <li data-id="jean-barmash-on-binary-rpc-with-grpc-and-thrift--and-constraint-theory-in-product-design">
+                                                <li data-id="jean-barmash-on-binary-rpc-with-grpc-and-thrift--and-constraint-theory-in-product-design" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2593,7 +2597,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="eric-horesnyi-on-high-frequency-trading-and-how-hedge-funds-are-applying-deep-learning-to-markets">
+                                                <li data-id="eric-horesnyi-on-high-frequency-trading-and-how-hedge-funds-are-applying-deep-learning-to-markets" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2620,7 +2624,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="greg-murphy-on-gamesparks--game-tuning-and-orchestrating-deployment-across-three-cloud-providers">
+                                                <li data-id="greg-murphy-on-gamesparks--game-tuning-and-orchestrating-deployment-across-three-cloud-providers" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2646,7 +2650,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="chris-stetson-on-the-microservices-reference-architecture" class="sponsored">
+                                                <li data-id="chris-stetson-on-the-microservices-reference-architecture" class="articles sponsored">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2666,7 +2670,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="architecting-sql-server-on-linux--slava-oks-on-drawbridge--libos----addressing-between-windows-linux">
+                                                <li data-id="architecting-sql-server-on-linux--slava-oks-on-drawbridge--libos----addressing-between-windows-linux" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2703,7 +2707,7 @@
                                         </div>
                                         <div data-title="Research" class="tab">
                                             <ul data-size="medium" data-horizontal="true" data-hoverables="true" data-tax class="cards no-style">
-                                                <li data-id="the-history-and-future-of-wearable-computing-and-virtual-experience">
+                                                <li data-id="the-history-and-future-of-wearable-computing-and-virtual-experience" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2730,7 +2734,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="agility-in-containers--how-work-evolves-with-docker">
+                                                <li data-id="agility-in-containers--how-work-evolves-with-docker" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2757,7 +2761,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="the-history-and-future-of-wearable-computing-and-virtual-experience">
+                                                <li data-id="the-history-and-future-of-wearable-computing-and-virtual-experience" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2784,7 +2788,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="validation-methodology-of-large-unstructured-unsupervised-">
+                                                <li data-id="validation-methodology-of-large-unstructured-unsupervised-" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->
@@ -2811,7 +2815,7 @@
                                                     <!---->
                                                     <!---->
                                                 </li>
-                                                <li data-id="the-history-and-future-of-wearable-computing-and-virtual-experience">
+                                                <li data-id="the-history-and-future-of-wearable-computing-and-virtual-experience" class="articles">
                                                     <!---->
                                                     <div class="card__content">
                                                         <!---->

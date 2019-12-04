@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head data-n-head>
+<head>
     <title>InfoQ | Software Development News, Guides, Videos</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,8 +11,7 @@
     <link href="styles/icons.css" rel="stylesheet" media="screen">
     <link href="styles/print.css" rel="stylesheet" media="print">
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default"></script>
-    <script src="polyfills.js" type="text/javascript"></script>
-    <script src="infoq.js" type="text/javascript"></script>
+    <script src="scripts/infoq.js" type="text/javascript"></script>
     <script>
         var JSi18n = window.JSi18n || {},
             CommonUtils = {
@@ -84,7 +83,7 @@
                 },
                 adbStrings: ["We notice you’re using an ad blocker", "We understand why you use ad blockers. However to keep InfoQ free we need your support. InfoQ will not provide your data to third parties without individual opt-in consent. We only work with advertisers relevant to our readers. Please consider whitelisting us."]
             }),
-            currentUserId = 101975445,
+            currentUserId = "daniel-bryant",
             usersInPage = [{
                 ref: "author-George-Doe",
                 id: "author-1",
@@ -1198,7 +1197,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="key-takeaway-points-and-lessons-learned-from-qcon-london-2017">
+                                                    <li data-id="key-takeaway-points-and-lessons-learned-from-qcon-london-2017" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1243,7 +1242,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="latency-sensitive-microservices">
+                                                    <li data-id="latency-sensitive-microservices" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1286,7 +1285,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="do-we-need-another-key-value-store-">
+                                                    <li data-id="do-we-need-another-key-value-store-" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1332,7 +1331,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="always-be-publishing--continuous-integration---collaboration-in-code-repositories-for-rest-api-docs">
+                                                    <li data-id="always-be-publishing--continuous-integration---collaboration-in-code-repositories-for-rest-api-docs" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1374,7 +1373,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="spotify-lessons--learning-to-let-go-of-machines">
+                                                    <li data-id="spotify-lessons--learning-to-let-go-of-machines" class="articles">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1465,7 +1464,7 @@
         <main>
             <section class="section container topics">
                 <div class="container__inner">
-                    <p class="crumbs"><span><a href="index.html">InfoQ Homepage</a></span><span><a href="topic.html" class="active">topic</a></span><span class="active">devops</span></p>
+                    <div class="crumbs"><span><a href="index.html">InfoQ Homepage</a></span><span><a href="topic.html" class="active">topic</a></span><span class="active">devops</span></div>
                     <div data-id="devops" data-trk-ref="topic_page" class="heading__container actions heading__actions">
                         <div class="actions__left">
                             <h1 class="heading heading__rss">DevOps</h1><span class="rss icon icon__rss-feed"><a href="#rss">RSS Feed</a></span>
@@ -1485,7 +1484,7 @@
                                 <!---->
                                 <div>
                                     <ul data-size="large" data-hoverables="true" data-tax="news" data-cols="3" class="cards no-style">
-                                        <li data-id="q-a-with-marcin-grzejszczak-on-spring-cloud-contract" data-path="/news/q-a-with-marcin-grzejszczak-on-spring-cloud-contract">
+                                        <li data-id="q-a-with-marcin-grzejszczak-on-spring-cloud-contract" data-path="/news/q-a-with-marcin-grzejszczak-on-spring-cloud-contract" class="newss">
                                             <!---->
                                             <div class="card__content">
                                                 <!---->
@@ -1509,7 +1508,7 @@
                                             <!---->
                                             <!---->
                                         </li>
-                                        <li data-id="light-at-the-end-of-the-long-tunnel-for-java-ee-8" data-path="/news/light-at-the-end-of-the-long-tunnel-for-java-ee-8">
+                                        <li data-id="light-at-the-end-of-the-long-tunnel-for-java-ee-8" data-path="/news/light-at-the-end-of-the-long-tunnel-for-java-ee-8" class="newss">
                                             <!---->
                                             <div class="card__content">
                                                 <!---->
@@ -1533,7 +1532,7 @@
                                             <!---->
                                             <!---->
                                         </li>
-                                        <li data-id="cloudnativecon-and-kubecon-summary--kubernetes-1-6--docker-and-coreos-donations--and-certifications" data-path="/news/cloudnativecon-and-kubecon-summary--kubernetes-1-6--docker-and-coreos-donations--and-certifications">
+                                        <li data-id="cloudnativecon-and-kubecon-summary--kubernetes-1-6--docker-and-coreos-donations--and-certifications" data-path="/news/cloudnativecon-and-kubecon-summary--kubernetes-1-6--docker-and-coreos-donations--and-certifications" class="newss">
                                             <!---->
                                             <div class="card__content">
                                                 <!---->
@@ -1557,7 +1556,7 @@
                                             <!---->
                                             <!---->
                                         </li>
-                                        <li data-id="avoiding-alerts-overload-from-microservices--sarah-wells-at-qcon-london" data-path="/news/avoiding-alerts-overload-from-microservices--sarah-wells-at-qcon-london">
+                                        <li data-id="avoiding-alerts-overload-from-microservices--sarah-wells-at-qcon-london" data-path="/news/avoiding-alerts-overload-from-microservices--sarah-wells-at-qcon-london" class="newss">
                                             <!---->
                                             <div class="card__content">
                                                 <!---->
@@ -1581,7 +1580,7 @@
                                             <!---->
                                             <!---->
                                         </li>
-                                        <li data-id="aws-organizations-offers-centralized-policy-based-account-management" data-path="/news/aws-organizations-offers-centralized-policy-based-account-management">
+                                        <li data-id="aws-organizations-offers-centralized-policy-based-account-management" data-path="/news/aws-organizations-offers-centralized-policy-based-account-management" class="newss">
                                             <!---->
                                             <div class="card__content">
                                                 <!---->
@@ -1605,7 +1604,7 @@
                                             <!---->
                                             <!---->
                                         </li>
-                                        <li data-id="overview-of-the-reliable-event-delivery-system-at-spotify" data-path="/news/overview-of-the-reliable-event-delivery-system-at-spotify">
+                                        <li data-id="overview-of-the-reliable-event-delivery-system-at-spotify" data-path="/news/overview-of-the-reliable-event-delivery-system-at-spotify" class="newss">
                                             <!---->
                                             <div class="card__content">
                                                 <!---->
@@ -1629,7 +1628,7 @@
                                             <!---->
                                             <!---->
                                         </li>
-                                        <li data-id="public-docker-image-vulnerability-research-findings-released" data-path="/news/public-docker-image-vulnerability-research-findings-released">
+                                        <li data-id="public-docker-image-vulnerability-research-findings-released" data-path="/news/public-docker-image-vulnerability-research-findings-released" class="newss">
                                             <!---->
                                             <div class="card__content">
                                                 <!---->
@@ -1653,7 +1652,7 @@
                                             <!---->
                                             <!---->
                                         </li>
-                                        <li data-id="vaadin-releases-version-8-of-their-polyglot-framework" data-path="/news/vaadin-releases-version-8-of-their-polyglot-framework">
+                                        <li data-id="vaadin-releases-version-8-of-their-polyglot-framework" data-path="/news/vaadin-releases-version-8-of-their-polyglot-framework" class="newss">
                                             <!---->
                                             <div class="card__content">
                                                 <!---->
@@ -1677,7 +1676,7 @@
                                             <!---->
                                             <!---->
                                         </li>
-                                        <li data-id="hashicorp-terraform-0-9--released-with-state-locking--state-environments--and-destroy-provisioners" data-path="/news/hashicorp-terraform-0-9--released-with-state-locking--state-environments--and-destroy-provisioners">
+                                        <li data-id="hashicorp-terraform-0-9--released-with-state-locking--state-environments--and-destroy-provisioners" data-path="/news/hashicorp-terraform-0-9--released-with-state-locking--state-environments--and-destroy-provisioners" class="newss">
                                             <!---->
                                             <div class="card__content">
                                                 <!---->
@@ -1702,9 +1701,7 @@
                                             <!---->
                                         </li>
                                         <!---->
-                                    </ul>
-                                    <!---->
-                                    <!----><a href="news.html" class="button__more button button__arrow arrow__right">More news</a>
+                                    </ul><a href="news.html" class="button__more button button__arrow arrow__right">More news</a>
                                     <!---->
                                 </div>
                                 <!---->
@@ -1948,9 +1945,7 @@
                                             <!---->
                                         </li>
                                         <!---->
-                                    </ul>
-                                    <!---->
-                                    <!----><a href="presentations.html" class="button__more button button__arrow arrow__right">More presentations</a>
+                                    </ul><a href="presentations.html" class="button__more button button__arrow arrow__right">More presentations</a>
                                     <!---->
                                 </div>
                                 <!---->
@@ -2176,9 +2171,7 @@
                                             <!---->
                                         </li>
                                         <!---->
-                                    </ul>
-                                    <!---->
-                                    <!----><a href="articles.html" class="button__more button button__arrow arrow__right">More articles</a>
+                                    </ul><a href="articles.html" class="button__more button button__arrow arrow__right">More articles</a>
                                     <!---->
                                 </div>
                                 <!---->
@@ -2386,9 +2379,7 @@
                                             <!---->
                                         </li>
                                         <!---->
-                                    </ul>
-                                    <!---->
-                                    <!----><a href="guides.html" class="button__more button button__arrow arrow__right">More guides</a>
+                                    </ul><a href="guides.html" class="button__more button button__arrow arrow__right">More guides</a>
                                     <!---->
                                 </div>
                                 <!---->
