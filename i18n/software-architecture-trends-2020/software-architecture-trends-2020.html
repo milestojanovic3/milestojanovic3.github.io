@@ -14,14 +14,8 @@
   ScrollToResolver(document.getElementById(name));
 }
 
-const element = document.querySelector('#quotes')
-const topPos = element.getBoundingClientRect().top
-
-window.scroll({
-  top: topPos,
-  behavior: 'smooth' 
-});
-
+var element_to_scroll_to = document.getElementById('quotes');
+element_to_scroll_to.scrollIntoView();
   </script>
   <!-- End Google Tag Manager -->
   </head>
