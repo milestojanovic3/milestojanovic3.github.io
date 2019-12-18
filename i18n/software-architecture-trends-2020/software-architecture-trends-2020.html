@@ -10,8 +10,21 @@
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer', gtmProfile);
-function scrollTo(hash) {
-    location.hash = "#" + hash;
+
+
+let anchorlinks = document.querySelectorAll('a[href^="#"]')
+ 
+for (let item of anchorlinks) { // relitere 
+    item.addEventListener('click', (e)=> {
+        let hashval = item.getAttribute('href')
+        let target = document.querySelector(hashval)
+        target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        })
+        history.pushState(null, null, hashval)
+        e.preventDefault()
+    })
 }
   </script>
   <!-- End Google Tag Manager -->
