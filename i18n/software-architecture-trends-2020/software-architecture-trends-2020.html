@@ -10,20 +10,11 @@
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer', gtmProfile);
-
-  elmnt = document.getElementById("quotes");
-  scrollTo(document.documentElement, elmnt.offsetTop, 600);
-
-  function scrollTo(element, to, duration) {
-    if (duration <= 0) return;
-    var difference = to - element.scrollTop;
-    var perTick = difference / duration * 10;
-
-    setTimeout(function() {
-        element.scrollTop = element.scrollTop + perTick;
-        if (element.scrollTop === to) return;
-        scrollTo(element, to, duration - 10);
-    }, 10);
+  
+  if (window.location.href.indexOf('#') == 0) {
+    var hash = window.location.href.split('#')[1];
+    var hashTop = document.querySelector(`#${hash}`).offsetTop;
+    window.scrollTop = hashTop;
 }
 
   </script>
