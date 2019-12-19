@@ -11,21 +11,11 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer', gtmProfile);
 
+  let element = document.getElementById('quotes');
 
-let anchorlinks = document.querySelectorAll('a[href^="#"]')
- 
-for (let item of anchorlinks) { // relitere 
-    item.addEventListener('click', (e)=> {
-        let hashval = item.getAttribute('href')
-        let target = document.querySelector(hashval)
-        target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        })
-        history.pushState(null, null, hashval)
-        e.preventDefault()
-    })
-}
+window.onload = function () {
+	element.scrollIntoView({behavior: "smooth"});
+};
   </script>
   <!-- End Google Tag Manager -->
   </head>
