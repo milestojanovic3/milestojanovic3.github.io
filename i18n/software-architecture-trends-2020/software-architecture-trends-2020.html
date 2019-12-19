@@ -11,10 +11,8 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer', gtmProfile);
   
-  if (window.location.href.indexOf('#') == 0) {
-    var hash = window.location.href.split('#')[1];
-    var hashTop = document.querySelector(`#${hash}`).offsetTop;
-    window.scrollTop = hashTop;
+  function scrollTo(hash) {
+    location.hash = "#" + hash;
 }
 
   </script>
