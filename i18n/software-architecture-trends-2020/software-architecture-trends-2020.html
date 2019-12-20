@@ -11,9 +11,11 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer', gtmProfile);
    
-  var element_to_scroll_to = document.getElementById('quotes2020');
+  window.addEventListener("load", function(){
+    window.location.hash = "";
+  window.location.hash = "quotes2020"; 
+});
 
-  element_to_scroll_to.scrollIntoView();
 
   </script>
   <!-- End Google Tag Manager -->
