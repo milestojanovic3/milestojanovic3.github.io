@@ -39,7 +39,7 @@ function animate(elem, style, unit, from, to, time, prop) {
 window.onload = function () {
   if (window.location.hash.length){
     var target = document.getElementById("quotes");
-    animate(document.scrollingElement || document.documentElement, "scrollTop", "", 0, target.offsetTop, 100, true);
+    animate(document.scrollingElement || document.documentElement, "scrollTop", "", 0, target, 100, true);
   }
 };
   </script>
