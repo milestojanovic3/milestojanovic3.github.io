@@ -11,9 +11,12 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer', gtmProfile);
    
+ 
   window.addEventListener("load", function(){
+    if (window.location.hash.length){
     window.location.hash = "";
   window.location.hash = "quotes2020"; 
+  }
 });
 
 
