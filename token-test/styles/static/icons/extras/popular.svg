@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="18px" viewBox="0 0 17 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41 (35326) - http://www.bohemiancoding.com/sketch -->
+    <title>Popular Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="14.9406059%" y1="91.2641874%" x2="59.3142786%" y2="42.7722458%" id="linearGradient-1">
+            <stop stop-color="#1097EC" offset="0%"></stop>
+            <stop stop-color="#4AC668" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Style-Guide" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons" transform="translate(-78.000000, -1100.000000)" fill="url(#linearGradient-1)">
+            <g id="Popular-Icon" transform="translate(78.000000, 1100.000000)">
+                <g id="Group">
+                    <path d="M4.92857143,11.6162791 C4.32557143,13.1048372 4.55742857,14.7926512 5.54078571,16.0733721 C6.52414286,17.354093 8.118,18.0439535 9.75,17.8953488 C12.159,17.6414651 14.2703571,16.2081628 15.354,14.0914884 C16.4376429,11.9746047 16.3446429,9.46486047 15.1071429,7.43023256 C14.9989286,9.33132558 13.7312143,10.9825116 11.8928571,11.6162791 C13.4288571,7.00304651 11.1042857,2.00762791 6.53571429,0.104651163 C6.53571429,4.47551163 0.4125,7.25546512 0.107142857,11.6162791 C-0.0692142857,14.1339767 1.17985714,16.5436744 3.36171429,17.8953488 C2.63035714,15.6811395 3.23635714,13.2534419 4.92857143,11.6162791 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
