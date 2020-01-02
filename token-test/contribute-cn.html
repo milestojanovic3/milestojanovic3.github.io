@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head data-n-head>
     <title>InfoQ | Software Development News, Guides, Videos</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,10 +11,8 @@
     <link href="styles/icons.css" rel="stylesheet" media="screen">
     <link href="styles/print.css" rel="stylesheet" media="print">
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default"></script>
-    <script src="scripts/infoq.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        loggedIn = true
-    </script>
+    <script src="polyfills.js" type="text/javascript"></script>
+    <script src="infoq.js" type="text/javascript"></script>
     <script>
         var JSi18n = window.JSi18n || {},
             CommonUtils = {
@@ -82,13 +80,11 @@
                     noTopic: "You are currently not following any topics",
                     chooseOne: "Choose one...",
                     bookmarked: "Content Bookmarked",
-                    unbookmarked: "Content Unbookmarked",
-                    invalidShare: "Remove invalid emails first!",
-                    maxShare: "Maximum number of shares exceeded!"
+                    unbookmarked: "Content Unbookmarked"
                 },
                 adbStrings: ["We notice you’re using an ad blocker", "We understand why you use ad blockers. However to keep InfoQ free we need your support. InfoQ will not provide your data to third parties without individual opt-in consent. We only work with advertisers relevant to our readers. Please consider whitelisting us."]
             }),
-            currentUserId = "daniel-bryant",
+            currentUserId = 101975445,
             usersInPage = [{
                 ref: "author-George-Doe",
                 id: "author-1",
@@ -1089,24 +1085,48 @@
                                     </div><input value="Go" type="submit" disabled class="search__go">
                                 </form>
                             </div>
-                            <div class="button__dropdown dropdown user__login"><button aria-label="Dorian" class="button button__small button__green button__arrow arrow__true button__icon icon icon__user icon--only">Dorian </button>
+                            <div class="button__dropdown dropdown user__login"><button aria-label="Sign Up / Login" class="button button__small button__green button__arrow arrow__true button__icon icon icon__user icon--only">Sign Up / Login </button>
                                 <div class="dropdown__holder">
                                     <!---->
                                     <div class="dropdown__content">
                                         <div class="login__dropdown">
-                                            <div class="user__menu">
-                                                <h4 class="user__welcome">Welcome <span class="user__name"></span></h4>
-                                                <ul class="user__actions no-style dropdown__nav">
-                                                    <li><a href="profile.html">Profile</a></li>
-                                                    <li><a href="settings.html">Settings</a></li>
-                                                    <li><a href="bookmarks.html">Reading List</a></li>
-                                                    <li class="separator separator__line">
-                                                        <!---->
-                                                    </li>
-                                                    <li><a href="settings.html#topics-you-follow">Topics you follow</a></li>
-                                                    <li><a href="settings.html#peers-you-follow">Peers you follow</a></li>
-                                                    <li><a href="settings.html#editors-picks">Editor&apos;s picks</a></li>
-                                                </ul><a href="signout.html" class="button button__gray">Sign out</a>
+                                            <div data-vv-scope="login" class="login__module">
+                                                <!---->
+                                                <div class="login__username">
+                                                    <!---->
+                                                    <form class="login__form form"><input type="hidden" name="loginWidgetOrigin" id="loginWidgetOrigin" value="mainLogin"><input type="hidden" name="fromP13N"><input type="hidden" name="fromP13NId"><input type="hidden" name="fromP13NType">
+                                                        <div class="field form__row input__text input__small"><label for="email" class="label field__label">Email<span class="input__req">*</span></label><input id="email" placeholder class="input field__input" type="text">
+                                                            <!---->
+                                                            <!---->
+                                                            <!---->
+                                                        </div>
+                                                        <div class="field form__row input__password input__small"><label for="password" class="label field__label">Password<span class="input__req">*</span></label><input type="password" id="password" placeholder class="input field__input">
+                                                            <!---->
+                                                            <!---->
+                                                            <!---->
+                                                        </div>
+                                                        <div class="login__actions"><input type="submit" value="Login" class="form__row button button__medium button__green"><a href="contribute-cn.html#" class="forgot button button__unstyled">Forgot your password?</a></div>
+                                                    </form>
+                                                    <form data-vv-scope="forgot" class="forgot__form form">
+                                                        <div class="field form__row input__text input__small"><label for="email-forgot" class="label field__label">InfoQ Account Email<span class="input__req">*</span></label><input id="email-forgot" placeholder class="input field__input" type="text">
+                                                            <!---->
+                                                            <!---->
+                                                            <!---->
+                                                        </div><input type="submit" value="Send Recovery Email" class="button button__medium button__green">
+                                                        <p class="login__actions"><button aria-label="Back to login" class="back-to-login button button__unstyled">Back to login </button></p>
+                                                    </form>
+                                                </div>
+                                                <div class="login__social">
+                                                    <h4 class="heading subsection__heading">Login with:</h4>
+                                                    <div class="login__socials">
+                                                        <div class="social__connect form__row login__socials">
+                                                            <!----><a href="https://google.com" class="button button__medium button__gray button__icon icon icon__google"> Google</a><a href="https://microsoft.com" class="button button__medium button__icon icon icon__microsoft"> Microsoft</a><a href="https://twitter.com" class="button button__medium button__icon icon icon__twitter"> Twitter</a><a href="https://facebook.com" class="button button__medium button__icon icon icon__facebook"> Facebook</a></div>
+                                                    </div>
+                                                    <p class="meta gdpr">When signing in using social media accounts, those accounts may use information for their own purposes. We recommend you view the privacy notice of those social media accounts.</p>
+                                                </div>
+                                                <form class="form login__signup">
+                                                    <h4 class="heading">Don&apos;t have an InfoQ account?</h4><a href="signup.html" class="button button__medium button__green">Sign up</a>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -1118,18 +1138,20 @@
                                     <div class="dropdown__header">
                                         <div class="heading__container actions notifications__header">
                                             <div class="actions__left">
-                                                <h5 class="heading">Welcome, Dorian</h5>
-                                                <!---->
-                                                <p>To get you started with what InfoQ has to offer, we recommend you follow:</p>
+                                                <h5 class="heading">Login to unlock InfoQ&#x2019;s new features</h5>
                                                 <!---->
                                             </div>
                                             <!---->
                                         </div>
                                     </div>
                                     <div class="dropdown__content">
-                                        <div class="picks"></div>
+                                        <ul class="notifications__welcome no-style">
+                                            <li class="icon__up-to-date">Stay up to date and get notified</li>
+                                            <li class="icon__like-content">Like your favorite content</li>
+                                            <li class="icon__follow-favorites">Follow your favorite editors and peers</li>
+                                        </ul><button aria-label="Login" class="login button button__medium button__green">Login </button><a href="register.html" class="button button__unstyled">Don&apos;t have an account? Register</a>
                                     </div>
-                                    <div class="dropdown__footer"><button aria-label="Dismiss" class="notifications__footer button button__unstyled button__medium">Dismiss </button></div>
+                                    <!---->
                                 </div>
                             </div>
                         </div>
@@ -1176,7 +1198,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="key-takeaway-points-and-lessons-learned-from-qcon-london-2017" class="articles">
+                                                    <li data-id="key-takeaway-points-and-lessons-learned-from-qcon-london-2017">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1221,7 +1243,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="latency-sensitive-microservices" class="articles">
+                                                    <li data-id="latency-sensitive-microservices">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1264,7 +1286,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="do-we-need-another-key-value-store-" class="articles">
+                                                    <li data-id="do-we-need-another-key-value-store-">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1310,7 +1332,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="always-be-publishing--continuous-integration---collaboration-in-code-repositories-for-rest-api-docs" class="articles">
+                                                    <li data-id="always-be-publishing--continuous-integration---collaboration-in-code-repositories-for-rest-api-docs">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1352,7 +1374,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="spotify-lessons--learning-to-let-go-of-machines" class="articles">
+                                                    <li data-id="spotify-lessons--learning-to-let-go-of-machines">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1441,86 +1463,22 @@
             </div>
         </header>
         <main>
-            <div>
-                <section class="section container white">
+            <section class="static-page">
+                <section class="section container static-page__world white">
                     <div class="container__inner">
-                        <article data-type="presentation" class="article grid early authenticated needsAuthForEarly">
-                            <!---->
-                            <!---->
-                            <!---->
-                            <h1>CSS Grid Presentation Layout</h1>
-                            <!---->
-                            <!---->
-                            <!---->
-                            <!---->
-                            <!---->
-                            <div text="This is a restricted presentation that can only be viewed by QCon London 2018 attendees!" class="announcement"><button aria-label="Close" class="close button button__unstyled button__icon icon icon__close icon--only">Close </button>
-                                <div>
-                                    <h3 class="heading">Thank you for attending QCon London 2018</h3>
-                                    <p>As per your request we have developed a set of features that allow you to reduce the noise, while not losing sight of anything that is important. #[a Get email and web notifications] by choosing the topics you are interested in.</p>
-                                    <!---->
-                                    <!---->
-                                    <p class="meta">If you have any problems authenticating please contact <a href="mailto:conference-attendees@infoq.com">conference-attendees@infoq.com</a>.</p>
-                                </div>
+                        <ul class="horizontal-subnav no-style">
+                            <li><a href="contribute-cn.html" class="nuxt-link-exact-active active">&#x6295;&#x7A3F;</a></li>
+                            <li><a href="aboutInfoQ-cn.html">&#x5173;&#x4E8E;&#x6211;&#x4EEC;</a></li>
+                        </ul>
+                        <div class="columns">
+                            <div data-col="2/3">
+                                <h1>&#x6295;&#x7A3F;</h1>
+                                <p>InfoQ&#x7531;&#x793E;&#x533A;&#x63A8;&#x52A8;&#xFF0C;&#x8FD9;&#x91CC;&#x7684;&#x5185;&#x5BB9;&#x6E90;&#x81EA;&#x50CF;&#x4F60;&#x4E00;&#x6837;&#x7684;&#x4E13;&#x4E1A;&#x6280;&#x672F;&#x4EBA;&#x3002;&#x5BF9;&#x4E8E;&#x793E;&#x533A;&#x800C;&#x8A00;&#xFF0C;&#x4F60;&#x662F;&#x6700;&#x91CD;&#x8981;&#x7684;&#x3002;</p>
+                                <p>&#x4F60;&#x662F;&#x5426;&#x70ED;&#x8877;&#x4E8E;&#x8F6F;&#x4EF6;&#x5F00;&#x53D1;&#xFF1F;&#x4F60;&#x662F;&#x5426;&#x70ED;&#x8877;&#x4E8E;&#x4E0E;&#x4ED6;&#x4EBA;&#x5206;&#x4EAB;&#x4F60;&#x7684;&#x77E5;&#x8BC6;&#x4E0E;&#x7ECF;&#x9A8C;&#xFF1F;InfoQ&#x4E00;&#x76F4;&#x5728;&#x5BFB;&#x627E;&#x4F18;&#x79C0;&#x7684;&#x4F5C;&#x8005;&#x4E0E;&#x70ED;&#x60C5;&#x7684;&#x7F16;&#x8F91;&#x52A0;&#x5165;&#x6211;&#x4EEC;&#x7684;&#x5185;&#x5BB9;&#x8D21;&#x732E;&#x961F;&#x4F0D;&#x4E2D;&#xFF0C;&#x8DDF;&#x793E;&#x533A;&#x91CC;&#x7684;&#x5176;&#x4ED6;&#x6210;&#x5458;&#x4E00;&#x8D77;&#xFF0C;&#x4FC3;&#x8FDB;&#x8F6F;&#x4EF6;&#x5F00;&#x53D1;&#x9886;&#x57DF;&#x77E5;&#x8BC6;&#x4E0E;&#x521B;&#x65B0;&#x7684;&#x4F20;&#x64AD;&#x3002;</p>
+                                <p>&#x4E3A;InfoQ&#x8D21;&#x732E;&#x5185;&#x5BB9;&#x7684;&#x65B9;&#x5F0F;&#x6709;&#x4E24;&#x79CD;&#xFF0C;&#x8054;&#x7CFB;&#x65B9;&#x5F0F;&#x5747;&#x4E3A;editors@cn.infoq.com&#xFF1A;</p>
                             </div>
-                            <form class="early__login">
-                                <div class="field input__text"><label for="demo::replace" class="label field__label">Please enter your QCon London 2018 unique ID you received in an email during the conference:<span class="input__req">*</span></label><input id="demo::replace" placeholder class="input field__input" type="text">
-                                    <!---->
-                                    <!---->
-                                    <p class="field__desc">You only need to provide this once, after entering your account will be authenticated as a QCon London 2018 attendee. If you attended QCon London 2018 and can&apos;t find your ID, email conference-attendees@infoq.com with your first name and last name and we&apos;ll send you a new one</p>
-                                </div><input type="submit" value="Login" class="button">
-                            </form>
-                            <!---->
-                            <!---->
-                            <!---->
-                            <!---->
-                            <!---->
-                            <div class="aside">
-                                <div class="recorded">
-                                    <p class="recorded__meta meta">Recorded at:</p><a href="https://sponsorlink.com"><img src="./styles/img/86e03df.png" alt="Conference recorded here"></a>
-                                </div>
-                                <p class="date">28 September 1990</p>
-                                <div class="article__authors">
-                                    <div>
-                                        <p class="meta">by</p>
-                                        <ul class="authors no-style">
-                                            <li data-id="author-Johnatan-Doe">
-                                                <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">Johnatan Doe</a> </span></p>
-                                            </li>
-                                            <li data-id="author-Charles-Humble">
-                                                <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">Charles Humble</a> </span></p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <p class="meta">translated by</p>
-                                        <ul class="authors no-style">
-                                            <li data-id="author-Johnatan-Doe">
-                                                <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">Johnatan Doe</a> </span></p>
-                                            </li>
-                                            <li data-id="author-Charles-Humble">
-                                                <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">Charles Humble</a> </span></p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <p class="meta">reviewed by</p>
-                                        <ul class="authors no-style">
-                                            <li data-id="author-Johnatan-Doe">
-                                                <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">Johnatan Doe</a> </span></p>
-                                            </li>
-                                            <li data-id="author-Charles-Humble">
-                                                <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">Charles Humble</a> </span></p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!---->
-                            </div>
-                            <!---->
-                            <!---->
-                            <!---->
-                        </article>
+                            <div data-col="1/3"><img src="./styles/img/b83ea7b.jpg" alt></div>
+                        </div>
                         <!---->
                         <!---->
                         <!---->
@@ -1531,8 +1489,354 @@
                         <!---->
                     </div>
                 </section>
-                <!---->
-            </div>
+                <section class="section container static-page__participate">
+                    <div class="container__inner">
+                        <div class="columns">
+                            <div data-col="1/2">
+                                <h2>&#x6DF1;&#x5EA6;&#x6587;&#x7AE0;&#x6295;&#x7A3F;</h2>
+                                <p>&#x6DF1;&#x5EA6;&#x6587;&#x7AE0;&#x4E0D;&#x662F;&#x7B80;&#x5355;&#x7684;How-to&#x3002;
+                                    &#x4F5C;&#x8005;&#x9700;&#x8981;&#x5BF9;&#x67D0;&#x4E2A;&#x9886;&#x57DF;&#x6709;&#x5341;&#x5206;&#x6DF1;&#x5165;&#x7684;&#x7406;&#x89E3;
+                                    &#x6216;&#x975E;&#x5E38;&#x4E30;&#x5BCC;&#x7684;&#x5B9E;&#x6218;&#x7ECF;&#x9A8C;&#x3002;
+                                    &#x8BE6;&#x60C5;&#x89C1;<a href="cn_article-guidelines.html">InfoQ&#x4E2D;&#x6587;&#x7AD9;&#x6295;&#x7A3F;&#x987B;&#x77E5;</a>&#x3002;</p>
+                            </div>
+                            <div data-col="1/2">
+                                <h2>&#x6210;&#x4E3A;&#x793E;&#x533A;&#x7F16;&#x8F91;</h2>
+                                <p>InfoQ&#x793E;&#x533A;&#x7F16;&#x8F91;&#x80FD;&#x591F;&#x5728;&#x81EA;&#x5DF1;&#x5173;&#x6CE8;&#x7684;&#x9886;&#x57DF;&#x6316;&#x6398;&#x70ED;&#x70B9;&#x65B0;&#x95FB;&#x548C;&#x4EBA;&#x7269;&#xFF0C;&#x5E76;&#x76F4;&#x89C2;&#x7684;&#x5C06;&#x4E8B;&#x5B9E;&#x8868;&#x8FF0;&#x51FA;&#x6765;&#x5206;&#x4EAB;&#x7ED9;&#x8BFB;&#x8005;&#x3002;&#x793E;&#x533A;&#x7F16;&#x8F91;&#x5206;&#x4E3A;&#x7FFB;&#x8BD1;&#x7EC4;&#x3001;&#x539F;&#x521B;&#x65B0;&#x95FB;&#x7EC4;&#x3001;&#x4E13;&#x5BB6;&#x5BA1;&#x6821;&#x7EC4;&#x7B49;&#xFF0C;&#x8BE6;&#x89C1;&#xFF1A;
+                                    <a href="cn_editor-guidelines.html">InfoQ&#x7F16;&#x8F91;&#x56E2;&#x961F;&#x52A0;&#x76DF;&#x6307;&#x5357;</a></p>
+                            </div>
+                        </div>
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                    </div>
+                </section>
+                <section class="section container white">
+                    <div class="container__inner">
+                        <h1 class="text-center">InfoQ&#x7F16;&#x8F91;&#x7684;&#x6838;&#x5FC3;&#x4EF7;&#x503C;&#x89C2;</h1>
+                        <div class="columns">
+                            <div data-col="2/3">
+                                <h2>&#x505A;&#x4FE1;&#x606F;&#x7684;&#x7F57;&#x5BBE;&#x6C49;</h2>
+                                <p>&#x6211;&#x4EEC;&#x7684;&#x4E3B;&#x8981;&#x804C;&#x80FD;&#x5C31;&#x662F;&#x4ECE;&#x5C11;&#x6570;&#x62E5;&#x6709;&#x4FE1;&#x606F;&#x7684;&#x7CBE;&#x82F1;&#x90A3;&#x91CC;&#x5BFB;&#x627E;&#x4FE1;&#x606F;&#xFF0C;&#x5E76;&#x5C06;&#x5176;&#x53D1;&#x5E03;&#x7ED9;&#x5E7F;&#x5927;&#x7FA4;&#x4F17;&#x3002;&#x5F53;&#x6211;&#x4EEC;&#x53D1;&#x73B0;&#x4E00;&#x4E9B;&#x5F88;&#x68D2;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x5E76;&#x4E14;&#x8BA4;&#x4E3A;&#x503C;&#x5F97;&#x8BA9;&#x6574;&#x4E2A;&#x793E;&#x533A;&#x77E5;&#x9053;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x5E94;&#x8BE5;&#x5C06;&#x53D1;&#x5E03;&#x5B83;&#x89C6;&#x4E3A;&#x6211;&#x4EEC;&#x5FC5;&#x987B;&#x627F;&#x62C5;&#x7684;&#x804C;&#x8D23;&#x3002;</p>
+                            </div>
+                            <div data-col="1/3"><img src="./styles/img/82321db.jpg" alt="Robin Hood"></div>
+                        </div>
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                    </div>
+                </section>
+                <section class="section container white">
+                    <div class="container__inner">
+                        <div class="columns">
+                            <div data-col="1/3"><img src="./styles/img/3f2a995.jpg" alt="Best not First"></div>
+                            <div data-col="2/3">
+                                <h2>&#x505A;&#x6700;&#x597D;&#x7684;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x6700;&#x5FEB;&#x7684;</h2>
+                                <p>&#x6211;&#x4EEC;&#x4E0D;&#x662F;&#x53D1;&#x5E03;&#x7A81;&#x53D1;&#x65B0;&#x95FB;&#x7684;&#x7F51;&#x7AD9;&#xFF0C;&#x5F53;&#x67D0;&#x4EF6;&#x4E8B;&#x60C5;&#x53D1;&#x751F;&#x540E;&#xFF0C;&#x8FC7;&#x4E0A;&#x51E0;&#x5929;&#x518D;&#x53D1;&#x5E03;&#x4E5F;&#x662F;&#x53EF;&#x4EE5;&#x7684;&#xFF0C;&#x53EA;&#x8981;&#x6211;&#x4EEC;&#x6536;&#x96C6;&#x5230;&#x8DB3;&#x591F;&#x7684;&#x6750;&#x6599;&#xFF0C;&#x5E76;&#x80FD;&#x63D0;&#x4F9B;&#x66F4;&#x6DF1;&#x5EA6;&#x7684;&#x5185;&#x5BB9;&#x3002;</p>
+                            </div>
+                        </div>
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                    </div>
+                </section>
+                <section class="section container white">
+                    <div class="container__inner">
+                        <div class="columns">
+                            <div data-col="2/3">
+                                <h2>&#x63D0;&#x4F9B;&#x53EF;&#x4FE1;&#x8D56;&#x7684;&#x5185;&#x5BB9;</h2>
+                                <p>&#x6211;&#x4EEC;&#x7684;&#x5185;&#x5BB9;&#x5C06;&#x4F1A;&#x4E0D;&#x5E26;&#x504F;&#x89C1;&#xFF0C;&#x4E0D;&#x4F1A;&#x504F;&#x5411;&#x4E2A;&#x4EBA;&#x6216;&#x662F;&#x5382;&#x5546;&#xFF0C;&#x9664;&#x975E;&#x80FD;&#x591F;&#x660E;&#x786E;&#x8868;&#x660E;&#x5C5E;&#x4E8E;&#x67D0;&#x79CD;&#x201C;&#x610F;&#x89C1;&#x201D;&#x3002;&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x671F;&#x671B;InfoQ&#x7684;&#x5185;&#x5BB9;&#x6709;&#x6240;&#x88E8;&#x76CA;&#xFF0C;&#x800C;&#x4E14;&#x6E90;&#x4E8E;&#x4E8B;&#x5B9E;&#x3002;&#x6211;&#x4EEC;&#x52AA;&#x529B;&#x575A;&#x6301;&#x5A92;&#x4F53;&#x5DE5;&#x4F5C;&#x7684;&#x539F;&#x5219;&#xFF0C;&#x5E76;&#x4F53;&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x7684;&#x65B0;&#x95FB;&#x5199;&#x4F5C;&#x6D3B;&#x52A8;&#x4E2D;&#xFF0C;&#x540C;&#x65F6;&#x4E5F;&#x8981;&#x8BA4;&#x8BC6;&#x5230;&#xFF1A;&#x6211;&#x4EEC;&#x4E0D;&#x662F;&#x5168;&#x804C;&#x7684;&#x6743;&#x5A01;&#x5A92;&#x4F53;&#x5DE5;&#x4F5C;&#x8005;&#xFF0C;&#x800C;&#x662F;&#x8BD5;&#x56FE;&#x505A;&#x6B63;&#x786E;&#x4E4B;&#x4E8B;&#x7684;&#x5B9E;&#x8DF5;&#x8005;&#x3002;</p>
+                            </div>
+                            <div data-col="1/3"><img src="./styles/img/7655e10.jpg" alt="Content you Trust"></div>
+                        </div>
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                    </div>
+                </section>
+                <section class="section container static-page__writers">
+                    <div class="container__inner">
+                        <h1 class="text-center">&#x8BA4;&#x8BC6;InfoQ&#x7684;&#x793E;&#x533A;&#x7F16;&#x8F91;&#x4EEC;&#xFF01;</h1>
+                        <ul data-cols="4" class="no-style cards boxes">
+                            <li><a href="profile_&#x5F20;&#x9F99;.html"><img src="./styles/img/bbe5d44.png" alt="&#x5F20;&#x9F99;">
+                                    <h4>&#x5F20;&#x9F99;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x9AD8;&#x6602;.html"><img src="./styles/img/7a2452c.jpg" alt="&#x9AD8;&#x6602;">
+                                    <h4>&#x9AD8;&#x6602;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x970D;&#x6CF0;&#x7A33;.html"><img src="./styles/img/e1d3e4e.jpg" alt="&#x970D;&#x6CF0;&#x7A33;">
+                                    <h4>&#x970D;&#x6CF0;&#x7A33;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x4E54;&#x6881;.html"><img src="./styles/img/31ed40c.jpg" alt="&#x4E54;&#x6881;">
+                                    <h4>&#x4E54;&#x6881;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x80E1;&#x952E;.html"><img src="./styles/img/74dbcf2.jpg" alt="&#x80E1;&#x952E;">
+                                    <h4>&#x80E1;&#x952E;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x80E1;&#x952E;.html"><img src="./styles/img/4f1223b.jpg" alt="&#x80E1;&#x952E;">
+                                    <h4>&#x80E1;&#x952E;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x8096;&#x6866;.html"><img src="./styles/img/0112c7e.jpg" alt="&#x8096;&#x6866;">
+                                    <h4>&#x8096;&#x6866;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x738B;&#x7FD4;.html"><img src="./styles/img/a58aaa7.jpg" alt="&#x738B;&#x7FD4;">
+                                    <h4>&#x738B;&#x7FD4;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x674E;&#x5251;.html"><img src="./styles/img/dcff323.jpg" alt="&#x674E;&#x5251;">
+                                    <h4>&#x674E;&#x5251;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x6731;&#x6C38;&#x5149;.html"><img src="./styles/img/37b37f8.jpg" alt="&#x6731;&#x6C38;&#x5149;">
+                                    <h4>&#x6731;&#x6C38;&#x5149;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x5F20;&#x51EF;&#x5CF0;.html"><img src="./styles/img/faace9d.jpg" alt="&#x5F20;&#x51EF;&#x5CF0;">
+                                    <h4>&#x5F20;&#x51EF;&#x5CF0;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x5F20;&#x9038;.html"><img src="./styles/img/2724dba.jpg" alt="&#x5F20;&#x9038;">
+                                    <h4>&#x5F20;&#x9038;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x90ED;&#x6653;&#x521A;.html"><img src="./styles/img/d26fccb.jpg" alt="&#x90ED;&#x6653;&#x521A;">
+                                    <h4>&#x90ED;&#x6653;&#x521A;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x90D1;&#x67EF;.html"><img src="./styles/img/a0ed81d.jpg" alt="&#x90D1;&#x67EF;">
+                                    <h4>&#x90D1;&#x67EF;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x66F9;&#x4E91;&#x98DE;.html"><img src="./styles/img/537dc0e.jpg" alt="&#x66F9;&#x4E91;&#x98DE;">
+                                    <h4>&#x66F9;&#x4E91;&#x98DE;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x6C99;&#x6653;&#x5170;.html"><img src="./styles/img/6e56a0c.jpg" alt="&#x6C99;&#x6653;&#x5170;">
+                                    <h4>&#x6C99;&#x6653;&#x5170;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x8D75;&#x52BC;.html"><img src="./styles/img/e35850d.png" alt="&#x8D75;&#x52BC;">
+                                    <h4>&#x8D75;&#x52BC;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x97E9;&#x9534;.html"><img src="./styles/img/c063feb.jpg" alt="&#x97E9;&#x9534;">
+                                    <h4>&#x97E9;&#x9534;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x674E;&#x660E;&#xFF08;nasi&#xFF09;.html"><img src="./styles/img/93c0982.png" alt="&#x674E;&#x660E;&#xFF08;nasi&#xFF09;">
+                                    <h4>&#x674E;&#x660E;&#xFF08;nasi&#xFF09;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x90ED;&#x857E;.html"><img src="./styles/img/74918d9.jpg" alt="&#x90ED;&#x857E;">
+                                    <h4>&#x90ED;&#x857E;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x5F20;&#x5584;&#x53CB;.html"><img src="./styles/img/585d844.jpg" alt="&#x5F20;&#x5584;&#x53CB;">
+                                    <h4>&#x5F20;&#x5584;&#x53CB;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x9EC4;&#x749C;.html"><img src="./styles/img/421838a.png" alt="&#x9EC4;&#x749C;">
+                                    <h4>&#x9EC4;&#x749C;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x5D14;&#x5EB7;.html"><img src="./styles/img/1382df7.jpg" alt="&#x5D14;&#x5EB7;">
+                                    <h4>&#x5D14;&#x5EB7;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x9EA6;&#x5929;&#x5FD7;.html"><img src="./styles/img/82fc1fb.jpg" alt="&#x9EA6;&#x5929;&#x5FD7;">
+                                    <h4>&#x9EA6;&#x5929;&#x5FD7;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x6768;&#x6668;.html"><img src="./styles/img/72d8e2a.jpg" alt="&#x6768;&#x6668;">
+                                    <h4>&#x6768;&#x6668;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x738B;&#x6CE2;.html"><img src="./styles/img/4485651.jpg" alt="&#x738B;&#x6CE2;">
+                                    <h4>&#x738B;&#x6CE2;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x5F20;&#x6653;&#x5E86;.html"><img src="./styles/img/77bc63a.jpg" alt="&#x5F20;&#x6653;&#x5E86;">
+                                    <h4>&#x5F20;&#x6653;&#x5E86;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x4E01;&#x96EA;&#x4E30;.html"><img src="./styles/img/e4edf9b.jpg" alt="&#x4E01;&#x96EA;&#x4E30;">
+                                    <h4>&#x4E01;&#x96EA;&#x4E30;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x91D1;&#x660E;.html"><img src="./styles/img/a19686e.jpg" alt="&#x91D1;&#x660E;">
+                                    <h4>&#x91D1;&#x660E;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x6ED5;&#x632F;&#x5B87;.html"><img src="./styles/img/be3af56.jpg" alt="&#x6ED5;&#x632F;&#x5B87;">
+                                    <h4>&#x6ED5;&#x632F;&#x5B87;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x738B;&#x745C;&#x73E9;.html"><img src="./styles/img/8e10968.jpg" alt="&#x738B;&#x745C;&#x73E9;">
+                                    <h4>&#x738B;&#x745C;&#x73E9;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x9A6C;&#x56FD;&#x8000;.html"><img src="./styles/img/4495231.jpg" alt="&#x9A6C;&#x56FD;&#x8000;">
+                                    <h4>&#x9A6C;&#x56FD;&#x8000;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x91D1;&#x6BC5;.html"><img src="./styles/img/5cdb3f1.jpg" alt="&#x91D1;&#x6BC5;">
+                                    <h4>&#x91D1;&#x6BC5;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x4FAF;&#x4F2F;&#x8587;.html"><img src="./styles/img/71fc727.jpg" alt="&#x4FAF;&#x4F2F;&#x8587;">
+                                    <h4>&#x4FAF;&#x4F2F;&#x8587;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x7533;&#x5EFA;.html"><img src="./styles/img/db7a252.jpg" alt="&#x7533;&#x5EFA;">
+                                    <h4>&#x7533;&#x5EFA;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x5D07;&#x6866;.html"><img src="./styles/img/f0a828f.jpg" alt="&#x5D07;&#x6866;">
+                                    <h4>&#x5D07;&#x6866;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x6641;&#x6653;&#x5A1F;.html"><img src="./styles/img/cae2e24.jpg" alt="&#x6641;&#x6653;&#x5A1F;">
+                                    <h4>&#x6641;&#x6653;&#x5A1F;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x674E;&#x6C38;&#x4F26;.html"><img src="./styles/img/64c1476.jpg" alt="&#x674E;&#x6C38;&#x4F26;">
+                                    <h4>&#x674E;&#x6C38;&#x4F26;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x8D56;&#x7FE5;&#x7FD4;.html"><img src="./styles/img/bb6a740.jpg" alt="&#x8D56;&#x7FE5;&#x7FD4;">
+                                    <h4>&#x8D56;&#x7FE5;&#x7FD4;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x77F3;&#x6C38;&#x8D85;.html"><img src="./styles/img/72a57a4.jpg" alt="&#x77F3;&#x6C38;&#x8D85;">
+                                    <h4>&#x77F3;&#x6C38;&#x8D85;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x9C8D;&#x592E;&#x821F;.html"><img src="./styles/img/cd8a168.jpg" alt="&#x9C8D;&#x592E;&#x821F;">
+                                    <h4>&#x9C8D;&#x592E;&#x821F;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x6C60;&#x5EFA;&#x5F3A;.html"><img src="./styles/img/73b1bb7.jpg" alt="&#x6C60;&#x5EFA;&#x5F3A;">
+                                    <h4>&#x6C60;&#x5EFA;&#x5F3A;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x9AD8;&#x7FCC;&#x7FD4;.html"><img src="./styles/img/f038360.jpg" alt="&#x9AD8;&#x7FCC;&#x7FD4;">
+                                    <h4>&#x9AD8;&#x7FCC;&#x7FD4;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x9648;&#x5B87;.html"><img src="./styles/img/84faca1.jpg" alt="&#x9648;&#x5B87;">
+                                    <h4>&#x9648;&#x5B87;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x738B;&#x6052;&#x6D9B;.html"><img src="./styles/img/814053e.jpg" alt="&#x738B;&#x6052;&#x6D9B;">
+                                    <h4>&#x738B;&#x6052;&#x6D9B;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x8D3E;&#x56FD;&#x6E05;.html"><img src="./styles/img/f2fa26e.jpg" alt="&#x8D3E;&#x56FD;&#x6E05;">
+                                    <h4>&#x8D3E;&#x56FD;&#x6E05;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x59DA;&#x4E5D;&#x5F3A;.html"><img src="./styles/img/f8e60bc.jpg" alt="&#x59DA;&#x4E5D;&#x5F3A;">
+                                    <h4>&#x59DA;&#x4E5D;&#x5F3A;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x9EC4;&#x73B2;&#x8273;.html"><img src="./styles/img/9d863bd.jpg" alt="&#x9EC4;&#x73B2;&#x8273;">
+                                    <h4>&#x9EC4;&#x73B2;&#x8273;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x90ED;&#x96EA;&#x54C1;.html"><img src="./styles/img/c5a3b7c.jpg" alt="&#x90ED;&#x96EA;&#x54C1;">
+                                    <h4>&#x90ED;&#x96EA;&#x54C1;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x96F7;&#x6148;&#x7965;.html"><img src="./styles/img/68a5bb7.jpg" alt="&#x96F7;&#x6148;&#x7965;">
+                                    <h4>&#x96F7;&#x6148;&#x7965;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x8D75;&#x9707;&#x4E00;.html"><img src="./styles/img/32accaa.jpg" alt="&#x8D75;&#x9707;&#x4E00;">
+                                    <h4>&#x8D75;&#x9707;&#x4E00;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x5F6D;&#x8D85;.html"><img src="./styles/img/35307fc.jpg" alt="&#x5F6D;&#x8D85;">
+                                    <h4>&#x5F6D;&#x8D85;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x65B9;&#x76DB;.html"><img src="./styles/img/4d2ad61.jpg" alt="&#x65B9;&#x76DB;">
+                                    <h4>&#x65B9;&#x76DB;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x590F;&#x96EA;.html"><img src="./styles/img/9fef934.png" alt="&#x590F;&#x96EA;">
+                                    <h4>&#x590F;&#x96EA;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x5F20;&#x536B;&#x6EE8;.html"><img src="./styles/img/cc36c0f.jpg" alt="&#x5F20;&#x536B;&#x6EE8;">
+                                    <h4>&#x5F20;&#x536B;&#x6EE8;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x9AD8;&#x5609;&#x5CFB;.html"><img src="./styles/img/65807f3.jpg" alt="&#x9AD8;&#x5609;&#x5CFB;">
+                                    <h4>&#x9AD8;&#x5609;&#x5CFB;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x6768;&#x8D5B;.html"><img src="./styles/img/b8fe6fb.jpg" alt="&#x6768;&#x8D5B;">
+                                    <h4>&#x6768;&#x8D5B;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x674E;&#x5F6C;.html"><img src="./styles/img/5aafdc0.jpg" alt="&#x674E;&#x5F6C;">
+                                    <h4>&#x674E;&#x5F6C;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x90B5;&#x601D;&#x534E;.html"><img src="./styles/img/e335d14.jpg" alt="&#x90B5;&#x601D;&#x534E;">
+                                    <h4>&#x90B5;&#x601D;&#x534E;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x6885;&#x96EA;&#x677E;.html"><img src="./styles/img/aa7d589.jpg" alt="&#x6885;&#x96EA;&#x677E;">
+                                    <h4>&#x6885;&#x96EA;&#x677E;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x5B59;&#x955C;&#x6D9B;.html"><img src="./styles/img/81927ef.png" alt="&#x5B59;&#x955C;&#x6D9B;">
+                                    <h4>&#x5B59;&#x955C;&#x6D9B;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x81E7;&#x79C0;&#x6D9B;.html"><img src="./styles/img/5368c32.png" alt="&#x81E7;&#x79C0;&#x6D9B;">
+                                    <h4>&#x81E7;&#x79C0;&#x6D9B;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x738B;&#x67AB;.html"><img src="./styles/img/f30ee7b.jpg" alt="&#x738B;&#x67AB;">
+                                    <h4>&#x738B;&#x67AB;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x90B1;&#x5F66;&#x94ED;.html"><img src="./styles/img/bfa7dc1.jpg" alt="&#x90B1;&#x5F66;&#x94ED;">
+                                    <h4>&#x90B1;&#x5F66;&#x94ED;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x738B;&#x6587;&#x521A;.html"><img src="./styles/img/5a12c50.jpg" alt="&#x738B;&#x6587;&#x521A;">
+                                    <h4>&#x738B;&#x6587;&#x521A;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x5434;&#x5B87;.html"><img src="./styles/img/f4e8f5a.jpg" alt="&#x5434;&#x5B87;">
+                                    <h4>&#x5434;&#x5B87;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x738B;&#x4E3D;&#x5A1F;.html"><img src="./styles/img/a633c10.jpg" alt="&#x738B;&#x4E3D;&#x5A1F;">
+                                    <h4>&#x738B;&#x4E3D;&#x5A1F;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x7A0B;&#x6653;&#x660E;.html"><img src="./styles/img/93b2ab0.png" alt="&#x7A0B;&#x6653;&#x660E;">
+                                    <h4>&#x7A0B;&#x6653;&#x660E;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x53F6;&#x7490;.html"><img src="./styles/img/b2dbdd2.png" alt="&#x53F6;&#x7490;">
+                                    <h4>&#x53F6;&#x7490;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x5510;&#x5DE7;.html"><img src="./styles/img/a37ceae.png" alt="&#x5510;&#x5DE7;">
+                                    <h4>&#x5510;&#x5DE7;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x5305;&#x7814;.html"><img src="./styles/img/78f19cb.png" alt="&#x5305;&#x7814;">
+                                    <h4>&#x5305;&#x7814;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x9A6C;&#x5FB7;&#x594E;.html"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAMAAAC5zwKfAAAA4VBMVEXh5u719/r29/r19/r29/r3+Pv39/r19/n3+Pv29/r3+Pr29/r09fj29/r29/rl6fH19/nl6e/////+/v7h5e39/f78/P3i5u7x8/fk5+/v8fXj5u77/P3g5O3n6vHy8/fi5e7m6fDr7fPp7PL4+fvt7/Tq7fPu8PXl6fD3+Pr19vno6vHs7vTz9fjh5O3r7vP6+/zy9Pfs7/T09fjj5+/7+/zw8vbk6O/6+vzo6/H8/f329/nv8fbq7PLt8PXl6PDs7vP5+vvh5e79/f3z9Pjo6/L2+Pr5+vz29/rp6/L09vnQCy9nAAAAEnRSTlN4u7y6vb3Aub6+wcC5v8GBuICzLDVrAAABsElEQVR4Xu3XxZLcMBCA4eVNZilpkXGYmZd5g+//QKuamsOAJY1aPqQq/h/gO9iWu7UXp1x6YAZmYAaGpT+VUpgSSOs9Dov4pFx0BsM5g5WYN3UC+3MCG5ECxYOdISQUVbBgjUByDzjQA2U9DBiAJs8erBPQVbMFKQdtTFiCARgqWIJVEzizBAmYKlqBFIxN/30wAzMwA2MzKOxAZgRjO/DV5HFL8K8JbFmCjbRHQN4EDpQg8q34tmAbMaO0YFcPjqxBQbTgDw2I+XB4bA92dOAcAca/1d67wIBNogQbuA02UB87HBjfJ3s8xII08THOrmMEqD4vN6HTxae16XERO4FNxXKNBuNIN5vMoHkWUASonVbPjuCL4hRjQZ9vgiTvApY5bMXGaHBwA4nNxn0ESGsRKOONN0tQPNyBNjYXFuDUY2CMjPwdwesPAjtFJs0dwFKbwO7d5w3g7U+wrFrRgPUqIPpVVoDdISCb1egWSJ8icIgHxXXwNgLH2OMayMG5u1UwhBQSK6CfBuj/t+Ciq1wudyk7kZ3JLmRfZF9lx7Ij2cGy/WWHy05l57Jv3xfUJy4cdV+W7uMoAAAAAElFTkSuQmCC" alt="&#x9A6C;&#x5FB7;&#x594E;">
+                                    <h4>&#x9A6C;&#x5FB7;&#x594E;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x5434;&#x6D77;&#x661F;.html"><img src="./styles/img/2a5baa4.png" alt="&#x5434;&#x6D77;&#x661F;">
+                                    <h4>&#x5434;&#x6D77;&#x661F;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x5218;&#x5B87;.html"><img src="./styles/img/945bd02.png" alt="&#x5218;&#x5B87;">
+                                    <h4>&#x5218;&#x5B87;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x674E;&#x6E05;&#x7389;.html"><img src="./styles/img/d0b46ec.jpg" alt="&#x674E;&#x6E05;&#x7389;">
+                                    <h4>&#x674E;&#x6E05;&#x7389;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x97E9;&#x9646;.html"><img src="./styles/img/edb2747.jpg" alt="&#x97E9;&#x9646;">
+                                    <h4>&#x97E9;&#x9646;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x5218;&#x632F;&#x6D9B;.html"><img src="./styles/img/5ab6b40.jpg" alt="&#x5218;&#x632F;&#x6D9B;">
+                                    <h4>&#x5218;&#x632F;&#x6D9B;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x8463;&#x6653;&#x6770;.html"><img src="./styles/img/a683705.jpg" alt="&#x8463;&#x6653;&#x6770;">
+                                    <h4>&#x8463;&#x6653;&#x6770;</h4>
+                                </a></li>
+                            <li><a href="profile_&#x59DC;&#x4FE1;&#x5B9D; &#xFF08;Bob Jiang&#xFF09;.html"><img src="./styles/img/fcc6d2e.png" alt="&#x59DC;&#x4FE1;&#x5B9D; &#xFF08;Bob Jiang&#xFF09;">
+                                    <h4>&#x59DC;&#x4FE1;&#x5B9D; &#xFF08;Bob Jiang&#xFF09;</h4>
+                                </a></li>
+                        </ul>
+                        <ul data-cols="4" class="no-style cards">
+                            <li class="actions"><a href="contribute.html" class="flag button__icon icon us button button__outline button__large icon__blue">English Editorial Team</a></li>
+                            <li class="actions"><a href="br_contribute.html" class="flag button__icon icon br button button__outline button__large icon__blue">Brazil Editorial Team</a></li>
+                            <li class="actions"><a href="fr_contribute.html" class="flag button__icon icon fr button button__outline button__large icon__blue">France Editorial Team</a></li>
+                            <li class="actions"><a href="jp_contribute.html" class="flag button__icon icon jp button button__outline button__large icon__blue">Japan Editorial Team</a></li>
+                        </ul>
+                        <div class="columns">
+                            <div class="actions__left"></div>
+                            <div class="actions__right"><a href="aboutInfoQ-cn.html" class="button button__arrow arrow__right">&#x5173;&#x4E8E;&#x6211;&#x4EEC;</a></div>
+                        </div>
+                        <hr>
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                        <!---->
+                    </div>
+                </section>
+            </section>
         </main>
         <footer class="footer">
             <!---->

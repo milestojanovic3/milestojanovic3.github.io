@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head data-n-head>
     <title>InfoQ | Software Development News, Guides, Videos</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,10 +11,8 @@
     <link href="styles/icons.css" rel="stylesheet" media="screen">
     <link href="styles/print.css" rel="stylesheet" media="print">
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default"></script>
-    <script src="scripts/infoq.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        loggedIn = true
-    </script>
+    <script src="polyfills.js" type="text/javascript"></script>
+    <script src="infoq.js" type="text/javascript"></script>
     <script>
         var JSi18n = window.JSi18n || {},
             CommonUtils = {
@@ -82,13 +80,11 @@
                     noTopic: "You are currently not following any topics",
                     chooseOne: "Choose one...",
                     bookmarked: "Content Bookmarked",
-                    unbookmarked: "Content Unbookmarked",
-                    invalidShare: "Remove invalid emails first!",
-                    maxShare: "Maximum number of shares exceeded!"
+                    unbookmarked: "Content Unbookmarked"
                 },
                 adbStrings: ["We notice you’re using an ad blocker", "We understand why you use ad blockers. However to keep InfoQ free we need your support. InfoQ will not provide your data to third parties without individual opt-in consent. We only work with advertisers relevant to our readers. Please consider whitelisting us."]
             }),
-            currentUserId = "daniel-bryant",
+            currentUserId = 101975445,
             usersInPage = [{
                 ref: "author-George-Doe",
                 id: "author-1",
@@ -1089,24 +1085,48 @@
                                     </div><input value="Go" type="submit" disabled class="search__go">
                                 </form>
                             </div>
-                            <div class="button__dropdown dropdown user__login"><button aria-label="Dorian" class="button button__small button__green button__arrow arrow__true button__icon icon icon__user icon--only">Dorian </button>
+                            <div class="button__dropdown dropdown user__login"><button aria-label="Sign Up / Login" class="button button__small button__green button__arrow arrow__true button__icon icon icon__user icon--only">Sign Up / Login </button>
                                 <div class="dropdown__holder">
                                     <!---->
                                     <div class="dropdown__content">
                                         <div class="login__dropdown">
-                                            <div class="user__menu">
-                                                <h4 class="user__welcome">Welcome <span class="user__name"></span></h4>
-                                                <ul class="user__actions no-style dropdown__nav">
-                                                    <li><a href="profile.html">Profile</a></li>
-                                                    <li><a href="settings.html">Settings</a></li>
-                                                    <li><a href="bookmarks.html">Reading List</a></li>
-                                                    <li class="separator separator__line">
-                                                        <!---->
-                                                    </li>
-                                                    <li><a href="settings.html#topics-you-follow">Topics you follow</a></li>
-                                                    <li><a href="settings.html#peers-you-follow">Peers you follow</a></li>
-                                                    <li><a href="settings.html#editors-picks">Editor&apos;s picks</a></li>
-                                                </ul><a href="signout.html" class="button button__gray">Sign out</a>
+                                            <div data-vv-scope="login" class="login__module">
+                                                <!---->
+                                                <div class="login__username">
+                                                    <!---->
+                                                    <form class="login__form form"><input type="hidden" name="loginWidgetOrigin" id="loginWidgetOrigin" value="mainLogin"><input type="hidden" name="fromP13N"><input type="hidden" name="fromP13NId"><input type="hidden" name="fromP13NType">
+                                                        <div class="field form__row input__text input__small"><label for="email" class="label field__label">Email<span class="input__req">*</span></label><input id="email" placeholder class="input field__input" type="text">
+                                                            <!---->
+                                                            <!---->
+                                                            <!---->
+                                                        </div>
+                                                        <div class="field form__row input__password input__small"><label for="password" class="label field__label">Password<span class="input__req">*</span></label><input type="password" id="password" placeholder class="input field__input">
+                                                            <!---->
+                                                            <!---->
+                                                            <!---->
+                                                        </div>
+                                                        <div class="login__actions"><input type="submit" value="Login" class="form__row button button__medium button__green"><a href="aboutInfoQ-cn.html#" class="forgot button button__unstyled">Forgot your password?</a></div>
+                                                    </form>
+                                                    <form data-vv-scope="forgot" class="forgot__form form">
+                                                        <div class="field form__row input__text input__small"><label for="email-forgot" class="label field__label">InfoQ Account Email<span class="input__req">*</span></label><input id="email-forgot" placeholder class="input field__input" type="text">
+                                                            <!---->
+                                                            <!---->
+                                                            <!---->
+                                                        </div><input type="submit" value="Send Recovery Email" class="button button__medium button__green">
+                                                        <p class="login__actions"><button aria-label="Back to login" class="back-to-login button button__unstyled">Back to login </button></p>
+                                                    </form>
+                                                </div>
+                                                <div class="login__social">
+                                                    <h4 class="heading subsection__heading">Login with:</h4>
+                                                    <div class="login__socials">
+                                                        <div class="social__connect form__row login__socials">
+                                                            <!----><a href="https://google.com" class="button button__medium button__gray button__icon icon icon__google"> Google</a><a href="https://microsoft.com" class="button button__medium button__icon icon icon__microsoft"> Microsoft</a><a href="https://twitter.com" class="button button__medium button__icon icon icon__twitter"> Twitter</a><a href="https://facebook.com" class="button button__medium button__icon icon icon__facebook"> Facebook</a></div>
+                                                    </div>
+                                                    <p class="meta gdpr">When signing in using social media accounts, those accounts may use information for their own purposes. We recommend you view the privacy notice of those social media accounts.</p>
+                                                </div>
+                                                <form class="form login__signup">
+                                                    <h4 class="heading">Don&apos;t have an InfoQ account?</h4><a href="signup.html" class="button button__medium button__green">Sign up</a>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -1118,18 +1138,20 @@
                                     <div class="dropdown__header">
                                         <div class="heading__container actions notifications__header">
                                             <div class="actions__left">
-                                                <h5 class="heading">Welcome, Dorian</h5>
-                                                <!---->
-                                                <p>To get you started with what InfoQ has to offer, we recommend you follow:</p>
+                                                <h5 class="heading">Login to unlock InfoQ&#x2019;s new features</h5>
                                                 <!---->
                                             </div>
                                             <!---->
                                         </div>
                                     </div>
                                     <div class="dropdown__content">
-                                        <div class="picks"></div>
+                                        <ul class="notifications__welcome no-style">
+                                            <li class="icon__up-to-date">Stay up to date and get notified</li>
+                                            <li class="icon__like-content">Like your favorite content</li>
+                                            <li class="icon__follow-favorites">Follow your favorite editors and peers</li>
+                                        </ul><button aria-label="Login" class="login button button__medium button__green">Login </button><a href="register.html" class="button button__unstyled">Don&apos;t have an account? Register</a>
                                     </div>
-                                    <div class="dropdown__footer"><button aria-label="Dismiss" class="notifications__footer button button__unstyled button__medium">Dismiss </button></div>
+                                    <!---->
                                 </div>
                             </div>
                         </div>
@@ -1176,7 +1198,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="key-takeaway-points-and-lessons-learned-from-qcon-london-2017" class="articles">
+                                                    <li data-id="key-takeaway-points-and-lessons-learned-from-qcon-london-2017">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1221,7 +1243,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="latency-sensitive-microservices" class="articles">
+                                                    <li data-id="latency-sensitive-microservices">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1264,7 +1286,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="do-we-need-another-key-value-store-" class="articles">
+                                                    <li data-id="do-we-need-another-key-value-store-">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1310,7 +1332,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="always-be-publishing--continuous-integration---collaboration-in-code-repositories-for-rest-api-docs" class="articles">
+                                                    <li data-id="always-be-publishing--continuous-integration---collaboration-in-code-repositories-for-rest-api-docs">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1352,7 +1374,7 @@
                                                     <!---->
                                                 </div>
                                                 <ul data-size="large" data-horizontal="true" data-tax taxonomy="articles" class="cards no-style">
-                                                    <li data-id="spotify-lessons--learning-to-let-go-of-machines" class="articles">
+                                                    <li data-id="spotify-lessons--learning-to-let-go-of-machines">
                                                         <!---->
                                                         <div class="card__content">
                                                             <!---->
@@ -1441,86 +1463,172 @@
             </div>
         </header>
         <main>
-            <div>
-                <section class="section container white">
+            <section class="static-page">
+                <section class="section container static-page__world white">
                     <div class="container__inner">
-                        <article data-type="presentation" class="article grid early authenticated needsAuthForEarly">
-                            <!---->
-                            <!---->
-                            <!---->
-                            <h1>CSS Grid Presentation Layout</h1>
-                            <!---->
-                            <!---->
-                            <!---->
-                            <!---->
-                            <!---->
-                            <div text="This is a restricted presentation that can only be viewed by QCon London 2018 attendees!" class="announcement"><button aria-label="Close" class="close button button__unstyled button__icon icon icon__close icon--only">Close </button>
-                                <div>
-                                    <h3 class="heading">Thank you for attending QCon London 2018</h3>
-                                    <p>As per your request we have developed a set of features that allow you to reduce the noise, while not losing sight of anything that is important. #[a Get email and web notifications] by choosing the topics you are interested in.</p>
-                                    <!---->
-                                    <!---->
-                                    <p class="meta">If you have any problems authenticating please contact <a href="mailto:conference-attendees@infoq.com">conference-attendees@infoq.com</a>.</p>
+                        <ul class="horizontal-subnav no-style">
+                            <li><a href="contribute-cn.html">&#x6295;&#x7A3F;</a></li>
+                            <li><a href="aboutInfoQ-cn.html" class="nuxt-link-exact-active active">&#x5173;&#x4E8E;&#x6211;&#x4EEC;</a></li>
+                        </ul>
+                        <div class="columns">
+                            <div data-col="3/4">
+                                <h1>&#x6211;&#x4EEC;&#x7684;&#x5B97;&#x65E8;</h1>
+                                <p><strong>&#x4FC3;&#x8FDB;&#x8F6F;&#x4EF6;&#x5F00;&#x53D1;&#x9886;&#x57DF;&#x77E5;&#x8BC6;&#x4E0E;&#x521B;&#x65B0;&#x7684;&#x4F20;&#x64AD;</strong></p>
+                                <p>InfoQ&#x662F;&#x4E00;&#x5BB6;&#x5168;&#x7403;&#x6027;&#x5728;&#x7EBF;&#x65B0;&#x95FB;/&#x793E;&#x533A;&#x7F51;&#x7AD9;&#xFF0C;&#x57FA;&#x4E8E;&#x5B9E;&#x8DF5;&#x8005;&#x9A71;&#x52A8;&#x7684;&#x793E;&#x533A;&#x6A21;&#x5F0F;&#x5EFA;&#x7ACB;&#x3002;<br> &#x8F6F;&#x4EF6;&#x6B63;&#x5728;&#x6539;&#x53D8;&#x4E16;&#x754C;&#x3002;&#x4FC3;&#x8FDB;&#x8F6F;&#x4EF6;&#x5F00;&#x53D1;&#x9886;&#x57DF;&#x77E5;&#x8BC6;&#x4E0E;&#x521B;&#x65B0;&#x7684;&#x4F20;&#x64AD;&#x662F;&#x6211;&#x4EEC;&#x7684;&#x4F7F;&#x547D;&#x3002;&#x4E3A;&#x6B64;&#xFF0C;&#x6211;&#x4EEC;&#x81F4;&#x529B;&#x4E8E;&#x63D0;&#x4F9B;&#x4E2D;&#x7ACB;&#x7684;&#x3001;&#x7531;&#x6280;&#x672F;&#x5B9E;&#x8DF5;&#x8005;&#x4E3B;&#x5BFC;&#x7684;&#x4F1A;&#x8BAE;&#x4EE5;&#x53CA;&#x65B0;&#x95FB;&#x3001;&#x6587;&#x7AE0;&#x3001;&#x89C6;&#x9891;&#x6F14;&#x8BB2;&#x548C;&#x91C7;&#x8BBF;&#x7B49;&#x8D44;&#x8BAF;&#x670D;&#x52A1;&#xFF0C;&#x9762;&#x5411;&#x7814;&#x53D1;&#x56E2;&#x961F;&#x4E2D;&#x90A3;&#x4E9B;&#x6709;&#x521B;&#x65B0;&#x7CBE;&#x795E;&#x7684;&#x4EBA;&#x7FA4;&#xFF1A;&#x56E2;&#x961F;&#x9886;&#x5BFC;&#x8005;&#x3001;&#x67B6;&#x6784;&#x5E08;&#x3001;&#x9879;&#x76EE;&#x7ECF;&#x7406;&#x3001;&#x5DE5;&#x7A0B;&#x603B;&#x76D1;&#x548C;&#x9AD8;&#x7EA7;&#x8F6F;&#x4EF6;&#x5F00;&#x53D1;&#x8005;&#x7B49;&#x3002;&#x76EE;&#x524D;&#x5728;&#x5168;&#x7403;&#x62E5;&#x6709;&#x82F1;&#x3001;&#x4E2D;&#x3001;&#x65E5;&#x3001;&#x6CD5;&#x3001;&#x8461;&#x8404;&#x7259;&#x4E94;&#x79CD;&#x8BED;&#x8A00;&#x7684;&#x7AD9;&#x70B9;&#x3002;</p>
+                                <hr>
+                                <h2><img src="./styles/img/5e322a4.svg" alt="InfoQ Logo"> &#x5728;&#x5168;&#x7403;</h2>
+                                <h3><strong>&#x521D;&#x5FC3;&#xFF1A;</strong><span class="green">&#x624E;&#x6839;&#x793E;&#x533A;&#x3001;&#x670D;&#x52A1;&#x793E;&#x533A;&#x3001;&#x5F15;&#x9886;&#x793E;&#x533A;</span></h3>
+                                <p>&#x5728;InfoQ&#x4E4B;&#x524D;&#xFF0C;InfoQ CEO&#x517C;&#x8054;&#x5408;&#x521B;&#x59CB;&#x4EBA;Floyd Marinescu&#x6BD5;&#x4E1A;&#x4E8E;&#x6ED1;&#x94C1;&#x5362;&#x5927;&#x5B66;&#x8BA1;&#x7B97;&#x673A;&#x7CFB;&#xFF0C;&#x521B;&#x5EFA;&#x5E76;&#x8FD0;&#x8425;&#x4E86;&#x6700;&#x5927;&#x7684;&#x72EC;&#x7ACB;Java&#x793E;&#x533A;theserverside.com&#x3002;Floyd&#x5E0C;&#x671B;&#x6210;&#x7ACB;&#x4E00;&#x4E2A;&#x53EA;&#x4E13;&#x6CE8;&#x4E8E;&#x63D0;&#x4F9B;&#x5728;&#x8F6F;&#x4EF6;&#x5F00;&#x53D1;&#x9886;&#x57DF;&#x53EF;&#x80FD;&#x5F71;&#x54CD;&#x53D8;&#x9769;&#x548C;&#x521B;&#x65B0;&#x5185;&#x5BB9;&#x7684;&#x6280;&#x672F;&#x65B0;&#x95FB;&#x793E;&#x533A;&#xFF0C;&#x8FD9;&#x4E2A;&#x793E;&#x533A;&#x9762;&#x5411;&#x5168;&#x7403;&#xFF0C;&#x7528;&#x591A;&#x79CD;&#x8BED;&#x8A00;&#x5448;&#x73B0;&#x3002;&#x968F;&#x540E;&#xFF0C;Floyd&#x4E0E;&#x53E6;&#x5916;&#x4E24;&#x4F4D;&#x8054;&#x5408;&#x521B;&#x59CB;&#x4EBA;Roxanne Beverstein&#x4E0E;Alex Popescu&#xFF0C;&#x4E8E;2006&#x5E74;&#x6B63;&#x5F0F;&#x521B;&#x7ACB;InfoQ&#xFF0C;&#x5B9E;&#x73B0;&#x4E86;&#x8FD9;&#x4E00;&#x613F;&#x666F;&#x3002;</p>
+                                <div class="actions__left"><a href="about-InfoQ.html" class="button button__outline button__arrow arrow__right">&#x4E86;&#x89E3;&#x66F4;&#x591A;&#x521D;&#x521B;&#x80CC;&#x666F;</a></div>
+                                <h3><strong>&#x4ECA;&#x5929;&#xFF1A;</strong><span class="green">&#x63A8;&#x52A8;&#x8F6F;&#x4EF6;&#x5F00;&#x53D1;&#x6280;&#x672F;&#x7684;&#x53D1;&#x5C55;&#x548C;&#x53D8;&#x9769;</span></h3>
+                                <p>&#x6BCF;&#x5929;&#xFF0C;&#x6211;&#x4EEC;&#x8EAB;&#x4E3A;&#x5F00;&#x53D1;&#x8005;&#x7684;&#x7F16;&#x8F91;&#x4EEC;&#x7528;5&#x79CD;&#x8BED;&#x8A00;&#xFF0C;&#x4E3A;&#x5F00;&#x53D1;&#x8005;&#x4EEC;&#x521B;&#x4F5C;&#x548C;&#x5206;&#x4EAB;&#x6280;&#x672F;&#x5185;&#x5BB9;&#x3002;&#x6BCF;&#x4E2A;&#x6708;&#x7F51;&#x7AD9;&#x6709;&#x8D85;&#x8FC7;100&#x4E07;&#x7684;&#x72EC;&#x7ACB;&#x8BBF;&#x95EE;&#x91CF;&#xFF0C;&#x5185;&#x5BB9;&#x6765;&#x81EA;&#x4E8E;&#x5168;&#x7403;300&#x591A;&#x540D;&#x5206;&#x5E03;&#x5728;&#x5404;&#x5730;&#x7684;&#x5168;&#x804C;&#x7F16;&#x8F91;&#x548C;&#x517C;&#x804C;&#x793E;&#x533A;&#x7F16;&#x8F91;&#xFF0C;&#x6211;&#x4EEC;&#x8FD8;&#x5728;&#x6301;&#x7EED;&#x5EFA;&#x7ACB;&#x5404;&#x5730;&#x672C;&#x571F;&#x5316;&#x7684;&#x793E;&#x533A;&#x3002;&#x5982;&#x4ECA;InfoQ&#x6BCF;&#x5468;&#x4F1A;&#x53D1;&#x5E03;&#x8D85;&#x8FC7;150&#x7BC7;&#x539F;&#x521B;&#x6587;&#x7AE0;&#xFF0C;&#x5305;&#x62EC;&#x53EF;&#x4EE5;&#x514D;&#x8D39;&#x89C2;&#x770B;&#x7684;&#x6765;&#x81EA;35&#x4E2A;&#x56FD;&#x9645;&#x6027;&#x4F1A;&#x8BAE;&#x7684;&#x6F14;&#x8BB2;&#x89C6;&#x9891;&#x548C;&#x7531;12500&#x591A;&#x540D;&#x8BFB;&#x8005;&#x4EEC;&#x586B;&#x5199;&#x8FC7;&#x7684;&#x95EE;&#x5377;&#x8C03;&#x67E5;&#x3002;</p>
+                                <h3><strong>&#x5185;&#x5BB9;&#x5B9A;&#x4F4D;&#xFF1A;</strong><span class="green">InfoQ&#x3001;QCon&#x4E0E;&#x6280;&#x672F;&#x5E94;&#x7528;&#x66F2;&#x7EBF;</span></h3>
+                                <p>&#x5F00;&#x53D1;&#x8D1F;&#x8D23;&#x4EBA;&#x3001;&#x67B6;&#x6784;&#x5E08;&#x4E0E;&#x9879;&#x76EE;&#x7ECF;&#x7406;&#x901A;&#x8FC7;&#x9605;&#x8BFB;InfoQ&#x7684;&#x5185;&#x5BB9;&#x548C;&#x53C2;&#x52A0;&#x6211;&#x4EEC;&#x4E3B;&#x529E;&#x7684;&#x5927;&#x4F1A;&#x6765;&#x4E86;&#x89E3;&#x4E0B;&#x4E00;&#x6CE2;&#x521B;&#x65B0;&#x6027;&#x4E0E;&#x98A0;&#x8986;&#x6027;&#x7684;&#x6280;&#x672F;&#x3002;&#x8FD9;&#x4E9B;&#x6280;&#x672F;&#x901A;&#x5E38;&#x5C5E;&#x4E8E;&#x6280;&#x672F;&#x5E94;&#x7528;&#x751F;&#x547D;&#x5468;&#x671F;&#x4E2D;&#x7684;&#x201C;&#x521B;&#x65B0;&#x201D;&#x4E0E;&#x201C;&#x65E9;&#x671F;&#x5E94;&#x7528;&#x201D;&#x90E8;&#x5206;&#x3002;</p>
+                                <hr> <img src="./styles/img/e9e67cf.jpg" width="800" alt="Technology Adoption Curve">
+                                <p>InfoQ&#x4E0E;QCon&#x5728;2016&#x5E74;&#x7684;&#x7F16;&#x8F91;&#x62A5;&#x9053;&#x5C06;&#x5173;&#x6CE8;&#x201C;&#x521B;&#x65B0;&#x201D;&#x4E0E;&#x201C;&#x65E9;&#x671F;&#x5E94;&#x7528;&#x201D;&#x9636;&#x6BB5;&#x3001;&#x4EE5;&#x53CA;&#x6B63;&#x5904;&#x4E8E;&#x201C;&#x8DE8;&#x8D8A;&#x9E3F;&#x6C9F;&#x201D;&#x4E2D;&#x7684;&#x90E8;&#x5206;&#x5173;&#x952E;&#x6280;&#x672F;&#x3002;</p>
+                                <ul data-cols="3" class="no-style columns boxes topic__boxes">
+                                    <li><a href="iot.html" class="button">IOT</a></li>
+                                    <li><a href="microservices.html" class="button">&#x5FAE;&#x670D;&#x52A1;</a></li>
+                                    <li><a href="reactive-extensions.html" class="button">&#x54CD;&#x5E94;&#x5F0F;&#x7F16;&#x7A0B;</a></li>
+                                    <li><a href="machinelearning.html" class="button">&#x673A;&#x5668;&#x5B66;&#x4E60;</a></li>
+                                    <li><a href="artificial_intelligence.html" class="button">&#x4EBA;&#x5DE5;&#x667A;&#x80FD;</a></li>
+                                    <li><a href="streaming.html" class="button">&#x6D41;&#x5904;&#x7406;</a></li>
+                                    <li><a href="docker-2.html" class="button">DevOps&#xFF1A;Docker&#x4E0E;&#x5BB9;&#x5668;</a></li>
+                                </ul>
+                                <p>&#x53EF;&#x4EE5;&#x5728; <a href="http://www.infoq.com/presentations/">in abundance on InfoQ</a> &#x627E;&#x5230;Netflix&#x3001;Facebook&#x3001;LinkedIn&#x3001;Twitter&#x3001;Google&#x5728;&#x4EE5;&#x4E0A;&#x9886;&#x57DF;&#x9A71;&#x52A8;&#x521B;&#x65B0;&#x7684;&#x516C;&#x53F8;&#x7684;&#x6F14;&#x8BB2;&#x3002;&#x5728;&#x5E94;&#x7528;&#x66F2;&#x7EBF;&#x4E2D;&#x7ECF;&#x5386;&#x201C;&#x65E9;&#x671F;&#x591A;&#x6570;&#x201D;&#x548C;&#x201C;&#x665A;&#x671F;&#x591A;&#x6570;&#x201D;&#x90E8;&#x5206;&#x7684;&#x65E9;&#x671F;&#x5E94;&#x7528;&#x6280;&#x672F;&#xFF0C;InfoQ&#x5BF9;&#x4E8E;&#x8FD9;&#x4E9B;&#x4E3B;&#x9898;&#x7684;&#x62A5;&#x9053;&#x8F6C;&#x6362;&#x4E3A;&#x6210;&#x529F;&#x6848;&#x4F8B;&#x3001;&#x6700;&#x4F73;&#x5B9E;&#x8DF5;&#xFF0C;&#x4EE5;&#x53CA;&#x53D6;&#x5F62;&#x4E8E;&#x5B9E;&#x8DF5;&#x8005;&#x64B0;&#x5199;&#x7684;&#x6848;&#x4F8B;&#x7814;&#x7A76;&#x7684;&#x8BBE;&#x8BA1;&#x8303;&#x4F8B;&#x3001;&#x8BBF;&#x8C08;&#x3001;&#x6587;&#x7AE0;&#x3001;&#x5728;QCon&#x548C;&#x5176;&#x4ED6;&#x884C;&#x4E1A;&#x4F1A;&#x8BAE;&#x5F55;&#x5236;&#x7684;&#x6F14;&#x8BB2;&#x3002;</p>
+                                <hr>
+                                <h2><img src="./styles/img/5e322a4.svg" alt="InfoQ Logo"> &#x5728;&#x4E2D;&#x56FD;</h2>
+                                <h3><strong>&#x521D;&#x521B;</strong></h3>
+                                <p>2007&#x5E74;InfoQ&#x4E2D;&#x56FD;&#x521B;&#x59CB;&#x4EBA;&#x970D;&#x6CF0;&#x7A33;&#x548C;Floyd&#x5171;&#x540C;&#x5C06;InfoQ&#x5F15;&#x5165;&#x4E2D;&#x56FD;&#xFF0C;2007&#x5E74;3&#x6708;28&#x65E5;&#xFF0C;InfoQ&#x4E2D;&#x6587;&#x7AD9;InfoQ.com.cn&#x6B63;&#x5F0F;&#x4E0A;&#x7EBF;&#x3002;</p>
+                                <p>InfoQ&#x4E2D;&#x6587;&#x7AD9;&#x4E0E;InfoQ&#x5168;&#x7403;&#x7AD9;&#x4E00;&#x6837;&#xFF0C;&#x79C9;&#x627F;&#x201C;&#x624E;&#x6839;&#x793E;&#x533A;&#x3001;&#x670D;&#x52A1;&#x793E;&#x533A;&#x3001;&#x5F15;&#x9886;&#x793E;&#x533A;&#x201D;&#x7684;&#x7406;&#x5FF5;&#xFF0C;&#x65E8;&#x5728;&#x901A;&#x8FC7;&#x4FC3;&#x8FDB;&#x8F6F;&#x4EF6;&#x5F00;&#x53D1;&#x9886;&#x57DF;&#x77E5;&#x8BC6;&#x4E0E;&#x521B;&#x65B0;&#x7684;&#x4F20;&#x64AD;&#xFF0C;&#x4E0E;&#x4E2D;&#x56FD;&#x6280;&#x672F;&#x793E;&#x533A;&#x7684;&#x4E13;&#x5BB6;&#x4E00;&#x8D77;&#xFF0C;&#x4E3A;&#x4E2D;&#x9AD8;&#x7AEF;&#x6280;&#x672F;&#x4EBA;&#x7FA4;&#x63D0;&#x4F9B;&#x53CA;&#x65F6;&#x3001;&#x9AD8;&#x8D28;&#x91CF;&#x7684;&#x6280;&#x672F;&#x8D44;&#x8BAF;&#x4E0E;&#x6280;&#x672F;&#x5B9E;&#x8DF5;&#x8005;&#x4E3B;&#x5BFC;&#x7684;&#x4F1A;&#x8BAE;&#xFF0C;&#x6210;&#x4E3A;&#x8FDE;&#x63A5;&#x4E2D;&#x56FD;&#x4F01;&#x4E1A;&#x8F6F;&#x4EF6;&#x6280;&#x672F;&#x9AD8;&#x7AEF;&#x793E;&#x533A;&#x4E0E;&#x56FD;&#x9645;&#x4E3B;&#x6D41;&#x6280;&#x672F;&#x793E;&#x533A;&#x7684;&#x6865;&#x6881;&#x3002;</p>
+                                <h3><strong>&#x4ECA;&#x5929;</strong></h3>
+                                <p>InfoQ&#x4E2D;&#x56FD;&#x59CB;&#x7EC8;&#x5728;&#x5F15;&#x9886;&#x4E2D;&#x56FD;&#x6280;&#x672F;&#x6D6A;&#x6F6E;&#x7684;&#x53D1;&#x5C55;&#xFF0C;&#x662F;&#x6700;&#x65E9;&#x5C06;Node.js&#x3001;HTML5&#x3001;Docker&#x7B49;&#x6280;&#x672F;&#x5168;&#x9762;&#x5F15;&#x5165;&#x4E2D;&#x56FD;&#x7684;&#x6280;&#x672F;&#x5A92;&#x4F53;&#x3002;&#x6BCF;&#x6708;&#x8D85;&#x8FC7;100&#x4E07;&#x6280;&#x672F;&#x4EBA;&#x5728;&#x7F51;&#x7AD9;&#x4E0A;&#x5B66;&#x4E60;&#x76F8;&#x5173;&#x5185;&#x5BB9;&#xFF0C;&#x8FD1;&#x767E;&#x4F4D;&#x793E;&#x533A;&#x4E13;&#x5BB6;&#x4E0E;&#x7F16;&#x8F91;&#x56E2;&#x961F;&#x5408;&#x4F5C;&#x751F;&#x4EA7;&#x4F18;&#x8D28;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x6DB5;&#x76D6;&#x65B0;&#x95FB;&#x8D44;&#x8BAF;&#x3001;&#x6DF1;&#x5EA6;&#x6587;&#x7AE0;&#x3001;&#x4E13;&#x5BB6;&#x8BBF;&#x8C08;&#x3001;&#x7CBE;&#x54C1;&#x680F;&#x76EE;&#x548C;&#x6F14;&#x8BB2;&#x89C6;&#x9891;&#xFF0C;&#x6BCF;&#x5468;&#x7684;&#x603B;&#x8BA1;&#x4EA7;&#x51FA;&#x91CF;&#x8D85;&#x8FC7;100&#x7BC7;&#x3002;InfoQ&#x4E2D;&#x56FD;&#x4E3B;&#x529E;&#x7684;QCon&#x5168;&#x7403;&#x8F6F;&#x4EF6;&#x5F00;&#x53D1;&#x5927;&#x4F1A;&#x548C;ArchSummit&#x5168;&#x7403;&#x67B6;&#x6784;&#x5E08;&#x5CF0;&#x4F1A;&#x8986;&#x76D6;&#x4EAC;&#x6CAA;&#x6DF1;&#x4E09;&#x5730;&#xFF0C;&#x8F90;&#x5C04;&#x4E3B;&#x8981;IT&#x91CD;&#x9547;&#xFF0C;&#x4EE5;&#x6BCF;&#x5E74;&#x56DB;&#x573A;&#x6B21;&#x3001;&#x6BCF;&#x573A;&#x8FC7;&#x5343;&#x4EBA;&#x7684;&#x89C4;&#x6A21;&#xFF0C;&#x901A;&#x8FC7;&#x7EBF;&#x4E0B;&#x7684;&#x5F62;&#x5F0F;&#x4E0E;&#x7EBF;&#x4E0A;&#x7F51;&#x7AD9;&#x5F62;&#x6210;&#x4E92;&#x8865;&#xFF0C;&#x5F71;&#x54CD;&#x7740;&#x4E00;&#x4EE3;&#x53C8;&#x4E00;&#x4EE3;&#x4E2D;&#x56FD;&#x6280;&#x672F;&#x4EBA;&#x3002;</p>
+                                <p>2014&#x5E74;&#xFF0C;InfoQ&#x4E2D;&#x56FD;&#x5E76;&#x5165;&#x6781;&#x5BA2;&#x90A6;&#x79D1;&#x6280;&#xFF0C;&#x548C;EGO&#x804C;&#x4E1A;&#x793E;&#x4EA4;&#x3001;StuQ&#x65AF;&#x8FBE;&#x514B;&#x5B66;&#x9662;&#x804C;&#x4E1A;&#x6559;&#x80B2;&#x7B49;&#x4E1A;&#x52A1;&#x7EDF;&#x4E00;&#x8FD0;&#x8425;&#x3002;</p>
+                                <hr>
+                                <h2 class="blue">&#x9876;&#x7EA7;&#x6280;&#x672F;&#x5927;&#x4F1A;</h2>
+                                <p><img src="./styles/img/de77d5e.png" alt="QCon Logo"><br> <strong>QCon &#x5168;&#x7403;&#x8F6F;&#x4EF6;&#x5F00;&#x53D1;&#x5927;&#x4F1A;:</strong></p>
+                                <p>QCon&#x662F;&#x7531;InfoQ&#x4E3B;&#x529E;&#x7684;&#x5168;&#x7403;&#x9876;&#x7EA7;&#x6280;&#x672F;&#x76DB;&#x4F1A;&#xFF0C;&#x6BCF;&#x5E74;&#x5728;&#x4F26;&#x6566;&#x3001;&#x5317;&#x4EAC;&#x3001;&#x4E1C;&#x4EAC;&#x3001;&#x7EBD;&#x7EA6;&#x3001;&#x5723;&#x4FDD;&#x7F57;&#x3001;&#x4E0A;&#x6D77;&#x3001;&#x65E7;&#x91D1;&#x5C71;&#x53EC;&#x5F00;&#x3002;&#x81EA;2007&#x5E74;3&#x6708;&#x4EFD;&#x9996;&#x6B21;&#x4E3E;&#x529E;&#x4EE5;&#x6765;&#xFF0C;&#x5DF2;&#x7ECF;&#x6709;&#x8D85;&#x8FC7;&#x4E94;&#x4E07;&#x540D;&#x4E2D;&#x9AD8;&#x7EA7;&#x6280;&#x672F;&#x4EBA;&#x5458;&#x53C2;&#x52A0;&#x8FC7;QCon&#x5927;&#x4F1A;&#x3002;QCon&#x5185;&#x5BB9;&#x6E90;&#x4E8E;&#x5B9E;&#x8DF5;&#x5E76;&#x9762;&#x5411;&#x793E;&#x533A;&#xFF0C;&#x6F14;&#x8BB2;&#x5609;&#x5BBE;&#x4F9D;&#x636E;&#x70ED;&#x70B9;&#x8BDD;&#x9898;&#xFF0C;&#x9762;&#x5411;5&#x5E74;&#x4EE5;&#x4E0A;&#x7684;&#x6280;&#x672F;&#x56E2;&#x961F;&#x8D1F;&#x8D23;&#x4EBA;&#x3001;&#x67B6;&#x6784;&#x5E08;&#x3001;&#x5DE5;&#x7A0B;&#x603B;&#x76D1;&#x3001;&#x9AD8;&#x7EA7;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x5206;&#x4EAB;&#x6280;&#x672F;&#x521B;&#x65B0;&#x548C;&#x6700;&#x4F73;&#x5B9E;&#x8DF5;&#x3002;</p>
+                                <p>QCon&#x76EE;&#x524D;&#x5728;&#x4E2D;&#x56FD;&#x5730;&#x533A;&#x4E3E;&#x529E;&#x4E24;&#x7AD9;&#xFF0C;&#x6BCF;&#x5E74;4&#x6708;&#x7684;&#x5317;&#x4EAC;&#x7AD9;&#x4E0E;10&#x6708;&#x7684;&#x4E0A;&#x6D77;&#x7AD9;&#x3002;&#x5927;&#x4F1A;&#x4E3A;&#x671F;&#x4E09;&#x5929;&#xFF0C;&#x6BCF;&#x7AD9;&#x90FD;&#x4F1A;&#x5438;&#x5F15;&#x8D85;&#x8FC7;100&#x540D;&#x7684;&#x6F14;&#x8BB2;&#x5609;&#x5BBE;&#x4E0E;1500&#x540D;&#x7684;&#x53C2;&#x4F1A;&#x8005;&#x3002;</p>
+                                <div class="actions__left"><a href="http://qconferences.com" rel="noopener" target="_blank" class="button button__outline button__arrow arrow__right">&#x4E86;&#x89E3;&#x6709;&#x5173;QCon&#x7684;&#x66F4;&#x591A;&#x4FE1;&#x606F;</a></div>
+                                <div class="static-page__gallery">
+                                    <ul data-cols="3" class="no-style cards">
+                                        <li><a href="https://qconlondon.com/" class="static-page__gallery--london">London</a></li>
+                                        <li><a href="https://qconnewyork.com/" class="static-page__gallery--ny">New York</a></li>
+                                        <li><a href="https://qconsf.com/" class="static-page__gallery--sf">San Francisco</a></li>
+                                    </ul>
+                                    <ul data-cols="4" class="no-style cards">
+                                        <li><a href="https://qconsp.com/" class="static-page__gallery--sp">Sao Paulo</a></li>
+                                        <li><a href="http://2017.qconbeijing.com/" class="static-page__gallery--be">Beijing</a></li>
+                                        <li><a href="http://2017.qconshanghai.com/" class="static-page__gallery--sh">Shanghai</a></li>
+                                        <li><a href="https://qcon.ai/" class="static-page__gallery--ai">AI and ML San Francisco</a></li>
+                                    </ul>
                                 </div>
+                                <hr>
+                                <p><img src="./styles/img/6c5f85c.png" alt="ArchSummit Logo"><br> <strong>ArchSummit &#x5168;&#x7403;&#x67B6;&#x6784;&#x5E08;&#x5CF0;&#x4F1A;&#xFF1A;</strong></p>
+                                <p>ArchSummit&#x5168;&#x7403;&#x67B6;&#x6784;&#x5E08;&#x5CF0;&#x4F1A;&#x662F;InfoQ&#x4E2D;&#x56FD;&#x56E2;&#x961F;&#x539F;&#x521B;&#x7684;&#x9876;&#x7EA7;&#x6280;&#x672F;&#x5927;&#x4F1A;&#xFF0C;&#x9762;&#x5411;&#x9AD8;&#x7AEF;&#x6280;&#x672F;&#x7BA1;&#x7406;&#x8005;&#x3001;&#x67B6;&#x6784;&#x5E08;&#xFF0C;&#x53C2;&#x4F1A;&#x8005;&#x4E2D;&#x8D85;&#x8FC7;50%&#x62E5;&#x6709;8&#x5E74;&#x4EE5;&#x4E0A;&#x7684;&#x5DE5;&#x4F5C;&#x7ECF;&#x9A8C;&#x3002;ArchSummit&#x79C9;&#x627F;&#x201C;&#x5B9E;&#x8DF5;&#x7B2C;&#x4E00;&#xFF0C;&#x6848;&#x4F8B;&#x4E3A;&#x4E3B;&#x201D;&#x7684;&#x539F;&#x5219;&#xFF0C;&#x5C55;&#x793A;&#x65B0;&#x6280;&#x672F;&#x5728;&#x884C;&#x4E1A;&#x5E94;&#x7528;&#x4E2D;&#x7684;&#x6700;&#x65B0;&#x5B9E;&#x8DF5;&#xFF0C;&#x6280;&#x672F;&#x5728;&#x4F01;&#x4E1A;&#x8F6C;&#x578B;&#x4E2D;&#x7684;&#x52A0;&#x901F;&#x4F5C;&#x7528;&#xFF0C;&#x5E2E;&#x52A9;&#x4F01;&#x4E1A;&#x6280;&#x672F;&#x7BA1;&#x7406;&#x8005;&#x3001;CTO&#x3001;&#x67B6;&#x6784;&#x5E08;&#x505A;&#x597D;&#x6280;&#x672F;&#x9009;&#x578B;&#x3001;&#x6280;&#x672F;&#x56E2;&#x961F;&#x7EC4;&#x5EFA;&#x4E0E;&#x7BA1;&#x7406;&#xFF0C;&#x5E76;&#x786E;&#x7ACB;&#x6280;&#x672F;&#x5BF9;&#x4E8E;&#x4EA7;&#x54C1;&#x548C;&#x4E1A;&#x52A1;&#x7684;&#x5173;&#x952E;&#x4F5C;&#x7528;&#x3002;</p>
+                                <p>ArchSummit&#x76EE;&#x524D;&#x6BCF;&#x5E74;&#x4E3E;&#x529E;&#x4E24;&#x7AD9;&#xFF0C;7&#x6708;&#x7684;&#x6DF1;&#x5733;&#x7AD9;&#x4E0E;12&#x6708;&#x7684;&#x5317;&#x4EAC;&#x7AD9;&#xFF0C;&#x5927;&#x4F1A;&#x4E3A;&#x671F;&#x4E24;&#x5929;&#xFF0C;&#x89C4;&#x6A21;1000-1500&#x4EBA;&#x3002;</p>
+                                <div class="actions__left"><a href="http://www.archsummit.com/" rel="noopener" target="_blank" class="button button__outline button__arrow arrow__right">&#x4E86;&#x89E3;&#x6709;&#x5173;ArchSummit&#x7684;&#x66F4;&#x591A;&#x4FE1;&#x606F;</a></div>
+                                <hr>
+                                <h2>&#x6211;&#x4EEC;&#x7684;&#x56E2;&#x961F;</h2>
+                                <h3><strong>&#x521B;&#x59CB;&#x4EBA;</strong></h3>
+                                <p>&#x970D;&#x6CF0;&#x7A33;&#xFF0C;&#x6781;&#x5BA2;&#x90A6;&#x79D1;&#x6280;&#x521B;&#x59CB;&#x4EBA;&#x517C;CEO&#x3002;2007&#x5E74;&#x521B;&#x7ACB;InfoQ&#x4E2D;&#x56FD;&#xFF08;&#x6781;&#x5BA2;&#x90A6;&#x79D1;&#x6280;&#x7684;&#x524D;&#x8EAB;&#xFF09;&#xFF0C;2009&#x5E74;&#x5C06;QCon&#x5168;&#x7403;&#x8F6F;&#x4EF6;&#x5F00;&#x53D1;&#x5927;&#x4F1A;&#x5F15;&#x5165;&#x4E2D;&#x56FD;&#xFF0C;2012&#x5E74;&#x542F;&#x52A8;ArchSummit&#x5168;&#x7403;&#x67B6;&#x6784;&#x5E08;&#x5CF0;&#x4F1A;&#xFF0C;2014&#x5E74;&#x6536;&#x8D2D;InfoQ&#x5927;&#x4E2D;&#x534E;&#x5730;&#x533A;&#x6240;&#x6709;&#x4E1A;&#x52A1;&#xFF0C;&#x5E76;&#x4E0E;EGO&#x3001;StuQ&#x65AF;&#x8FBE;&#x514B;&#x5B66;&#x9662;&#x7B49;&#x4E1A;&#x52A1;&#x6574;&#x5408;&#x5230;&#x6781;&#x5BA2;&#x90A6;&#x79D1;&#x6280;&#x65D7;&#x4E0B;&#x7EDF;&#x4E00;&#x8FD0;&#x8425;&#x3002;&#x970D;&#x6CF0;&#x7A33;&#x51ED;&#x501F;&#x521B;&#x65B0;&#x7684;&#x8FD0;&#x8425;&#x7406;&#x5FF5;&#x3001;&#x524D;&#x77BB;&#x6027;&#x7684;&#x4E1A;&#x52A1;&#x5E03;&#x5C40;&#xFF0C;&#x4F01;&#x4E1A;&#x8FC5;&#x901F;&#x4ECE;&#x5355;&#x4E00;&#x6280;&#x672F;&#x793E;&#x533A;&#x7ECF;&#x8425;&#x5230;&#x5B9E;&#x73B0;IT&#x77E5;&#x8BC6;&#x670D;&#x52A1;&#x4EA7;&#x4E1A;&#x94FE;&#x5168;&#x65B9;&#x4F4D;&#x8986;&#x76D6;&#x3002;</p>
+                                <p>&#x6B64;&#x5916;&#xFF0C;&#x970D;&#x6CF0;&#x7A33;&#x8FD8;&#x79EF;&#x6781;&#x53C2;&#x4E0E;&#x793E;&#x4F1A;&#x7EC4;&#x7EC7;&#xFF0C;2016&#x5E74;7&#x6708;1&#x65E5;&#x8D77;&#x4EFB;EO&#x5168;&#x7403;&#x521B;&#x4E1A;&#x5BB6;&#x534F;&#x4F1A;&#x5317;&#x4EAC;&#x5206;&#x4F1A;&#x4F1A;&#x957F;&#x3002;</p>
+                                <h3><strong>&#x8BA4;&#x8BC6;&#x6211;&#x4EEC;&#x7684;&#x56E2;&#x961F;</strong></h3>
+                                <ul data-cols="4" class="no-style columns boxes topic__boxes">
+                                    <li><img src="./styles/img/a04b95b.jpg" alt></li>
+                                    <li><img src="./styles/img/38ee5bc.jpg" alt></li>
+                                    <li><img src="./styles/img/ef9ef90.jpg" alt></li>
+                                    <li><img src="./styles/img/71ae3cd.jpg" alt></li>
+                                    <li><img src="./styles/img/361e43c.jpg" alt></li>
+                                    <li><img src="./styles/img/eb40478.jpg" alt></li>
+                                    <li><img src="./styles/img/495ada0.jpg" alt></li>
+                                    <li><img src="./styles/img/1204bae.jpg" alt></li>
+                                </ul>
+                                <h3><strong>&#x6838;&#x5FC3;&#x4EF7;&#x503C;&#x89C2;</strong></h3>
+                                <ul data-cols="3" class="no-style columns boxes topic__boxes">
+                                    <li>
+                                        <div class="box__header"><strong>&#x516C;&#x5F00;&#x900F;&#x660E;</strong></div>
+                                        <div class="box__content">
+                                            <p>&#x6211;&#x4EEC;&#x7684;&#x5DE5;&#x4F5C;&#x6D41;&#x7A0B;&#x3001;&#x5DE5;&#x4F5C;&#x72B6;&#x6001;&#x3001;&#x671F;&#x671B;&#x503C;&#x3001;&#x4E2A;&#x4EBA;&#x611F;&#x53D7;&#x3001;&#x6210;&#x529F;&#x4E0E;&#x5931;&#x8D25;&#x90FD;&#x662F;&#x516C;&#x5F00;&#x548C;&#x900F;&#x660E;&#x7684;&#xFF0C;&#x6709;&#x95EE;&#x9898;&#x5C31;&#x62FF;&#x5230;&#x684C;&#x9762;&#x4E0A;&#x6765;&#x8C08;&#x3002;</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="box__header"><strong>&#x8BDA;&#x5B9E;&#x6B63;&#x76F4;</strong></div>
+                                        <div class="box__content">
+                                            <p>&#x6211;&#x4EEC;&#x52AA;&#x529B;&#x4E3A;&#x7528;&#x6237;&#x63D0;&#x4F9B;&#x53EF;&#x4FE1;&#x8D56;&#x7684;&#x4EA7;&#x54C1;/&#x670D;&#x52A1;&#xFF0C;&#x4E5F;&#x73CD;&#x89C6;&#x81EA;&#x5DF1;&#x7684;&#x4FE1;&#x8A89;&#xFF0C;&#x201C;&#x4E0D;&#x4F5C;&#x6076;&#x201D;&#x3002;&#x6211;&#x4EEC;&#x52C7;&#x4E8E;&#x8BF4;&#x51FA;&#x81EA;&#x5DF1;&#x8BA4;&#x4E3A;&#x6B63;&#x786E;&#x7684;&#x4E8B;&#x60C5;&#x3002;</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="box__header"><strong>&#x6BCF;&#x65E5;&#x7CBE;&#x8FDB;</strong></div>
+                                        <div class="box__content">
+                                            <p>&#x5B66;&#x4E60;&#x7684;&#x811A;&#x6B65;&#x6C38;&#x4E0D;&#x505C;&#x6B62;&#xFF0C;&#x9AD8;&#x901F;&#x53D1;&#x5C55;&#x9762;&#x524D;&#xFF0C;&#x6211;&#x4EEC;&#x6301;&#x7EED;&#x63D0;&#x5347;&#x81EA;&#x6211;&#x5B9E;&#x529B;&#xFF0C;&#x4F18;&#x5316;&#x534F;&#x4F5C;&#x6D41;&#x7A0B;&#xFF0C;&#x58EE;&#x5927;&#x6211;&#x4EEC;&#x7684;&#x56E2;&#x961F;&#x3002;</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="box__header"><strong>&#x4E50;&#x4E8E;&#x670D;&#x52A1;</strong></div>
+                                        <div class="box__content">
+                                            <p>&#x4EAB;&#x53D7;&#x4E3A;&#x4ED6;&#x4EBA;&#x670D;&#x52A1;&#x7684;&#x4E50;&#x8DA3;&#xFF0C;&#x4E3A;&#x6211;&#x4EEC;&#x4E3A;&#x8BFB;&#x8005;/&#x5B66;&#x5458;/&#x8BB2;&#x5E08;&#x3001;&#x4E3A;&#x5546;&#x4E1A;&#x5408;&#x4F5C;&#x4F19;&#x4F34;&#x3001;&#x4E3A;&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#x63D0;&#x4F9B;&#x8D85;&#x4E4E;&#x6240;&#x60F3;&#x7684;&#x670D;&#x52A1;&#x3002;</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="box__header"><strong>&#x8D1F;&#x8D23;&#x5B88;&#x8BFA;</strong></div>
+                                        <div class="box__content">
+                                            <p>&#x4E3A;&#x7ED3;&#x679C;&#x8D1F;&#x8D23;&#xFF0C;&#x6211;&#x4EEC;&#x5C3D;&#x5168;&#x529B;&#x5B8C;&#x6210;&#x5DE5;&#x4F5C;&#xFF0C;&#x8BA4;&#x771F;&#x5BF9;&#x5F85;&#x81EA;&#x5DF1;&#x505A;&#x51FA;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x627F;&#x8BFA;&#xFF0C;&#x76F8;&#x4FE1;&#x4FE1;&#x4EFB;&#x662F;&#x5EFA;&#x7ACB;&#x5728;&#x6BCF;&#x4E00;&#x4E2A;&#x627F;&#x8BFA;&#x5B9E;&#x73B0;&#x7684;&#x57FA;&#x7840;&#x4E4B;&#x4E0A;&#x3002;</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="box__header"><strong>&#x521B;&#x65B0;&#x6562;&#x4E3A;</strong></div>
+                                        <div class="box__content">
+                                            <p>&#x501F;&#x52A9;&#x6700;&#x65B0;&#x6700;&#x6709;&#x6548;&#x7684;&#x5DE5;&#x5177;&#xFF0C;&#x4E3A;&#x7528;&#x6237;/&#x5BA2;&#x6237;&#x521B;&#x9020;&#x4EF7;&#x503C;&#xFF0C;&#x52AA;&#x529B;&#x627E;&#x5BFB;&#x521B;&#x9020;&#x6027;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x5B8C;&#x6210;&#x5DE5;&#x4F5C;&#xFF0C;&#x65F6;&#x523B;&#x62E5;&#x6709;&#x201C;&#x6211;&#x80FD;&#x505A;&#x201D;&#x7684;&#x6001;&#x5EA6;&#x3002;</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <hr>
+                                <h4><strong>&#x56E2;&#x961F;&#x4F7F;&#x547D;&#xFF1A;</strong></h4>
+                                <p>&#x8BA9;&#x521B;&#x65B0;&#x6280;&#x672F;&#x63A8;&#x52A8;&#x793E;&#x4F1A;&#x8FDB;&#x6B65;<br>Help to Build a Better Society with Innovative Technologies</p>
+                                <h4><strong>&#x8FD0;&#x8425;&#x7406;&#x5FF5;&#xFF1A;</strong></h4>
+                                <p>&#x6CE8;&#x91CD;&#x4F53;&#x9A8C;&#xFF0C; &#x5173;&#x6CE8;&#x6210;&#x957F; <br>
+                                    Caring Experience and Growth</p>
+                                <h4><strong>&#x52A0;&#x5165;&#x6211;&#x4EEC;</strong></h4>
+                                <ul data-cols="3" class="no-style columns boxes topic__boxes">
+                                    <li><a href="http://www.lagou.com/jobs/2373569.html" rel="noopener" target="_blank" class="button">&#x6280;&#x672F;&#x7F16;&#x8F91;</a></li>
+                                    <li><a href="http://www.lagou.com/jobs/457234.html" rel="noopener" target="_blank" class="button">&#x7B56;&#x5212;&#x7F16;&#x8F91;</a></li>
+                                    <li><a href="http://www.lagou.com/jobs/1489680.html" rel="noopener" target="_blank" class="button">&#x9879;&#x76EE;&#x7ECF;&#x7406;</a></li>
+                                    <li><a href="http://www.lagou.com/jobs/1445917.html" rel="noopener" target="_blank" class="button">&#x65B0;&#x5A92;&#x4F53;&#x8FD0;&#x8425;</a></li>
+                                    <li><a href="http://www.lagou.com/jobs/1724436.html" rel="noopener" target="_blank" class="button">&#x4EA7;&#x54C1;&#x8FD0;&#x8425;&#x603B;&#x76D1;</a></li>
+                                    <li><a href="http://www.lagou.com/jobs/2082919.html" rel="noopener" target="_blank" class="button">&#x524D;&#x7AEF;&#x5F00;&#x53D1;&#x5DE5;&#x7A0B;&#x5E08;</a></li>
+                                    <li><a href="http://www.lagou.com/jobs/2082919.html" rel="noopener" target="_blank" class="button">PHP&#x5F00;&#x53D1;&#x5DE5;&#x7A0B;&#x5E08;</a></li>
+                                </ul>
+                                <p><a href="http://www.lagou.com/gongsi/j43775.html" rel="noopener" target="_blank">&#x4E86;&#x89E3;&#x66F4;&#x591A;&#x804C;&#x4F4D;&gt;&gt;</a></p>
                             </div>
-                            <form class="early__login">
-                                <div class="field input__text"><label for="demo::replace" class="label field__label">Please enter your QCon London 2018 unique ID you received in an email during the conference:<span class="input__req">*</span></label><input id="demo::replace" placeholder class="input field__input" type="text">
-                                    <!---->
-                                    <!---->
-                                    <p class="field__desc">You only need to provide this once, after entering your account will be authenticated as a QCon London 2018 attendee. If you attended QCon London 2018 and can&apos;t find your ID, email conference-attendees@infoq.com with your first name and last name and we&apos;ll send you a new one</p>
-                                </div><input type="submit" value="Login" class="button">
-                            </form>
-                            <!---->
-                            <!---->
-                            <!---->
-                            <!---->
-                            <!---->
-                            <div class="aside">
-                                <div class="recorded">
-                                    <p class="recorded__meta meta">Recorded at:</p><a href="https://sponsorlink.com"><img src="./styles/img/86e03df.png" alt="Conference recorded here"></a>
+                            <div data-col="1/4">
+                                <p><img src="./styles/img/915f095.png" alt="Geekbang Logo"><br>
+                                    &#x4E16;&#x754C;&#x7EA7;&#x7684;IT&#x5185;&#x5BB9;&#x670D;&#x52A1;&#x5E73;&#x53F0;</p>
+                                <div class="box box__header box__header--orange">
+                                    <p>&#x6781;&#x5BA2;&#x90A6;&#x79D1;&#x6280;&#xFF08;Geekbang&#xFF09;&#x521B;&#x7ACB;&#x4E8E;2007&#x5E74;&#xFF0C;&#x662F;&#x96C6;&#x8D44;&#x8BAF;&#x3001;&#x4F1A;&#x8BAE;&#x3001;&#x7535;&#x5546;&#x3001;&#x57F9;&#x8BAD;&#x3001;&#x54A8;&#x8BE2;&#x3001;&#x56FE;&#x4E66;&#x51FA;&#x7248;&#x3001;&#x793E;&#x4EA4;&#x3001;&#x6574;&#x5408;&#x8425;&#x9500;&#x3001;&#x521B;&#x65B0;&#x5B75;&#x5316;&#x7B49;&#x4E5D;&#x5927;&#x4EA7;&#x4E1A;&#x4E8E;&#x4E00;&#x4F53;&#x7684;IT&#x5185;&#x5BB9;&#x7EFC;&#x5408;&#x670D;&#x52A1;&#x96C6;&#x56E2;&#x3002;&#x65D7;&#x4E0B;&#x8FD0;&#x8425;EGO&#x804C;&#x4E1A;&#x793E;&#x4EA4;&#x3001;InfoQ&#x6280;&#x672F;&#x5A92;&#x4F53;&#x3001;StuQ&#x65AF;&#x8FBE;&#x514B;&#x5B66;&#x9662;&#x804C;&#x4E1A;&#x6559;&#x80B2;&#x4E09;&#x5927;&#x4E1A;&#x52A1;&#x54C1;&#x724C;&#x3002;&#x603B;&#x90E8;&#x8BBE;&#x4E8E;&#x5317;&#x4EAC;&#x3002;&#x96C6;&#x56E2;&#x81F4;&#x529B;&#x4E8E;&#x8BA9;&#x521B;&#x65B0;&#x6280;&#x672F;&#x63A8;&#x52A8;&#x793E;&#x4F1A;&#x8FDB;&#x6B65;&#xFF0C;&#x5341;&#x5E74;&#x5185;&#x4E3A;100&#x4E07;&#x6280;&#x672F;&#x4EBA;&#x3001;3000&#x5BB6;&#x4E2D;&#x56FD;&#x4F01;&#x4E1A;&#x63D0;&#x4F9B;&#x670D;&#x52A1;&#xFF0C;&#x4E1A;&#x52A1;&#x904D;&#x5E03;&#x4E2D;&#x56FD;&#x5404;&#x57CE;&#x5E02;&#xFF0C;&#x4EE5;&#x53CA;&#x65E7;&#x91D1;&#x5C71;&#x3001;&#x5DF4;&#x9ECE;&#x3001;&#x67CF;&#x6797;&#x3001;&#x8377;&#x5170;&#x3001;&#x4EE5;&#x8272;&#x5217;&#x3001;&#x65E5;&#x672C;&#x7B49;&#x6D77;&#x5916;&#x4E3B;&#x8981;&#x5927;&#x57CE;&#x5E02;&#x3002;</p>
                                 </div>
-                                <p class="date">28 September 1990</p>
-                                <div class="article__authors">
-                                    <div>
-                                        <p class="meta">by</p>
-                                        <ul class="authors no-style">
-                                            <li data-id="author-Johnatan-Doe">
-                                                <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">Johnatan Doe</a> </span></p>
-                                            </li>
-                                            <li data-id="author-Charles-Humble">
-                                                <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">Charles Humble</a> </span></p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <p class="meta">translated by</p>
-                                        <ul class="authors no-style">
-                                            <li data-id="author-Johnatan-Doe">
-                                                <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">Johnatan Doe</a> </span></p>
-                                            </li>
-                                            <li data-id="author-Charles-Humble">
-                                                <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">Charles Humble</a> </span></p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <p class="meta">reviewed by</p>
-                                        <ul class="authors no-style">
-                                            <li data-id="author-Johnatan-Doe">
-                                                <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">Johnatan Doe</a> </span></p>
-                                            </li>
-                                            <li data-id="author-Charles-Humble">
-                                                <p class="author__bio meta"><span class="author__name"><a href="author.html" class="author__link">Charles Humble</a> </span></p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!---->
+                                <div class="actions__left"><a href="http://www.geekbang.org/" rel="noopener" target="_blank" class="button button__outline button__arrow arrow__right">&#x4E86;&#x89E3;&#x66F4;&#x591A;</a></div>
+                                <hr>
+                                <p><img src="./styles/img/5e322a4.svg" alt="InfoQ Logo"><br>
+                                    &#x4E13;&#x6CE8;&#x4E2D;&#x9AD8;&#x7AEF;&#x6280;&#x672F;&#x4EBA;&#x5458;&#x7684;&#x6280;&#x672F;&#x5A92;&#x4F53;</p>
+                                <div class="actions__left"><a href="http://www.infoq.com/cn" class="button button__outline button__arrow arrow__right">&#x4E86;&#x89E3;&#x66F4;&#x591A; </a></div>
+                                <hr>
+                                <p><img src="./styles/img/de4be00.png" alt="Ego Logo"><br>
+                                    &#x9AD8;&#x7AEF;&#x6280;&#x672F;&#x4EBA;&#x5458;&#x5B66;&#x4E60;&#x578B;&#x793E;&#x4EA4;&#x5E73;&#x53F0;
+                                </p>
+                                <div class="actions__left"><a href="http://www.egonetworks.org" rel="noopener" target="_blank" class="button button__outline button__arrow arrow__right">&#x4E86;&#x89E3;&#x66F4;&#x591A;</a></div>
+                                <hr>
+                                <p><img src="./styles/img/32b6e75.png" alt="StuQ Logo"><br>
+                                    &#x5B9E;&#x8DF5;&#x9A71;&#x52A8;&#x7684;IT&#x6559;&#x80B2;&#x5E73;&#x53F0;
+                                </p>
+                                <div class="actions__left"><a href="http://www.stuq.org/" rel="noopener" target="_blank" class="button button__outline button__arrow arrow__right">&#x4E86;&#x89E3;&#x66F4;&#x591A;</a></div>
                             </div>
-                            <!---->
-                            <!---->
-                            <!---->
-                        </article>
+                        </div>
+                        <div class="columns">
+                            <div class="actions__left"><a href="contribute-cn.html" class="button button__arrow arrow__left">&#x6295;&#x7A3F;</a></div>
+                            <div class="actions__right"></div>
+                        </div>
+                        <hr>
                         <!---->
                         <!---->
                         <!---->
@@ -1531,8 +1639,7 @@
                         <!---->
                     </div>
                 </section>
-                <!---->
-            </div>
+            </section>
         </main>
         <footer class="footer">
             <!---->
