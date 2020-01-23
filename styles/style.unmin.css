@@ -8222,6 +8222,30 @@ a.video-block {
     flex: 0 0 100%
 }
 
+.grid.grid-about {
+    margin-top: 0;
+    background: #fff;
+    -ms-grid-columns: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas: 'nav''onecompany''line''infoq''blueBox''qcon''c4media''philosophy''stories''corevalues''managment''advisoryBoard''pledge''joinTeam'
+}
+
+@media only screen and (min-width:768px) {
+    .grid.grid-about {
+        -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-areas: 'nav nav nav nav nav nav''onecompany onecompany onecompany onecompany onecompany onecompany''line line line line line line''infoq infoq infoq infoq infoq infoq''blueBox blueBox blueBox blueBox blueBox blueBox''qcon qcon qcon qcon qcon qcon''c4media c4media c4media c4media c4media c4media''philosophy philosophy philosophy philosophy philosophy philosophy''stories stories stories stories stories stories''corevalues corevalues corevalues corevalues corevalues corevalues''managment managment managment managment managment managment''advisoryBoard advisoryBoard advisoryBoard advisoryBoard advisoryBoard advisoryBoard''pledge pledge pledge pledge pledge pledge''joinTeam joinTeam joinTeam joinTeam joinTeam joinTeam'
+    }
+}
+
+@media only screen and (min-width:1080px) {
+    .grid.grid-about {
+        -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-areas: 'nav nav nav nav nav nav''. onecompany onecompany onecompany onecompany .''line line line line line line''infoq infoq infoq . blueBox blueBox''qcon qcon qcon qcon qcon qcon''c4media c4media c4media c4media c4media c4media''philosophy philosophy philosophy philosophy philosophy philosophy''stories stories stories stories stories stories''corevalues corevalues corevalues corevalues corevalues corevalues''managment managment managment managment managment managment''advisoryBoard advisoryBoard advisoryBoard advisoryBoard advisoryBoard advisoryBoard''pledge pledge pledge pledge pledge pledge''joinTeam joinTeam joinTeam joinTeam joinTeam joinTeam'
+    }
+}
+
 .static-nav {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
@@ -8453,21 +8477,7 @@ hr {
     grid-area: line
 }
 
-.grid.grid-about {
-    margin-top: 0;
-    background: #fff;
-    -ms-grid-columns: 1fr;
-    grid-template-columns: 1fr;
-    grid-template-areas: 'nav''onecompany''line''infoq''blueBox''qcon''c4media''philosophy''stories''corevalues''managment''advisoryBoard''pledge''joinTeam'
-}
-
 @media only screen and (min-width:768px) {
-    .grid.grid-about {
-        -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        grid-template-areas: 'nav nav nav nav nav nav''onecompany onecompany onecompany onecompany onecompany onecompany''line line line line line line''infoq infoq infoq infoq infoq infoq''blueBox blueBox blueBox blueBox blueBox blueBox''qcon qcon qcon qcon qcon qcon''c4media c4media c4media c4media c4media c4media''philosophy philosophy philosophy philosophy philosophy philosophy''stories stories stories stories stories stories''corevalues corevalues corevalues corevalues corevalues corevalues''managment managment managment managment managment managment''advisoryBoard advisoryBoard advisoryBoard advisoryBoard advisoryBoard advisoryBoard''pledge pledge pledge pledge pledge pledge''joinTeam joinTeam joinTeam joinTeam joinTeam joinTeam'
-    }
-
     .static-nav {
         -ms-grid-row: 1;
         -ms-grid-column: 1;
@@ -8554,12 +8564,6 @@ hr {
 }
 
 @media only screen and (min-width:1080px) {
-    .grid.grid-about {
-        -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        grid-template-areas: 'nav nav nav nav nav nav''. onecompany onecompany onecompany onecompany .''line line line line line line''infoq infoq infoq . blueBox blueBox''qcon qcon qcon qcon qcon qcon''c4media c4media c4media c4media c4media c4media''philosophy philosophy philosophy philosophy philosophy philosophy''stories stories stories stories stories stories''corevalues corevalues corevalues corevalues corevalues corevalues''managment managment managment managment managment managment''advisoryBoard advisoryBoard advisoryBoard advisoryBoard advisoryBoard advisoryBoard''pledge pledge pledge pledge pledge pledge''joinTeam joinTeam joinTeam joinTeam joinTeam joinTeam'
-    }
-
     .static-nav {
         -ms-grid-row: 1;
         -ms-grid-column: 1;
@@ -9070,12 +9074,13 @@ hr {
 }
 
 .philosophy-content .philosophy-content-col:first-child .philosophy-box {
-    width: 49%;
+    width: 100%;
     margin-bottom: 15px
 }
 
 @media only screen and (min-width:1080px) {
     .philosophy-content .philosophy-content-col:first-child .philosophy-box {
+        width: 49%;
         width: 100%
     }
 }
