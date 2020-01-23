@@ -8222,6 +8222,12 @@ a.video-block {
     flex: 0 0 100%
 }
 
+@media (-ms-high-contrast:none) {
+    .static-nav {
+        overflow: hidden
+    }
+}
+
 .grid.grid-about {
     margin-top: 0;
     background: #fff;
@@ -8251,6 +8257,12 @@ a.video-block {
     -ms-grid-column: 1;
     grid-area: nav;
     overflow: scroll
+}
+
+@media only screen and (min-width:768px) {
+    .static-nav {
+        overflow: hidden
+    }
 }
 
 .onecompany {
