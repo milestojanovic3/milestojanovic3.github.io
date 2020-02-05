@@ -23545,6 +23545,10 @@ tag[title="number of tags exceeded"] {
     }
 }
 
+.top_static_section__content .card__authors a {
+    text-decoration: none
+}
+
 .qa {
     min-height: 60px;
     margin-bottom: 20px
