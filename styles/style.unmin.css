@@ -2398,7 +2398,8 @@ p.actions__right {
 
 .crumbs {
     display: none;
-    grid-area: breadcrumbs
+    grid-area: breadcrumbs;
+    text-align: left
 }
 
 @media only screen and (min-width:768px) {
@@ -7056,7 +7057,7 @@ button.liked {
 }
 
 .grid[data-type=guide]>.article__content {
-    -ms-grid-row: 6;
+    -ms-grid-row: 7;
     -ms-grid-column: 1;
     -ms-grid-column-span: 1
 }
@@ -7502,7 +7503,7 @@ button.liked {
 }
 
 .grid[data-type=guide]>.article__actions {
-    -ms-grid-row: 3;
+    -ms-grid-row: 4;
     -ms-grid-column: 1;
     -ms-grid-column-span: 1
 }
@@ -9351,14 +9352,20 @@ a.video-block {
 .grid[data-type=guide] {
     -ms-grid-columns: 1fr;
     grid-template-columns: 1fr;
-    grid-template-areas: 'category''title''buttons''rightButtons''cover''content''topics''sidebar''rvc'
+    grid-template-areas: 'category''notice''title''buttons''rightButtons''cover''content''topics''sidebar''rvc'
 }
 
 @media only screen and (min-width:768px) {
     .grid[data-type=guide] {
         -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category category category category category category''title title title title title title''buttons buttons buttons buttons rightButtons rightButtons''cover cover cover cover cover cover''content content content content content content''topics topics topics topics topics topics''sidebar sidebar sidebar sidebar sidebar sidebar''rvc rvc rvc rvc rvc rvc'
+        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category category notice notice notice notice''title title title title title title''buttons buttons buttons buttons rightButtons rightButtons''cover cover cover cover cover cover''content content content content content content''topics topics topics topics topics topics''sidebar sidebar sidebar sidebar sidebar sidebar''rvc rvc rvc rvc rvc rvc'
+    }
+
+    .grid[data-type=guide]>.notice {
+        -ms-grid-row: 2;
+        -ms-grid-column: 3;
+        -ms-grid-column-span: 4
     }
 
     .grid[data-type=guide]>.topics {
@@ -9401,7 +9408,7 @@ a.video-block {
     .grid[data-type=guide]>.article__tag {
         -ms-grid-row: 2;
         -ms-grid-column: 1;
-        -ms-grid-column-span: 6
+        -ms-grid-column-span: 2
     }
 
     .grid[data-type=guide]>.article__actions {
@@ -9413,7 +9420,13 @@ a.video-block {
 
 @media only screen and (min-width:1080px) {
     .grid[data-type=guide] {
-        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category category category category category category''title title title title title title''buttons buttons . . rightButtons rightButtons''cover cover content content content content''sidebar sidebar content content content content''sidebar sidebar topics topics topics topics''sidebar sidebar rvc rvc rvc rvc'
+        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category . . . notice notice''title title title title title title''buttons buttons . . rightButtons rightButtons''cover cover content content content content''sidebar sidebar content content content content''sidebar sidebar topics topics topics topics''sidebar sidebar rvc rvc rvc rvc'
+    }
+
+    .grid[data-type=guide]>.notice {
+        -ms-grid-row: 2;
+        -ms-grid-column: 5;
+        -ms-grid-column-span: 2
     }
 
     .grid[data-type=guide]>.topics {
@@ -9458,7 +9471,7 @@ a.video-block {
     .grid[data-type=guide]>.article__tag {
         -ms-grid-row: 2;
         -ms-grid-column: 1;
-        -ms-grid-column-span: 6
+        -ms-grid-column-span: 1
     }
 
     .grid[data-type=guide]>.article__actions {
@@ -9469,7 +9482,7 @@ a.video-block {
 }
 
 .grid[data-type=guide]>aside {
-    -ms-grid-row: 8;
+    -ms-grid-row: 9;
     -ms-grid-column: 1;
     -ms-grid-column-span: 1;
     grid-area: sidebar
@@ -13605,7 +13618,7 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
 }
 
 .book__standing {
-    -ms-grid-row: 5;
+    -ms-grid-row: 6;
     -ms-grid-column: 1;
     grid-area: cover;
     margin-bottom: 32px
@@ -23459,6 +23472,77 @@ tag[title="number of tags exceeded"] {
 #toastContainer.toast-show {
     -webkit-animation: scale-in-center .3s both;
     animation: scale-in-center .3s both
+}
+
+.topics_tac {
+    width: 100%;
+    background-color: #fff;
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .1), 0 1px 2px rgba(0, 0, 0, .06);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1), 0 1px 2px rgba(0, 0, 0, .06);
+    padding: 15px
+}
+
+.topics_tac .topics_follow {
+    margin-top: 20px
+}
+
+.topics_tac .topics_follow li {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin: 10px 0 15px 0
+}
+
+.topics_tac .topics_follow li p {
+    margin: 0;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    font-style: normal;
+    font-weight: 400
+}
+
+.topics_tac .topics_follow li p,
+.topics_tac .topics_follow li p span a {
+    font-size: .8125rem;
+    line-height: 150%;
+    color: #000;
+    text-decoration: none
+}
+
+.low-case {
+    text-transform: initial
+}
+
+.mb-0 {
+    margin-bottom: 0 !important
+}
+
+.topics_top_head {
+    font-size: 1.5rem;
+    line-height: 130%
+}
+
+.topics .columns>[data-col][data-col="3/4"]:nth-child(4n) {
+    margin-left: 0;
+    margin-right: 32px
+}
+
+.static_topic_head {
+    margin-bottom: 62px !important
+}
+
+.top_static_section__content {
+    margin-bottom: 32px
+}
+
+@media only screen and (min-width:768px) {
+    .top_static_section__content {
+        margin-bottom: 0
+    }
 }
 
 .qa {
