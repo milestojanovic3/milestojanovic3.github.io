@@ -23523,9 +23523,18 @@ tag[title="number of tags exceeded"] {
     line-height: 130%
 }
 
-.topics .columns>[data-col][data-col="3/4"]:nth-child(4n) {
-    margin-left: 0;
-    margin-right: 32px
+@media only screen and (min-width:1080px) {
+    .topics .columns>[data-col][data-col="3/4"]:nth-child(4n) {
+        margin-left: 0;
+        margin-right: 19px
+    }
+}
+
+@media only screen and (min-width:1200px) {
+    .topics .columns>[data-col][data-col="3/4"]:nth-child(4n) {
+        margin-left: 0;
+        margin-right: 32px
+    }
 }
 
 .static_topic_head {
