@@ -23482,35 +23482,26 @@ tag[title="number of tags exceeded"] {
     padding: 15px
 }
 
-.topics_tac .topics_follow {
-    margin-top: 20px
+.topics_tac p.meta {
+    display: none
 }
 
-.topics_tac .topics_follow li {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    margin: 10px 0 15px 0
+.topics_tac li {
+    margin-top: 10px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row;
+    flex-flow: row
 }
 
-.topics_tac .topics_follow li p {
-    margin: 0;
-    -webkit-box-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    font-style: normal;
+.topics_tac li a {
     font-weight: 400
 }
 
-.topics_tac .topics_follow li p,
-.topics_tac .topics_follow li p span a {
-    font-size: .8125rem;
-    line-height: 150%;
-    color: #000;
-    text-decoration: none
+.topics_tac li .actions__right {
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end
 }
 
 .low-case {
