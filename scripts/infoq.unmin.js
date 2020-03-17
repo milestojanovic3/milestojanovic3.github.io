@@ -591,9 +591,7 @@ var _default = {
      * EXPERIMENTS AFTER THIS LINE
      */
     '_experiments/popularFeed': {},
-    '_experiments/popularBox': {
-      defaultToShow: 9
-    }
+    '_experiments/popularBox': {}
   }
 };
 exports["default"] = _default;
@@ -1735,7 +1733,6 @@ var mock = [{
   category: 'Culture & Methods',
   commentsCount: 23
 }];
-var triggerFetchAdjust = 200;
 
 function insertAfter(newNode, referenceNode) {
   referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
@@ -1746,15 +1743,26 @@ var _default = {
     var popularFeed = document.querySelector('section.popular');
     if (!popularFeed) return;
     var fetchMore = popularFeed.querySelector('.fetch');
-    if (!fetchMore) return; // const cloneFetchMore = fetchMore.cloneNode()
-
+    if (!fetchMore) return;
     var event = ctx.event;
-    var nextBatchEl = popularFeed.querySelector('.next__batch');
-    var clones = [];
-    var shouldFetch = false;
+
+    var callbackRouter = function callbackRouter(entries, observer) {
+      var entry = entries[0];
+      var target = entry.target;
+
+      if (entry.intersectionRatio > 0) {
+        if (target.classList.contains('last')) {
+          console.log('last in view');
+          event.trigger('fetchMore');
+        }
+      }
+    };
+
+    var nextBatchEl;
     event.on('fetchMore', function () {
-      if (!shouldFetch) return;
-      console.log('fetching more content', mock); // await API call
+      nextBatchEl = popularFeed.querySelector('.next__batch');
+      console.log('fetching more content', mock);
+      var clones = []; // await API call
       // Mock:
 
       var children = nextBatchEl.children;
@@ -1768,7 +1776,7 @@ var _default = {
           for (var _iterator = children[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
             var c = _step.value;
 
-            if (!c.dataset.id) {
+            if (!c.dataset.id || c.classList.contains('clone')) {
               continue;
             }
 
@@ -1791,29 +1799,30 @@ var _default = {
         }
       }
 
-      setTimeout(function () {
-        // nextBatchEl.append(...clones)
-        nextBatchEl = popularFeed.querySelector('.next__batch');
-        var referenceNodes = nextBatchEl.querySelectorAll('li[data-id]');
-        var referenceNode = referenceNodes.item(referenceNodes.length - 1);
-        console.log('last', referenceNode, referenceNodes.length);
-        clones.forEach(function (clone) {
-          insertAfter(clone, referenceNode);
-        }); // nextBatchEl.append(cloneFetchMore)
+      var referenceNode = nextBatchEl.querySelector('li.last');
+      referenceNode.classList.remove('last');
+      clones.forEach(function (clone, i) {
+        insertAfter(clone, referenceNode);
+        clone.classList.add('clone');
 
-        shouldFetch = false;
+        if (i === 0) {
+          clone.classList.add('last');
+        }
+      });
+      setTimeout(function () {
+        obs();
       }, 500);
     });
-    document.addEventListener('scroll', function () {
-      if (shouldFetch) return;
-      var windowPos = window.scrollY + window.innerHeight;
-      var butPos = fetchMore.getBoundingClientRect().top; // cloneFetchMore.getBoundingClientRect().top
 
-      if (butPos - windowPos - 1000 > triggerFetchAdjust && !shouldFetch) {
-        shouldFetch = true;
-        event.trigger('fetchMore');
-      }
-    });
+    var obs = function obs() {
+      var lastEl = document.querySelectorAll('.e__cards li.last');
+      var observer = new IntersectionObserver(callbackRouter, {
+        threshold: 0.3
+      });
+      lastEl.forEach(observer.observe.bind(observer));
+    };
+
+    event.on('loaded', obs);
   }
 };
 exports["default"] = _default;
@@ -5121,7 +5130,7 @@ var createPopper = function createPopper(el, html, opts) {
 
 var _default = {
   get cardsInPage() {
-    return document.querySelectorAll('.cards > li');
+    return document.querySelectorAll(['.cards > li', '.e__cards > li']);
   },
 
   init: function init(config, context) {
