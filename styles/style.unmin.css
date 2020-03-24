@@ -3840,6 +3840,8 @@ button.liked {
 }
 
 .popular__cards[data-max="10"]>li:nth-child(n+11),
+.popular__cards[data-max="11"]>li:nth-child(n+12),
+.popular__cards[data-max="12"]>li:nth-child(n+13),
 .popular__cards[data-max="5"]>li:nth-child(n+6),
 .popular__cards[data-max="6"]>li:nth-child(n+7),
 .popular__cards[data-max="7"]>li:nth-child(n+8),
@@ -8775,6 +8777,13 @@ a.video-block {
 
 .grid-about .qcon-cards--sh {
     background-image: url(static/images/static-pages/grid-static-page__gallery-sh.jpg)
+}
+
+.grid-about .qcon-cards--gz {
+    background-position: center center;
+    background-image: url(static/images/static-pages/grid-static-page__gallery-gz.jpg);
+    background-size: cover;
+    background-repeat: no-repeat
 }
 
 .grid-about .stories-content {
@@ -20392,24 +20401,34 @@ input:checked~.star:before {
 }
 
 .rvc__container .popper {
-    opacity: 0;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    visibility: hidden;
+    opacity: 0;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-flow: column nowrap;
     flex-flow: column nowrap;
     min-height: 270px;
-    visibility: hidden;
-    width: 100%;
-    left: 0;
-    bottom: 100%
+    width: 100%
 }
 
-.rvc__container:hover .popper {
-    opacity: 1;
-    visibility: visible
+.rvc__container .popper>* {
+    display: none
+}
+
+@media only screen and (min-width:1080px) {
+    .rvc__container:hover .popper {
+        visibility: visible;
+        opacity: 1
+    }
+
+    .rvc__container:hover .popper>* {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex
+    }
 }
 
 .rvc__icon {
@@ -23520,10 +23539,10 @@ tag[title="number of tags exceeded"] {
 #toc {
     top: auto;
     right: 0;
-    bottom: 0;
+    bottom: -70px;
     left: 0;
     position: fixed;
-    padding: 8px 12px;
+    padding: 18px 12px;
     background: #fff;
     -webkit-box-shadow: 0 -5px 10px rgba(0, 0, 0, .1);
     box-shadow: 0 -5px 10px rgba(0, 0, 0, .1);
@@ -23537,7 +23556,9 @@ tag[title="number of tags exceeded"] {
     flex-flow: row nowrap;
     -webkit-box-align: center;
     -ms-flex-align: center;
-    align-items: center
+    align-items: center;
+    -webkit-transition: bottom .25s ease;
+    transition: bottom .25s ease
 }
 
 @media only screen and (min-width:600px) {
@@ -23552,13 +23573,22 @@ tag[title="number of tags exceeded"] {
     }
 }
 
-#toc button,
-#toc h5 {
-    margin: 0
+#toc button {
+    margin: 0;
+    font-size: .875rem;
+    white-space: nowrap
+}
+
+#toc button:after {
+    margin-bottom: 0
 }
 
 #toc h5 {
-    display: none
+    display: none;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
 }
 
 @media only screen and (min-width:600px) {
@@ -23566,7 +23596,20 @@ tag[title="number of tags exceeded"] {
         display: block;
         border-left: 1px solid #e1e1e1;
         padding-left: 12px;
-        margin-left: 16px
+        margin-left: 16px;
+        max-width: 65%
+    }
+}
+
+@media only screen and (min-width:768px) {
+    #toc h5 {
+        max-width: 70%
+    }
+}
+
+@media only screen and (min-width:1080px) {
+    #toc h5 {
+        max-width: 80%
     }
 }
 
@@ -23630,6 +23673,10 @@ tag[title="number of tags exceeded"] {
     left: -8px;
     top: 15px;
     z-index: 1
+}
+
+body.tocShow #toc {
+    bottom: 0
 }
 
 body.tocOpen #toc button:after {
@@ -24006,16 +24053,6 @@ body.tocOpen #tocContent {
 @media only screen and (min-width:1080px) {
     .user__notifications .notifications__welcome+.button {
         margin-bottom: 16px
-    }
-}
-
-.homepage .rvc__container .popper {
-    display: none
-}
-
-@media only screen and (min-width:1080px) {
-    .homepage .rvc__container .popper {
-        display: block
     }
 }
 

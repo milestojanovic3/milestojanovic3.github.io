@@ -211,7 +211,7 @@ function () {
       _regenerator["default"].mark(function _callee2(modulesToLoad) {
         var _this = this;
 
-        var modulesKeys;
+        var modulesKeys, awaitLoad;
         return _regenerator["default"].wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -226,7 +226,18 @@ function () {
                 throw new Error('No modules found to be inited. Aborting.');
 
               case 3:
-                _context2.next = 5;
+                awaitLoad = new Promise(function (resolve, reject) {
+                  var article = document.querySelector('article.article');
+
+                  if (article && ['article', 'podcast'].includes(article.dataset.type)) {
+                    _this.event.on('dynamicVCRBoxMoveDone', function () {
+                      resolve();
+                    });
+                  } else {
+                    resolve();
+                  }
+                });
+                _context2.next = 6;
                 return Promise.all(modulesKeys.map(
                 /*#__PURE__*/
                 function () {
@@ -263,12 +274,17 @@ function () {
                   };
                 }()));
 
-              case 5:
+              case 6:
+                _context2.next = 8;
+                return awaitLoad;
+
+              case 8:
+                // defer the loaded event a little bit.
                 setTimeout(function () {
                   _this.event.trigger('loaded');
-                }, 300);
+                }, 100);
 
-              case 6:
+              case 9:
               case "end":
                 return _context2.stop();
             }
@@ -487,6 +503,10 @@ var _default = {
     },
     conferenceLinks: {},
     zoomImages: {},
+    resizeEvent: {
+      breakpoints: [768, 1023] // breakpoints when the pageWidthChanged events trigger
+
+    },
     highlighter: {},
     tagify: {},
     searchBar: {},
@@ -590,7 +610,10 @@ var _default = {
     /**
      * EXPERIMENTS AFTER THIS LINE
      */
-    '_experiments/popularFeed': {}
+    '_experiments/popularFeed': {},
+    '_experiments/popularBox': {
+      defaultToShow: 5
+    }
   }
 };
 exports["default"] = _default;
@@ -1383,6 +1406,7 @@ var map = {
 	"./popularBox.js": "./_shameJs/core/modules/popularBox.js",
 	"./privacy.js": "./_shameJs/core/modules/privacy.js",
 	"./profile.js": "./_shameJs/core/modules/profile.js",
+	"./resizeEvent.js": "./_shameJs/core/modules/resizeEvent.js",
 	"./searchBar.js": "./_shameJs/core/modules/searchBar.js",
 	"./searchTopics.js": "./_shameJs/core/modules/searchTopics.js",
 	"./share-this/facebook.js": "./_shameJs/core/modules/share-this/facebook.js",
@@ -1461,14 +1485,15 @@ var _default = {
     var _this = this;
 
     var event = _ref.event;
-    var box = document.querySelector('.widget.popular');
-    if (!box) return;
+    var box = document.querySelector('.e__homepage .widget.popular');
+    if (!box) return; // console.log('gg')
+
     var labels = window.JSi18n.FE.labels;
     var column = box.parentNode;
     var reorderPodcasts = this.reorderPodcasts;
     var moreToggled = false;
     this.lists = box.querySelectorAll('.tab ol');
-    this.newsSection = column.parentNode.querySelector('[data-col="2/3"] .items');
+    this.newsSection = column.parentNode.querySelector('.e__featured__content');
     this.config = config;
     this.windowWidth = window.innerWidth;
     var moreLess = document.createElement('BUTTON');
@@ -1627,7 +1652,7 @@ var _default = {
       for (var _iterator4 = list.children[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
         var li = _step4.value;
 
-        if (h > newsHeight - 190) {
+        if (h > newsHeight - 160) {
           break;
         } // to get the height accurately
 
@@ -4210,32 +4235,49 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 var resolved = false;
+var attempts = 0;
 var classes = {
   box: 'f_rvcbox',
   def: 'f_vcrdefault',
   spons: 'f_sponsorship'
 };
+/**
+ *
+ *
+ * @param {*} article
+ * @returns
+ */
 
 function scan(article) {
   return new Promise(function scanner(resolve, reject) {
     var targetClass = 'is-movable';
+    attempts += 1;
     var articleRelatedGroup = document.querySelector('.f_rvcbox');
 
     if (!articleRelatedGroup) {
-      setTimeout(scanner.bind(null, resolve, reject), 500);
+      if (attempts < 5) {
+        setTimeout(scanner.bind(null, resolve, reject), 500);
+      }
+
       reject('no vcr found in content');
     }
 
     var bottomRVC = document.querySelector('.article__main > .related__group[data-cols="2"]');
 
     if (!bottomRVC) {
-      setTimeout(scanner.bind(null, resolve, reject), 500);
+      if (attempts < 5) {
+        setTimeout(scanner.bind(null, resolve, reject), 500);
+      }
+
       reject('no bottom rvc boxes');
     } else {
       var movableBox = bottomRVC.querySelector(".".concat(targetClass));
 
       if (!movableBox) {
-        setTimeout(scanner.bind(null, resolve, reject), 500);
+        if (attempts < 5) {
+          setTimeout(scanner.bind(null, resolve, reject), 500);
+        }
+
         reject('no movable box found');
       }
 
@@ -4263,15 +4305,15 @@ var _default = {
       var articleRelatedGroup = _ref2.articleRelatedGroup,
           bottomRVC = _ref2.bottomRVC;
       bRVC = bottomRVC;
-      aRG = articleRelatedGroup;
-
-      if (window.innerWidth >= 768) {
-        event.trigger('dynamicVCRBoxMoveDone');
-      }
+      aRG = articleRelatedGroup; // Desktop version
+      // if (window.innerWidth >= 768) {
+      //   event.trigger('dynamicVCRBoxMoveDone')
+      // }
 
       setTimeout(function () {
         articleRelatedGroup.classList.add('aRG');
-        var articleRelatedGroupChildren = document.querySelectorAll('.f_rvcbox > div, .f_rvcbox > ul');
+        var articleRelatedGroupChildren = document.querySelectorAll('.f_rvcbox > div, .f_rvcbox > ul'); // Make the clone and alter LI elements
+
         var _iteratorNormalCompletion = true;
         var _didIteratorError = false;
         var _iteratorError = undefined;
@@ -4281,13 +4323,38 @@ var _default = {
             var child = _step.value;
             var li = document.createElement('li');
             var clone = child.cloneNode(true);
+            clone.dataset.place = 'BOTTOM';
 
             if (clone.nodeName === 'UL') {
               rvcList = clone;
+              var _iteratorNormalCompletion2 = true;
+              var _didIteratorError2 = false;
+              var _iteratorError2 = undefined;
 
-              if (window.innerWidth < 768) {
-                // reworkVCRBoxClasses(clone)
-                clone.dataset.place = 'EMBEDDED';
+              try {
+                for (var _iterator2 = clone.children[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                  var _child = _step2.value;
+
+                  if (_child.nodeName === 'LI') {
+                    _child.dataset.place = 'BOTTOM';
+                  }
+                }
+              } catch (err) {
+                _didIteratorError2 = true;
+                _iteratorError2 = err;
+              } finally {
+                try {
+                  if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
+                    _iterator2["return"]();
+                  }
+                } finally {
+                  if (_didIteratorError2) {
+                    throw _iteratorError2;
+                  }
+                }
+              }
+
+              if (window.innerWidth < 768) {// reworkVCRBoxClasses(clone)
               }
             } else {
               if (window.innerWidth >= 768) {
@@ -4296,8 +4363,10 @@ var _default = {
             }
 
             li.classList.add('moved');
-            li.append(clone); // console.log('brvc', bottomRVC)
+            li.append(clone); // li.dataset.place = 'BOTTOM'
 
+            rvcList.dataset.trkView = true;
+            rvcList.dataset.trkImpr = true;
             bottomRVC.append(li);
             count += 1;
           }
@@ -4318,20 +4387,21 @@ var _default = {
 
         if (window.innerWidth < 768) {
           bottomRVC.dataset.cols = count + 1;
-          rvcList.dataset.place = 'EMBEDDED';
           reworkVCRBoxClasses(rvcList, aRG);
-          event.trigger('dynamicVCRBoxMoveDone');
         } else {
           reworkVCRBoxClasses(aRG, rvcList);
         }
 
+        rvcList.dataset.place = 'BOTTOM';
         article.classList.add('moved-vcr');
         resolved = true;
+        event.trigger('dynamicVCRBoxMoveDone');
       }, 500);
-    };
+    }; // Bottom RVC
+
 
     if (!resolved) scan(article).then(moveVCRtoBottom)["catch"](function (e) {
-      // console.error(e)
+      // console.error('e', e)
       event.trigger('dynamicVCRBoxMoveDone');
     }); // readjust cols count on resize
 
@@ -4356,32 +4426,31 @@ var reworkVCRBoxClasses = function reworkVCRBoxClasses(el, originalEl) {
   var box = classes.box,
       def = classes.def,
       spons = classes.spons;
-  el.classList.add(box);
-  el.dataset.place = 'EMBEDDED'; // console.log('el', el, 'originalEl', originalEl)
+  el.classList.add(box); // el.dataset.place = 'EMBEDDED'
 
   var lis = el.querySelectorAll("li");
   var parentNode = el.parentNode.parentNode;
-  var _iteratorNormalCompletion2 = true;
-  var _didIteratorError2 = false;
-  var _iteratorError2 = undefined;
+  var _iteratorNormalCompletion3 = true;
+  var _didIteratorError3 = false;
+  var _iteratorError3 = undefined;
 
   try {
-    for (var _iterator2 = lis[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-      var _e = _step2.value;
+    for (var _iterator3 = lis[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+      var _e = _step3.value;
 
       _e.classList.add(def);
     }
   } catch (err) {
-    _didIteratorError2 = true;
-    _iteratorError2 = err;
+    _didIteratorError3 = true;
+    _iteratorError3 = err;
   } finally {
     try {
-      if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
-        _iterator2["return"]();
+      if (!_iteratorNormalCompletion3 && _iterator3["return"] != null) {
+        _iterator3["return"]();
       }
     } finally {
-      if (_didIteratorError2) {
-        throw _iteratorError2;
+      if (_didIteratorError3) {
+        throw _iteratorError3;
       }
     }
   }
@@ -4398,27 +4467,29 @@ var reworkVCRBoxClasses = function reworkVCRBoxClasses(el, originalEl) {
 
   if (originalEl) {
     originalEl.classList.remove(box);
+    originalEl.dataset.trkImpr = false;
     var olis = originalEl.querySelectorAll("li");
-    var _iteratorNormalCompletion3 = true;
-    var _didIteratorError3 = false;
-    var _iteratorError3 = undefined;
+    var _iteratorNormalCompletion4 = true;
+    var _didIteratorError4 = false;
+    var _iteratorError4 = undefined;
 
     try {
-      for (var _iterator3 = olis[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-        var e = _step3.value;
+      for (var _iterator4 = olis[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+        var e = _step4.value;
         e.classList.remove(def);
+        e.dataset.trkImpr = false;
       }
     } catch (err) {
-      _didIteratorError3 = true;
-      _iteratorError3 = err;
+      _didIteratorError4 = true;
+      _iteratorError4 = err;
     } finally {
       try {
-        if (!_iteratorNormalCompletion3 && _iterator3["return"] != null) {
-          _iterator3["return"]();
+        if (!_iteratorNormalCompletion4 && _iterator4["return"] != null) {
+          _iterator4["return"]();
         }
       } finally {
-        if (_didIteratorError3) {
-          throw _iteratorError3;
+        if (_didIteratorError4) {
+          throw _iteratorError4;
         }
       }
     }
@@ -5699,58 +5770,26 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = void 0;
-// import { error } from '../../debug'
+
+var _core = __webpack_require__(/*! @popperjs/core */ "./node_modules/@popperjs/core/lib/popper.js");
+
 var _default = {
   get vcr() {
     var rvc = document.querySelector('.rvc.box__border');
     return rvc && rvc.children && rvc.children.length > 0 ? rvc : false;
   },
 
-  get items() {
-    var vcr = this.vcr;
-    if (!vcr) return;
-    var ul = vcr.parentNode.querySelector('.popper ul');
-    if (ul) return ul.children.length;
-    return 0;
-  },
-
-  /**
-   * Reference ITEM
-   */
-  get reference() {
-    var parentNode = this.vcr.parentNode;
-    return parentNode && parentNode.classList.contains('rvc__container') ? parentNode : false;
-  },
-
   get popperContentItem() {
     var vcr = this.vcr;
     if (!vcr) return;
-    var children = vcr.parentNode.children;
-    return children && children[0] && children[0].classList.contains('popper') ? children[0] : false;
+    return vcr.parentNode.querySelector('.popper');
   },
 
-  init: function init(config, _ref) {
-    var _this = this;
-
-    var Popper = _ref.Popper,
-        createPopper = _ref.createPopper;
+  init: function init(config) {
     var popperContentItem = this.popperContentItem,
-        reference = this.reference,
         vcr = this.vcr;
-    if (!popperContentItem || !reference) return;
-    popperContentItem.style.display = 'none';
-    var pop;
-    reference.addEventListener('mouseenter', function () {
-      if (pop) return;
-      var items = _this.items;
-      if (!vcr || !items) return;
-      pop = new Popper(vcr, createPopper(reference, popperContentItem.innerHTML, config), config);
-    });
-    reference.addEventListener('mouseleave', function () {
-      if (!pop) return;
-      pop.destroy();
-      pop = null;
-    });
+    if (!popperContentItem) return;
+    (0, _core.createPopper)(vcr, popperContentItem);
   }
 };
 exports["default"] = _default;
@@ -5799,7 +5838,7 @@ var _default = {
     var _this = this;
 
     var event = _ref.event;
-    var box = document.querySelector('.widget.popular');
+    var box = document.querySelector('.homepage:not(.e__homepage) .widget.popular');
     if (!box) return;
     var labels = window.JSi18n.FE.labels;
     var column = box.parentNode;
@@ -6524,6 +6563,81 @@ var _default = {
         }
       }, _callee2, null, [[1, 10]]);
     }))();
+  }
+};
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "./_shameJs/core/modules/resizeEvent.js":
+/*!**********************************************!*\
+  !*** ./_shameJs/core/modules/resizeEvent.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _default = {
+  init: function init(config, _ref) {
+    var event = _ref.event;
+    var breakpoints = config.breakpoints;
+    var currentBreak = 0;
+
+    for (var i = 0; i < breakpoints.length; i++) {
+      if (window.innerWidth > breakpoints[i]) {
+        currentBreak = i;
+      }
+    } // event.on('pageWidthChanged', () => { console.log('changed to new breakpoint') })
+
+
+    var sizeCheck = function sizeCheck() {
+      var screenBreak;
+      var screenW = window.innerWidth;
+
+      for (var _i = 0; _i < breakpoints.length; _i++) {
+        if (screenW > breakpoints[_i]) {
+          screenBreak = _i; // bp = breakpoints[i]; //this will be the px value defined in the breakpoints array
+
+          continue;
+        }
+      }
+
+      if (screenBreak != currentBreak) {
+        currentBreak = screenBreak;
+
+        switch (currentBreak) {
+          case 0:
+            event.trigger('pageWidthChanged')
+            /* the first breakpoint or larger*/
+            ;
+            break;
+
+          case 1:
+            event.trigger('pageWidthChanged')
+            /* second */
+            ;
+            break;
+
+          case 2:
+            /* third */
+            ;
+            break;
+
+          default:
+            event.trigger('pageWidthChanged')
+            /* stuff that happens below the lowest one */
+            ;
+        }
+      }
+    };
+
+    window.addEventListener('resize', sizeCheck);
   }
 };
 exports["default"] = _default;
@@ -7953,6 +8067,9 @@ var _default = {
       if (tocContent.contains(e.target) || tocBar.contains(e.target)) return;
       body.classList.remove('tocOpen');
     });
+    setTimeout(function () {
+      body.classList.add('tocShow');
+    }, 1500);
   }
 };
 exports["default"] = _default;
@@ -8490,698 +8607,743 @@ if (!Object.entries) {
 
     return resArray;
   };
-} // History
+}
+/**
+ * Copyright 2016 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the W3C SOFTWARE AND DOCUMENT NOTICE AND LICENSE.
+ *
+ *  https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ */
 
 
-(typeof JSON === "undefined" ? "undefined" : (0, _typeof2["default"])(JSON)) != "object" && (JSON = {}), function () {
-  "use strict";
+(function () {
+  'use strict'; // Exit early if we're not running in a browser.
 
-  function f(e) {
-    return e < 10 ? "0" + e : e;
-  }
+  if ((typeof window === "undefined" ? "undefined" : (0, _typeof2["default"])(window)) !== 'object') {
+    return;
+  } // Exit early if all IntersectionObserver and IntersectionObserverEntry
+  // features are natively supported.
 
-  function quote(e) {
-    return escapable.lastIndex = 0, escapable.test(e) ? '"' + e.replace(escapable, function (e) {
-      var t = meta[e];
-      return typeof t == "string" ? t : "\\u" + ("0000" + e.charCodeAt(0).toString(16)).slice(-4);
-    }) + '"' : '"' + e + '"';
-  }
 
-  function str(e, t) {
-    var n,
-        r,
-        i,
-        s,
-        o = gap,
-        u,
-        a = t[e];
-    a && (0, _typeof2["default"])(a) == "object" && typeof a.toJSON == "function" && (a = a.toJSON(e)), typeof rep == "function" && (a = rep.call(t, e, a));
-
-    switch ((0, _typeof2["default"])(a)) {
-      case "string":
-        return quote(a);
-
-      case "number":
-        return isFinite(a) ? String(a) : "null";
-
-      case "boolean":
-      case "null":
-        return String(a);
-
-      case "object":
-        if (!a) return "null";
-        gap += indent, u = [];
-
-        if (Object.prototype.toString.apply(a) === "[object Array]") {
-          s = a.length;
-
-          for (n = 0; n < s; n += 1) {
-            u[n] = str(n, a) || "null";
-          }
-
-          return i = u.length === 0 ? "[]" : gap ? "[\n" + gap + u.join(",\n" + gap) + "\n" + o + "]" : "[" + u.join(",") + "]", gap = o, i;
+  if ('IntersectionObserver' in window && 'IntersectionObserverEntry' in window && 'intersectionRatio' in window.IntersectionObserverEntry.prototype) {
+    // Minimal polyfill for Edge 15's lack of `isIntersecting`
+    // See: https://github.com/w3c/IntersectionObserver/issues/211
+    if (!('isIntersecting' in window.IntersectionObserverEntry.prototype)) {
+      Object.defineProperty(window.IntersectionObserverEntry.prototype, 'isIntersecting', {
+        get: function get() {
+          return this.intersectionRatio > 0;
         }
-
-        if (rep && (0, _typeof2["default"])(rep) == "object") {
-          s = rep.length;
-
-          for (n = 0; n < s; n += 1) {
-            typeof rep[n] == "string" && (r = rep[n], i = str(r, a), i && u.push(quote(r) + (gap ? ": " : ":") + i));
-          }
-        } else for (r in a) {
-          Object.prototype.hasOwnProperty.call(a, r) && (i = str(r, a), i && u.push(quote(r) + (gap ? ": " : ":") + i));
-        }
-
-        return i = u.length === 0 ? "{}" : gap ? "{\n" + gap + u.join(",\n" + gap) + "\n" + o + "}" : "{" + u.join(",") + "}", gap = o, i;
-    }
-  }
-
-  typeof Date.prototype.toJSON != "function" && (Date.prototype.toJSON = function (e) {
-    return isFinite(this.valueOf()) ? this.getUTCFullYear() + "-" + f(this.getUTCMonth() + 1) + "-" + f(this.getUTCDate()) + "T" + f(this.getUTCHours()) + ":" + f(this.getUTCMinutes()) + ":" + f(this.getUTCSeconds()) + "Z" : null;
-  }, String.prototype.toJSON = Number.prototype.toJSON = Boolean.prototype.toJSON = function (e) {
-    return this.valueOf();
-  });
-  var cx = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
-      escapable = /[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
-      gap,
-      indent,
-      meta = {
-    "\b": "\\b",
-    "	": "\\t",
-    "\n": "\\n",
-    "\f": "\\f",
-    "\r": "\\r",
-    '"': '\\"',
-    "\\": "\\\\"
-  },
-      rep;
-  typeof JSON.stringify != "function" && (JSON.stringify = function (e, t, n) {
-    var r;
-    gap = "", indent = "";
-    if (typeof n == "number") for (r = 0; r < n; r += 1) {
-      indent += " ";
-    } else typeof n == "string" && (indent = n);
-    rep = t;
-    if (!t || typeof t == "function" || (0, _typeof2["default"])(t) == "object" && typeof t.length == "number") return str("", {
-      "": e
-    });
-    throw new Error("JSON.stringify");
-  }), typeof JSON.parse != "function" && (JSON.parse = function (text, reviver) {
-    function walk(e, t) {
-      var n,
-          r,
-          i = e[t];
-      if (i && (0, _typeof2["default"])(i) == "object") for (n in i) {
-        Object.prototype.hasOwnProperty.call(i, n) && (r = walk(i, n), r !== undefined ? i[n] = r : delete i[n]);
-      }
-      return reviver.call(e, t, i);
-    }
-
-    var j;
-    text = String(text), cx.lastIndex = 0, cx.test(text) && (text = text.replace(cx, function (e) {
-      return "\\u" + ("0000" + e.charCodeAt(0).toString(16)).slice(-4);
-    }));
-    if (/^[\],:{}\s]*$/.test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, "@").replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, "]").replace(/(?:^|:|,)(?:\s*\[)+/g, ""))) return j = eval("(" + text + ")"), typeof reviver == "function" ? walk({
-      "": j
-    }, "") : j;
-    throw new SyntaxError("JSON.parse");
-  });
-}(), function (e, t) {
-  "use strict";
-
-  var n = e.History = e.History || {};
-  if (typeof n.Adapter != "undefined") throw new Error("History.js Adapter has already been loaded...");
-  n.Adapter = {
-    handlers: {},
-    _uid: 1,
-    uid: function uid(e) {
-      return e._uid || (e._uid = n.Adapter._uid++);
-    },
-    bind: function bind(e, t, r) {
-      var i = n.Adapter.uid(e);
-      n.Adapter.handlers[i] = n.Adapter.handlers[i] || {}, n.Adapter.handlers[i][t] = n.Adapter.handlers[i][t] || [], n.Adapter.handlers[i][t].push(r), e["on" + t] = function (e, t) {
-        return function (r) {
-          n.Adapter.trigger(e, t, r);
-        };
-      }(e, t);
-    },
-    trigger: function trigger(e, t, r) {
-      r = r || {};
-      var i = n.Adapter.uid(e),
-          s,
-          o;
-      n.Adapter.handlers[i] = n.Adapter.handlers[i] || {}, n.Adapter.handlers[i][t] = n.Adapter.handlers[i][t] || [];
-
-      for (s = 0, o = n.Adapter.handlers[i][t].length; s < o; ++s) {
-        n.Adapter.handlers[i][t][s].apply(this, [r]);
-      }
-    },
-    extractEventData: function extractEventData(e, n) {
-      var r = n && n[e] || t;
-      return r;
-    },
-    onDomLoad: function onDomLoad(t) {
-      var n = e.setTimeout(function () {
-        t();
-      }, 2e3);
-
-      e.onload = function () {
-        clearTimeout(n), t();
-      };
-    }
-  }, typeof n.init != "undefined" && n.init();
-}(window), function (e, t) {
-  "use strict";
-
-  var n = e.document,
-      r = e.setTimeout || r,
-      i = e.clearTimeout || i,
-      s = e.setInterval || s,
-      o = e.History = e.History || {};
-  if (typeof o.initHtml4 != "undefined") throw new Error("History.js HTML4 Support has already been loaded...");
-  o.initHtml4 = function () {
-    if (typeof o.initHtml4.initialized != "undefined") return !1;
-    o.initHtml4.initialized = !0, o.enabled = !0, o.savedHashes = [], o.isLastHash = function (e) {
-      var t = o.getHashByIndex(),
-          n;
-      return n = e === t, n;
-    }, o.isHashEqual = function (e, t) {
-      return e = encodeURIComponent(e).replace(/%25/g, "%"), t = encodeURIComponent(t).replace(/%25/g, "%"), e === t;
-    }, o.saveHash = function (e) {
-      return o.isLastHash(e) ? !1 : (o.savedHashes.push(e), !0);
-    }, o.getHashByIndex = function (e) {
-      var t = null;
-      return typeof e == "undefined" ? t = o.savedHashes[o.savedHashes.length - 1] : e < 0 ? t = o.savedHashes[o.savedHashes.length + e] : t = o.savedHashes[e], t;
-    }, o.discardedHashes = {}, o.discardedStates = {}, o.discardState = function (e, t, n) {
-      var r = o.getHashByState(e),
-          i;
-      return i = {
-        discardedState: e,
-        backState: n,
-        forwardState: t
-      }, o.discardedStates[r] = i, !0;
-    }, o.discardHash = function (e, t, n) {
-      var r = {
-        discardedHash: e,
-        backState: n,
-        forwardState: t
-      };
-      return o.discardedHashes[e] = r, !0;
-    }, o.discardedState = function (e) {
-      var t = o.getHashByState(e),
-          n;
-      return n = o.discardedStates[t] || !1, n;
-    }, o.discardedHash = function (e) {
-      var t = o.discardedHashes[e] || !1;
-      return t;
-    }, o.recycleState = function (e) {
-      var t = o.getHashByState(e);
-      return o.discardedState(e) && delete o.discardedStates[t], !0;
-    }, o.emulated.hashChange && (o.hashChangeInit = function () {
-      o.checkerFunction = null;
-      var t = "",
-          r,
-          i,
-          u,
-          a,
-          f = Boolean(o.getHash());
-      return o.isInternetExplorer() ? (r = "historyjs-iframe", i = n.createElement("iframe"), i.setAttribute("id", r), i.setAttribute("src", "#"), i.style.display = "none", n.body.appendChild(i), i.contentWindow.document.open(), i.contentWindow.document.close(), u = "", a = !1, o.checkerFunction = function () {
-        if (a) return !1;
-        a = !0;
-        var n = o.getHash(),
-            r = o.getHash(i.contentWindow.document);
-        return n !== t ? (t = n, r !== n && (u = r = n, i.contentWindow.document.open(), i.contentWindow.document.close(), i.contentWindow.document.location.hash = o.escapeHash(n)), o.Adapter.trigger(e, "hashchange")) : r !== u && (u = r, f && r === "" ? o.back() : o.setHash(r, !1)), a = !1, !0;
-      }) : o.checkerFunction = function () {
-        var n = o.getHash() || "";
-        return n !== t && (t = n, o.Adapter.trigger(e, "hashchange")), !0;
-      }, o.intervalList.push(s(o.checkerFunction, o.options.hashChangeInterval)), !0;
-    }, o.Adapter.onDomLoad(o.hashChangeInit)), o.emulated.pushState && (o.onHashChange = function (t) {
-      var n = t && t.newURL || o.getLocationHref(),
-          r = o.getHashByUrl(n),
-          i = null,
-          s = null,
-          u = null,
-          a;
-      return o.isLastHash(r) ? (o.busy(!1), !1) : (o.doubleCheckComplete(), o.saveHash(r), r && o.isTraditionalAnchor(r) ? (o.Adapter.trigger(e, "anchorchange"), o.busy(!1), !1) : (i = o.extractState(o.getFullUrl(r || o.getLocationHref()), !0), o.isLastSavedState(i) ? (o.busy(!1), !1) : (s = o.getHashByState(i), a = o.discardedState(i), a ? (o.getHashByIndex(-2) === o.getHashByState(a.forwardState) ? o.back(!1) : o.forward(!1), !1) : (o.pushState(i.data, i.title, encodeURI(i.url), !1), !0))));
-    }, o.Adapter.bind(e, "hashchange", o.onHashChange), o.pushState = function (t, n, r, i) {
-      r = encodeURI(r).replace(/%25/g, "%");
-      if (o.getHashByUrl(r)) throw new Error("History.js does not support states with fragment-identifiers (hashes/anchors).");
-      if (i !== !1 && o.busy()) return o.pushQueue({
-        scope: o,
-        callback: o.pushState,
-        args: arguments,
-        queue: i
-      }), !1;
-      o.busy(!0);
-      var s = o.createStateObject(t, n, r),
-          u = o.getHashByState(s),
-          a = o.getState(!1),
-          f = o.getHashByState(a),
-          l = o.getHash(),
-          c = o.expectedStateId == s.id;
-      return o.storeState(s), o.expectedStateId = s.id, o.recycleState(s), o.setTitle(s), u === f ? (o.busy(!1), !1) : (o.saveState(s), c || o.Adapter.trigger(e, "statechange"), !o.isHashEqual(u, l) && !o.isHashEqual(u, o.getShortUrl(o.getLocationHref())) && o.setHash(u, !1), o.busy(!1), !0);
-    }, o.replaceState = function (t, n, r, i) {
-      r = encodeURI(r).replace(/%25/g, "%");
-      if (o.getHashByUrl(r)) throw new Error("History.js does not support states with fragment-identifiers (hashes/anchors).");
-      if (i !== !1 && o.busy()) return o.pushQueue({
-        scope: o,
-        callback: o.replaceState,
-        args: arguments,
-        queue: i
-      }), !1;
-      o.busy(!0);
-      var s = o.createStateObject(t, n, r),
-          u = o.getHashByState(s),
-          a = o.getState(!1),
-          f = o.getHashByState(a),
-          l = o.getStateByIndex(-2);
-      return o.discardState(a, s, l), u === f ? (o.storeState(s), o.expectedStateId = s.id, o.recycleState(s), o.setTitle(s), o.saveState(s), o.Adapter.trigger(e, "statechange"), o.busy(!1)) : o.pushState(s.data, s.title, s.url, !1), !0;
-    }), o.emulated.pushState && o.getHash() && !o.emulated.hashChange && o.Adapter.onDomLoad(function () {
-      o.Adapter.trigger(e, "hashchange");
-    });
-  }, typeof o.init != "undefined" && o.init();
-}(window), function (e, t) {
-  "use strict";
-
-  var n = e.console || t,
-      r = e.document,
-      i = e.navigator,
-      s = !1,
-      o = e.setTimeout,
-      u = e.clearTimeout,
-      a = e.setInterval,
-      f = e.clearInterval,
-      l = e.JSON,
-      c = e.alert,
-      h = e.History = e.History || {},
-      p = e.history;
-
-  try {
-    s = e.sessionStorage, s.setItem("TEST", "1"), s.removeItem("TEST");
-  } catch (d) {
-    s = !1;
-  }
-
-  l.stringify = l.stringify || l.encode, l.parse = l.parse || l.decode;
-  if (typeof h.init != "undefined") throw new Error("History.js Core has already been loaded...");
-  h.init = function (e) {
-    return typeof h.Adapter == "undefined" ? !1 : (typeof h.initCore != "undefined" && h.initCore(), typeof h.initHtml4 != "undefined" && h.initHtml4(), !0);
-  }, h.initCore = function (d) {
-    if (typeof h.initCore.initialized != "undefined") return !1;
-    h.initCore.initialized = !0, h.options = h.options || {}, h.options.hashChangeInterval = h.options.hashChangeInterval || 100, h.options.safariPollInterval = h.options.safariPollInterval || 500, h.options.doubleCheckInterval = h.options.doubleCheckInterval || 500, h.options.disableSuid = h.options.disableSuid || !1, h.options.storeInterval = h.options.storeInterval || 1e3, h.options.busyDelay = h.options.busyDelay || 250, h.options.debug = h.options.debug || !1, h.options.initialTitle = h.options.initialTitle || r.title, h.options.html4Mode = h.options.html4Mode || !1, h.options.delayInit = h.options.delayInit || !1, h.intervalList = [], h.clearAllIntervals = function () {
-      var e,
-          t = h.intervalList;
-
-      if (typeof t != "undefined" && t !== null) {
-        for (e = 0; e < t.length; e++) {
-          f(t[e]);
-        }
-
-        h.intervalList = null;
-      }
-    }, h.debug = function () {
-      (h.options.debug || !1) && h.log.apply(h, arguments);
-    }, h.log = function () {
-      var e = typeof n != "undefined" && typeof n.log != "undefined" && typeof n.log.apply != "undefined",
-          t = r.getElementById("log"),
-          i,
-          s,
-          o,
-          u,
-          a;
-      e ? (u = Array.prototype.slice.call(arguments), i = u.shift(), typeof n.debug != "undefined" ? n.debug.apply(n, [i, u]) : n.log.apply(n, [i, u])) : i = "\n" + arguments[0] + "\n";
-
-      for (s = 1, o = arguments.length; s < o; ++s) {
-        a = arguments[s];
-        if ((0, _typeof2["default"])(a) == "object" && typeof l != "undefined") try {
-          a = l.stringify(a);
-        } catch (f) {}
-        i += "\n" + a + "\n";
-      }
-
-      return t ? (t.value += i + "\n-----\n", t.scrollTop = t.scrollHeight - t.clientHeight) : e || c(i), !0;
-    }, h.getInternetExplorerMajorVersion = function () {
-      var e = h.getInternetExplorerMajorVersion.cached = typeof h.getInternetExplorerMajorVersion.cached != "undefined" ? h.getInternetExplorerMajorVersion.cached : function () {
-        var e = 3,
-            t = r.createElement("div"),
-            n = t.getElementsByTagName("i");
-
-        while ((t.innerHTML = "<!--[if gt IE " + ++e + "]><i></i><![endif]-->") && n[0]) {
-          ;
-        }
-
-        return e > 4 ? e : !1;
-      }();
-      return e;
-    }, h.isInternetExplorer = function () {
-      var e = h.isInternetExplorer.cached = typeof h.isInternetExplorer.cached != "undefined" ? h.isInternetExplorer.cached : Boolean(h.getInternetExplorerMajorVersion());
-      return e;
-    }, h.options.html4Mode ? h.emulated = {
-      pushState: !0,
-      hashChange: !0
-    } : h.emulated = {
-      pushState: !Boolean(e.history && e.history.pushState && e.history.replaceState && !/ Mobile\/([1-7][a-z]|(8([abcde]|f(1[0-8]))))/i.test(i.userAgent) && !/AppleWebKit\/5([0-2]|3[0-2])/i.test(i.userAgent)),
-      hashChange: Boolean(!("onhashchange" in e || "onhashchange" in r) || h.isInternetExplorer() && h.getInternetExplorerMajorVersion() < 8)
-    }, h.enabled = !h.emulated.pushState, h.bugs = {
-      setHash: Boolean(!h.emulated.pushState && i.vendor === "Apple Computer, Inc." && /AppleWebKit\/5([0-2]|3[0-3])/.test(i.userAgent)),
-      safariPoll: Boolean(!h.emulated.pushState && i.vendor === "Apple Computer, Inc." && /AppleWebKit\/5([0-2]|3[0-3])/.test(i.userAgent)),
-      ieDoubleCheck: Boolean(h.isInternetExplorer() && h.getInternetExplorerMajorVersion() < 8),
-      hashEscape: Boolean(h.isInternetExplorer() && h.getInternetExplorerMajorVersion() < 7)
-    }, h.isEmptyObject = function (e) {
-      for (var t in e) {
-        if (e.hasOwnProperty(t)) return !1;
-      }
-
-      return !0;
-    }, h.cloneObject = function (e) {
-      var t, n;
-      return e ? (t = l.stringify(e), n = l.parse(t)) : n = {}, n;
-    }, h.getRootUrl = function () {
-      var e = r.location.protocol + "//" + (r.location.hostname || r.location.host);
-      if (r.location.port || !1) e += ":" + r.location.port;
-      return e += "/", e;
-    }, h.getBaseHref = function () {
-      var e = r.getElementsByTagName("base"),
-          t = null,
-          n = "";
-      return e.length === 1 && (t = e[0], n = t.href.replace(/[^\/]+$/, "")), n = n.replace(/\/+$/, ""), n && (n += "/"), n;
-    }, h.getBaseUrl = function () {
-      var e = h.getBaseHref() || h.getBasePageUrl() || h.getRootUrl();
-      return e;
-    }, h.getPageUrl = function () {
-      var e = h.getState(!1, !1),
-          t = (e || {}).url || h.getLocationHref(),
-          n;
-      return n = t.replace(/\/+$/, "").replace(/[^\/]+$/, function (e, t, n) {
-        return /\./.test(e) ? e : e + "/";
-      }), n;
-    }, h.getBasePageUrl = function () {
-      var e = h.getLocationHref().replace(/[#\?].*/, "").replace(/[^\/]+$/, function (e, t, n) {
-        return /[^\/]$/.test(e) ? "" : e;
-      }).replace(/\/+$/, "") + "/";
-      return e;
-    }, h.getFullUrl = function (e, t) {
-      var n = e,
-          r = e.substring(0, 1);
-      return t = typeof t == "undefined" ? !0 : t, /[a-z]+\:\/\//.test(e) || (r === "/" ? n = h.getRootUrl() + e.replace(/^\/+/, "") : r === "#" ? n = h.getPageUrl().replace(/#.*/, "") + e : r === "?" ? n = h.getPageUrl().replace(/[\?#].*/, "") + e : t ? n = h.getBaseUrl() + e.replace(/^(\.\/)+/, "") : n = h.getBasePageUrl() + e.replace(/^(\.\/)+/, "")), n.replace(/\#$/, "");
-    }, h.getShortUrl = function (e) {
-      var t = e,
-          n = h.getBaseUrl(),
-          r = h.getRootUrl();
-      return h.emulated.pushState && (t = t.replace(n, "")), t = t.replace(r, "/"), h.isTraditionalAnchor(t) && (t = "./" + t), t = t.replace(/^(\.\/)+/g, "./").replace(/\#$/, ""), t;
-    }, h.getLocationHref = function (e) {
-      return e = e || r, e.URL === e.location.href ? e.location.href : e.location.href === decodeURIComponent(e.URL) ? e.URL : e.location.hash && decodeURIComponent(e.location.href.replace(/^[^#]+/, "")) === e.location.hash ? e.location.href : e.URL.indexOf("#") == -1 && e.location.href.indexOf("#") != -1 ? e.location.href : e.URL || e.location.href;
-    }, h.store = {}, h.idToState = h.idToState || {}, h.stateToId = h.stateToId || {}, h.urlToId = h.urlToId || {}, h.storedStates = h.storedStates || [], h.savedStates = h.savedStates || [], h.normalizeStore = function () {
-      h.store.idToState = h.store.idToState || {}, h.store.urlToId = h.store.urlToId || {}, h.store.stateToId = h.store.stateToId || {};
-    }, h.getState = function (e, t) {
-      typeof e == "undefined" && (e = !0), typeof t == "undefined" && (t = !0);
-      var n = h.getLastSavedState();
-      return !n && t && (n = h.createStateObject()), e && (n = h.cloneObject(n), n.url = n.cleanUrl || n.url), n;
-    }, h.getIdByState = function (e) {
-      var t = h.extractId(e.url),
-          n;
-
-      if (!t) {
-        n = h.getStateString(e);
-        if (typeof h.stateToId[n] != "undefined") t = h.stateToId[n];else if (typeof h.store.stateToId[n] != "undefined") t = h.store.stateToId[n];else {
-          for (;;) {
-            t = new Date().getTime() + String(Math.random()).replace(/\D/g, "");
-            if (typeof h.idToState[t] == "undefined" && typeof h.store.idToState[t] == "undefined") break;
-          }
-
-          h.stateToId[n] = t, h.idToState[t] = e;
-        }
-      }
-
-      return t;
-    }, h.normalizeState = function (e) {
-      var t, n;
-      if (!e || (0, _typeof2["default"])(e) != "object") e = {};
-      if (typeof e.normalized != "undefined") return e;
-      if (!e.data || (0, _typeof2["default"])(e.data) != "object") e.data = {};
-      return t = {}, t.normalized = !0, t.title = e.title || "", t.url = h.getFullUrl(e.url ? e.url : h.getLocationHref()), t.hash = h.getShortUrl(t.url), t.data = h.cloneObject(e.data), t.id = h.getIdByState(t), t.cleanUrl = t.url.replace(/\??\&_suid.*/, ""), t.url = t.cleanUrl, n = !h.isEmptyObject(t.data), (t.title || n) && h.options.disableSuid !== !0 && (t.hash = h.getShortUrl(t.url).replace(/\??\&_suid.*/, ""), /\?/.test(t.hash) || (t.hash += "?"), t.hash += "&_suid=" + t.id), t.hashedUrl = h.getFullUrl(t.hash), (h.emulated.pushState || h.bugs.safariPoll) && h.hasUrlDuplicate(t) && (t.url = t.hashedUrl), t;
-    }, h.createStateObject = function (e, t, n) {
-      var r = {
-        data: e,
-        title: t,
-        url: n
-      };
-      return r = h.normalizeState(r), r;
-    }, h.getStateById = function (e) {
-      e = String(e);
-      var n = h.idToState[e] || h.store.idToState[e] || t;
-      return n;
-    }, h.getStateString = function (e) {
-      var t, n, r;
-      return t = h.normalizeState(e), n = {
-        data: t.data,
-        title: e.title,
-        url: e.url
-      }, r = l.stringify(n), r;
-    }, h.getStateId = function (e) {
-      var t, n;
-      return t = h.normalizeState(e), n = t.id, n;
-    }, h.getHashByState = function (e) {
-      var t, n;
-      return t = h.normalizeState(e), n = t.hash, n;
-    }, h.extractId = function (e) {
-      var t, n, r, i;
-      return e.indexOf("#") != -1 ? i = e.split("#")[0] : i = e, n = /(.*)\&_suid=([0-9]+)$/.exec(i), r = n ? n[1] || e : e, t = n ? String(n[2] || "") : "", t || !1;
-    }, h.isTraditionalAnchor = function (e) {
-      var t = !/[\/\?\.]/.test(e);
-      return t;
-    }, h.extractState = function (e, t) {
-      var n = null,
-          r,
-          i;
-      return t = t || !1, r = h.extractId(e), r && (n = h.getStateById(r)), n || (i = h.getFullUrl(e), r = h.getIdByUrl(i) || !1, r && (n = h.getStateById(r)), !n && t && !h.isTraditionalAnchor(e) && (n = h.createStateObject(null, null, i))), n;
-    }, h.getIdByUrl = function (e) {
-      var n = h.urlToId[e] || h.store.urlToId[e] || t;
-      return n;
-    }, h.getLastSavedState = function () {
-      return h.savedStates[h.savedStates.length - 1] || t;
-    }, h.getLastStoredState = function () {
-      return h.storedStates[h.storedStates.length - 1] || t;
-    }, h.hasUrlDuplicate = function (e) {
-      var t = !1,
-          n;
-      return n = h.extractState(e.url), t = n && n.id !== e.id, t;
-    }, h.storeState = function (e) {
-      return h.urlToId[e.url] = e.id, h.storedStates.push(h.cloneObject(e)), e;
-    }, h.isLastSavedState = function (e) {
-      var t = !1,
-          n,
-          r,
-          i;
-      return h.savedStates.length && (n = e.id, r = h.getLastSavedState(), i = r.id, t = n === i), t;
-    }, h.saveState = function (e) {
-      return h.isLastSavedState(e) ? !1 : (h.savedStates.push(h.cloneObject(e)), !0);
-    }, h.getStateByIndex = function (e) {
-      var t = null;
-      return typeof e == "undefined" ? t = h.savedStates[h.savedStates.length - 1] : e < 0 ? t = h.savedStates[h.savedStates.length + e] : t = h.savedStates[e], t;
-    }, h.getCurrentIndex = function () {
-      var e = null;
-      return h.savedStates.length < 1 ? e = 0 : e = h.savedStates.length - 1, e;
-    }, h.getHash = function (e) {
-      var t = h.getLocationHref(e),
-          n;
-      return n = h.getHashByUrl(t), n;
-    }, h.unescapeHash = function (e) {
-      var t = h.normalizeHash(e);
-      return t = decodeURIComponent(t), t;
-    }, h.normalizeHash = function (e) {
-      var t = e.replace(/[^#]*#/, "").replace(/#.*/, "");
-      return t;
-    }, h.setHash = function (e, t) {
-      var n, i;
-      return t !== !1 && h.busy() ? (h.pushQueue({
-        scope: h,
-        callback: h.setHash,
-        args: arguments,
-        queue: t
-      }), !1) : (h.busy(!0), n = h.extractState(e, !0), n && !h.emulated.pushState ? h.pushState(n.data, n.title, n.url, !1) : h.getHash() !== e && (h.bugs.setHash ? (i = h.getPageUrl(), h.pushState(null, null, i + "#" + e, !1)) : r.location.hash = e), h);
-    }, h.escapeHash = function (t) {
-      var n = h.normalizeHash(t);
-      return n = e.encodeURIComponent(n), h.bugs.hashEscape || (n = n.replace(/\%21/g, "!").replace(/\%26/g, "&").replace(/\%3D/g, "=").replace(/\%3F/g, "?")), n;
-    }, h.getHashByUrl = function (e) {
-      var t = String(e).replace(/([^#]*)#?([^#]*)#?(.*)/, "$2");
-      return t = h.unescapeHash(t), t;
-    }, h.setTitle = function (e) {
-      var t = e.title,
-          n;
-      t || (n = h.getStateByIndex(0), n && n.url === e.url && (t = n.title || h.options.initialTitle));
-
-      try {
-        r.getElementsByTagName("title")[0].innerHTML = t.replace("<", "&lt;").replace(">", "&gt;").replace(" & ", " &amp; ");
-      } catch (i) {}
-
-      return r.title = t, h;
-    }, h.queues = [], h.busy = function (e) {
-      typeof e != "undefined" ? h.busy.flag = e : typeof h.busy.flag == "undefined" && (h.busy.flag = !1);
-
-      if (!h.busy.flag) {
-        u(h.busy.timeout);
-
-        var t = function t() {
-          var e, n, r;
-          if (h.busy.flag) return;
-
-          for (e = h.queues.length - 1; e >= 0; --e) {
-            n = h.queues[e];
-            if (n.length === 0) continue;
-            r = n.shift(), h.fireQueueItem(r), h.busy.timeout = o(t, h.options.busyDelay);
-          }
-        };
-
-        h.busy.timeout = o(t, h.options.busyDelay);
-      }
-
-      return h.busy.flag;
-    }, h.busy.flag = !1, h.fireQueueItem = function (e) {
-      return e.callback.apply(e.scope || h, e.args || []);
-    }, h.pushQueue = function (e) {
-      return h.queues[e.queue || 0] = h.queues[e.queue || 0] || [], h.queues[e.queue || 0].push(e), h;
-    }, h.queue = function (e, t) {
-      return typeof e == "function" && (e = {
-        callback: e
-      }), typeof t != "undefined" && (e.queue = t), h.busy() ? h.pushQueue(e) : h.fireQueueItem(e), h;
-    }, h.clearQueue = function () {
-      return h.busy.flag = !1, h.queues = [], h;
-    }, h.stateChanged = !1, h.doubleChecker = !1, h.doubleCheckComplete = function () {
-      return h.stateChanged = !0, h.doubleCheckClear(), h;
-    }, h.doubleCheckClear = function () {
-      return h.doubleChecker && (u(h.doubleChecker), h.doubleChecker = !1), h;
-    }, h.doubleCheck = function (e) {
-      return h.stateChanged = !1, h.doubleCheckClear(), h.bugs.ieDoubleCheck && (h.doubleChecker = o(function () {
-        return h.doubleCheckClear(), h.stateChanged || e(), !0;
-      }, h.options.doubleCheckInterval)), h;
-    }, h.safariStatePoll = function () {
-      var t = h.extractState(h.getLocationHref()),
-          n;
-      if (!h.isLastSavedState(t)) return n = t, n || (n = h.createStateObject()), h.Adapter.trigger(e, "popstate"), h;
-      return;
-    }, h.back = function (e) {
-      return e !== !1 && h.busy() ? (h.pushQueue({
-        scope: h,
-        callback: h.back,
-        args: arguments,
-        queue: e
-      }), !1) : (h.busy(!0), h.doubleCheck(function () {
-        h.back(!1);
-      }), p.go(-1), !0);
-    }, h.forward = function (e) {
-      return e !== !1 && h.busy() ? (h.pushQueue({
-        scope: h,
-        callback: h.forward,
-        args: arguments,
-        queue: e
-      }), !1) : (h.busy(!0), h.doubleCheck(function () {
-        h.forward(!1);
-      }), p.go(1), !0);
-    }, h.go = function (e, t) {
-      var n;
-      if (e > 0) for (n = 1; n <= e; ++n) {
-        h.forward(t);
-      } else {
-        if (!(e < 0)) throw new Error("History.go: History.go requires a positive or negative integer passed.");
-
-        for (n = -1; n >= e; --n) {
-          h.back(t);
-        }
-      }
-      return h;
-    };
-
-    if (h.emulated.pushState) {
-      var v = function v() {};
-
-      h.pushState = h.pushState || v, h.replaceState = h.replaceState || v;
-    } else h.onPopState = function (t, n) {
-      var r = !1,
-          i = !1,
-          s,
-          o;
-      return h.doubleCheckComplete(), s = h.getHash(), s ? (o = h.extractState(s || h.getLocationHref(), !0), o ? h.replaceState(o.data, o.title, o.url, !1) : (h.Adapter.trigger(e, "anchorchange"), h.busy(!1)), h.expectedStateId = !1, !1) : (r = h.Adapter.extractEventData("state", t, n) || !1, r ? i = h.getStateById(r) : h.expectedStateId ? i = h.getStateById(h.expectedStateId) : i = h.extractState(h.getLocationHref()), i || (i = h.createStateObject(null, null, h.getLocationHref())), h.expectedStateId = !1, h.isLastSavedState(i) ? (h.busy(!1), !1) : (h.storeState(i), h.saveState(i), h.setTitle(i), h.Adapter.trigger(e, "statechange"), h.busy(!1), !0));
-    }, h.Adapter.bind(e, "popstate", h.onPopState), h.pushState = function (t, n, r, i) {
-      if (h.getHashByUrl(r) && h.emulated.pushState) throw new Error("History.js does not support states with fragement-identifiers (hashes/anchors).");
-      if (i !== !1 && h.busy()) return h.pushQueue({
-        scope: h,
-        callback: h.pushState,
-        args: arguments,
-        queue: i
-      }), !1;
-      h.busy(!0);
-      var s = h.createStateObject(t, n, r);
-      return h.isLastSavedState(s) ? h.busy(!1) : (h.storeState(s), h.expectedStateId = s.id, p.pushState(s.id, s.title, s.url), h.Adapter.trigger(e, "popstate")), !0;
-    }, h.replaceState = function (t, n, r, i) {
-      if (h.getHashByUrl(r) && h.emulated.pushState) throw new Error("History.js does not support states with fragement-identifiers (hashes/anchors).");
-      if (i !== !1 && h.busy()) return h.pushQueue({
-        scope: h,
-        callback: h.replaceState,
-        args: arguments,
-        queue: i
-      }), !1;
-      h.busy(!0);
-      var s = h.createStateObject(t, n, r);
-      return h.isLastSavedState(s) ? h.busy(!1) : (h.storeState(s), h.expectedStateId = s.id, p.replaceState(s.id, s.title, s.url), h.Adapter.trigger(e, "popstate")), !0;
-    };
-
-    if (s) {
-      try {
-        h.store = l.parse(s.getItem("History.store")) || {};
-      } catch (m) {
-        h.store = {};
-      }
-
-      h.normalizeStore();
-    } else h.store = {}, h.normalizeStore();
-
-    h.Adapter.bind(e, "unload", h.clearAllIntervals), h.saveState(h.storeState(h.extractState(h.getLocationHref(), !0))), s && (h.onUnload = function () {
-      var e, t, n;
-
-      try {
-        e = l.parse(s.getItem("History.store")) || {};
-      } catch (r) {
-        e = {};
-      }
-
-      e.idToState = e.idToState || {}, e.urlToId = e.urlToId || {}, e.stateToId = e.stateToId || {};
-
-      for (t in h.idToState) {
-        if (!h.idToState.hasOwnProperty(t)) continue;
-        e.idToState[t] = h.idToState[t];
-      }
-
-      for (t in h.urlToId) {
-        if (!h.urlToId.hasOwnProperty(t)) continue;
-        e.urlToId[t] = h.urlToId[t];
-      }
-
-      for (t in h.stateToId) {
-        if (!h.stateToId.hasOwnProperty(t)) continue;
-        e.stateToId[t] = h.stateToId[t];
-      }
-
-      h.store = e, h.normalizeStore(), n = l.stringify(e);
-
-      try {
-        s.setItem("History.store", n);
-      } catch (i) {
-        if (i.code !== DOMException.QUOTA_EXCEEDED_ERR) throw i;
-        s.length && (s.removeItem("History.store"), s.setItem("History.store", n));
-      }
-    }, h.intervalList.push(a(h.onUnload, h.options.storeInterval)), h.Adapter.bind(e, "beforeunload", h.onUnload), h.Adapter.bind(e, "unload", h.onUnload));
-
-    if (!h.emulated.pushState) {
-      h.bugs.safariPoll && h.intervalList.push(a(h.safariStatePoll, h.options.safariPollInterval));
-      if (i.vendor === "Apple Computer, Inc." || (i.appCodeName || "") === "Mozilla") h.Adapter.bind(e, "hashchange", function () {
-        h.Adapter.trigger(e, "popstate");
-      }), h.getHash() && h.Adapter.onDomLoad(function () {
-        h.Adapter.trigger(e, "hashchange");
       });
     }
-  }, (!h.options || !h.options.delayInit) && h.init();
-}(window);
+
+    return;
+  }
+  /**
+   * A local reference to the document.
+   */
+
+
+  var document = window.document;
+  /**
+   * An IntersectionObserver registry. This registry exists to hold a strong
+   * reference to IntersectionObserver instances currently observing a target
+   * element. Without this registry, instances without another reference may be
+   * garbage collected.
+   */
+
+  var registry = [];
+  /**
+   * Creates the global IntersectionObserverEntry constructor.
+   * https://w3c.github.io/IntersectionObserver/#intersection-observer-entry
+   * @param {Object} entry A dictionary of instance properties.
+   * @constructor
+   */
+
+  function IntersectionObserverEntry(entry) {
+    this.time = entry.time;
+    this.target = entry.target;
+    this.rootBounds = entry.rootBounds;
+    this.boundingClientRect = entry.boundingClientRect;
+    this.intersectionRect = entry.intersectionRect || getEmptyRect();
+    this.isIntersecting = !!entry.intersectionRect; // Calculates the intersection ratio.
+
+    var targetRect = this.boundingClientRect;
+    var targetArea = targetRect.width * targetRect.height;
+    var intersectionRect = this.intersectionRect;
+    var intersectionArea = intersectionRect.width * intersectionRect.height; // Sets intersection ratio.
+
+    if (targetArea) {
+      // Round the intersection ratio to avoid floating point math issues:
+      // https://github.com/w3c/IntersectionObserver/issues/324
+      this.intersectionRatio = Number((intersectionArea / targetArea).toFixed(4));
+    } else {
+      // If area is zero and is intersecting, sets to 1, otherwise to 0
+      this.intersectionRatio = this.isIntersecting ? 1 : 0;
+    }
+  }
+  /**
+   * Creates the global IntersectionObserver constructor.
+   * https://w3c.github.io/IntersectionObserver/#intersection-observer-interface
+   * @param {Function} callback The function to be invoked after intersection
+   *     changes have queued. The function is not invoked if the queue has
+   *     been emptied by calling the `takeRecords` method.
+   * @param {Object=} opt_options Optional configuration options.
+   * @constructor
+   */
+
+
+  function IntersectionObserver(callback, opt_options) {
+    var options = opt_options || {};
+
+    if (typeof callback != 'function') {
+      throw new Error('callback must be a function');
+    }
+
+    if (options.root && options.root.nodeType != 1) {
+      throw new Error('root must be an Element');
+    } // Binds and throttles `this._checkForIntersections`.
+
+
+    this._checkForIntersections = throttle(this._checkForIntersections.bind(this), this.THROTTLE_TIMEOUT); // Private properties.
+
+    this._callback = callback;
+    this._observationTargets = [];
+    this._queuedEntries = [];
+    this._rootMarginValues = this._parseRootMargin(options.rootMargin); // Public properties.
+
+    this.thresholds = this._initThresholds(options.threshold);
+    this.root = options.root || null;
+    this.rootMargin = this._rootMarginValues.map(function (margin) {
+      return margin.value + margin.unit;
+    }).join(' ');
+  }
+  /**
+   * The minimum interval within which the document will be checked for
+   * intersection changes.
+   */
+
+
+  IntersectionObserver.prototype.THROTTLE_TIMEOUT = 100;
+  /**
+   * The frequency in which the polyfill polls for intersection changes.
+   * this can be updated on a per instance basis and must be set prior to
+   * calling `observe` on the first target.
+   */
+
+  IntersectionObserver.prototype.POLL_INTERVAL = null;
+  /**
+   * Use a mutation observer on the root element
+   * to detect intersection changes.
+   */
+
+  IntersectionObserver.prototype.USE_MUTATION_OBSERVER = true;
+  /**
+   * Starts observing a target element for intersection changes based on
+   * the thresholds values.
+   * @param {Element} target The DOM element to observe.
+   */
+
+  IntersectionObserver.prototype.observe = function (target) {
+    var isTargetAlreadyObserved = this._observationTargets.some(function (item) {
+      return item.element == target;
+    });
+
+    if (isTargetAlreadyObserved) {
+      return;
+    }
+
+    if (!(target && target.nodeType == 1)) {
+      throw new Error('target must be an Element');
+    }
+
+    this._registerInstance();
+
+    this._observationTargets.push({
+      element: target,
+      entry: null
+    });
+
+    this._monitorIntersections();
+
+    this._checkForIntersections();
+  };
+  /**
+   * Stops observing a target element for intersection changes.
+   * @param {Element} target The DOM element to observe.
+   */
+
+
+  IntersectionObserver.prototype.unobserve = function (target) {
+    this._observationTargets = this._observationTargets.filter(function (item) {
+      return item.element != target;
+    });
+
+    if (!this._observationTargets.length) {
+      this._unmonitorIntersections();
+
+      this._unregisterInstance();
+    }
+  };
+  /**
+   * Stops observing all target elements for intersection changes.
+   */
+
+
+  IntersectionObserver.prototype.disconnect = function () {
+    this._observationTargets = [];
+
+    this._unmonitorIntersections();
+
+    this._unregisterInstance();
+  };
+  /**
+   * Returns any queue entries that have not yet been reported to the
+   * callback and clears the queue. This can be used in conjunction with the
+   * callback to obtain the absolute most up-to-date intersection information.
+   * @return {Array} The currently queued entries.
+   */
+
+
+  IntersectionObserver.prototype.takeRecords = function () {
+    var records = this._queuedEntries.slice();
+
+    this._queuedEntries = [];
+    return records;
+  };
+  /**
+   * Accepts the threshold value from the user configuration object and
+   * returns a sorted array of unique threshold values. If a value is not
+   * between 0 and 1 and error is thrown.
+   * @private
+   * @param {Array|number=} opt_threshold An optional threshold value or
+   *     a list of threshold values, defaulting to [0].
+   * @return {Array} A sorted list of unique and valid threshold values.
+   */
+
+
+  IntersectionObserver.prototype._initThresholds = function (opt_threshold) {
+    var threshold = opt_threshold || [0];
+    if (!Array.isArray(threshold)) threshold = [threshold];
+    return threshold.sort().filter(function (t, i, a) {
+      if (typeof t != 'number' || isNaN(t) || t < 0 || t > 1) {
+        throw new Error('threshold must be a number between 0 and 1 inclusively');
+      }
+
+      return t !== a[i - 1];
+    });
+  };
+  /**
+   * Accepts the rootMargin value from the user configuration object
+   * and returns an array of the four margin values as an object containing
+   * the value and unit properties. If any of the values are not properly
+   * formatted or use a unit other than px or %, and error is thrown.
+   * @private
+   * @param {string=} opt_rootMargin An optional rootMargin value,
+   *     defaulting to '0px'.
+   * @return {Array<Object>} An array of margin objects with the keys
+   *     value and unit.
+   */
+
+
+  IntersectionObserver.prototype._parseRootMargin = function (opt_rootMargin) {
+    var marginString = opt_rootMargin || '0px';
+    var margins = marginString.split(/\s+/).map(function (margin) {
+      var parts = /^(-?\d*\.?\d+)(px|%)$/.exec(margin);
+
+      if (!parts) {
+        throw new Error('rootMargin must be specified in pixels or percent');
+      }
+
+      return {
+        value: parseFloat(parts[1]),
+        unit: parts[2]
+      };
+    }); // Handles shorthand.
+
+    margins[1] = margins[1] || margins[0];
+    margins[2] = margins[2] || margins[0];
+    margins[3] = margins[3] || margins[1];
+    return margins;
+  };
+  /**
+   * Starts polling for intersection changes if the polling is not already
+   * happening, and if the page's visibility state is visible.
+   * @private
+   */
+
+
+  IntersectionObserver.prototype._monitorIntersections = function () {
+    if (!this._monitoringIntersections) {
+      this._monitoringIntersections = true; // If a poll interval is set, use polling instead of listening to
+      // resize and scroll events or DOM mutations.
+
+      if (this.POLL_INTERVAL) {
+        this._monitoringInterval = setInterval(this._checkForIntersections, this.POLL_INTERVAL);
+      } else {
+        addEvent(window, 'resize', this._checkForIntersections, true);
+        addEvent(document, 'scroll', this._checkForIntersections, true);
+
+        if (this.USE_MUTATION_OBSERVER && 'MutationObserver' in window) {
+          this._domObserver = new MutationObserver(this._checkForIntersections);
+
+          this._domObserver.observe(document, {
+            attributes: true,
+            childList: true,
+            characterData: true,
+            subtree: true
+          });
+        }
+      }
+    }
+  };
+  /**
+   * Stops polling for intersection changes.
+   * @private
+   */
+
+
+  IntersectionObserver.prototype._unmonitorIntersections = function () {
+    if (this._monitoringIntersections) {
+      this._monitoringIntersections = false;
+      clearInterval(this._monitoringInterval);
+      this._monitoringInterval = null;
+      removeEvent(window, 'resize', this._checkForIntersections, true);
+      removeEvent(document, 'scroll', this._checkForIntersections, true);
+
+      if (this._domObserver) {
+        this._domObserver.disconnect();
+
+        this._domObserver = null;
+      }
+    }
+  };
+  /**
+   * Scans each observation target for intersection changes and adds them
+   * to the internal entries queue. If new entries are found, it
+   * schedules the callback to be invoked.
+   * @private
+   */
+
+
+  IntersectionObserver.prototype._checkForIntersections = function () {
+    var rootIsInDom = this._rootIsInDom();
+
+    var rootRect = rootIsInDom ? this._getRootRect() : getEmptyRect();
+
+    this._observationTargets.forEach(function (item) {
+      var target = item.element;
+      var targetRect = getBoundingClientRect(target);
+
+      var rootContainsTarget = this._rootContainsTarget(target);
+
+      var oldEntry = item.entry;
+
+      var intersectionRect = rootIsInDom && rootContainsTarget && this._computeTargetAndRootIntersection(target, rootRect);
+
+      var newEntry = item.entry = new IntersectionObserverEntry({
+        time: now(),
+        target: target,
+        boundingClientRect: targetRect,
+        rootBounds: rootRect,
+        intersectionRect: intersectionRect
+      });
+
+      if (!oldEntry) {
+        this._queuedEntries.push(newEntry);
+      } else if (rootIsInDom && rootContainsTarget) {
+        // If the new entry intersection ratio has crossed any of the
+        // thresholds, add a new entry.
+        if (this._hasCrossedThreshold(oldEntry, newEntry)) {
+          this._queuedEntries.push(newEntry);
+        }
+      } else {
+        // If the root is not in the DOM or target is not contained within
+        // root but the previous entry for this target had an intersection,
+        // add a new record indicating removal.
+        if (oldEntry && oldEntry.isIntersecting) {
+          this._queuedEntries.push(newEntry);
+        }
+      }
+    }, this);
+
+    if (this._queuedEntries.length) {
+      this._callback(this.takeRecords(), this);
+    }
+  };
+  /**
+   * Accepts a target and root rect computes the intersection between then
+   * following the algorithm in the spec.
+   * TODO(philipwalton): at this time clip-path is not considered.
+   * https://w3c.github.io/IntersectionObserver/#calculate-intersection-rect-algo
+   * @param {Element} target The target DOM element
+   * @param {Object} rootRect The bounding rect of the root after being
+   *     expanded by the rootMargin value.
+   * @return {?Object} The final intersection rect object or undefined if no
+   *     intersection is found.
+   * @private
+   */
+
+
+  IntersectionObserver.prototype._computeTargetAndRootIntersection = function (target, rootRect) {
+    // If the element isn't displayed, an intersection can't happen.
+    if (window.getComputedStyle(target).display == 'none') return;
+    var targetRect = getBoundingClientRect(target);
+    var intersectionRect = targetRect;
+    var parent = getParentNode(target);
+    var atRoot = false;
+
+    while (!atRoot) {
+      var parentRect = null;
+      var parentComputedStyle = parent.nodeType == 1 ? window.getComputedStyle(parent) : {}; // If the parent isn't displayed, an intersection can't happen.
+
+      if (parentComputedStyle.display == 'none') return;
+
+      if (parent == this.root || parent == document) {
+        atRoot = true;
+        parentRect = rootRect;
+      } else {
+        // If the element has a non-visible overflow, and it's not the <body>
+        // or <html> element, update the intersection rect.
+        // Note: <body> and <html> cannot be clipped to a rect that's not also
+        // the document rect, so no need to compute a new intersection.
+        if (parent != document.body && parent != document.documentElement && parentComputedStyle.overflow != 'visible') {
+          parentRect = getBoundingClientRect(parent);
+        }
+      } // If either of the above conditionals set a new parentRect,
+      // calculate new intersection data.
+
+
+      if (parentRect) {
+        intersectionRect = computeRectIntersection(parentRect, intersectionRect);
+        if (!intersectionRect) break;
+      }
+
+      parent = getParentNode(parent);
+    }
+
+    return intersectionRect;
+  };
+  /**
+   * Returns the root rect after being expanded by the rootMargin value.
+   * @return {Object} The expanded root rect.
+   * @private
+   */
+
+
+  IntersectionObserver.prototype._getRootRect = function () {
+    var rootRect;
+
+    if (this.root) {
+      rootRect = getBoundingClientRect(this.root);
+    } else {
+      // Use <html>/<body> instead of window since scroll bars affect size.
+      var html = document.documentElement;
+      var body = document.body;
+      rootRect = {
+        top: 0,
+        left: 0,
+        right: html.clientWidth || body.clientWidth,
+        width: html.clientWidth || body.clientWidth,
+        bottom: html.clientHeight || body.clientHeight,
+        height: html.clientHeight || body.clientHeight
+      };
+    }
+
+    return this._expandRectByRootMargin(rootRect);
+  };
+  /**
+   * Accepts a rect and expands it by the rootMargin value.
+   * @param {Object} rect The rect object to expand.
+   * @return {Object} The expanded rect.
+   * @private
+   */
+
+
+  IntersectionObserver.prototype._expandRectByRootMargin = function (rect) {
+    var margins = this._rootMarginValues.map(function (margin, i) {
+      return margin.unit == 'px' ? margin.value : margin.value * (i % 2 ? rect.width : rect.height) / 100;
+    });
+
+    var newRect = {
+      top: rect.top - margins[0],
+      right: rect.right + margins[1],
+      bottom: rect.bottom + margins[2],
+      left: rect.left - margins[3]
+    };
+    newRect.width = newRect.right - newRect.left;
+    newRect.height = newRect.bottom - newRect.top;
+    return newRect;
+  };
+  /**
+   * Accepts an old and new entry and returns true if at least one of the
+   * threshold values has been crossed.
+   * @param {?IntersectionObserverEntry} oldEntry The previous entry for a
+   *    particular target element or null if no previous entry exists.
+   * @param {IntersectionObserverEntry} newEntry The current entry for a
+   *    particular target element.
+   * @return {boolean} Returns true if a any threshold has been crossed.
+   * @private
+   */
+
+
+  IntersectionObserver.prototype._hasCrossedThreshold = function (oldEntry, newEntry) {
+    // To make comparing easier, an entry that has a ratio of 0
+    // but does not actually intersect is given a value of -1
+    var oldRatio = oldEntry && oldEntry.isIntersecting ? oldEntry.intersectionRatio || 0 : -1;
+    var newRatio = newEntry.isIntersecting ? newEntry.intersectionRatio || 0 : -1; // Ignore unchanged ratios
+
+    if (oldRatio === newRatio) return;
+
+    for (var i = 0; i < this.thresholds.length; i++) {
+      var threshold = this.thresholds[i]; // Return true if an entry matches a threshold or if the new ratio
+      // and the old ratio are on the opposite sides of a threshold.
+
+      if (threshold == oldRatio || threshold == newRatio || threshold < oldRatio !== threshold < newRatio) {
+        return true;
+      }
+    }
+  };
+  /**
+   * Returns whether or not the root element is an element and is in the DOM.
+   * @return {boolean} True if the root element is an element and is in the DOM.
+   * @private
+   */
+
+
+  IntersectionObserver.prototype._rootIsInDom = function () {
+    return !this.root || containsDeep(document, this.root);
+  };
+  /**
+   * Returns whether or not the target element is a child of root.
+   * @param {Element} target The target element to check.
+   * @return {boolean} True if the target element is a child of root.
+   * @private
+   */
+
+
+  IntersectionObserver.prototype._rootContainsTarget = function (target) {
+    return containsDeep(this.root || document, target);
+  };
+  /**
+   * Adds the instance to the global IntersectionObserver registry if it isn't
+   * already present.
+   * @private
+   */
+
+
+  IntersectionObserver.prototype._registerInstance = function () {
+    if (registry.indexOf(this) < 0) {
+      registry.push(this);
+    }
+  };
+  /**
+   * Removes the instance from the global IntersectionObserver registry.
+   * @private
+   */
+
+
+  IntersectionObserver.prototype._unregisterInstance = function () {
+    var index = registry.indexOf(this);
+    if (index != -1) registry.splice(index, 1);
+  };
+  /**
+   * Returns the result of the performance.now() method or null in browsers
+   * that don't support the API.
+   * @return {number} The elapsed time since the page was requested.
+   */
+
+
+  function now() {
+    return window.performance && performance.now && performance.now();
+  }
+  /**
+   * Throttles a function and delays its execution, so it's only called at most
+   * once within a given time period.
+   * @param {Function} fn The function to throttle.
+   * @param {number} timeout The amount of time that must pass before the
+   *     function can be called again.
+   * @return {Function} The throttled function.
+   */
+
+
+  function throttle(fn, timeout) {
+    var timer = null;
+    return function () {
+      if (!timer) {
+        timer = setTimeout(function () {
+          fn();
+          timer = null;
+        }, timeout);
+      }
+    };
+  }
+  /**
+   * Adds an event handler to a DOM node ensuring cross-browser compatibility.
+   * @param {Node} node The DOM node to add the event handler to.
+   * @param {string} event The event name.
+   * @param {Function} fn The event handler to add.
+   * @param {boolean} opt_useCapture Optionally adds the even to the capture
+   *     phase. Note: this only works in modern browsers.
+   */
+
+
+  function addEvent(node, event, fn, opt_useCapture) {
+    if (typeof node.addEventListener == 'function') {
+      node.addEventListener(event, fn, opt_useCapture || false);
+    } else if (typeof node.attachEvent == 'function') {
+      node.attachEvent('on' + event, fn);
+    }
+  }
+  /**
+   * Removes a previously added event handler from a DOM node.
+   * @param {Node} node The DOM node to remove the event handler from.
+   * @param {string} event The event name.
+   * @param {Function} fn The event handler to remove.
+   * @param {boolean} opt_useCapture If the event handler was added with this
+   *     flag set to true, it should be set to true here in order to remove it.
+   */
+
+
+  function removeEvent(node, event, fn, opt_useCapture) {
+    if (typeof node.removeEventListener == 'function') {
+      node.removeEventListener(event, fn, opt_useCapture || false);
+    } else if (typeof node.detatchEvent == 'function') {
+      node.detatchEvent('on' + event, fn);
+    }
+  }
+  /**
+   * Returns the intersection between two rect objects.
+   * @param {Object} rect1 The first rect.
+   * @param {Object} rect2 The second rect.
+   * @return {?Object} The intersection rect or undefined if no intersection
+   *     is found.
+   */
+
+
+  function computeRectIntersection(rect1, rect2) {
+    var top = Math.max(rect1.top, rect2.top);
+    var bottom = Math.min(rect1.bottom, rect2.bottom);
+    var left = Math.max(rect1.left, rect2.left);
+    var right = Math.min(rect1.right, rect2.right);
+    var width = right - left;
+    var height = bottom - top;
+    return width >= 0 && height >= 0 && {
+      top: top,
+      bottom: bottom,
+      left: left,
+      right: right,
+      width: width,
+      height: height
+    };
+  }
+  /**
+   * Shims the native getBoundingClientRect for compatibility with older IE.
+   * @param {Element} el The element whose bounding rect to get.
+   * @return {Object} The (possibly shimmed) rect of the element.
+   */
+
+
+  function getBoundingClientRect(el) {
+    var rect;
+
+    try {
+      rect = el.getBoundingClientRect();
+    } catch (err) {// Ignore Windows 7 IE11 "Unspecified error"
+      // https://github.com/w3c/IntersectionObserver/pull/205
+    }
+
+    if (!rect) return getEmptyRect(); // Older IE
+
+    if (!(rect.width && rect.height)) {
+      rect = {
+        top: rect.top,
+        right: rect.right,
+        bottom: rect.bottom,
+        left: rect.left,
+        width: rect.right - rect.left,
+        height: rect.bottom - rect.top
+      };
+    }
+
+    return rect;
+  }
+  /**
+   * Returns an empty rect object. An empty rect is returned when an element
+   * is not in the DOM.
+   * @return {Object} The empty rect.
+   */
+
+
+  function getEmptyRect() {
+    return {
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      width: 0,
+      height: 0
+    };
+  }
+  /**
+   * Checks to see if a parent element contains a child element (including inside
+   * shadow DOM).
+   * @param {Node} parent The parent element.
+   * @param {Node} child The child element.
+   * @return {boolean} True if the parent node contains the child node.
+   */
+
+
+  function containsDeep(parent, child) {
+    var node = child;
+
+    while (node) {
+      if (node == parent) return true;
+      node = getParentNode(node);
+    }
+
+    return false;
+  }
+  /**
+   * Gets the parent node of an element or its host element if the parent node
+   * is a shadow root.
+   * @param {Node} node The node whose parent to get.
+   * @return {Node|null} The parent node or null if no parent exists.
+   */
+
+
+  function getParentNode(node) {
+    var parent = node.parentNode;
+
+    if (parent && parent.nodeType == 11 && parent.host) {
+      // If the parent is a shadow root, return the host element.
+      return parent.host;
+    }
+
+    if (parent && parent.assignedSlot) {
+      // If the parent is distributed in a <slot>, return the parent of a slot.
+      return parent.assignedSlot.parentNode;
+    }
+
+    return parent;
+  } // Exposes the constructors globally.
+
+
+  window.IntersectionObserver = IntersectionObserver;
+  window.IntersectionObserverEntry = IntersectionObserverEntry;
+})(); // classList.forEach polyfill
+
+
+if (window.DOMTokenList && !DOMTokenList.prototype.forEach) {
+  DOMTokenList.prototype.forEach = function (callback, thisArg) {
+    thisArg = thisArg || window;
+
+    for (var i = 0; i < this.length; i++) {
+      callback.call(thisArg, this[i], i, this);
+    }
+  };
+}
 
 /***/ }),
 
@@ -9584,6 +9746,2768 @@ module.exports = _typeof;
 
 module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
 
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/dom-utils/contains.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/dom-utils/contains.js ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return contains; });
+function contains(parent, child) {
+  // $FlowFixMe: hasOwnProperty doesn't seem to work in tests
+  var isShadow = Boolean(child.getRootNode && child.getRootNode().host); // First, attempt with faster native method
+
+  if (parent.contains(child)) {
+    return true;
+  } // then fallback to custom implementation with Shadow DOM support
+  else if (isShadow) {
+      var next = child;
+
+      do {
+        if (next && parent.isSameNode(next)) {
+          return true;
+        } // $FlowFixMe: need a better way to handle this...
+
+
+        next = next.parentNode || next.host;
+      } while (next);
+    } // Give up, the result is false
+
+
+  return false;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/dom-utils/getBorders.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/dom-utils/getBorders.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getBorders; });
+/* harmony import */ var _getComputedStyle_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getComputedStyle.js */ "./node_modules/@popperjs/core/lib/dom-utils/getComputedStyle.js");
+/* harmony import */ var _instanceOf_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./instanceOf.js */ "./node_modules/@popperjs/core/lib/dom-utils/instanceOf.js");
+
+
+
+function toNumber(cssValue) {
+  return parseFloat(cssValue) || 0;
+}
+
+function getBorders(element) {
+  var computedStyle = Object(_instanceOf_js__WEBPACK_IMPORTED_MODULE_1__["isHTMLElement"])(element) ? Object(_getComputedStyle_js__WEBPACK_IMPORTED_MODULE_0__["default"])(element) : {};
+  return {
+    top: toNumber(computedStyle.borderTopWidth),
+    right: toNumber(computedStyle.borderRightWidth),
+    bottom: toNumber(computedStyle.borderBottomWidth),
+    left: toNumber(computedStyle.borderLeftWidth)
+  };
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/dom-utils/getBoundingClientRect.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/dom-utils/getBoundingClientRect.js ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getBoundingClientRect; });
+function getBoundingClientRect(element) {
+  var rect = element.getBoundingClientRect();
+  return {
+    width: rect.width,
+    height: rect.height,
+    top: rect.top,
+    right: rect.right,
+    bottom: rect.bottom,
+    left: rect.left,
+    x: rect.left,
+    y: rect.top
+  };
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/dom-utils/getClippingRect.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/dom-utils/getClippingRect.js ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getClippingRect; });
+/* harmony import */ var _enums_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../enums.js */ "./node_modules/@popperjs/core/lib/enums.js");
+/* harmony import */ var _getViewportRect_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getViewportRect.js */ "./node_modules/@popperjs/core/lib/dom-utils/getViewportRect.js");
+/* harmony import */ var _getDocumentRect_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getDocumentRect.js */ "./node_modules/@popperjs/core/lib/dom-utils/getDocumentRect.js");
+/* harmony import */ var _listScrollParents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./listScrollParents.js */ "./node_modules/@popperjs/core/lib/dom-utils/listScrollParents.js");
+/* harmony import */ var _getOffsetParent_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./getOffsetParent.js */ "./node_modules/@popperjs/core/lib/dom-utils/getOffsetParent.js");
+/* harmony import */ var _getDocumentElement_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./getDocumentElement.js */ "./node_modules/@popperjs/core/lib/dom-utils/getDocumentElement.js");
+/* harmony import */ var _getComputedStyle_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./getComputedStyle.js */ "./node_modules/@popperjs/core/lib/dom-utils/getComputedStyle.js");
+/* harmony import */ var _instanceOf_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./instanceOf.js */ "./node_modules/@popperjs/core/lib/dom-utils/instanceOf.js");
+/* harmony import */ var _getBoundingClientRect_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./getBoundingClientRect.js */ "./node_modules/@popperjs/core/lib/dom-utils/getBoundingClientRect.js");
+/* harmony import */ var _getDecorations_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./getDecorations.js */ "./node_modules/@popperjs/core/lib/dom-utils/getDecorations.js");
+/* harmony import */ var _contains_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./contains.js */ "./node_modules/@popperjs/core/lib/dom-utils/contains.js");
+/* harmony import */ var _utils_rectToClientRect_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../utils/rectToClientRect.js */ "./node_modules/@popperjs/core/lib/utils/rectToClientRect.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+function getClientRectFromMixedType(element, clippingParent) {
+  return clippingParent === _enums_js__WEBPACK_IMPORTED_MODULE_0__["viewport"] ? Object(_utils_rectToClientRect_js__WEBPACK_IMPORTED_MODULE_11__["default"])(Object(_getViewportRect_js__WEBPACK_IMPORTED_MODULE_1__["default"])(element)) : Object(_instanceOf_js__WEBPACK_IMPORTED_MODULE_7__["isHTMLElement"])(clippingParent) ? Object(_getBoundingClientRect_js__WEBPACK_IMPORTED_MODULE_8__["default"])(clippingParent) : Object(_utils_rectToClientRect_js__WEBPACK_IMPORTED_MODULE_11__["default"])(Object(_getDocumentRect_js__WEBPACK_IMPORTED_MODULE_2__["default"])(Object(_getDocumentElement_js__WEBPACK_IMPORTED_MODULE_5__["default"])(element)));
+} // A "clipping parent" is an overflowable container with the characteristic of
+// clipping (or hiding) overflowing elements with a position different from
+// `initial`
+
+
+function getClippingParents(element) {
+  var clippingParents = Object(_listScrollParents_js__WEBPACK_IMPORTED_MODULE_3__["default"])(element);
+  var canEscapeClipping = ['absolute', 'fixed'].indexOf(Object(_getComputedStyle_js__WEBPACK_IMPORTED_MODULE_6__["default"])(element).position) >= 0;
+  var clipperElement = canEscapeClipping && Object(_instanceOf_js__WEBPACK_IMPORTED_MODULE_7__["isHTMLElement"])(element) ? Object(_getOffsetParent_js__WEBPACK_IMPORTED_MODULE_4__["default"])(element) : element;
+
+  if (!Object(_instanceOf_js__WEBPACK_IMPORTED_MODULE_7__["isElement"])(clipperElement)) {
+    return [];
+  } // $FlowFixMe: https://github.com/facebook/flow/issues/1414
+
+
+  return clippingParents.filter(function (clippingParent) {
+    return Object(_instanceOf_js__WEBPACK_IMPORTED_MODULE_7__["isElement"])(clippingParent) && Object(_contains_js__WEBPACK_IMPORTED_MODULE_10__["default"])(clippingParent, clipperElement);
+  });
+} // Gets the maximum area that the element is visible in due to any number of
+// clipping parents
+
+
+function getClippingRect(element, boundary, rootBoundary) {
+  var mainClippingParents = boundary === 'clippingParents' ? getClippingParents(element) : [].concat(boundary);
+  var clippingParents = [].concat(mainClippingParents, [rootBoundary]);
+  var firstClippingParent = clippingParents[0];
+  var clippingRect = clippingParents.reduce(function (accRect, clippingParent) {
+    var rect = getClientRectFromMixedType(element, clippingParent);
+    var decorations = Object(_getDecorations_js__WEBPACK_IMPORTED_MODULE_9__["default"])(Object(_instanceOf_js__WEBPACK_IMPORTED_MODULE_7__["isHTMLElement"])(clippingParent) ? clippingParent : Object(_getDocumentElement_js__WEBPACK_IMPORTED_MODULE_5__["default"])(element));
+    accRect.top = Math.max(rect.top + decorations.top, accRect.top);
+    accRect.right = Math.min(rect.right - decorations.right, accRect.right);
+    accRect.bottom = Math.min(rect.bottom - decorations.bottom, accRect.bottom);
+    accRect.left = Math.max(rect.left + decorations.left, accRect.left);
+    return accRect;
+  }, getClientRectFromMixedType(element, firstClippingParent));
+  clippingRect.width = clippingRect.right - clippingRect.left;
+  clippingRect.height = clippingRect.bottom - clippingRect.top;
+  clippingRect.x = clippingRect.left;
+  clippingRect.y = clippingRect.top;
+  return clippingRect;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/dom-utils/getCompositeRect.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/dom-utils/getCompositeRect.js ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getCompositeRect; });
+/* harmony import */ var _getBoundingClientRect_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getBoundingClientRect.js */ "./node_modules/@popperjs/core/lib/dom-utils/getBoundingClientRect.js");
+/* harmony import */ var _getNodeScroll_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getNodeScroll.js */ "./node_modules/@popperjs/core/lib/dom-utils/getNodeScroll.js");
+/* harmony import */ var _getNodeName_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getNodeName.js */ "./node_modules/@popperjs/core/lib/dom-utils/getNodeName.js");
+/* harmony import */ var _instanceOf_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./instanceOf.js */ "./node_modules/@popperjs/core/lib/dom-utils/instanceOf.js");
+/* harmony import */ var _getWindowScrollBarX_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./getWindowScrollBarX.js */ "./node_modules/@popperjs/core/lib/dom-utils/getWindowScrollBarX.js");
+/* harmony import */ var _getDocumentElement_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./getDocumentElement.js */ "./node_modules/@popperjs/core/lib/dom-utils/getDocumentElement.js");
+
+
+
+
+
+ // Returns the composite rect of an element relative to its offsetParent.
+// Composite means it takes into account transforms as well as layout.
+
+function getCompositeRect(elementOrVirtualElement, offsetParent, isFixed) {
+  if (isFixed === void 0) {
+    isFixed = false;
+  }
+
+  var documentElement;
+  var rect = Object(_getBoundingClientRect_js__WEBPACK_IMPORTED_MODULE_0__["default"])(elementOrVirtualElement);
+  var scroll = {
+    scrollLeft: 0,
+    scrollTop: 0
+  };
+  var offsets = {
+    x: 0,
+    y: 0
+  };
+
+  if (!isFixed) {
+    if (Object(_getNodeName_js__WEBPACK_IMPORTED_MODULE_2__["default"])(offsetParent) !== 'body') {
+      scroll = Object(_getNodeScroll_js__WEBPACK_IMPORTED_MODULE_1__["default"])(offsetParent);
+    }
+
+    if (Object(_instanceOf_js__WEBPACK_IMPORTED_MODULE_3__["isHTMLElement"])(offsetParent)) {
+      offsets = Object(_getBoundingClientRect_js__WEBPACK_IMPORTED_MODULE_0__["default"])(offsetParent);
+      offsets.x += offsetParent.clientLeft;
+      offsets.y += offsetParent.clientTop;
+    } else if (documentElement = Object(_getDocumentElement_js__WEBPACK_IMPORTED_MODULE_5__["default"])(offsetParent)) {
+      offsets.x = Object(_getWindowScrollBarX_js__WEBPACK_IMPORTED_MODULE_4__["default"])(documentElement);
+    }
+  }
+
+  return {
+    x: rect.left + scroll.scrollLeft - offsets.x,
+    y: rect.top + scroll.scrollTop - offsets.y,
+    width: rect.width,
+    height: rect.height
+  };
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/dom-utils/getComputedStyle.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/dom-utils/getComputedStyle.js ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getComputedStyle; });
+/* harmony import */ var _getWindow_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getWindow.js */ "./node_modules/@popperjs/core/lib/dom-utils/getWindow.js");
+
+function getComputedStyle(element) {
+  return Object(_getWindow_js__WEBPACK_IMPORTED_MODULE_0__["default"])(element).getComputedStyle(element);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/dom-utils/getDecorations.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/dom-utils/getDecorations.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getDecorations; });
+/* harmony import */ var _getBorders_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getBorders.js */ "./node_modules/@popperjs/core/lib/dom-utils/getBorders.js");
+/* harmony import */ var _getNodeName_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getNodeName.js */ "./node_modules/@popperjs/core/lib/dom-utils/getNodeName.js");
+/* harmony import */ var _getWindow_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getWindow.js */ "./node_modules/@popperjs/core/lib/dom-utils/getWindow.js");
+/* harmony import */ var _getWindowScrollBarX_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./getWindowScrollBarX.js */ "./node_modules/@popperjs/core/lib/dom-utils/getWindowScrollBarX.js");
+
+
+
+ // Borders + scrollbars
+
+function getDecorations(element) {
+  var win = Object(_getWindow_js__WEBPACK_IMPORTED_MODULE_2__["default"])(element);
+  var borders = Object(_getBorders_js__WEBPACK_IMPORTED_MODULE_0__["default"])(element);
+  var isHTML = Object(_getNodeName_js__WEBPACK_IMPORTED_MODULE_1__["default"])(element) === 'html';
+  var winScrollBarX = Object(_getWindowScrollBarX_js__WEBPACK_IMPORTED_MODULE_3__["default"])(element);
+  var x = element.clientWidth + borders.right;
+  var y = element.clientHeight + borders.bottom; // HACK:
+  // document.documentElement.clientHeight on iOS reports the height of the
+  // viewport including the bottom bar, even if the bottom bar isn't visible.
+  // If the difference between window innerHeight and html clientHeight is more
+  // than 50, we assume it's a mobile bottom bar and ignore scrollbars.
+  // * A 50px thick scrollbar is likely non-existent (macOS is 15px and Windows
+  //   is about 17px)
+  // * The mobile bar is 114px tall
+
+  if (isHTML && win.innerHeight - element.clientHeight > 50) {
+    y = win.innerHeight - borders.bottom;
+  }
+
+  return {
+    top: isHTML ? 0 : element.clientTop,
+    right: // RTL scrollbar (scrolling containers only)
+    element.clientLeft > borders.left ? borders.right : // LTR scrollbar
+    isHTML ? win.innerWidth - x - winScrollBarX : element.offsetWidth - x,
+    bottom: isHTML ? win.innerHeight - y : element.offsetHeight - y,
+    left: isHTML ? winScrollBarX : element.clientLeft
+  };
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/dom-utils/getDocumentElement.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/dom-utils/getDocumentElement.js ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getDocumentElement; });
+/* harmony import */ var _instanceOf_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./instanceOf.js */ "./node_modules/@popperjs/core/lib/dom-utils/instanceOf.js");
+
+function getDocumentElement(element) {
+  // $FlowFixMe: assume body is always available
+  return (Object(_instanceOf_js__WEBPACK_IMPORTED_MODULE_0__["isElement"])(element) ? element.ownerDocument : element.document).documentElement;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/dom-utils/getDocumentRect.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/dom-utils/getDocumentRect.js ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getDocumentRect; });
+/* harmony import */ var _getCompositeRect_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getCompositeRect.js */ "./node_modules/@popperjs/core/lib/dom-utils/getCompositeRect.js");
+/* harmony import */ var _getWindow_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getWindow.js */ "./node_modules/@popperjs/core/lib/dom-utils/getWindow.js");
+/* harmony import */ var _getDocumentElement_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getDocumentElement.js */ "./node_modules/@popperjs/core/lib/dom-utils/getDocumentElement.js");
+/* harmony import */ var _getWindowScroll_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./getWindowScroll.js */ "./node_modules/@popperjs/core/lib/dom-utils/getWindowScroll.js");
+
+
+
+
+function getDocumentRect(element) {
+  var win = Object(_getWindow_js__WEBPACK_IMPORTED_MODULE_1__["default"])(element);
+  var winScroll = Object(_getWindowScroll_js__WEBPACK_IMPORTED_MODULE_3__["default"])(element);
+  var documentRect = Object(_getCompositeRect_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(_getDocumentElement_js__WEBPACK_IMPORTED_MODULE_2__["default"])(element), win);
+  documentRect.height = Math.max(documentRect.height, win.innerHeight);
+  documentRect.width = Math.max(documentRect.width, win.innerWidth);
+  documentRect.x = -winScroll.scrollLeft;
+  documentRect.y = -winScroll.scrollTop;
+  return documentRect;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/dom-utils/getHTMLElementScroll.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/dom-utils/getHTMLElementScroll.js ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getHTMLElementScroll; });
+function getHTMLElementScroll(element) {
+  return {
+    scrollLeft: element.scrollLeft,
+    scrollTop: element.scrollTop
+  };
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/dom-utils/getLayoutRect.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/dom-utils/getLayoutRect.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getLayoutRect; });
+// Returns the layout rect of an element relative to its offsetParent. Layout
+// means it doesn't take into account transforms.
+function getLayoutRect(element) {
+  return {
+    x: element.offsetLeft,
+    y: element.offsetTop,
+    width: element.offsetWidth,
+    height: element.offsetHeight
+  };
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/dom-utils/getNodeName.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/dom-utils/getNodeName.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getNodeName; });
+function getNodeName(element) {
+  return element ? (element.nodeName || '').toLowerCase() : null;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/dom-utils/getNodeScroll.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/dom-utils/getNodeScroll.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getNodeScroll; });
+/* harmony import */ var _getWindowScroll_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getWindowScroll.js */ "./node_modules/@popperjs/core/lib/dom-utils/getWindowScroll.js");
+/* harmony import */ var _getWindow_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getWindow.js */ "./node_modules/@popperjs/core/lib/dom-utils/getWindow.js");
+/* harmony import */ var _instanceOf_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./instanceOf.js */ "./node_modules/@popperjs/core/lib/dom-utils/instanceOf.js");
+/* harmony import */ var _getHTMLElementScroll_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./getHTMLElementScroll.js */ "./node_modules/@popperjs/core/lib/dom-utils/getHTMLElementScroll.js");
+
+
+
+
+function getNodeScroll(node) {
+  if (node === Object(_getWindow_js__WEBPACK_IMPORTED_MODULE_1__["default"])(node) || !Object(_instanceOf_js__WEBPACK_IMPORTED_MODULE_2__["isHTMLElement"])(node)) {
+    return Object(_getWindowScroll_js__WEBPACK_IMPORTED_MODULE_0__["default"])(node);
+  } else {
+    return Object(_getHTMLElementScroll_js__WEBPACK_IMPORTED_MODULE_3__["default"])(node);
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/dom-utils/getOffsetParent.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/dom-utils/getOffsetParent.js ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getOffsetParent; });
+/* harmony import */ var _getWindow_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getWindow.js */ "./node_modules/@popperjs/core/lib/dom-utils/getWindow.js");
+/* harmony import */ var _getNodeName_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getNodeName.js */ "./node_modules/@popperjs/core/lib/dom-utils/getNodeName.js");
+/* harmony import */ var _getComputedStyle_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getComputedStyle.js */ "./node_modules/@popperjs/core/lib/dom-utils/getComputedStyle.js");
+/* harmony import */ var _instanceOf_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./instanceOf.js */ "./node_modules/@popperjs/core/lib/dom-utils/instanceOf.js");
+/* harmony import */ var _isTableElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./isTableElement.js */ "./node_modules/@popperjs/core/lib/dom-utils/isTableElement.js");
+
+
+
+
+ // https://stackoverflow.com/a/9851769/2059996
+
+var isFirefox = function isFirefox() {
+  return typeof window.InstallTrigger !== 'undefined';
+};
+
+function getTrueOffsetParent(element) {
+  var offsetParent;
+
+  if (!Object(_instanceOf_js__WEBPACK_IMPORTED_MODULE_3__["isHTMLElement"])(element) || !(offsetParent = element.offsetParent) || // https://github.com/popperjs/popper-core/issues/837
+  isFirefox() && Object(_getComputedStyle_js__WEBPACK_IMPORTED_MODULE_2__["default"])(offsetParent).position === 'fixed') {
+    return null;
+  }
+
+  return offsetParent;
+}
+
+function getOffsetParent(element) {
+  var window = Object(_getWindow_js__WEBPACK_IMPORTED_MODULE_0__["default"])(element);
+  var offsetParent = getTrueOffsetParent(element); // Find the nearest non-table offsetParent
+
+  while (offsetParent && Object(_isTableElement_js__WEBPACK_IMPORTED_MODULE_4__["default"])(offsetParent)) {
+    offsetParent = getTrueOffsetParent(offsetParent);
+  }
+
+  if (offsetParent && Object(_getNodeName_js__WEBPACK_IMPORTED_MODULE_1__["default"])(offsetParent) === 'body' && Object(_getComputedStyle_js__WEBPACK_IMPORTED_MODULE_2__["default"])(offsetParent).position === 'static') {
+    return window;
+  }
+
+  return offsetParent || window;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/dom-utils/getParentNode.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/dom-utils/getParentNode.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getParentNode; });
+/* harmony import */ var _getNodeName_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getNodeName.js */ "./node_modules/@popperjs/core/lib/dom-utils/getNodeName.js");
+
+function getParentNode(element) {
+  if (Object(_getNodeName_js__WEBPACK_IMPORTED_MODULE_0__["default"])(element) === 'html') {
+    return element;
+  }
+
+  return element.parentNode || // DOM Element detected
+  // $FlowFixMe: need a better way to handle this...
+  element.host || // ShadowRoot detected
+  document.ownerDocument || // Fallback to ownerDocument if available
+  document.documentElement // Or to documentElement if everything else fails
+  ;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/dom-utils/getScrollParent.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/dom-utils/getScrollParent.js ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getScrollParent; });
+/* harmony import */ var _getParentNode_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getParentNode.js */ "./node_modules/@popperjs/core/lib/dom-utils/getParentNode.js");
+/* harmony import */ var _getComputedStyle_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getComputedStyle.js */ "./node_modules/@popperjs/core/lib/dom-utils/getComputedStyle.js");
+/* harmony import */ var _getNodeName_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getNodeName.js */ "./node_modules/@popperjs/core/lib/dom-utils/getNodeName.js");
+/* harmony import */ var _instanceOf_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./instanceOf.js */ "./node_modules/@popperjs/core/lib/dom-utils/instanceOf.js");
+
+
+
+
+function getScrollParent(node) {
+  if (['html', 'body', '#document'].indexOf(Object(_getNodeName_js__WEBPACK_IMPORTED_MODULE_2__["default"])(node)) >= 0) {
+    // $FlowFixMe: assume body is always available
+    return node.ownerDocument.body;
+  }
+
+  if (Object(_instanceOf_js__WEBPACK_IMPORTED_MODULE_3__["isHTMLElement"])(node)) {
+    // Firefox wants us to check `-x` and `-y` variations as well
+    var _getComputedStyle = Object(_getComputedStyle_js__WEBPACK_IMPORTED_MODULE_1__["default"])(node),
+        overflow = _getComputedStyle.overflow,
+        overflowX = _getComputedStyle.overflowX,
+        overflowY = _getComputedStyle.overflowY;
+
+    if (/auto|scroll|overlay|hidden/.test(overflow + overflowY + overflowX)) {
+      return node;
+    }
+  }
+
+  return getScrollParent(Object(_getParentNode_js__WEBPACK_IMPORTED_MODULE_0__["default"])(node));
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/dom-utils/getViewportRect.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/dom-utils/getViewportRect.js ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getViewportRect; });
+/* harmony import */ var _getWindow_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getWindow.js */ "./node_modules/@popperjs/core/lib/dom-utils/getWindow.js");
+
+function getViewportRect(element) {
+  var win = Object(_getWindow_js__WEBPACK_IMPORTED_MODULE_0__["default"])(element);
+  return {
+    width: win.innerWidth,
+    height: win.innerHeight,
+    x: 0,
+    y: 0
+  };
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/dom-utils/getWindow.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/dom-utils/getWindow.js ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getWindow; });
+/*:: import type { Window } from '../types'; */
+
+/*:: declare function getWindow(node: Node | Window): Window; */
+function getWindow(node) {
+  if (node.toString() !== '[object Window]') {
+    var ownerDocument = node.ownerDocument;
+    return ownerDocument ? ownerDocument.defaultView : window;
+  }
+
+  return node;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/dom-utils/getWindowScroll.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/dom-utils/getWindowScroll.js ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getWindowScroll; });
+/* harmony import */ var _getWindow_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getWindow.js */ "./node_modules/@popperjs/core/lib/dom-utils/getWindow.js");
+
+function getWindowScroll(node) {
+  var win = Object(_getWindow_js__WEBPACK_IMPORTED_MODULE_0__["default"])(node);
+  var scrollLeft = win.pageXOffset;
+  var scrollTop = win.pageYOffset;
+  return {
+    scrollLeft: scrollLeft,
+    scrollTop: scrollTop
+  };
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/dom-utils/getWindowScrollBarX.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/dom-utils/getWindowScrollBarX.js ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getWindowScrollBarX; });
+/* harmony import */ var _getBoundingClientRect_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getBoundingClientRect.js */ "./node_modules/@popperjs/core/lib/dom-utils/getBoundingClientRect.js");
+/* harmony import */ var _getDocumentElement_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getDocumentElement.js */ "./node_modules/@popperjs/core/lib/dom-utils/getDocumentElement.js");
+/* harmony import */ var _getWindowScroll_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getWindowScroll.js */ "./node_modules/@popperjs/core/lib/dom-utils/getWindowScroll.js");
+
+
+
+function getWindowScrollBarX(element) {
+  // If <html> has a CSS width greater than the viewport, then this will be
+  // incorrect for RTL.
+  // Popper 1 is broken in this case and never had a bug report so let's assume
+  // it's not an issue. I don't think anyone ever specifies width on <html>
+  // anyway.
+  // Browsers where the left scrollbar doesn't cause an issue report `0` for
+  // this (e.g. Edge 2019, IE11, Safari)
+  return Object(_getBoundingClientRect_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(_getDocumentElement_js__WEBPACK_IMPORTED_MODULE_1__["default"])(element)).left + Object(_getWindowScroll_js__WEBPACK_IMPORTED_MODULE_2__["default"])(element).scrollLeft;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/dom-utils/instanceOf.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/dom-utils/instanceOf.js ***!
+  \*****************************************************************/
+/*! exports provided: isElement, isHTMLElement */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isElement", function() { return isElement; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isHTMLElement", function() { return isHTMLElement; });
+/* harmony import */ var _getWindow_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getWindow.js */ "./node_modules/@popperjs/core/lib/dom-utils/getWindow.js");
+
+/*:: declare function isElement(node: mixed): boolean %checks(node instanceof
+  Element); */
+
+function isElement(node) {
+  var OwnElement = Object(_getWindow_js__WEBPACK_IMPORTED_MODULE_0__["default"])(node).Element;
+  return node instanceof OwnElement || node instanceof Element;
+}
+/*:: declare function isHTMLElement(node: mixed): boolean %checks(node instanceof
+  HTMLElement); */
+
+
+function isHTMLElement(node) {
+  var OwnElement = Object(_getWindow_js__WEBPACK_IMPORTED_MODULE_0__["default"])(node).HTMLElement;
+  return node instanceof OwnElement || node instanceof HTMLElement;
+}
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/dom-utils/isTableElement.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/dom-utils/isTableElement.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return isTableElement; });
+/* harmony import */ var _getNodeName_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getNodeName.js */ "./node_modules/@popperjs/core/lib/dom-utils/getNodeName.js");
+
+function isTableElement(element) {
+  return ['table', 'td', 'th'].indexOf(Object(_getNodeName_js__WEBPACK_IMPORTED_MODULE_0__["default"])(element)) >= 0;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/dom-utils/listScrollParents.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/dom-utils/listScrollParents.js ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return listScrollParents; });
+/* harmony import */ var _getScrollParent_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getScrollParent.js */ "./node_modules/@popperjs/core/lib/dom-utils/getScrollParent.js");
+/* harmony import */ var _getParentNode_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getParentNode.js */ "./node_modules/@popperjs/core/lib/dom-utils/getParentNode.js");
+/* harmony import */ var _getNodeName_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getNodeName.js */ "./node_modules/@popperjs/core/lib/dom-utils/getNodeName.js");
+/* harmony import */ var _getWindow_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./getWindow.js */ "./node_modules/@popperjs/core/lib/dom-utils/getWindow.js");
+
+
+
+
+function listScrollParents(element, list) {
+  if (list === void 0) {
+    list = [];
+  }
+
+  var scrollParent = Object(_getScrollParent_js__WEBPACK_IMPORTED_MODULE_0__["default"])(element);
+  var isBody = Object(_getNodeName_js__WEBPACK_IMPORTED_MODULE_2__["default"])(scrollParent) === 'body';
+  var target = isBody ? Object(_getWindow_js__WEBPACK_IMPORTED_MODULE_3__["default"])(scrollParent) : scrollParent;
+  var updatedList = list.concat(target);
+  return isBody ? updatedList : // $FlowFixMe: isBody tells us target will be an HTMLElement here
+  updatedList.concat(listScrollParents(Object(_getParentNode_js__WEBPACK_IMPORTED_MODULE_1__["default"])(target)));
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/enums.js":
+/*!**************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/enums.js ***!
+  \**************************************************/
+/*! exports provided: top, bottom, right, left, auto, basePlacements, start, end, clippingParents, viewport, popper, reference, variationPlacements, placements, beforeRead, read, afterRead, beforeMain, main, afterMain, beforeWrite, write, afterWrite, modifierPhases */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "top", function() { return top; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "bottom", function() { return bottom; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "right", function() { return right; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "left", function() { return left; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "auto", function() { return auto; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "basePlacements", function() { return basePlacements; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "start", function() { return start; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "end", function() { return end; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clippingParents", function() { return clippingParents; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "viewport", function() { return viewport; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "popper", function() { return popper; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reference", function() { return reference; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "variationPlacements", function() { return variationPlacements; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "placements", function() { return placements; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "beforeRead", function() { return beforeRead; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "read", function() { return read; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "afterRead", function() { return afterRead; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "beforeMain", function() { return beforeMain; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "main", function() { return main; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "afterMain", function() { return afterMain; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "beforeWrite", function() { return beforeWrite; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "write", function() { return write; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "afterWrite", function() { return afterWrite; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modifierPhases", function() { return modifierPhases; });
+var top = 'top';
+var bottom = 'bottom';
+var right = 'right';
+var left = 'left';
+var auto = 'auto';
+var basePlacements = [top, bottom, right, left];
+var start = 'start';
+var end = 'end';
+var clippingParents = 'clippingParents';
+var viewport = 'viewport';
+var popper = 'popper';
+var reference = 'reference';
+var variationPlacements =
+/*#__PURE__*/
+basePlacements.reduce(function (acc, placement) {
+  return acc.concat([placement + "-" + start, placement + "-" + end]);
+}, []);
+var placements =
+/*#__PURE__*/
+[].concat(basePlacements, [auto]).reduce(function (acc, placement) {
+  return acc.concat([placement, placement + "-" + start, placement + "-" + end]);
+}, []); // modifiers that need to read the DOM
+
+var beforeRead = 'beforeRead';
+var read = 'read';
+var afterRead = 'afterRead'; // pure-logic modifiers
+
+var beforeMain = 'beforeMain';
+var main = 'main';
+var afterMain = 'afterMain'; // modifier with the purpose to write to the DOM (or write into a framework state)
+
+var beforeWrite = 'beforeWrite';
+var write = 'write';
+var afterWrite = 'afterWrite';
+var modifierPhases = [beforeRead, read, afterRead, beforeMain, main, afterMain, beforeWrite, write, afterWrite];
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/index.js":
+/*!**************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/index.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "popperGenerator", function() { return popperGenerator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPopper", function() { return createPopper; });
+/* harmony import */ var _dom_utils_getCompositeRect_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dom-utils/getCompositeRect.js */ "./node_modules/@popperjs/core/lib/dom-utils/getCompositeRect.js");
+/* harmony import */ var _dom_utils_getLayoutRect_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dom-utils/getLayoutRect.js */ "./node_modules/@popperjs/core/lib/dom-utils/getLayoutRect.js");
+/* harmony import */ var _dom_utils_listScrollParents_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dom-utils/listScrollParents.js */ "./node_modules/@popperjs/core/lib/dom-utils/listScrollParents.js");
+/* harmony import */ var _dom_utils_getOffsetParent_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dom-utils/getOffsetParent.js */ "./node_modules/@popperjs/core/lib/dom-utils/getOffsetParent.js");
+/* harmony import */ var _dom_utils_getComputedStyle_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./dom-utils/getComputedStyle.js */ "./node_modules/@popperjs/core/lib/dom-utils/getComputedStyle.js");
+/* harmony import */ var _utils_orderModifiers_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils/orderModifiers.js */ "./node_modules/@popperjs/core/lib/utils/orderModifiers.js");
+/* harmony import */ var _utils_debounce_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./utils/debounce.js */ "./node_modules/@popperjs/core/lib/utils/debounce.js");
+/* harmony import */ var _utils_validateModifiers_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./utils/validateModifiers.js */ "./node_modules/@popperjs/core/lib/utils/validateModifiers.js");
+/* harmony import */ var _utils_uniqueBy_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./utils/uniqueBy.js */ "./node_modules/@popperjs/core/lib/utils/uniqueBy.js");
+/* harmony import */ var _utils_getBasePlacement_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./utils/getBasePlacement.js */ "./node_modules/@popperjs/core/lib/utils/getBasePlacement.js");
+/* harmony import */ var _utils_mergeByName_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./utils/mergeByName.js */ "./node_modules/@popperjs/core/lib/utils/mergeByName.js");
+/* harmony import */ var _dom_utils_instanceOf_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./dom-utils/instanceOf.js */ "./node_modules/@popperjs/core/lib/dom-utils/instanceOf.js");
+/* harmony import */ var _enums_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./enums.js */ "./node_modules/@popperjs/core/lib/enums.js");
+/* harmony import */ var _types_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./types.js */ "./node_modules/@popperjs/core/lib/types.js");
+/* harmony import */ var _types_js__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_types_js__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _types_js__WEBPACK_IMPORTED_MODULE_13__) if(["popperGenerator","createPopper","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _types_js__WEBPACK_IMPORTED_MODULE_13__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "top", function() { return _enums_js__WEBPACK_IMPORTED_MODULE_12__["top"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "bottom", function() { return _enums_js__WEBPACK_IMPORTED_MODULE_12__["bottom"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "right", function() { return _enums_js__WEBPACK_IMPORTED_MODULE_12__["right"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "left", function() { return _enums_js__WEBPACK_IMPORTED_MODULE_12__["left"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "auto", function() { return _enums_js__WEBPACK_IMPORTED_MODULE_12__["auto"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "basePlacements", function() { return _enums_js__WEBPACK_IMPORTED_MODULE_12__["basePlacements"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "start", function() { return _enums_js__WEBPACK_IMPORTED_MODULE_12__["start"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "end", function() { return _enums_js__WEBPACK_IMPORTED_MODULE_12__["end"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "clippingParents", function() { return _enums_js__WEBPACK_IMPORTED_MODULE_12__["clippingParents"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "viewport", function() { return _enums_js__WEBPACK_IMPORTED_MODULE_12__["viewport"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "popper", function() { return _enums_js__WEBPACK_IMPORTED_MODULE_12__["popper"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "reference", function() { return _enums_js__WEBPACK_IMPORTED_MODULE_12__["reference"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "variationPlacements", function() { return _enums_js__WEBPACK_IMPORTED_MODULE_12__["variationPlacements"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "placements", function() { return _enums_js__WEBPACK_IMPORTED_MODULE_12__["placements"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "beforeRead", function() { return _enums_js__WEBPACK_IMPORTED_MODULE_12__["beforeRead"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "read", function() { return _enums_js__WEBPACK_IMPORTED_MODULE_12__["read"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "afterRead", function() { return _enums_js__WEBPACK_IMPORTED_MODULE_12__["afterRead"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "beforeMain", function() { return _enums_js__WEBPACK_IMPORTED_MODULE_12__["beforeMain"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "main", function() { return _enums_js__WEBPACK_IMPORTED_MODULE_12__["main"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "afterMain", function() { return _enums_js__WEBPACK_IMPORTED_MODULE_12__["afterMain"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "beforeWrite", function() { return _enums_js__WEBPACK_IMPORTED_MODULE_12__["beforeWrite"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "write", function() { return _enums_js__WEBPACK_IMPORTED_MODULE_12__["write"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "afterWrite", function() { return _enums_js__WEBPACK_IMPORTED_MODULE_12__["afterWrite"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "modifierPhases", function() { return _enums_js__WEBPACK_IMPORTED_MODULE_12__["modifierPhases"]; });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var INVALID_ELEMENT_ERROR = 'Popper: Invalid reference or popper argument provided. They must be either a DOM element or virtual element.';
+var INFINITE_LOOP_ERROR = 'Popper: An infinite loop in the modifiers cycle has been detected! The cycle has been interrupted to prevent a browser crash.';
+var DEFAULT_OPTIONS = {
+  placement: 'bottom',
+  modifiers: [],
+  strategy: 'absolute'
+};
+
+function areValidElements() {
+  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+
+  return !args.some(function (element) {
+    return !(element && typeof element.getBoundingClientRect === 'function');
+  });
+}
+
+function popperGenerator(generatorOptions) {
+  if (generatorOptions === void 0) {
+    generatorOptions = {};
+  }
+
+  var _generatorOptions = generatorOptions,
+      _generatorOptions$def = _generatorOptions.defaultModifiers,
+      defaultModifiers = _generatorOptions$def === void 0 ? [] : _generatorOptions$def,
+      _generatorOptions$def2 = _generatorOptions.defaultOptions,
+      defaultOptions = _generatorOptions$def2 === void 0 ? DEFAULT_OPTIONS : _generatorOptions$def2;
+  return function createPopper(reference, popper, options) {
+    if (options === void 0) {
+      options = defaultOptions;
+    }
+
+    var state = {
+      placement: 'bottom',
+      orderedModifiers: [],
+      options: Object.assign({}, DEFAULT_OPTIONS, {}, defaultOptions),
+      modifiersData: {},
+      elements: {
+        reference: reference,
+        popper: popper
+      },
+      attributes: {},
+      styles: {}
+    };
+    var effectCleanupFns = [];
+    var isDestroyed = false;
+    var instance = {
+      state: state,
+      setOptions: function setOptions(options) {
+        cleanupModifierEffects();
+        state.options = Object.assign({}, defaultOptions, {}, state.options, {}, options);
+        state.scrollParents = {
+          reference: Object(_dom_utils_instanceOf_js__WEBPACK_IMPORTED_MODULE_11__["isElement"])(reference) ? Object(_dom_utils_listScrollParents_js__WEBPACK_IMPORTED_MODULE_2__["default"])(reference) : [],
+          popper: Object(_dom_utils_listScrollParents_js__WEBPACK_IMPORTED_MODULE_2__["default"])(popper)
+        }; // Orders the modifiers based on their dependencies and `phase`
+        // properties
+
+        var orderedModifiers = Object(_utils_orderModifiers_js__WEBPACK_IMPORTED_MODULE_5__["default"])(Object(_utils_mergeByName_js__WEBPACK_IMPORTED_MODULE_10__["default"])([].concat(defaultModifiers, state.options.modifiers))); // Strip out disabled modifiers
+
+        state.orderedModifiers = orderedModifiers.filter(function (m) {
+          return m.enabled;
+        }); // Validate the provided modifiers so that the consumer will get warned
+        // if one of the modifiers is invalid for any reason
+
+        if (true) {
+          var modifiers = Object(_utils_uniqueBy_js__WEBPACK_IMPORTED_MODULE_8__["default"])([].concat(orderedModifiers, state.options.modifiers), function (_ref) {
+            var name = _ref.name;
+            return name;
+          });
+          Object(_utils_validateModifiers_js__WEBPACK_IMPORTED_MODULE_7__["default"])(modifiers);
+
+          if (Object(_utils_getBasePlacement_js__WEBPACK_IMPORTED_MODULE_9__["default"])(state.options.placement) === _enums_js__WEBPACK_IMPORTED_MODULE_12__["auto"]) {
+            var flipModifier = state.orderedModifiers.find(function (_ref2) {
+              var name = _ref2.name;
+              return name === 'flip';
+            });
+
+            if (!flipModifier) {
+              console.error(['Popper: "auto" placements require the "flip" modifier be', 'present and enabled to work.'].join(' '));
+            }
+          }
+
+          var _getComputedStyle = Object(_dom_utils_getComputedStyle_js__WEBPACK_IMPORTED_MODULE_4__["default"])(popper),
+              marginTop = _getComputedStyle.marginTop,
+              marginRight = _getComputedStyle.marginRight,
+              marginBottom = _getComputedStyle.marginBottom,
+              marginLeft = _getComputedStyle.marginLeft; // We no longer take into account `margins` on the popper, and it can
+          // cause bugs with positioning, so we'll warn the consumer
+
+
+          if ([marginTop, marginRight, marginBottom, marginLeft].some(function (margin) {
+            return parseFloat(margin);
+          })) {
+            console.warn(['Popper: CSS "margin" styles cannot be used to apply padding', 'between the popper and its reference element or boundary.', 'To replicate margin, use the `offset` modifier, as well as', 'the `padding` option in the `preventOverflow` and `flip`', 'modifiers.'].join(' '));
+          }
+        }
+
+        runModifierEffects();
+        return instance.update();
+      },
+      // Sync update – it will always be executed, even if not necessary. This
+      // is useful for low frequency updates where sync behavior simplifies the
+      // logic.
+      // For high frequency updates (e.g. `resize` and `scroll` events), always
+      // prefer the async Popper#update method
+      forceUpdate: function forceUpdate() {
+        if (isDestroyed) {
+          return;
+        }
+
+        var _state$elements = state.elements,
+            reference = _state$elements.reference,
+            popper = _state$elements.popper; // Don't proceed if `reference` or `popper` are not valid elements
+        // anymore
+
+        if (!areValidElements(reference, popper)) {
+          if (true) {
+            console.error(INVALID_ELEMENT_ERROR);
+          }
+
+          return;
+        } // Store the reference and popper rects to be read by modifiers
+
+
+        state.rects = {
+          reference: Object(_dom_utils_getCompositeRect_js__WEBPACK_IMPORTED_MODULE_0__["default"])(reference, Object(_dom_utils_getOffsetParent_js__WEBPACK_IMPORTED_MODULE_3__["default"])(popper), state.options.strategy === 'fixed'),
+          popper: Object(_dom_utils_getLayoutRect_js__WEBPACK_IMPORTED_MODULE_1__["default"])(popper)
+        }; // Modifiers have the ability to reset the current update cycle. The
+        // most common use case for this is the `flip` modifier changing the
+        // placement, which then needs to re-run all the modifiers, because the
+        // logic was previously ran for the previous placement and is therefore
+        // stale/incorrect
+
+        state.reset = false;
+        state.placement = state.options.placement; // On each update cycle, the `modifiersData` property for each modifier
+        // is filled with the initial data specified by the modifier. This means
+        // it doesn't persist and is fresh on each update.
+        // To ensure persistent data, use `${name}#persistent`
+
+        state.orderedModifiers.forEach(function (modifier) {
+          return state.modifiersData[modifier.name] = Object.assign({}, modifier.data);
+        });
+        var __debug_loops__ = 0;
+
+        for (var index = 0; index < state.orderedModifiers.length; index++) {
+          if (true) {
+            __debug_loops__ += 1;
+
+            if (__debug_loops__ > 100) {
+              console.error(INFINITE_LOOP_ERROR);
+              break;
+            }
+          }
+
+          if (state.reset === true) {
+            state.reset = false;
+            index = -1;
+            continue;
+          }
+
+          var _state$orderedModifie = state.orderedModifiers[index],
+              fn = _state$orderedModifie.fn,
+              _state$orderedModifie2 = _state$orderedModifie.options,
+              _options = _state$orderedModifie2 === void 0 ? {} : _state$orderedModifie2,
+              name = _state$orderedModifie.name;
+
+          if (typeof fn === 'function') {
+            state = fn({
+              state: state,
+              options: _options,
+              name: name,
+              instance: instance
+            }) || state;
+          }
+        }
+      },
+      // Async and optimistically optimized update – it will not be executed if
+      // not necessary (debounced to run at most once-per-tick)
+      update: Object(_utils_debounce_js__WEBPACK_IMPORTED_MODULE_6__["default"])(function () {
+        return new Promise(function (resolve) {
+          instance.forceUpdate();
+          resolve(state);
+        });
+      }),
+      destroy: function destroy() {
+        cleanupModifierEffects();
+        isDestroyed = true;
+      }
+    };
+
+    if (!areValidElements(reference, popper)) {
+      if (true) {
+        console.error(INVALID_ELEMENT_ERROR);
+      }
+
+      return instance;
+    }
+
+    instance.setOptions(options).then(function (state) {
+      if (!isDestroyed && options.onFirstUpdate) {
+        options.onFirstUpdate(state);
+      }
+    }); // Modifiers have the ability to execute arbitrary code before the first
+    // update cycle runs. They will be executed in the same order as the update
+    // cycle. This is useful when a modifier adds some persistent data that
+    // other modifiers need to use, but the modifier is run after the dependent
+    // one.
+
+    function runModifierEffects() {
+      state.orderedModifiers.forEach(function (_ref3) {
+        var name = _ref3.name,
+            _ref3$options = _ref3.options,
+            options = _ref3$options === void 0 ? {} : _ref3$options,
+            effect = _ref3.effect;
+
+        if (typeof effect === 'function') {
+          var cleanupFn = effect({
+            state: state,
+            name: name,
+            instance: instance,
+            options: options
+          });
+
+          var noopFn = function noopFn() {};
+
+          effectCleanupFns.push(cleanupFn || noopFn);
+        }
+      });
+    }
+
+    function cleanupModifierEffects() {
+      effectCleanupFns.forEach(function (fn) {
+        return fn();
+      });
+      effectCleanupFns = [];
+    }
+
+    return instance;
+  };
+}
+var createPopper =
+/*#__PURE__*/
+popperGenerator();
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/modifiers/applyStyles.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/modifiers/applyStyles.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _dom_utils_getNodeName_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../dom-utils/getNodeName.js */ "./node_modules/@popperjs/core/lib/dom-utils/getNodeName.js");
+/* harmony import */ var _dom_utils_instanceOf_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../dom-utils/instanceOf.js */ "./node_modules/@popperjs/core/lib/dom-utils/instanceOf.js");
+
+ // This modifier takes the styles prepared by the `computeStyles` modifier
+// and applies them to the HTMLElements such as popper and arrow
+
+function applyStyles(_ref) {
+  var state = _ref.state;
+  Object.keys(state.elements).forEach(function (name) {
+    var style = state.styles[name] || {};
+    var attributes = state.attributes[name] || {};
+    var element = state.elements[name]; // arrow is optional + virtual elements
+
+    if (!Object(_dom_utils_instanceOf_js__WEBPACK_IMPORTED_MODULE_1__["isHTMLElement"])(element) || !Object(_dom_utils_getNodeName_js__WEBPACK_IMPORTED_MODULE_0__["default"])(element)) {
+      return;
+    } // Flow doesn't support to extend this property, but it's the most
+    // effective way to apply styles to an HTMLElement
+    // $FlowFixMe
+
+
+    Object.assign(element.style, style);
+    Object.keys(attributes).forEach(function (name) {
+      var value = attributes[name];
+
+      if (value === false) {
+        element.removeAttribute(name);
+      } else {
+        element.setAttribute(name, value === true ? '' : value);
+      }
+    });
+  });
+}
+
+function effect(_ref2) {
+  var state = _ref2.state;
+  var initialStyles = {
+    popper: {
+      position: 'absolute',
+      left: '0',
+      top: '0',
+      margin: '0'
+    },
+    arrow: {
+      position: 'absolute'
+    },
+    reference: {}
+  };
+  Object.assign(state.elements.popper.style, initialStyles.popper);
+
+  if (state.elements.arrow) {
+    Object.assign(state.elements.arrow.style, initialStyles.arrow);
+  }
+
+  return function () {
+    Object.keys(state.elements).forEach(function (name) {
+      var element = state.elements[name];
+      var attributes = state.attributes[name] || {};
+      var styleProperties = Object.keys(state.styles.hasOwnProperty(name) ? state.styles[name] : initialStyles[name]); // Set all values to an empty string to unset them
+
+      var style = styleProperties.reduce(function (style, property) {
+        style[property] = '';
+        return style;
+      }, {}); // arrow is optional + virtual elements
+
+      if (!Object(_dom_utils_instanceOf_js__WEBPACK_IMPORTED_MODULE_1__["isHTMLElement"])(element) || !Object(_dom_utils_getNodeName_js__WEBPACK_IMPORTED_MODULE_0__["default"])(element)) {
+        return;
+      } // Flow doesn't support to extend this property, but it's the most
+      // effective way to apply styles to an HTMLElement
+      // $FlowFixMe
+
+
+      Object.assign(element.style, style);
+      Object.keys(attributes).forEach(function (attribute) {
+        element.removeAttribute(attribute);
+      });
+    });
+  };
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'applyStyles',
+  enabled: true,
+  phase: 'write',
+  fn: applyStyles,
+  effect: effect,
+  requires: ['computeStyles']
+});
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/modifiers/arrow.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/modifiers/arrow.js ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utils_getBasePlacement_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/getBasePlacement.js */ "./node_modules/@popperjs/core/lib/utils/getBasePlacement.js");
+/* harmony import */ var _dom_utils_getLayoutRect_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../dom-utils/getLayoutRect.js */ "./node_modules/@popperjs/core/lib/dom-utils/getLayoutRect.js");
+/* harmony import */ var _dom_utils_contains_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../dom-utils/contains.js */ "./node_modules/@popperjs/core/lib/dom-utils/contains.js");
+/* harmony import */ var _utils_getMainAxisFromPlacement_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/getMainAxisFromPlacement.js */ "./node_modules/@popperjs/core/lib/utils/getMainAxisFromPlacement.js");
+/* harmony import */ var _utils_within_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/within.js */ "./node_modules/@popperjs/core/lib/utils/within.js");
+/* harmony import */ var _utils_mergePaddingObject_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/mergePaddingObject.js */ "./node_modules/@popperjs/core/lib/utils/mergePaddingObject.js");
+/* harmony import */ var _utils_expandToHashMap_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/expandToHashMap.js */ "./node_modules/@popperjs/core/lib/utils/expandToHashMap.js");
+/* harmony import */ var _enums_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../enums.js */ "./node_modules/@popperjs/core/lib/enums.js");
+
+
+
+
+
+
+
+
+
+function arrow(_ref) {
+  var _state$modifiersData$;
+
+  var state = _ref.state,
+      name = _ref.name;
+  var arrowElement = state.elements.arrow;
+  var popperOffsets = state.modifiersData.popperOffsets;
+  var basePlacement = Object(_utils_getBasePlacement_js__WEBPACK_IMPORTED_MODULE_0__["default"])(state.placement);
+  var axis = Object(_utils_getMainAxisFromPlacement_js__WEBPACK_IMPORTED_MODULE_3__["default"])(basePlacement);
+  var isVertical = [_enums_js__WEBPACK_IMPORTED_MODULE_7__["left"], _enums_js__WEBPACK_IMPORTED_MODULE_7__["right"]].indexOf(basePlacement) >= 0;
+  var len = isVertical ? 'height' : 'width';
+
+  if (!arrowElement) {
+    return;
+  }
+
+  var paddingObject = state.modifiersData[name + "#persistent"].padding;
+  var arrowRect = Object(_dom_utils_getLayoutRect_js__WEBPACK_IMPORTED_MODULE_1__["default"])(arrowElement);
+  var minProp = axis === 'y' ? _enums_js__WEBPACK_IMPORTED_MODULE_7__["top"] : _enums_js__WEBPACK_IMPORTED_MODULE_7__["left"];
+  var maxProp = axis === 'y' ? _enums_js__WEBPACK_IMPORTED_MODULE_7__["bottom"] : _enums_js__WEBPACK_IMPORTED_MODULE_7__["right"];
+  var endDiff = state.rects.reference[len] + state.rects.reference[axis] - popperOffsets[axis] - state.rects.popper[len];
+  var startDiff = popperOffsets[axis] - state.rects.reference[axis];
+  var clientOffset = axis === 'y' ? state.elements.popper.clientLeft : state.elements.popper.clientTop;
+  var centerToReference = endDiff / 2 - startDiff / 2 - clientOffset; // Make sure the arrow doesn't overflow the popper if the center point is
+  // outside of the popper bounds
+
+  var center = Object(_utils_within_js__WEBPACK_IMPORTED_MODULE_4__["default"])(paddingObject[minProp], state.rects.popper[len] / 2 - arrowRect[len] / 2 + centerToReference, state.rects.popper[len] - arrowRect[len] - paddingObject[maxProp]); // Prevents breaking syntax highlighting...
+
+  var axisProp = axis;
+  state.modifiersData[name] = (_state$modifiersData$ = {}, _state$modifiersData$[axisProp] = center, _state$modifiersData$);
+}
+
+function effect(_ref2) {
+  var state = _ref2.state,
+      options = _ref2.options,
+      name = _ref2.name;
+  var _options$element = options.element,
+      arrowElement = _options$element === void 0 ? '[data-popper-arrow]' : _options$element,
+      _options$padding = options.padding,
+      padding = _options$padding === void 0 ? 0 : _options$padding; // CSS selector
+
+  if (typeof arrowElement === 'string') {
+    arrowElement = state.elements.popper.querySelector(arrowElement);
+
+    if (!arrowElement) {
+      return;
+    }
+  }
+
+  if (!Object(_dom_utils_contains_js__WEBPACK_IMPORTED_MODULE_2__["default"])(state.elements.popper, arrowElement)) {
+    if (true) {
+      console.error(['Popper: "arrow" modifier\'s `element` must be a child of the popper', 'element.'].join(' '));
+    }
+
+    return;
+  }
+
+  state.elements.arrow = arrowElement;
+  state.modifiersData[name + "#persistent"] = {
+    padding: Object(_utils_mergePaddingObject_js__WEBPACK_IMPORTED_MODULE_5__["default"])(typeof padding !== 'number' ? padding : Object(_utils_expandToHashMap_js__WEBPACK_IMPORTED_MODULE_6__["default"])(padding, _enums_js__WEBPACK_IMPORTED_MODULE_7__["basePlacements"]))
+  };
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'arrow',
+  enabled: true,
+  phase: 'main',
+  fn: arrow,
+  effect: effect,
+  requires: ['popperOffsets'],
+  requiresIfExists: ['preventOverflow']
+});
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/modifiers/computeStyles.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/modifiers/computeStyles.js ***!
+  \********************************************************************/
+/*! exports provided: mapToStyles, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapToStyles", function() { return mapToStyles; });
+/* harmony import */ var _enums_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../enums.js */ "./node_modules/@popperjs/core/lib/enums.js");
+/* harmony import */ var _dom_utils_getOffsetParent_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../dom-utils/getOffsetParent.js */ "./node_modules/@popperjs/core/lib/dom-utils/getOffsetParent.js");
+/* harmony import */ var _dom_utils_getWindow_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../dom-utils/getWindow.js */ "./node_modules/@popperjs/core/lib/dom-utils/getWindow.js");
+/* harmony import */ var _dom_utils_getDocumentElement_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../dom-utils/getDocumentElement.js */ "./node_modules/@popperjs/core/lib/dom-utils/getDocumentElement.js");
+/* harmony import */ var _dom_utils_getComputedStyle_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../dom-utils/getComputedStyle.js */ "./node_modules/@popperjs/core/lib/dom-utils/getComputedStyle.js");
+/* harmony import */ var _utils_getBasePlacement_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/getBasePlacement.js */ "./node_modules/@popperjs/core/lib/utils/getBasePlacement.js");
+
+
+
+
+
+
+var unsetSides = {
+  top: 'auto',
+  right: 'auto',
+  bottom: 'auto',
+  left: 'auto'
+}; // Round the offsets to the nearest suitable subpixel based on the DPR.
+// Zooming can change the DPR, but it seems to report a value that will
+// cleanly divide the values into the appropriate subpixels.
+
+function roundOffsets(_ref) {
+  var x = _ref.x,
+      y = _ref.y;
+  var win = window;
+  var dpr = win.devicePixelRatio || 1;
+  return {
+    x: Math.round(x * dpr) / dpr || 0,
+    y: Math.round(y * dpr) / dpr || 0
+  };
+}
+
+function mapToStyles(_ref2) {
+  var _Object$assign2;
+
+  var popper = _ref2.popper,
+      popperRect = _ref2.popperRect,
+      placement = _ref2.placement,
+      offsets = _ref2.offsets,
+      position = _ref2.position,
+      gpuAcceleration = _ref2.gpuAcceleration,
+      adaptive = _ref2.adaptive;
+
+  var _roundOffsets = roundOffsets(offsets),
+      x = _roundOffsets.x,
+      y = _roundOffsets.y;
+
+  var hasX = offsets.hasOwnProperty('x');
+  var hasY = offsets.hasOwnProperty('y');
+  var sideX = _enums_js__WEBPACK_IMPORTED_MODULE_0__["left"];
+  var sideY = _enums_js__WEBPACK_IMPORTED_MODULE_0__["top"];
+  var win = window;
+
+  if (adaptive) {
+    var offsetParent = Object(_dom_utils_getOffsetParent_js__WEBPACK_IMPORTED_MODULE_1__["default"])(popper);
+
+    if (offsetParent === Object(_dom_utils_getWindow_js__WEBPACK_IMPORTED_MODULE_2__["default"])(popper)) {
+      offsetParent = Object(_dom_utils_getDocumentElement_js__WEBPACK_IMPORTED_MODULE_3__["default"])(popper);
+    } // $FlowFixMe: force type refinement, we compare offsetParent with window above, but Flow doesn't detect it
+
+    /*:: offsetParent = (offsetParent: Element); */
+
+
+    if (placement === _enums_js__WEBPACK_IMPORTED_MODULE_0__["top"]) {
+      sideY = _enums_js__WEBPACK_IMPORTED_MODULE_0__["bottom"];
+      y -= offsetParent.clientHeight - popperRect.height;
+      y *= gpuAcceleration ? 1 : -1;
+    }
+
+    if (placement === _enums_js__WEBPACK_IMPORTED_MODULE_0__["left"]) {
+      sideX = _enums_js__WEBPACK_IMPORTED_MODULE_0__["right"];
+      x -= offsetParent.clientWidth - popperRect.width;
+      x *= gpuAcceleration ? 1 : -1;
+    }
+  }
+
+  var commonStyles = Object.assign({
+    position: position
+  }, adaptive && unsetSides);
+
+  if (gpuAcceleration) {
+    var _Object$assign;
+
+    return Object.assign({}, commonStyles, (_Object$assign = {}, _Object$assign[sideY] = hasY ? '0' : '', _Object$assign[sideX] = hasX ? '0' : '', _Object$assign.transform = (win.devicePixelRatio || 1) < 2 ? "translate(" + x + "px, " + y + "px)" : "translate3d(" + x + "px, " + y + "px, 0)", _Object$assign));
+  }
+
+  return Object.assign({}, commonStyles, (_Object$assign2 = {}, _Object$assign2[sideY] = hasY ? y + "px" : '', _Object$assign2[sideX] = hasX ? x + "px" : '', _Object$assign2.transform = '', _Object$assign2));
+}
+
+function computeStyles(_ref3) {
+  var state = _ref3.state,
+      options = _ref3.options;
+  var _options$gpuAccelerat = options.gpuAcceleration,
+      gpuAcceleration = _options$gpuAccelerat === void 0 ? true : _options$gpuAccelerat,
+      _options$adaptive = options.adaptive,
+      adaptive = _options$adaptive === void 0 ? true : _options$adaptive;
+
+  if (true) {
+    var _getComputedStyle = Object(_dom_utils_getComputedStyle_js__WEBPACK_IMPORTED_MODULE_4__["default"])(state.elements.popper),
+        transitionProperty = _getComputedStyle.transitionProperty;
+
+    if (adaptive && ['transform', 'top', 'right', 'bottom', 'left'].some(function (property) {
+      return transitionProperty.indexOf(property) >= 0;
+    })) {
+      console.warn(['Popper: Detected CSS transitions on at least one of the following', 'CSS properties: "transform", "top", "right", "bottom", "left".', '\n\n', 'Disable the "computeStyles" modifier\'s `adaptive` option to allow', 'for smooth transitions, or remove these properties from the CSS', 'transition declaration on the popper element if only transitioning', 'opacity or background-color for example.', '\n\n', 'We recommend using the popper element as a wrapper around an inner', 'element that can have any CSS property transitioned for animations.'].join(' '));
+    }
+  }
+
+  var commonStyles = {
+    placement: Object(_utils_getBasePlacement_js__WEBPACK_IMPORTED_MODULE_5__["default"])(state.placement),
+    popper: state.elements.popper,
+    popperRect: state.rects.popper,
+    gpuAcceleration: gpuAcceleration
+  }; // popper offsets are always available
+
+  state.styles.popper = Object.assign({}, state.styles.popper, {}, mapToStyles(Object.assign({}, commonStyles, {
+    offsets: state.modifiersData.popperOffsets,
+    position: state.options.strategy,
+    adaptive: adaptive
+  }))); // arrow offsets may not be available
+
+  if (state.modifiersData.arrow != null) {
+    state.styles.arrow = Object.assign({}, state.styles.arrow, {}, mapToStyles(Object.assign({}, commonStyles, {
+      offsets: state.modifiersData.arrow,
+      position: 'absolute',
+      adaptive: false
+    })));
+  }
+
+  state.attributes.popper = Object.assign({}, state.attributes.popper, {
+    'data-popper-placement': state.placement
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'computeStyles',
+  enabled: true,
+  phase: 'beforeWrite',
+  fn: computeStyles,
+  data: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/modifiers/eventListeners.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/modifiers/eventListeners.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _dom_utils_getWindow_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../dom-utils/getWindow.js */ "./node_modules/@popperjs/core/lib/dom-utils/getWindow.js");
+
+var passive = {
+  passive: true
+};
+
+function effect(_ref) {
+  var state = _ref.state,
+      instance = _ref.instance,
+      options = _ref.options;
+  var _options$scroll = options.scroll,
+      scroll = _options$scroll === void 0 ? true : _options$scroll,
+      _options$resize = options.resize,
+      resize = _options$resize === void 0 ? true : _options$resize;
+  var window = Object(_dom_utils_getWindow_js__WEBPACK_IMPORTED_MODULE_0__["default"])(state.elements.popper);
+  var scrollParents = [].concat(state.scrollParents.reference, state.scrollParents.popper);
+
+  if (scroll) {
+    scrollParents.forEach(function (scrollParent) {
+      scrollParent.addEventListener('scroll', instance.update, passive);
+    });
+  }
+
+  if (resize) {
+    window.addEventListener('resize', instance.update, passive);
+  }
+
+  return function () {
+    if (scroll) {
+      scrollParents.forEach(function (scrollParent) {
+        scrollParent.removeEventListener('scroll', instance.update, passive);
+      });
+    }
+
+    if (resize) {
+      window.removeEventListener('resize', instance.update, passive);
+    }
+  };
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'eventListeners',
+  enabled: true,
+  phase: 'write',
+  fn: function fn() {},
+  effect: effect,
+  data: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/modifiers/flip.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/modifiers/flip.js ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utils_getOppositePlacement_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/getOppositePlacement.js */ "./node_modules/@popperjs/core/lib/utils/getOppositePlacement.js");
+/* harmony import */ var _utils_getBasePlacement_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/getBasePlacement.js */ "./node_modules/@popperjs/core/lib/utils/getBasePlacement.js");
+/* harmony import */ var _utils_getOppositeVariationPlacement_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/getOppositeVariationPlacement.js */ "./node_modules/@popperjs/core/lib/utils/getOppositeVariationPlacement.js");
+/* harmony import */ var _utils_detectOverflow_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/detectOverflow.js */ "./node_modules/@popperjs/core/lib/utils/detectOverflow.js");
+/* harmony import */ var _utils_computeAutoPlacement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/computeAutoPlacement.js */ "./node_modules/@popperjs/core/lib/utils/computeAutoPlacement.js");
+/* harmony import */ var _enums_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../enums.js */ "./node_modules/@popperjs/core/lib/enums.js");
+/* harmony import */ var _utils_getVariation_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/getVariation.js */ "./node_modules/@popperjs/core/lib/utils/getVariation.js");
+
+
+
+
+
+
+
+
+function getExpandedFallbackPlacements(placement) {
+  if (Object(_utils_getBasePlacement_js__WEBPACK_IMPORTED_MODULE_1__["default"])(placement) === _enums_js__WEBPACK_IMPORTED_MODULE_5__["auto"]) {
+    return [];
+  }
+
+  var oppositePlacement = Object(_utils_getOppositePlacement_js__WEBPACK_IMPORTED_MODULE_0__["default"])(placement);
+  return [Object(_utils_getOppositeVariationPlacement_js__WEBPACK_IMPORTED_MODULE_2__["default"])(placement), oppositePlacement, Object(_utils_getOppositeVariationPlacement_js__WEBPACK_IMPORTED_MODULE_2__["default"])(oppositePlacement)];
+}
+
+function flip(_ref) {
+  var state = _ref.state,
+      options = _ref.options,
+      name = _ref.name;
+
+  if (state.modifiersData[name]._skip) {
+    return;
+  }
+
+  var specifiedFallbackPlacements = options.fallbackPlacements,
+      padding = options.padding,
+      boundary = options.boundary,
+      rootBoundary = options.rootBoundary,
+      altBoundary = options.altBoundary,
+      _options$flipVariatio = options.flipVariations,
+      flipVariations = _options$flipVariatio === void 0 ? true : _options$flipVariatio;
+  var preferredPlacement = state.options.placement;
+  var basePlacement = Object(_utils_getBasePlacement_js__WEBPACK_IMPORTED_MODULE_1__["default"])(preferredPlacement);
+  var isBasePlacement = basePlacement === preferredPlacement;
+  var fallbackPlacements = specifiedFallbackPlacements || (isBasePlacement || !flipVariations ? [Object(_utils_getOppositePlacement_js__WEBPACK_IMPORTED_MODULE_0__["default"])(preferredPlacement)] : getExpandedFallbackPlacements(preferredPlacement));
+  var placements = [preferredPlacement].concat(fallbackPlacements).reduce(function (acc, placement) {
+    return acc.concat(Object(_utils_getBasePlacement_js__WEBPACK_IMPORTED_MODULE_1__["default"])(placement) === _enums_js__WEBPACK_IMPORTED_MODULE_5__["auto"] ? Object(_utils_computeAutoPlacement_js__WEBPACK_IMPORTED_MODULE_4__["default"])(state, {
+      placement: placement,
+      boundary: boundary,
+      rootBoundary: rootBoundary,
+      padding: padding,
+      flipVariations: flipVariations
+    }) : placement);
+  }, []);
+  var referenceRect = state.rects.reference;
+  var popperRect = state.rects.popper;
+  var checksMap = new Map();
+  var makeFallbackChecks = true;
+  var firstFittingPlacement = placements[0];
+
+  for (var i = 0; i < placements.length; i++) {
+    var placement = placements[i];
+
+    var _basePlacement = Object(_utils_getBasePlacement_js__WEBPACK_IMPORTED_MODULE_1__["default"])(placement);
+
+    var isStartVariation = Object(_utils_getVariation_js__WEBPACK_IMPORTED_MODULE_6__["default"])(placement) === _enums_js__WEBPACK_IMPORTED_MODULE_5__["start"];
+    var isVertical = [_enums_js__WEBPACK_IMPORTED_MODULE_5__["top"], _enums_js__WEBPACK_IMPORTED_MODULE_5__["bottom"]].indexOf(_basePlacement) >= 0;
+    var len = isVertical ? 'width' : 'height';
+    var overflow = Object(_utils_detectOverflow_js__WEBPACK_IMPORTED_MODULE_3__["default"])(state, {
+      placement: placement,
+      boundary: boundary,
+      rootBoundary: rootBoundary,
+      altBoundary: altBoundary,
+      padding: padding
+    });
+    var mainVariationSide = isVertical ? isStartVariation ? _enums_js__WEBPACK_IMPORTED_MODULE_5__["right"] : _enums_js__WEBPACK_IMPORTED_MODULE_5__["left"] : isStartVariation ? _enums_js__WEBPACK_IMPORTED_MODULE_5__["bottom"] : _enums_js__WEBPACK_IMPORTED_MODULE_5__["top"];
+
+    if (referenceRect[len] > popperRect[len]) {
+      mainVariationSide = Object(_utils_getOppositePlacement_js__WEBPACK_IMPORTED_MODULE_0__["default"])(mainVariationSide);
+    }
+
+    var altVariationSide = Object(_utils_getOppositePlacement_js__WEBPACK_IMPORTED_MODULE_0__["default"])(mainVariationSide);
+    var checks = [overflow[_basePlacement] <= 0, overflow[mainVariationSide] <= 0, overflow[altVariationSide] <= 0];
+
+    if (checks.every(function (check) {
+      return check;
+    })) {
+      firstFittingPlacement = placement;
+      makeFallbackChecks = false;
+      break;
+    }
+
+    checksMap.set(placement, checks);
+  }
+
+  if (makeFallbackChecks) {
+    // `2` may be desired in some cases – research later
+    var numberOfChecks = flipVariations ? 3 : 1;
+
+    var _loop = function _loop(_i) {
+      var fittingPlacement = placements.find(function (placement) {
+        var checks = checksMap.get(placement);
+
+        if (checks) {
+          return checks.slice(0, _i).every(function (check) {
+            return check;
+          });
+        }
+      });
+
+      if (fittingPlacement) {
+        firstFittingPlacement = fittingPlacement;
+        return "break";
+      }
+    };
+
+    for (var _i = numberOfChecks; _i > 0; _i--) {
+      var _ret = _loop(_i);
+
+      if (_ret === "break") break;
+    }
+  }
+
+  if (state.placement !== firstFittingPlacement) {
+    state.modifiersData[name]._skip = true;
+    state.placement = firstFittingPlacement;
+    state.reset = true;
+  }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'flip',
+  enabled: true,
+  phase: 'main',
+  fn: flip,
+  requiresIfExists: ['offset'],
+  data: {
+    _skip: false
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/modifiers/hide.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/modifiers/hide.js ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _enums_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../enums.js */ "./node_modules/@popperjs/core/lib/enums.js");
+/* harmony import */ var _utils_detectOverflow_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/detectOverflow.js */ "./node_modules/@popperjs/core/lib/utils/detectOverflow.js");
+
+
+
+function getSideOffsets(overflow, rect, preventedOffsets) {
+  if (preventedOffsets === void 0) {
+    preventedOffsets = {
+      x: 0,
+      y: 0
+    };
+  }
+
+  return {
+    top: overflow.top - rect.height - preventedOffsets.y,
+    right: overflow.right - rect.width + preventedOffsets.x,
+    bottom: overflow.bottom - rect.height + preventedOffsets.y,
+    left: overflow.left - rect.width - preventedOffsets.x
+  };
+}
+
+function isAnySideFullyClipped(overflow) {
+  return [_enums_js__WEBPACK_IMPORTED_MODULE_0__["top"], _enums_js__WEBPACK_IMPORTED_MODULE_0__["right"], _enums_js__WEBPACK_IMPORTED_MODULE_0__["bottom"], _enums_js__WEBPACK_IMPORTED_MODULE_0__["left"]].some(function (side) {
+    return overflow[side] >= 0;
+  });
+}
+
+function hide(_ref) {
+  var state = _ref.state,
+      name = _ref.name;
+  var referenceRect = state.rects.reference;
+  var popperRect = state.rects.popper;
+  var preventedOffsets = state.modifiersData.preventOverflow;
+  var referenceOverflow = Object(_utils_detectOverflow_js__WEBPACK_IMPORTED_MODULE_1__["default"])(state, {
+    elementContext: 'reference'
+  });
+  var popperAltOverflow = Object(_utils_detectOverflow_js__WEBPACK_IMPORTED_MODULE_1__["default"])(state, {
+    altBoundary: true
+  });
+  var referenceClippingOffsets = getSideOffsets(referenceOverflow, referenceRect);
+  var popperEscapeOffsets = getSideOffsets(popperAltOverflow, popperRect, preventedOffsets);
+  var isReferenceHidden = isAnySideFullyClipped(referenceClippingOffsets);
+  var hasPopperEscaped = isAnySideFullyClipped(popperEscapeOffsets);
+  state.modifiersData[name] = {
+    referenceClippingOffsets: referenceClippingOffsets,
+    popperEscapeOffsets: popperEscapeOffsets,
+    isReferenceHidden: isReferenceHidden,
+    hasPopperEscaped: hasPopperEscaped
+  };
+  state.attributes.popper = Object.assign({}, state.attributes.popper, {
+    'data-popper-reference-hidden': isReferenceHidden,
+    'data-popper-escaped': hasPopperEscaped
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'hide',
+  enabled: true,
+  phase: 'main',
+  requiresIfExists: ['preventOverflow'],
+  fn: hide
+});
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/modifiers/offset.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/modifiers/offset.js ***!
+  \*************************************************************/
+/*! exports provided: distanceAndSkiddingToXY, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "distanceAndSkiddingToXY", function() { return distanceAndSkiddingToXY; });
+/* harmony import */ var _utils_getBasePlacement_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/getBasePlacement.js */ "./node_modules/@popperjs/core/lib/utils/getBasePlacement.js");
+/* harmony import */ var _enums_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../enums.js */ "./node_modules/@popperjs/core/lib/enums.js");
+
+
+function distanceAndSkiddingToXY(placement, rects, offset) {
+  var basePlacement = Object(_utils_getBasePlacement_js__WEBPACK_IMPORTED_MODULE_0__["default"])(placement);
+  var invertDistance = [_enums_js__WEBPACK_IMPORTED_MODULE_1__["left"], _enums_js__WEBPACK_IMPORTED_MODULE_1__["top"]].indexOf(basePlacement) >= 0 ? -1 : 1;
+
+  var _ref = typeof offset === 'function' ? offset(Object.assign({}, rects, {
+    placement: placement
+  })) : offset,
+      skidding = _ref[0],
+      distance = _ref[1];
+
+  skidding = skidding || 0;
+  distance = (distance || 0) * invertDistance;
+  return [_enums_js__WEBPACK_IMPORTED_MODULE_1__["left"], _enums_js__WEBPACK_IMPORTED_MODULE_1__["right"]].indexOf(basePlacement) >= 0 ? {
+    x: distance,
+    y: skidding
+  } : {
+    x: skidding,
+    y: distance
+  };
+}
+
+function offset(_ref2) {
+  var state = _ref2.state,
+      options = _ref2.options,
+      name = _ref2.name;
+  var _options$offset = options.offset,
+      offset = _options$offset === void 0 ? [0, 0] : _options$offset;
+  var data = _enums_js__WEBPACK_IMPORTED_MODULE_1__["placements"].reduce(function (acc, placement) {
+    acc[placement] = distanceAndSkiddingToXY(placement, state.rects, offset);
+    return acc;
+  }, {});
+  var _data$state$placement = data[state.placement],
+      x = _data$state$placement.x,
+      y = _data$state$placement.y;
+  state.modifiersData.popperOffsets.x += x;
+  state.modifiersData.popperOffsets.y += y;
+  state.modifiersData[name] = data;
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'offset',
+  enabled: true,
+  phase: 'main',
+  requires: ['popperOffsets'],
+  fn: offset
+});
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/modifiers/popperOffsets.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/modifiers/popperOffsets.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utils_computeOffsets_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/computeOffsets.js */ "./node_modules/@popperjs/core/lib/utils/computeOffsets.js");
+
+
+function popperOffsets(_ref) {
+  var state = _ref.state,
+      name = _ref.name;
+  // Offsets are the actual position the popper needs to have to be
+  // properly positioned near its reference element
+  // This is the most basic placement, and will be adjusted by
+  // the modifiers in the next step
+  state.modifiersData[name] = Object(_utils_computeOffsets_js__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    reference: state.rects.reference,
+    element: state.rects.popper,
+    strategy: 'absolute',
+    placement: state.placement
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'popperOffsets',
+  enabled: true,
+  phase: 'read',
+  fn: popperOffsets,
+  data: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/modifiers/preventOverflow.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/modifiers/preventOverflow.js ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _enums_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../enums.js */ "./node_modules/@popperjs/core/lib/enums.js");
+/* harmony import */ var _utils_getBasePlacement_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/getBasePlacement.js */ "./node_modules/@popperjs/core/lib/utils/getBasePlacement.js");
+/* harmony import */ var _utils_getMainAxisFromPlacement_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/getMainAxisFromPlacement.js */ "./node_modules/@popperjs/core/lib/utils/getMainAxisFromPlacement.js");
+/* harmony import */ var _utils_getAltAxis_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/getAltAxis.js */ "./node_modules/@popperjs/core/lib/utils/getAltAxis.js");
+/* harmony import */ var _utils_within_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/within.js */ "./node_modules/@popperjs/core/lib/utils/within.js");
+/* harmony import */ var _dom_utils_getLayoutRect_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../dom-utils/getLayoutRect.js */ "./node_modules/@popperjs/core/lib/dom-utils/getLayoutRect.js");
+/* harmony import */ var _utils_detectOverflow_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/detectOverflow.js */ "./node_modules/@popperjs/core/lib/utils/detectOverflow.js");
+/* harmony import */ var _utils_getVariation_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/getVariation.js */ "./node_modules/@popperjs/core/lib/utils/getVariation.js");
+/* harmony import */ var _utils_getFreshSideObject_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../utils/getFreshSideObject.js */ "./node_modules/@popperjs/core/lib/utils/getFreshSideObject.js");
+
+
+
+
+
+
+
+
+
+
+function preventOverflow(_ref) {
+  var state = _ref.state,
+      options = _ref.options,
+      name = _ref.name;
+  var _options$mainAxis = options.mainAxis,
+      checkMainAxis = _options$mainAxis === void 0 ? true : _options$mainAxis,
+      _options$altAxis = options.altAxis,
+      checkAltAxis = _options$altAxis === void 0 ? false : _options$altAxis,
+      boundary = options.boundary,
+      rootBoundary = options.rootBoundary,
+      altBoundary = options.altBoundary,
+      padding = options.padding,
+      _options$tether = options.tether,
+      tether = _options$tether === void 0 ? true : _options$tether,
+      _options$tetherOffset = options.tetherOffset,
+      tetherOffset = _options$tetherOffset === void 0 ? 0 : _options$tetherOffset;
+  var overflow = Object(_utils_detectOverflow_js__WEBPACK_IMPORTED_MODULE_6__["default"])(state, {
+    boundary: boundary,
+    rootBoundary: rootBoundary,
+    padding: padding,
+    altBoundary: altBoundary
+  });
+  var basePlacement = Object(_utils_getBasePlacement_js__WEBPACK_IMPORTED_MODULE_1__["default"])(state.placement);
+  var variation = Object(_utils_getVariation_js__WEBPACK_IMPORTED_MODULE_7__["default"])(state.placement);
+  var isBasePlacement = !variation;
+  var mainAxis = Object(_utils_getMainAxisFromPlacement_js__WEBPACK_IMPORTED_MODULE_2__["default"])(basePlacement);
+  var altAxis = Object(_utils_getAltAxis_js__WEBPACK_IMPORTED_MODULE_3__["default"])(mainAxis);
+  var popperOffsets = state.modifiersData.popperOffsets;
+  var referenceRect = state.rects.reference;
+  var popperRect = state.rects.popper;
+  var tetherOffsetValue = typeof tetherOffset === 'function' ? tetherOffset(Object.assign({}, state.rects, {
+    placement: state.placement
+  })) : tetherOffset;
+  var data = {
+    x: 0,
+    y: 0
+  };
+
+  if (checkMainAxis) {
+    var mainSide = mainAxis === 'y' ? _enums_js__WEBPACK_IMPORTED_MODULE_0__["top"] : _enums_js__WEBPACK_IMPORTED_MODULE_0__["left"];
+    var altSide = mainAxis === 'y' ? _enums_js__WEBPACK_IMPORTED_MODULE_0__["bottom"] : _enums_js__WEBPACK_IMPORTED_MODULE_0__["right"];
+    var len = mainAxis === 'y' ? 'height' : 'width';
+    var offset = popperOffsets[mainAxis];
+    var min = popperOffsets[mainAxis] + overflow[mainSide];
+    var max = popperOffsets[mainAxis] - overflow[altSide];
+    var additive = tether ? -popperRect[len] / 2 : 0;
+    var minLen = variation === _enums_js__WEBPACK_IMPORTED_MODULE_0__["start"] ? referenceRect[len] : popperRect[len];
+    var maxLen = variation === _enums_js__WEBPACK_IMPORTED_MODULE_0__["start"] ? -popperRect[len] : -referenceRect[len]; // We need to include the arrow in the calculation so the arrow doesn't go
+    // outside the reference bounds
+
+    var arrowElement = state.elements.arrow;
+    var arrowRect = tether && arrowElement ? Object(_dom_utils_getLayoutRect_js__WEBPACK_IMPORTED_MODULE_5__["default"])(arrowElement) : {
+      width: 0,
+      height: 0
+    };
+    var arrowPaddingObject = state.modifiersData['arrow#persistent'] ? state.modifiersData['arrow#persistent'].padding : Object(_utils_getFreshSideObject_js__WEBPACK_IMPORTED_MODULE_8__["default"])();
+    var arrowPaddingMin = arrowPaddingObject[mainSide];
+    var arrowPaddingMax = arrowPaddingObject[altSide]; // If the reference length is smaller than the arrow length, we don't want
+    // to include its full size in the calculation. If the reference is small
+    // and near the edge of a boundary, the popper can overflow even if the
+    // reference is not overflowing as well (e.g. virtual elements with no
+    // width or height)
+
+    var arrowLen = Object(_utils_within_js__WEBPACK_IMPORTED_MODULE_4__["default"])(0, referenceRect[len], arrowRect[len]);
+    var minOffset = isBasePlacement ? referenceRect[len] / 2 - additive - arrowLen - arrowPaddingMin - tetherOffsetValue : minLen - arrowLen - arrowPaddingMin - tetherOffsetValue;
+    var maxOffset = isBasePlacement ? -referenceRect[len] / 2 + additive + arrowLen + arrowPaddingMax + tetherOffsetValue : maxLen + arrowLen + arrowPaddingMax + tetherOffsetValue;
+    var clientOffset = arrowElement ? mainAxis === 'y' ? state.elements.popper.clientTop : state.elements.popper.clientLeft : 0;
+    var offsetModifierValue = state.modifiersData.offset ? state.modifiersData.offset[state.placement][mainAxis] : 0;
+    var tetherMin = popperOffsets[mainAxis] + minOffset - offsetModifierValue - clientOffset;
+    var tetherMax = popperOffsets[mainAxis] + maxOffset - offsetModifierValue;
+    var preventedOffset = Object(_utils_within_js__WEBPACK_IMPORTED_MODULE_4__["default"])(tether ? Math.min(min, tetherMin) : min, offset, tether ? Math.max(max, tetherMax) : max);
+    popperOffsets[mainAxis] = preventedOffset;
+    data[mainAxis] = preventedOffset - offset;
+  }
+
+  if (checkAltAxis) {
+    var _mainSide = mainAxis === 'x' ? _enums_js__WEBPACK_IMPORTED_MODULE_0__["top"] : _enums_js__WEBPACK_IMPORTED_MODULE_0__["left"];
+
+    var _altSide = mainAxis === 'x' ? _enums_js__WEBPACK_IMPORTED_MODULE_0__["bottom"] : _enums_js__WEBPACK_IMPORTED_MODULE_0__["right"];
+
+    var _offset = popperOffsets[altAxis];
+
+    var _min = _offset + overflow[_mainSide];
+
+    var _max = _offset - overflow[_altSide];
+
+    var _preventedOffset = Object(_utils_within_js__WEBPACK_IMPORTED_MODULE_4__["default"])(_min, _offset, _max);
+
+    state.modifiersData.popperOffsets[altAxis] = _preventedOffset;
+    data[altAxis] = _preventedOffset - _offset;
+  }
+
+  state.modifiersData[name] = data;
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'preventOverflow',
+  enabled: true,
+  phase: 'main',
+  fn: preventOverflow,
+  requiresIfExists: ['offset']
+});
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/popper.js":
+/*!***************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/popper.js ***!
+  \***************************************************/
+/*! exports provided: createPopper, popperGenerator, defaultModifiers */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPopper", function() { return createPopper; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "defaultModifiers", function() { return defaultModifiers; });
+/* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.js */ "./node_modules/@popperjs/core/lib/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "popperGenerator", function() { return _index_js__WEBPACK_IMPORTED_MODULE_0__["popperGenerator"]; });
+
+/* harmony import */ var _modifiers_eventListeners_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modifiers/eventListeners.js */ "./node_modules/@popperjs/core/lib/modifiers/eventListeners.js");
+/* harmony import */ var _modifiers_popperOffsets_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modifiers/popperOffsets.js */ "./node_modules/@popperjs/core/lib/modifiers/popperOffsets.js");
+/* harmony import */ var _modifiers_computeStyles_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modifiers/computeStyles.js */ "./node_modules/@popperjs/core/lib/modifiers/computeStyles.js");
+/* harmony import */ var _modifiers_applyStyles_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modifiers/applyStyles.js */ "./node_modules/@popperjs/core/lib/modifiers/applyStyles.js");
+/* harmony import */ var _modifiers_offset_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modifiers/offset.js */ "./node_modules/@popperjs/core/lib/modifiers/offset.js");
+/* harmony import */ var _modifiers_flip_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modifiers/flip.js */ "./node_modules/@popperjs/core/lib/modifiers/flip.js");
+/* harmony import */ var _modifiers_preventOverflow_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modifiers/preventOverflow.js */ "./node_modules/@popperjs/core/lib/modifiers/preventOverflow.js");
+/* harmony import */ var _modifiers_arrow_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modifiers/arrow.js */ "./node_modules/@popperjs/core/lib/modifiers/arrow.js");
+/* harmony import */ var _modifiers_hide_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modifiers/hide.js */ "./node_modules/@popperjs/core/lib/modifiers/hide.js");
+
+
+
+
+
+
+
+
+
+
+var defaultModifiers = [_modifiers_eventListeners_js__WEBPACK_IMPORTED_MODULE_1__["default"], _modifiers_popperOffsets_js__WEBPACK_IMPORTED_MODULE_2__["default"], _modifiers_computeStyles_js__WEBPACK_IMPORTED_MODULE_3__["default"], _modifiers_applyStyles_js__WEBPACK_IMPORTED_MODULE_4__["default"], _modifiers_offset_js__WEBPACK_IMPORTED_MODULE_5__["default"], _modifiers_flip_js__WEBPACK_IMPORTED_MODULE_6__["default"], _modifiers_preventOverflow_js__WEBPACK_IMPORTED_MODULE_7__["default"], _modifiers_arrow_js__WEBPACK_IMPORTED_MODULE_8__["default"], _modifiers_hide_js__WEBPACK_IMPORTED_MODULE_9__["default"]];
+var createPopper =
+/*#__PURE__*/
+Object(_index_js__WEBPACK_IMPORTED_MODULE_0__["popperGenerator"])({
+  defaultModifiers: defaultModifiers
+}); // eslint-disable-next-line import/no-unused-modules
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/types.js":
+/*!**************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/types.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/utils/computeAutoPlacement.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/utils/computeAutoPlacement.js ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return computeAutoPlacement; });
+/* harmony import */ var _getVariation_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getVariation.js */ "./node_modules/@popperjs/core/lib/utils/getVariation.js");
+/* harmony import */ var _enums_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../enums.js */ "./node_modules/@popperjs/core/lib/enums.js");
+/* harmony import */ var _detectOverflow_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./detectOverflow.js */ "./node_modules/@popperjs/core/lib/utils/detectOverflow.js");
+/* harmony import */ var _getBasePlacement_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./getBasePlacement.js */ "./node_modules/@popperjs/core/lib/utils/getBasePlacement.js");
+
+
+
+
+function computeAutoPlacement(state, options) {
+  if (options === void 0) {
+    options = {};
+  }
+
+  var _options = options,
+      placement = _options.placement,
+      boundary = _options.boundary,
+      rootBoundary = _options.rootBoundary,
+      padding = _options.padding,
+      flipVariations = _options.flipVariations;
+  var variation = Object(_getVariation_js__WEBPACK_IMPORTED_MODULE_0__["default"])(placement);
+  var placements = variation ? flipVariations ? _enums_js__WEBPACK_IMPORTED_MODULE_1__["variationPlacements"] : _enums_js__WEBPACK_IMPORTED_MODULE_1__["variationPlacements"].filter(function (placement) {
+    return Object(_getVariation_js__WEBPACK_IMPORTED_MODULE_0__["default"])(placement) === variation;
+  }) : _enums_js__WEBPACK_IMPORTED_MODULE_1__["basePlacements"]; // $FlowFixMe: Flow seems to have problems with two array unions...
+
+  var overflows = placements.reduce(function (acc, placement) {
+    acc[placement] = Object(_detectOverflow_js__WEBPACK_IMPORTED_MODULE_2__["default"])(state, {
+      placement: placement,
+      boundary: boundary,
+      rootBoundary: rootBoundary,
+      padding: padding
+    })[Object(_getBasePlacement_js__WEBPACK_IMPORTED_MODULE_3__["default"])(placement)];
+    return acc;
+  }, {});
+  return Object.keys(overflows).sort(function (a, b) {
+    return overflows[a] - overflows[b];
+  });
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/utils/computeOffsets.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/utils/computeOffsets.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return computeOffsets; });
+/* harmony import */ var _getBasePlacement_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getBasePlacement.js */ "./node_modules/@popperjs/core/lib/utils/getBasePlacement.js");
+/* harmony import */ var _getVariation_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getVariation.js */ "./node_modules/@popperjs/core/lib/utils/getVariation.js");
+/* harmony import */ var _getMainAxisFromPlacement_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getMainAxisFromPlacement.js */ "./node_modules/@popperjs/core/lib/utils/getMainAxisFromPlacement.js");
+/* harmony import */ var _enums_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../enums.js */ "./node_modules/@popperjs/core/lib/enums.js");
+
+
+
+
+function computeOffsets(_ref) {
+  var reference = _ref.reference,
+      element = _ref.element,
+      placement = _ref.placement;
+  var basePlacement = placement ? Object(_getBasePlacement_js__WEBPACK_IMPORTED_MODULE_0__["default"])(placement) : null;
+  var variation = placement ? Object(_getVariation_js__WEBPACK_IMPORTED_MODULE_1__["default"])(placement) : null;
+  var commonX = reference.x + reference.width / 2 - element.width / 2;
+  var commonY = reference.y + reference.height / 2 - element.height / 2;
+  var offsets;
+
+  switch (basePlacement) {
+    case _enums_js__WEBPACK_IMPORTED_MODULE_3__["top"]:
+      offsets = {
+        x: commonX,
+        y: reference.y - element.height
+      };
+      break;
+
+    case _enums_js__WEBPACK_IMPORTED_MODULE_3__["bottom"]:
+      offsets = {
+        x: commonX,
+        y: reference.y + reference.height
+      };
+      break;
+
+    case _enums_js__WEBPACK_IMPORTED_MODULE_3__["right"]:
+      offsets = {
+        x: reference.x + reference.width,
+        y: commonY
+      };
+      break;
+
+    case _enums_js__WEBPACK_IMPORTED_MODULE_3__["left"]:
+      offsets = {
+        x: reference.x - element.width,
+        y: commonY
+      };
+      break;
+
+    default:
+      offsets = {
+        x: reference.x,
+        y: reference.y
+      };
+  }
+
+  var mainAxis = basePlacement ? Object(_getMainAxisFromPlacement_js__WEBPACK_IMPORTED_MODULE_2__["default"])(basePlacement) : null;
+
+  if (mainAxis != null) {
+    var len = mainAxis === 'y' ? 'height' : 'width';
+
+    switch (variation) {
+      case _enums_js__WEBPACK_IMPORTED_MODULE_3__["start"]:
+        offsets[mainAxis] = Math.floor(offsets[mainAxis]) - Math.floor(reference[len] / 2 - element[len] / 2);
+        break;
+
+      case _enums_js__WEBPACK_IMPORTED_MODULE_3__["end"]:
+        offsets[mainAxis] = Math.floor(offsets[mainAxis]) + Math.ceil(reference[len] / 2 - element[len] / 2);
+        break;
+
+      default:
+    }
+  }
+
+  return offsets;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/utils/debounce.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/utils/debounce.js ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return debounce; });
+function debounce(fn) {
+  var pending;
+  return function () {
+    if (!pending) {
+      pending = new Promise(function (resolve) {
+        Promise.resolve().then(function () {
+          pending = undefined;
+          resolve(fn());
+        });
+      });
+    }
+
+    return pending;
+  };
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/utils/detectOverflow.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/utils/detectOverflow.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return detectOverflow; });
+/* harmony import */ var _dom_utils_getBoundingClientRect_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../dom-utils/getBoundingClientRect.js */ "./node_modules/@popperjs/core/lib/dom-utils/getBoundingClientRect.js");
+/* harmony import */ var _dom_utils_getClippingRect_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../dom-utils/getClippingRect.js */ "./node_modules/@popperjs/core/lib/dom-utils/getClippingRect.js");
+/* harmony import */ var _dom_utils_getDocumentElement_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../dom-utils/getDocumentElement.js */ "./node_modules/@popperjs/core/lib/dom-utils/getDocumentElement.js");
+/* harmony import */ var _computeOffsets_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./computeOffsets.js */ "./node_modules/@popperjs/core/lib/utils/computeOffsets.js");
+/* harmony import */ var _rectToClientRect_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./rectToClientRect.js */ "./node_modules/@popperjs/core/lib/utils/rectToClientRect.js");
+/* harmony import */ var _enums_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../enums.js */ "./node_modules/@popperjs/core/lib/enums.js");
+/* harmony import */ var _dom_utils_instanceOf_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../dom-utils/instanceOf.js */ "./node_modules/@popperjs/core/lib/dom-utils/instanceOf.js");
+/* harmony import */ var _mergePaddingObject_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./mergePaddingObject.js */ "./node_modules/@popperjs/core/lib/utils/mergePaddingObject.js");
+/* harmony import */ var _expandToHashMap_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./expandToHashMap.js */ "./node_modules/@popperjs/core/lib/utils/expandToHashMap.js");
+
+
+
+
+
+
+
+
+
+function detectOverflow(state, options) {
+  if (options === void 0) {
+    options = {};
+  }
+
+  var _options = options,
+      _options$placement = _options.placement,
+      placement = _options$placement === void 0 ? state.placement : _options$placement,
+      _options$boundary = _options.boundary,
+      boundary = _options$boundary === void 0 ? _enums_js__WEBPACK_IMPORTED_MODULE_5__["clippingParents"] : _options$boundary,
+      _options$rootBoundary = _options.rootBoundary,
+      rootBoundary = _options$rootBoundary === void 0 ? _enums_js__WEBPACK_IMPORTED_MODULE_5__["viewport"] : _options$rootBoundary,
+      _options$elementConte = _options.elementContext,
+      elementContext = _options$elementConte === void 0 ? _enums_js__WEBPACK_IMPORTED_MODULE_5__["popper"] : _options$elementConte,
+      _options$altBoundary = _options.altBoundary,
+      altBoundary = _options$altBoundary === void 0 ? false : _options$altBoundary,
+      _options$padding = _options.padding,
+      padding = _options$padding === void 0 ? 0 : _options$padding;
+  var paddingObject = Object(_mergePaddingObject_js__WEBPACK_IMPORTED_MODULE_7__["default"])(typeof padding !== 'number' ? padding : Object(_expandToHashMap_js__WEBPACK_IMPORTED_MODULE_8__["default"])(padding, _enums_js__WEBPACK_IMPORTED_MODULE_5__["basePlacements"]));
+  var altContext = elementContext === _enums_js__WEBPACK_IMPORTED_MODULE_5__["popper"] ? _enums_js__WEBPACK_IMPORTED_MODULE_5__["reference"] : _enums_js__WEBPACK_IMPORTED_MODULE_5__["popper"];
+  var referenceElement = state.elements.reference;
+  var popperRect = state.rects.popper;
+  var element = state.elements[altBoundary ? altContext : elementContext];
+  var clippingClientRect = Object(_dom_utils_getClippingRect_js__WEBPACK_IMPORTED_MODULE_1__["default"])(Object(_dom_utils_instanceOf_js__WEBPACK_IMPORTED_MODULE_6__["isElement"])(element) ? element : Object(_dom_utils_getDocumentElement_js__WEBPACK_IMPORTED_MODULE_2__["default"])(state.elements.popper), boundary, rootBoundary);
+  var referenceClientRect = Object(_dom_utils_getBoundingClientRect_js__WEBPACK_IMPORTED_MODULE_0__["default"])(referenceElement);
+  var popperOffsets = Object(_computeOffsets_js__WEBPACK_IMPORTED_MODULE_3__["default"])({
+    reference: referenceClientRect,
+    element: popperRect,
+    strategy: 'absolute',
+    placement: placement
+  });
+  var popperClientRect = Object(_rectToClientRect_js__WEBPACK_IMPORTED_MODULE_4__["default"])(Object.assign({}, popperRect, {}, popperOffsets));
+  var elementClientRect = elementContext === _enums_js__WEBPACK_IMPORTED_MODULE_5__["popper"] ? popperClientRect : referenceClientRect; // positive = overflowing the clipping rect
+  // 0 or negative = within the clipping rect
+
+  var overflowOffsets = {
+    top: clippingClientRect.top - elementClientRect.top + paddingObject.top,
+    bottom: elementClientRect.bottom - clippingClientRect.bottom + paddingObject.bottom,
+    left: clippingClientRect.left - elementClientRect.left + paddingObject.left,
+    right: elementClientRect.right - clippingClientRect.right + paddingObject.right
+  };
+  var offsetData = state.modifiersData.offset; // Offsets can be applied only to the popper element
+
+  if (elementContext === _enums_js__WEBPACK_IMPORTED_MODULE_5__["popper"] && offsetData) {
+    var offset = offsetData[placement];
+    Object.keys(overflowOffsets).forEach(function (key) {
+      var multiply = [_enums_js__WEBPACK_IMPORTED_MODULE_5__["right"], _enums_js__WEBPACK_IMPORTED_MODULE_5__["bottom"]].indexOf(key) >= 0 ? 1 : -1;
+      var axis = [_enums_js__WEBPACK_IMPORTED_MODULE_5__["top"], _enums_js__WEBPACK_IMPORTED_MODULE_5__["bottom"]].indexOf(key) >= 0 ? 'y' : 'x';
+      overflowOffsets[key] += offset[axis] * multiply;
+    });
+  }
+
+  return overflowOffsets;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/utils/expandToHashMap.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/utils/expandToHashMap.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return expandToHashMap; });
+function expandToHashMap(value, keys) {
+  return keys.reduce(function (hashMap, key) {
+    hashMap[key] = value;
+    return hashMap;
+  }, {});
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/utils/format.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/utils/format.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return format; });
+function format(str) {
+  for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    args[_key - 1] = arguments[_key];
+  }
+
+  return [].concat(args).reduce(function (p, c) {
+    return p.replace(/%s/, c);
+  }, str);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/utils/getAltAxis.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/utils/getAltAxis.js ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getAltAxis; });
+function getAltAxis(axis) {
+  return axis === 'x' ? 'y' : 'x';
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/utils/getBasePlacement.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/utils/getBasePlacement.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getBasePlacement; });
+/* harmony import */ var _enums_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../enums.js */ "./node_modules/@popperjs/core/lib/enums.js");
+
+function getBasePlacement(placement) {
+  return placement.split('-')[0];
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/utils/getFreshSideObject.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/utils/getFreshSideObject.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getFreshSideObject; });
+function getFreshSideObject() {
+  return {
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0
+  };
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/utils/getMainAxisFromPlacement.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/utils/getMainAxisFromPlacement.js ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getMainAxisFromPlacement; });
+function getMainAxisFromPlacement(placement) {
+  return ['top', 'bottom'].indexOf(placement) >= 0 ? 'x' : 'y';
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/utils/getOppositePlacement.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/utils/getOppositePlacement.js ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getOppositePlacement; });
+var hash = {
+  left: 'right',
+  right: 'left',
+  bottom: 'top',
+  top: 'bottom'
+};
+function getOppositePlacement(placement) {
+  return placement.replace(/left|right|bottom|top/g, function (matched) {
+    return hash[matched];
+  });
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/utils/getOppositeVariationPlacement.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/utils/getOppositeVariationPlacement.js ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getOppositeVariationPlacement; });
+var hash = {
+  start: 'end',
+  end: 'start'
+};
+function getOppositeVariationPlacement(placement) {
+  return placement.replace(/start|end/g, function (matched) {
+    return hash[matched];
+  });
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/utils/getVariation.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/utils/getVariation.js ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getVariation; });
+function getVariation(placement) {
+  return placement.split('-')[1];
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/utils/mergeByName.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/utils/mergeByName.js ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return mergeByName; });
+function mergeByName(modifiers) {
+  var merged = modifiers.reduce(function (merged, current) {
+    var existing = merged[current.name];
+    merged[current.name] = existing ? Object.assign({}, existing, {}, current, {
+      options: Object.assign({}, existing.options, {}, current.options),
+      data: Object.assign({}, existing.data, {}, current.data)
+    }) : current;
+    return merged;
+  }, {}); // IE11 does not support Object.values
+
+  return Object.keys(merged).map(function (key) {
+    return merged[key];
+  });
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/utils/mergePaddingObject.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/utils/mergePaddingObject.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return mergePaddingObject; });
+/* harmony import */ var _getFreshSideObject_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getFreshSideObject.js */ "./node_modules/@popperjs/core/lib/utils/getFreshSideObject.js");
+
+function mergePaddingObject(paddingObject) {
+  return Object.assign({}, Object(_getFreshSideObject_js__WEBPACK_IMPORTED_MODULE_0__["default"])(), {}, paddingObject);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/utils/orderModifiers.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/utils/orderModifiers.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return orderModifiers; });
+/* harmony import */ var _enums_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../enums.js */ "./node_modules/@popperjs/core/lib/enums.js");
+ // source: https://stackoverflow.com/questions/49875255
+
+function order(modifiers) {
+  var map = new Map();
+  var visited = new Set();
+  var result = [];
+  modifiers.forEach(function (modifier) {
+    map.set(modifier.name, modifier);
+  }); // On visiting object, check for its dependencies and visit them recursively
+
+  function sort(modifier) {
+    visited.add(modifier.name);
+    var requires = [].concat(modifier.requires || [], modifier.requiresIfExists || []);
+    requires.forEach(function (dep) {
+      if (!visited.has(dep)) {
+        var depModifier = map.get(dep);
+
+        if (depModifier) {
+          sort(depModifier);
+        }
+      }
+    });
+    result.push(modifier);
+  }
+
+  modifiers.forEach(function (modifier) {
+    if (!visited.has(modifier.name)) {
+      // check for visited object
+      sort(modifier);
+    }
+  });
+  return result;
+}
+
+function orderModifiers(modifiers) {
+  // order based on dependencies
+  var orderedModifiers = order(modifiers); // order based on phase
+
+  return _enums_js__WEBPACK_IMPORTED_MODULE_0__["modifierPhases"].reduce(function (acc, phase) {
+    return acc.concat(orderedModifiers.filter(function (modifier) {
+      return modifier.phase === phase;
+    }));
+  }, []);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/utils/rectToClientRect.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/utils/rectToClientRect.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return rectToClientRect; });
+function rectToClientRect(rect) {
+  return Object.assign({}, rect, {
+    left: rect.x,
+    top: rect.y,
+    right: rect.x + rect.width,
+    bottom: rect.y + rect.height
+  });
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/utils/uniqueBy.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/utils/uniqueBy.js ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return uniqueBy; });
+function uniqueBy(arr, fn) {
+  var identifiers = new Set();
+  return arr.filter(function (item) {
+    var identifier = fn(item);
+
+    if (!identifiers.has(identifier)) {
+      identifiers.add(identifier);
+      return true;
+    }
+  });
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/utils/validateModifiers.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/utils/validateModifiers.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return validateModifiers; });
+/* harmony import */ var _format_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./format.js */ "./node_modules/@popperjs/core/lib/utils/format.js");
+/* harmony import */ var _enums_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../enums.js */ "./node_modules/@popperjs/core/lib/enums.js");
+
+
+var INVALID_MODIFIER_ERROR = 'Popper: modifier "%s" provided an invalid %s property, expected %s but got %s';
+var MISSING_DEPENDENCY_ERROR = 'Popper: modifier "%s" requires "%s", but "%s" modifier is not available';
+var VALID_PROPERTIES = ['name', 'enabled', 'phase', 'fn', 'effect', 'requires', 'options'];
+function validateModifiers(modifiers) {
+  modifiers.forEach(function (modifier) {
+    Object.keys(modifier).forEach(function (key) {
+      switch (key) {
+        case 'name':
+          if (typeof modifier.name !== 'string') {
+            console.error(Object(_format_js__WEBPACK_IMPORTED_MODULE_0__["default"])(INVALID_MODIFIER_ERROR, String(modifier.name), '"name"', '"string"', "\"" + String(modifier.name) + "\""));
+          }
+
+          break;
+
+        case 'enabled':
+          if (typeof modifier.enabled !== 'boolean') {
+            console.error(Object(_format_js__WEBPACK_IMPORTED_MODULE_0__["default"])(INVALID_MODIFIER_ERROR, modifier.name, '"enabled"', '"boolean"', "\"" + String(modifier.enabled) + "\""));
+          }
+
+        case 'phase':
+          if (_enums_js__WEBPACK_IMPORTED_MODULE_1__["modifierPhases"].indexOf(modifier.phase) < 0) {
+            console.error(Object(_format_js__WEBPACK_IMPORTED_MODULE_0__["default"])(INVALID_MODIFIER_ERROR, modifier.name, '"phase"', "either " + _enums_js__WEBPACK_IMPORTED_MODULE_1__["modifierPhases"].join(', '), "\"" + String(modifier.phase) + "\""));
+          }
+
+          break;
+
+        case 'fn':
+          if (typeof modifier.fn !== 'function') {
+            console.error(Object(_format_js__WEBPACK_IMPORTED_MODULE_0__["default"])(INVALID_MODIFIER_ERROR, modifier.name, '"fn"', '"function"', "\"" + String(modifier.fn) + "\""));
+          }
+
+          break;
+
+        case 'effect':
+          if (typeof modifier.effect !== 'function') {
+            console.error(Object(_format_js__WEBPACK_IMPORTED_MODULE_0__["default"])(INVALID_MODIFIER_ERROR, modifier.name, '"effect"', '"function"', "\"" + String(modifier.fn) + "\""));
+          }
+
+          break;
+
+        case 'requires':
+          if (!Array.isArray(modifier.requires)) {
+            console.error(Object(_format_js__WEBPACK_IMPORTED_MODULE_0__["default"])(INVALID_MODIFIER_ERROR, modifier.name, '"requires"', '"array"', "\"" + String(modifier.requires) + "\""));
+          }
+
+          break;
+
+        case 'requiresIfExists':
+          if (!Array.isArray(modifier.requiresIfExists)) {
+            console.error(Object(_format_js__WEBPACK_IMPORTED_MODULE_0__["default"])(INVALID_MODIFIER_ERROR, modifier.name, '"requiresIfExists"', '"array"', "\"" + String(modifier.requiresIfExists) + "\""));
+          }
+
+          break;
+
+        case 'options':
+        case 'data':
+          break;
+
+        default:
+          console.error("PopperJS: an invalid property has been provided to the \"" + modifier.name + "\" modifier, valid properties are " + VALID_PROPERTIES.map(function (s) {
+            return "\"" + s + "\"";
+          }).join(', ') + "; but \"" + key + "\" was provided.");
+      }
+
+      modifier.requires && modifier.requires.forEach(function (requirement) {
+        if (modifiers.find(function (mod) {
+          return mod.name === requirement;
+        }) == null) {
+          console.error(Object(_format_js__WEBPACK_IMPORTED_MODULE_0__["default"])(MISSING_DEPENDENCY_ERROR, String(modifier.name), requirement, requirement));
+        }
+      });
+    });
+  });
+}
+
+/***/ }),
+
+/***/ "./node_modules/@popperjs/core/lib/utils/within.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@popperjs/core/lib/utils/within.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return within; });
+function within(min, value, max) {
+  return Math.max(min, Math.min(value, max));
+}
 
 /***/ }),
 
