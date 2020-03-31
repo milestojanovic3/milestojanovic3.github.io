@@ -13988,13 +13988,33 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
 }
 
 .box__header--success {
-    background: #f0fbed;
-    border: 1px solid #bcddb3
+    color: #36864a;
+    background: #d4edda;
+    border: 1px solid #4fb769 !important;
+    -webkit-box-shadow: 3px 3px 0 #4fb769;
+    box-shadow: 3px 3px 0 #4fb769;
+    padding: 10px 15px;
+    margin-bottom: 24px
+}
+
+.box__header--success a,
+.box__header--success p {
+    color: #36864a !important
 }
 
 .box__header--error {
-    background: #f2e5e5;
-    border: 1px solid red
+    color: red;
+    background: #fff5f5;
+    border: 1px solid #fc8181 !important;
+    -webkit-box-shadow: 3px 3px 0 #fc8181;
+    box-shadow: 3px 3px 0 #fc8181;
+    padding: 10px 15px;
+    margin-bottom: 24px
+}
+
+.box__header--error a,
+.box__header--error p {
+    color: red !important
 }
 
 .box__header--error svg {
@@ -14025,15 +14045,21 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
     height: 80px
 }
 
+@media only screen and (min-width:768px) {
+    .box__header--vcr img {
+        margin-left: 40px
+    }
+}
+
 .box__header--vcr p {
-    font-size: 1.25rem;
-    padding: 32px 0;
+    font-size: 1rem;
+    padding: 32px;
     text-align: center
 }
 
 @media only screen and (min-width:768px) {
     .box__header--vcr p {
-        padding: 32px 0 32px 64px;
+        padding: 32px 64px 32px 64px;
         -webkit-box-flex: 1;
         -ms-flex: 1 1 70%;
         flex: 1 1 70%;
