@@ -14023,6 +14023,12 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
     fill: red
 }
 
+@media only screen and (min-width:768px) {
+    .box__header--error svg {
+        margin-left: 40px
+    }
+}
+
 .box__header--error h1,
 .box__header--error h2,
 .box__header--error p {
