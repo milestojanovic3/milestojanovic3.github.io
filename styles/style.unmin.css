@@ -327,6 +327,72 @@ fieldset {
     background: #f5f7f8 !important
 }
 
+.box--alert {
+    background: #fff5f5 !important;
+    border: 1px solid #fc8181 !important;
+    -webkit-box-shadow: 3px 3px 0 #fc8181;
+    box-shadow: 3px 3px 0 #fc8181;
+    padding: 10px 15px;
+    margin-bottom: 24px
+}
+
+.box--alert,
+.box--alert p {
+    color: #aa090a !important
+}
+
+.box--warning {
+    background: #fdf3bd !important;
+    border: 1px solid #ffd800 !important;
+    -webkit-box-shadow: 3px 3px 0 #ffd800;
+    box-shadow: 3px 3px 0 #ffd800;
+    padding: 10px 15px;
+    margin-bottom: 24px
+}
+
+.box--warning,
+.box--warning p {
+    color: #6c4b15 !important
+}
+
+.box--info {
+    background: #cce5ff !important;
+    border: 1px solid #004085 !important;
+    -webkit-box-shadow: 3px 3px 0 #004085;
+    box-shadow: 3px 3px 0 #004085;
+    padding: 10px 15px;
+    margin-bottom: 24px
+}
+
+.box--info,
+.box--info p {
+    color: #004085 !important
+}
+
+.box--success {
+    background: #d4edda !important;
+    border: 1px solid #4fb769 !important;
+    -webkit-box-shadow: 3px 3px 0 #4fb769;
+    box-shadow: 3px 3px 0 #4fb769;
+    padding: 10px 15px;
+    margin-bottom: 24px
+}
+
+.box--success,
+.box--success p {
+    color: #055519 !important
+}
+
+.box--blank {
+    background: #fff !important;
+    border: 1px solid #000 !important;
+    -webkit-box-shadow: 3px 3px 0 #000;
+    box-shadow: 3px 3px 0 #000;
+    padding: 10px 15px;
+    margin-bottom: 24px;
+    color: #000 !important
+}
+
 article {
     text-align: left
 }
@@ -1180,7 +1246,7 @@ ul.errors {
 }
 
 ul.errors>li {
-    color: red;
+    color: #aa090a;
     padding: 0 !important
 }
 
@@ -1190,7 +1256,7 @@ ul.errors>li:before {
 }
 
 .error {
-    color: red !important
+    color: #aa090a !important
 }
 
 .success {
@@ -2851,7 +2917,7 @@ p.actions__right {
 }
 
 .field__req {
-    color: red
+    color: #aa090a
 }
 
 .field__input {
@@ -2927,8 +2993,8 @@ p.actions__right {
 }
 
 .field--error .field__input {
-    border-color: red !important;
-    color: red;
+    border-color: #aa090a !important;
+    color: #aa090a;
     background-color: #fff6f7
 }
 
@@ -2938,7 +3004,7 @@ p.actions__right {
 }
 
 .field--error .input__message {
-    color: red
+    color: #aa090a
 }
 
 .field--center {
@@ -12936,7 +13002,7 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
 @media only screen and (min-width:1080px) {
     .static-page__map ul li:after {
         border-radius: 50%;
-        border: 1px solid red;
+        border: 1px solid #aa090a;
         content: '';
         height: 2em;
         left: 0;
@@ -12960,7 +13026,7 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
 
 @media only screen and (min-width:1080px) {
     .static-page__map ul li a {
-        background-color: red;
+        background-color: #aa090a;
         border-radius: 50%;
         height: 1em;
         display: block;
@@ -13988,7 +14054,7 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
 }
 
 .box__header--success {
-    color: #36864a;
+    color: #055519;
     background: #d4edda;
     border: 1px solid #4fb769 !important;
     -webkit-box-shadow: 3px 3px 0 #4fb769;
@@ -13999,11 +14065,23 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
 
 .box__header--success a,
 .box__header--success p {
-    color: #36864a !important
+    color: #055519 !important
+}
+
+.box__header--success svg {
+    width: 80px;
+    height: 80px;
+    stroke: #055519
+}
+
+@media only screen and (min-width:768px) {
+    .box__header--success svg {
+        margin-left: 40px
+    }
 }
 
 .box__header--error {
-    color: red;
+    color: #aa090a;
     background: #fff5f5;
     border: 1px solid #fc8181 !important;
     -webkit-box-shadow: 3px 3px 0 #fc8181;
@@ -14014,13 +14092,13 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
 
 .box__header--error a,
 .box__header--error p {
-    color: red !important
+    color: #aa090a !important
 }
 
 .box__header--error svg {
     width: 80px;
     height: 80px;
-    fill: red
+    fill: #aa090a
 }
 
 @media only screen and (min-width:768px) {
@@ -18384,7 +18462,7 @@ select {
 }
 
 .newsletter__subscribe>span.error {
-    color: red
+    color: #aa090a
 }
 
 .newsletter__emphasis {
