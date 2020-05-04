@@ -208,38 +208,38 @@ fieldset {
 }
 
 .grid>.slides {
-    -ms-grid-row: 12;
+    -ms-grid-row: 11;
     -ms-grid-column: 1;
     grid-area: slides
 }
 
 .grid>.topics {
-    -ms-grid-row: 8;
+    -ms-grid-row: 7;
     -ms-grid-column: 1;
     grid-area: topics
 }
 
 .grid>.sponsored {
-    -ms-grid-row: 10;
+    -ms-grid-row: 9;
     -ms-grid-column: 1;
     grid-area: sponsors
 }
 
 .grid>.related__group {
-    -ms-grid-row: 11;
+    -ms-grid-row: 10;
     -ms-grid-column: 1;
     grid-area: rvc
 }
 
 .grid>.sidebar {
-    -ms-grid-row: 9;
+    -ms-grid-row: 8;
     -ms-grid-column: 1;
     grid-area: sidebar
 }
 
 .grid>.aside,
 .grid>aside {
-    -ms-grid-row: 6;
+    -ms-grid-row: 5;
     -ms-grid-column: 1;
     grid-area: aside
 }
@@ -325,6 +325,107 @@ fieldset {
 
 .bg-gray {
     background: #f5f7f8 !important
+}
+
+.box--alert {
+    color: #aa090a !important;
+    background: #fff5f5 !important;
+    border: 1px solid #fc8181 !important;
+    -webkit-box-shadow: 3px 3px 0 #fc8181 !important;
+    box-shadow: 3px 3px 0 #fc8181 !important;
+    padding: 10px 15px !important;
+    margin-bottom: 24px;
+    border-radius: 0 !important
+}
+
+.box--alert:empty {
+    display: none
+}
+
+.box--alert p {
+    color: #aa090a !important
+}
+
+.box--warning {
+    color: #6c4b15 !important;
+    background: #fdf3bd !important;
+    border: 1px solid #ffd800 !important;
+    -webkit-box-shadow: 3px 3px 0 #ffd800;
+    box-shadow: 3px 3px 0 #ffd800;
+    padding: 10px 15px
+}
+
+.box--warning:empty {
+    display: none
+}
+
+.box--warning p {
+    color: #6c4b15 !important
+}
+
+.box--warning .error {
+    color: #aa090a !important
+}
+
+.box--info {
+    color: #004085 !important;
+    background: #cce5ff !important;
+    border: 1px solid #004085 !important;
+    -webkit-box-shadow: 3px 3px 0 #004085;
+    box-shadow: 3px 3px 0 #004085;
+    padding: 10px 15px
+}
+
+.box--info:empty {
+    display: none
+}
+
+.box--info p {
+    color: #004085 !important
+}
+
+.box--success {
+    color: #055519 !important;
+    background: #d4edda !important;
+    border: 1px solid #4fb769 !important;
+    -webkit-box-shadow: 3px 3px 0 #4fb769 !important;
+    box-shadow: 3px 3px 0 #4fb769 !important;
+    padding: 10px 15px !important;
+    margin-bottom: 24px
+}
+
+.box--success:empty {
+    display: none
+}
+
+.box--success p {
+    color: #055519 !important
+}
+
+.box--blank {
+    color: #000 !important;
+    background: #fff !important;
+    border: 1px solid #000 !important;
+    -webkit-box-shadow: 3px 3px 0 #000;
+    box-shadow: 3px 3px 0 #000;
+    padding: 10px 15px !important;
+    margin-bottom: 24px
+}
+
+.box--blank:empty {
+    display: none
+}
+
+.box--blank p {
+    color: #000 !important
+}
+
+.box--blank li {
+    padding: 0 !important
+}
+
+.success.box--success {
+    color: #055519 !important
 }
 
 article {
@@ -868,7 +969,7 @@ button.follow:hover {
 code {
     background: 0 0;
     display: inline;
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace;
     font-weight: 500;
     padding: 0 .3rem;
     margin: 0;
@@ -1180,7 +1281,7 @@ ul.errors {
 }
 
 ul.errors>li {
-    color: red;
+    color: #aa090a;
     padding: 0 !important
 }
 
@@ -1190,7 +1291,7 @@ ul.errors>li:before {
 }
 
 .error {
-    color: red !important
+    color: #aa090a !important
 }
 
 .success {
@@ -1758,7 +1859,7 @@ pre {
     padding: 16px;
     margin-bottom: 32px;
     overflow: auto;
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace
+    font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace
 }
 
 .search,
@@ -2851,7 +2952,7 @@ p.actions__right {
 }
 
 .field__req {
-    color: red
+    color: #aa090a
 }
 
 .field__input {
@@ -2927,8 +3028,8 @@ p.actions__right {
 }
 
 .field--error .field__input {
-    border-color: red !important;
-    color: red;
+    border-color: #aa090a !important;
+    color: #aa090a;
     background-color: #fff6f7
 }
 
@@ -2938,7 +3039,7 @@ p.actions__right {
 }
 
 .field--error .input__message {
-    color: red
+    color: #aa090a
 }
 
 .field--center {
@@ -7054,7 +7155,7 @@ button.liked {
 }
 
 .article__content {
-    -ms-grid-row: 7;
+    -ms-grid-row: 6;
     -ms-grid-column: 1;
     -webkit-box-flex: 1;
     -ms-flex: 1 1 540px;
@@ -7063,13 +7164,13 @@ button.liked {
 }
 
 .grid[data-type=guide]>.article__content {
-    -ms-grid-row: 7;
+    -ms-grid-row: 6;
     -ms-grid-column: 1;
     -ms-grid-column-span: 1
 }
 
 .grid[data-type=presentation]>.article__content {
-    -ms-grid-row: 17;
+    -ms-grid-row: 15;
     -ms-grid-row-span: 1;
     -ms-grid-column: 1;
     -ms-grid-column-span: 1
@@ -9156,7 +9257,7 @@ a.video-block {
     transition: all 2s;
     -ms-grid-columns: 1fr;
     grid-template-columns: 1fr;
-    grid-template-areas: 'category''notice''title''buttons''rightButtons''aside''content''topics''sidebar''sponsors''rvc'
+    grid-template-areas: 'category''notice''title''buttons''aside''content''topics''sidebar''sponsors''rvc'
 }
 
 @media only screen and (min-width:768px) {
@@ -9165,7 +9266,7 @@ a.video-block {
     .grid[data-type=news] {
         -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category . . . . .''title title title title title title''buttons buttons buttons buttons rightButtons rightButtons''aside aside aside aside aside aside''content content content content content content''sidebar sidebar sidebar sidebar sidebar sidebar''topics topics topics topics topics topics''sponsors sponsors sponsors sponsors sponsors sponsors''rvc rvc rvc rvc rvc rvc'
+        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category . . . . .''title title title title title title''buttons buttons buttons buttons . .''aside aside aside aside aside aside''content content content content content content''sidebar sidebar sidebar sidebar sidebar sidebar''topics topics topics topics topics topics''sponsors sponsors sponsors sponsors sponsors sponsors''rvc rvc rvc rvc rvc rvc'
     }
 
     .grid>.topics {
@@ -9234,7 +9335,7 @@ a.video-block {
 
     .grid[data-type=article],
     .grid[data-type=news] {
-        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category . . . . .''title title title title title title''buttons buttons . . rightButtons rightButtons''aside content content content sidebar sidebar''. topics topics topics . .''rvc rvc rvc rvc . .'
+        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category . . . . .''title title title title title title''buttons buttons . . . .''aside content content content sidebar sidebar''. topics topics topics . .''rvc rvc rvc rvc . .'
     }
 
     .grid>.topics {
@@ -9379,14 +9480,14 @@ a.video-block {
 .grid[data-type=guide] {
     -ms-grid-columns: 1fr;
     grid-template-columns: 1fr;
-    grid-template-areas: 'category''notice''title''buttons''rightButtons''cover''content''topics''sidebar''rvc'
+    grid-template-areas: 'category''notice''title''buttons''cover''content''topics''sidebar''rvc'
 }
 
 @media only screen and (min-width:768px) {
     .grid[data-type=guide] {
         -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category category notice notice notice notice''title title title title title title''buttons buttons buttons buttons rightButtons rightButtons''cover cover cover cover cover cover''content content content content content content''topics topics topics topics topics topics''sidebar sidebar sidebar sidebar sidebar sidebar''rvc rvc rvc rvc rvc rvc'
+        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category category notice notice notice notice''title title title title title title''buttons buttons buttons buttons . .''cover cover cover cover cover cover''content content content content content content''topics topics topics topics topics topics''sidebar sidebar sidebar sidebar sidebar sidebar''rvc rvc rvc rvc rvc rvc'
     }
 
     .grid[data-type=guide]>.notice {
@@ -9447,7 +9548,7 @@ a.video-block {
 
 @media only screen and (min-width:1080px) {
     .grid[data-type=guide] {
-        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category . . . notice notice''title title title title title title''buttons buttons . . rightButtons rightButtons''cover cover content content content content''sidebar sidebar content content content content''sidebar sidebar topics topics topics topics''sidebar sidebar rvc rvc rvc rvc'
+        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category . . . notice notice''title title title title title title''buttons buttons . . . .''cover cover content content content content''sidebar sidebar content content content content''sidebar sidebar topics topics topics topics''sidebar sidebar rvc rvc rvc rvc'
     }
 
     .grid[data-type=guide]>.notice {
@@ -9509,7 +9610,7 @@ a.video-block {
 }
 
 .grid[data-type=guide]>aside {
-    -ms-grid-row: 9;
+    -ms-grid-row: 8;
     -ms-grid-column: 1;
     -ms-grid-column-span: 1;
     grid-area: sidebar
@@ -9687,14 +9788,14 @@ a.video-block {
     transition: all 2s;
     -ms-grid-columns: 1fr;
     grid-template-columns: 1fr;
-    grid-template-areas: 'category''notice''title''swf''buttons''rightButtons''announcement''playerControlsLeft''playerControlsRight''player''earlyLogin''slides''summary''bio''sidebar''aboveContent''content''topics''aside''sponsors''rvc'
+    grid-template-areas: 'category''notice''title''swf''buttons''announcement''playerControlsLeft''playerControlsRight''player''earlyLogin''slides''bio''sidebar''aboveContent''content''topics''aside''sponsors''rvc'
 }
 
 @media only screen and (min-width:768px) {
     .grid[data-type=presentation] {
         -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category category notice notice notice notice''title title title title title title''buttons buttons buttons buttons rightButtons rightButtons''playerControlsLeft playerControlsRight . . . .''player player slides slides slides slides''sidebar sidebar sidebar sidebar sidebar sidebar''aboveContent aboveContent aboveContent aboveContent aboveContent aboveContent''bio bio bio bio bio bio''content content content content content content''aside aside aside aside aside aside''topics topics topics topics topics topics''sponsors sponsors sponsors sponsors sponsors sponsors''rvc rvc rvc rvc rvc rvc'
+        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category category notice notice notice notice''title title title title title title''buttons buttons buttons buttons . .''playerControlsLeft playerControlsRight . . . .''player player slides slides slides slides''sidebar sidebar sidebar sidebar sidebar sidebar''aboveContent aboveContent aboveContent aboveContent aboveContent aboveContent''bio bio bio bio bio bio''content content content content content content''aside aside aside aside aside aside''topics topics topics topics topics topics''sponsors sponsors sponsors sponsors sponsors sponsors''rvc rvc rvc rvc rvc rvc'
     }
 
     .grid[data-type=presentation]>.notice {
@@ -9783,7 +9884,7 @@ a.video-block {
 
 @media only screen and (min-width:1080px) {
     .grid[data-type=presentation] {
-        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category . . . notice notice''title title title title title title''buttons buttons . . rightButtons rightButtons''playerControlsLeft playerControlsRight . . . .''player player slides slides slides slides''sidebar sidebar slides slides slides slides''sidebar sidebar aboveContent aboveContent aboveContent aside''sidebar sidebar bio bio bio aside''sidebar sidebar content content content aside''topics topics topics topics topics topics''sponsors sponsors rvc rvc rvc rvc'
+        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category . . . notice notice''title title title title title title''buttons buttons . . . .''playerControlsLeft playerControlsRight . . . .''player player slides slides slides slides''sidebar sidebar slides slides slides slides''sidebar sidebar aboveContent aboveContent aboveContent aside''sidebar sidebar bio bio bio aside''sidebar sidebar content content content aside''topics topics topics topics topics topics''sponsors sponsors rvc rvc rvc rvc'
     }
 
     .grid[data-type=presentation]>.notice {
@@ -9885,14 +9986,14 @@ a.video-block {
 }
 
 .grid[data-type=presentation]>.presentation__switch {
-    -ms-grid-row: 8;
+    -ms-grid-row: 7;
     -ms-grid-column: 1;
     grid-area: playerControlsLeft;
     z-index: 4
 }
 
 .grid[data-type=presentation]>.summary {
-    -ms-grid-row: 15;
+    -ms-grid-row: 13;
     -ms-grid-row-span: 1;
     -ms-grid-column: 1;
     -ms-grid-column-span: 1;
@@ -9900,7 +10001,7 @@ a.video-block {
 }
 
 .grid[data-type=presentation]>.early__login {
-    -ms-grid-row: 11;
+    -ms-grid-row: 10;
     -ms-grid-column: 1;
     grid-area: earlyLogin
 }
@@ -9911,27 +10012,27 @@ a.video-block {
 }
 
 .grid[data-type=presentation]>.bio {
-    -ms-grid-row: 14;
+    -ms-grid-row: 12;
     -ms-grid-column: 1;
     grid-area: bio;
     max-width: 900px
 }
 
 .grid[data-type=presentation]>.announcement {
-    -ms-grid-row: 7;
+    -ms-grid-row: 6;
     -ms-grid-column: 1;
     grid-area: announcement
 }
 
 .grid[data-type=presentation]>.about-conference {
-    -ms-grid-row: 16;
+    -ms-grid-row: 14;
     -ms-grid-column: 1;
     grid-area: aboveContent;
     max-width: 900px
 }
 
 .grid[data-type=presentation]>.speed {
-    -ms-grid-row: 9;
+    -ms-grid-row: 8;
     -ms-grid-column: 1;
     grid-area: playerControlsRight;
     justify-self: end;
@@ -10099,7 +10200,7 @@ a.video-block {
     .grid[data-type=presentation][data-layout=pres-1-col] {
         -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category category notice notice notice notice''title title title title title title''buttons buttons buttons buttons rightButtons rightButtons''playerControlsLeft . . . . playerControlsRight''player player player player player player''slides slides  slides slides slides slides''sidebar sidebar sidebar sidebar sidebar sidebar''aboveContent aboveContent aboveContent aboveContent aboveContent aboveContent''bio bio bio bio bio bio''content content content content content content''aside aside aside aside aside aside''topics topics topics topics topics topics''sponsors sponsors sponsors sponsors sponsors sponsors''rvc rvc rvc rvc rvc rvc'
+        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category category notice notice notice notice''title title title title title title''buttons buttons buttons buttons . .''playerControlsLeft . . . . playerControlsRight''player player player player player player''slides slides  slides slides slides slides''sidebar sidebar sidebar sidebar sidebar sidebar''aboveContent aboveContent aboveContent aboveContent aboveContent aboveContent''bio bio bio bio bio bio''content content content content content content''aside aside aside aside aside aside''topics topics topics topics topics topics''sponsors sponsors sponsors sponsors sponsors sponsors''rvc rvc rvc rvc rvc rvc'
     }
 
     .grid[data-type=presentation][data-layout=pres-1-col]>.notice {
@@ -10219,7 +10320,7 @@ a.video-block {
 
 @media only screen and (min-width:1080px) {
     .grid[data-type=presentation][data-layout=pres-1-col] {
-        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category . . . notice notice''title title title title title title''buttons buttons . . rightButtons rightButtons''playerControlsLeft . playerControlsRight . . .''player player player sidebar sidebar sidebar''player player player aboveContent aboveContent aboveContent''player player player . . .''slides slides slides slides slides slides''. bio bio bio bio aside''. content content content content aside''topics topics topics topics topics topics''sponsors sponsors rvc rvc rvc rvc'
+        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category . . . notice notice''title title title title title title''buttons buttons . . . .''playerControlsLeft . playerControlsRight . . .''player player player sidebar sidebar sidebar''player player player aboveContent aboveContent aboveContent''player player player . . .''slides slides slides slides slides slides''. bio bio bio bio aside''. content content content content aside''topics topics topics topics topics topics''sponsors sponsors rvc rvc rvc rvc'
     }
 
     .grid[data-type=presentation][data-layout=pres-1-col]>.notice {
@@ -10355,7 +10456,7 @@ a.video-block {
     .grid[data-type=presentation].transcript[data-layout=pres-1-col] {
         -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category category notice notice notice notice''title title title title title title''buttons buttons buttons buttons rightButtons rightButtons''playerControlsLeft . . . . playerControlsRight''player player player player player player''slides slides  slides slides slides slides''sidebar sidebar sidebar sidebar sidebar sidebar''aboveContent aboveContent aboveContent aboveContent aboveContent aboveContent''bio bio bio bio bio bio''content content content content content content''aside aside aside aside aside aside''topics topics topics topics topics topics''sponsors sponsors sponsors sponsors sponsors sponsors''rvc rvc rvc rvc rvc rvc'
+        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category category notice notice notice notice''title title title title title title''buttons buttons buttons buttons . .''playerControlsLeft . . . . playerControlsRight''player player player player player player''slides slides  slides slides slides slides''sidebar sidebar sidebar sidebar sidebar sidebar''aboveContent aboveContent aboveContent aboveContent aboveContent aboveContent''bio bio bio bio bio bio''content content content content content content''aside aside aside aside aside aside''topics topics topics topics topics topics''sponsors sponsors sponsors sponsors sponsors sponsors''rvc rvc rvc rvc rvc rvc'
     }
 
     .grid[data-type=presentation].transcript[data-layout=pres-1-col]>.notice {
@@ -10475,7 +10576,7 @@ a.video-block {
 
 @media only screen and (min-width:1080px) {
     .grid[data-type=presentation].transcript[data-layout=pres-1-col] {
-        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category . . . notice notice''title title title title title title''buttons buttons . . rightButtons rightButtons''playerControlsLeft . playerControlsRight . . .''player player player sidebar sidebar sidebar''player player player aboveContent aboveContent aboveContent''player player player . . .''slides slides slides slides slides slides''. bio bio bio bio aside''. content content content content aside''topics topics topics topics topics topics''sponsors sponsors rvc rvc rvc rvc'
+        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category . . . notice notice''title title title title title title''buttons buttons . . . .''playerControlsLeft . playerControlsRight . . .''player player player sidebar sidebar sidebar''player player player aboveContent aboveContent aboveContent''player player player . . .''slides slides slides slides slides slides''. bio bio bio bio aside''. content content content content aside''topics topics topics topics topics topics''sponsors sponsors rvc rvc rvc rvc'
     }
 
     .grid[data-type=presentation].transcript[data-layout=pres-1-col]>.notice {
@@ -10595,7 +10696,7 @@ a.video-block {
 
 @media only screen and (min-width:768px) and (min-width:1080px) {
     .grid[data-type=presentation].transcript {
-        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category . . . notice notice''title title title title title title''buttons buttons . . rightButtons rightButtons''playerControlsLeft playerControlsRight . . . .''player player slides slides slides slides''sidebar sidebar slides slides slides slides''aboveContent aboveContent content content content aside''bio bio content content content aside''. . content content content aside''topics topics topics topics topics topics''sponsors sponsors rvc rvc rvc rvc'
+        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category . . . notice notice''title title title title title title''buttons buttons . . . .''playerControlsLeft playerControlsRight . . . .''player player slides slides slides slides''sidebar sidebar slides slides slides slides''aboveContent aboveContent content content content aside''bio bio content content content aside''. . content content content aside''topics topics topics topics topics topics''sponsors sponsors rvc rvc rvc rvc'
     }
 
     .grid[data-type=presentation].transcript>.notice {
@@ -12936,7 +13037,7 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
 @media only screen and (min-width:1080px) {
     .static-page__map ul li:after {
         border-radius: 50%;
-        border: 1px solid red;
+        border: 1px solid #aa090a;
         content: '';
         height: 2em;
         left: 0;
@@ -12960,7 +13061,7 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
 
 @media only screen and (min-width:1080px) {
     .static-page__map ul li a {
-        background-color: red;
+        background-color: #aa090a;
         border-radius: 50%;
         height: 1em;
         display: block;
@@ -13645,7 +13746,7 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
 }
 
 .book__standing {
-    -ms-grid-row: 6;
+    -ms-grid-row: 5;
     -ms-grid-column: 1;
     grid-area: cover;
     margin-bottom: 32px
@@ -13988,19 +14089,57 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
 }
 
 .box__header--success {
-    background: #f0fbed;
-    border: 1px solid #bcddb3
+    color: #055519;
+    background: #d4edda;
+    border: 1px solid #4fb769 !important;
+    -webkit-box-shadow: 3px 3px 0 #4fb769;
+    box-shadow: 3px 3px 0 #4fb769;
+    padding: 10px 15px;
+    margin-bottom: 24px
+}
+
+.box__header--success a,
+.box__header--success p {
+    color: #055519 !important
+}
+
+.box__header--success svg {
+    width: 80px;
+    height: 80px;
+    stroke: #055519
+}
+
+@media only screen and (min-width:768px) {
+    .box__header--success svg {
+        margin-left: 40px
+    }
 }
 
 .box__header--error {
-    background: #f2e5e5;
-    border: 1px solid red
+    color: #aa090a;
+    background: #fff5f5;
+    border: 1px solid #fc8181 !important;
+    -webkit-box-shadow: 3px 3px 0 #fc8181;
+    box-shadow: 3px 3px 0 #fc8181;
+    padding: 10px 15px;
+    margin-bottom: 24px
+}
+
+.box__header--error a,
+.box__header--error p {
+    color: #aa090a !important
 }
 
 .box__header--error svg {
     width: 80px;
     height: 80px;
-    fill: red
+    fill: #aa090a
+}
+
+@media only screen and (min-width:768px) {
+    .box__header--error svg {
+        margin-left: 40px
+    }
 }
 
 .box__header--error h1,
@@ -14025,15 +14164,21 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
     height: 80px
 }
 
+@media only screen and (min-width:768px) {
+    .box__header--vcr img {
+        margin-left: 40px
+    }
+}
+
 .box__header--vcr p {
-    font-size: 1.25rem;
-    padding: 32px 0;
+    font-size: 1rem;
+    padding: 32px;
     text-align: center
 }
 
 @media only screen and (min-width:768px) {
     .box__header--vcr p {
-        padding: 32px 0 32px 64px;
+        padding: 32px 64px 32px 64px;
         -webkit-box-flex: 1;
         -ms-flex: 1 1 70%;
         flex: 1 1 70%;
@@ -14543,10 +14688,6 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
 .cards>li.sponsored .card__content {
     background: #f9f9f9;
     border: 1px solid #e1e1e1
-}
-
-.cards>li.sponsored:hover .card__content {
-    background: #fff
 }
 
 .cards>li.hidden .card__options {
@@ -18352,7 +18493,7 @@ select {
 }
 
 .newsletter__subscribe>span.error {
-    color: red
+    color: #aa090a
 }
 
 .newsletter__emphasis {
@@ -18950,7 +19091,7 @@ select {
 }
 
 .player {
-    -ms-grid-row: 10;
+    -ms-grid-row: 9;
     -ms-grid-column: 1;
     grid-area: player
 }

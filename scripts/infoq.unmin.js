@@ -119,7 +119,8 @@ var _events = __webpack_require__(/*! events */ "./node_modules/events/events.js
 
 var _qs = _interopRequireDefault(__webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js"));
 
-// eventing system
+var event = new CustomEvent("infoq-loaded", {}); // eventing system
+
 var ifqEventEmitter = new _events.EventEmitter();
 ifqEventEmitter.trigger = ifqEventEmitter.emit; // helper flags
 
@@ -274,9 +275,16 @@ var InfoQ = /*#__PURE__*/function () {
                 // defer the loaded event a little bit.
                 setTimeout(function () {
                   _this.event.trigger('loaded');
-                }, 100);
+                }, 100); // fire gtag after 5s to not block main thread
 
-              case 9:
+                setTimeout(function () {
+                  window.dispatchEvent(event);
+                  dataLayer.push({
+                    event: 'infoq-loaded'
+                  });
+                }, 5000);
+
+              case 10:
               case "end":
                 return _context2.stop();
             }
@@ -2714,6 +2722,7 @@ var _default = {
                 if (!lis.size) {
                   if (topicsYouFollow || peersYouFollow) {
                     li = document.createElement('LI');
+                    li.className = "box--blank";
                     ul.append(li);
                     li.textContent = labels["no".concat(segment.charAt(0).toUpperCase() + segment.slice(1))] || 'No data.';
                   }
