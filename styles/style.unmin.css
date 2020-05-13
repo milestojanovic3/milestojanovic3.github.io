@@ -6591,6 +6591,52 @@ button.liked {
     }
 }
 
+@media only screen and (max-width:1163px) {
+    .article[data-type=interview] .article__content {
+        max-width: 62%
+    }
+}
+
+@media only screen and (max-width:768px) {
+    .article[data-type=interview] .article__content {
+        max-width: 100%
+    }
+}
+
+.article[data-type=interview] .article__main {
+    width: 100%;
+    min-width: 100%
+}
+
+@media only screen and (max-width:1163px) {
+    .article[data-type=interview] .article__main {
+        -ms-flex-wrap: wrap !important;
+        flex-wrap: wrap !important
+    }
+}
+
+.article[data-type=interview] .article__more {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    display: block !important;
+    padding-left: 16px !important
+}
+
+@media only screen and (max-width:1163px) {
+    .article[data-type=interview] .article__more {
+        width: 100%;
+        max-width: 100% !important;
+        -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+        border-left: 0 !important;
+        display: block;
+        height: auto;
+        padding-left: 0 !important
+    }
+}
+
 @media only screen and (min-width:768px) and (max-width:1080px) {
     .article[data-type=interview] .article__main {
         -ms-flex-wrap: wrap;
@@ -16032,12 +16078,20 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
     text-align: center;
     width: 100%;
     margin: 16px 0;
-    display: none
+    display: none !important
 }
 
 @media only screen and (min-width:1200px) {
     .carousel__paginator {
-        display: block
+        display: block !important;
+        background: 0 0 !important;
+        min-height: auto !important;
+        text-align: center !important;
+        width: 100% !important;
+        min-width: 100% !important;
+        border: 0 !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important
     }
 }
 
@@ -17015,11 +17069,14 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
     display: none
 }
 
+.header__items .language__switcher .li-nav.active>a,
+.header__items .language__switcher .li-nav.active>a:hover,
 .header__items .language__switcher>li.active>a,
 .header__items .language__switcher>li.active>a:hover {
     color: #fff !important
 }
 
+.header__items .language__switcher .li-nav:hover>a,
 .header__items .language__switcher>li:hover>a {
     color: #fff
 }
@@ -17389,18 +17446,23 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
     margin-right: 20px
 }
 
+.header__nav .li-nav,
 .header__nav>li {
     -webkit-transition: all .15s ease;
     transition: all .15s ease
 }
 
 @media only screen and (min-width:768px) {
+
+    .header__nav .li-nav,
     .header__nav>li {
         max-width: 160px
     }
 }
 
 @media only screen and (min-width:1080px) {
+
+    .header__nav .li-nav,
     .header__nav>li {
         display: -webkit-inline-box;
         display: -ms-inline-flexbox;
@@ -17411,10 +17473,14 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
         min-height: 80px
     }
 
+    .header__nav .li-nav:hover.has--subnav .nav .li-nav,
+    .header__nav .li-nav:hover.has--subnav .nav>li,
+    .header__nav>li:hover.has--subnav .nav .li-nav,
     .header__nav>li:hover.has--subnav .nav>li {
         white-space: normal
     }
 
+    .header__nav .li-nav:hover.has--subnav .nav__subnav,
     .header__nav>li:hover.has--subnav .nav__subnav {
         opacity: 1;
         top: 100%;
@@ -17423,10 +17489,13 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
         transition-delay: .25s
     }
 
+    .header__nav .li-nav:hover.has--subnav .nav__category,
     .header__nav>li:hover.has--subnav .nav__category {
         width: 100%
     }
 
+    .header__nav .li-nav:hover.has--subnav .nav__category:after,
+    .header__nav .li-nav:hover.has--subnav .nav__category:before,
     .header__nav>li:hover.has--subnav .nav__category:after,
     .header__nav>li:hover.has--subnav .nav__category:before {
         -webkit-transition-delay: .25s;
@@ -17436,23 +17505,30 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
 }
 
 @media only screen and (min-width:1080px) {
+
+    .header__nav .li-nav:not(:last-child),
     .header__nav>li:not(:last-child) {
         margin-right: 24px
     }
 }
 
 @media only screen and (min-width:1200px) {
+
+    .header__nav .li-nav:not(:last-child),
     .header__nav>li:not(:last-child) {
         margin-right: 28px
     }
 }
 
 @media only screen and (min-width:1280px) {
+
+    .header__nav .li-nav:not(:last-child),
     .header__nav>li:not(:last-child) {
         margin-right: 32px
     }
 }
 
+.header__nav .li-nav>a,
 .header__nav>li>a {
     font-size: .875rem;
     line-height: 1.5rem;
@@ -17466,6 +17542,8 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
 }
 
 @media only screen and (min-width:1080px) {
+
+    .header__nav .li-nav>a,
     .header__nav>li>a {
         padding: 16px 0 0;
         font-weight: 500
@@ -17473,11 +17551,15 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
 }
 
 @media only screen and (min-width:1200px) {
+
+    .header__nav .li-nav>a,
     .header__nav>li>a {
         font-weight: 700
     }
 }
 
+.header__nav .li-nav>a:after,
+.header__nav .li-nav>a:before,
 .header__nav>li>a:after,
 .header__nav>li>a:before {
     content: '';
@@ -17496,6 +17578,7 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
     border-color: transparent transparent #fff transparent
 }
 
+.header__nav .li-nav>a:before,
 .header__nav>li>a:before {
     left: 50%;
     bottom: 0;
@@ -17504,12 +17587,16 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
 }
 
 @media only screen and (min-width:1200px) {
+
+    .header__nav .li-nav>a,
     .header__nav>li>a {
         font-size: 1rem
     }
 }
 
 @media only screen and (min-width:1400px) {
+
+    .header__nav .li-nav>a,
     .header__nav>li>a {
         font-size: 1.125rem
     }
@@ -17945,11 +18032,12 @@ select {
 }
 
 .input__no-label label {
-    font-size: 0;
-    line-height: 0;
-    opacity: 0;
-    visibility: hidden;
-    margin-bottom: 0
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    clip: rect(1px, 1px, 1px, 1px);
+    border: 0;
+    overflow: hidden
 }
 
 .input__small input {
@@ -18466,7 +18554,12 @@ select {
 }
 
 .newsletter__subscribe>form .country label {
-    display: none
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    clip: rect(1px, 1px, 1px, 1px);
+    border: 0;
+    overflow: hidden
 }
 
 .newsletter__subscribe>span.error,

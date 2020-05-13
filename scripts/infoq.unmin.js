@@ -3367,7 +3367,7 @@ var _default = {
     }
 
     classList.add('carousel');
-    var nav = document.createElement('NAV');
+    var nav = document.createElement('li');
     nav.classList.add('carousel__paginator');
     var activeIndex = 1;
     this.slideIndexes = Math.ceil(length / 4);
