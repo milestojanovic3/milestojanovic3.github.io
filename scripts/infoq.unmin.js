@@ -7228,7 +7228,7 @@ var handleTabChange = function handleTabChange(state, event) {
   tab.classList.add('active');
   var switcherItem = switcherEls.item(index);
   if (switcherItem) switcherItem.setAttribute('aria-selected', true);
-  switcherItem.setAttribute('aria-hidden', false);
+  switcherItem.setAttribute('aria-hidden', true);
   if (id) history.replaceState({
     instance: instance,
     id: id,
