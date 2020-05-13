@@ -7200,6 +7200,7 @@ var handleTabChange = function handleTabChange(state, event) {
       var tabSwitchEl = _step.value;
       if (!tabSwitchEl) continue;
       tabSwitchEl.setAttribute('aria-selected', false);
+      tabSwitchEl.setAttribute('aria-hidden', true);
     } // Remove active class on all children
 
   } catch (err) {
@@ -7227,6 +7228,7 @@ var handleTabChange = function handleTabChange(state, event) {
   tab.classList.add('active');
   var switcherItem = switcherEls.item(index);
   if (switcherItem) switcherItem.setAttribute('aria-selected', true);
+  switcherItem.setAttribute('aria-hidden', false);
   if (id) history.replaceState({
     instance: instance,
     id: id,
