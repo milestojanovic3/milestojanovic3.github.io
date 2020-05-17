@@ -3367,7 +3367,7 @@ var _default = {
     }
 
     classList.add('carousel');
-    var nav = document.createElement('li');
+    var nav = document.createElement('NAV');
     nav.classList.add('carousel__paginator');
     var activeIndex = 1;
     this.slideIndexes = Math.ceil(length / 4);
@@ -7200,7 +7200,6 @@ var handleTabChange = function handleTabChange(state, event) {
       var tabSwitchEl = _step.value;
       if (!tabSwitchEl) continue;
       tabSwitchEl.setAttribute('aria-selected', false);
-      tabSwitchEl.setAttribute('aria-hidden', true);
     } // Remove active class on all children
 
   } catch (err) {
@@ -7228,7 +7227,6 @@ var handleTabChange = function handleTabChange(state, event) {
   tab.classList.add('active');
   var switcherItem = switcherEls.item(index);
   if (switcherItem) switcherItem.setAttribute('aria-selected', true);
-  switcherItem.setAttribute('aria-hidden', true);
   if (id) history.replaceState({
     instance: instance,
     id: id,
