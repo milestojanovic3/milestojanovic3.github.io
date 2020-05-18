@@ -618,7 +618,7 @@ var _default = {
         200: 2,
         600: 3,
         // 2 items for viewport wider than 800px
-        900: 4,
+        900: 5,
         // 2 items for viewport wider than 800px
         1100: 5,
         // 2 items for viewport wider than 800px
