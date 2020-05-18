@@ -630,7 +630,10 @@ var _default = {
       multipleDrag: true,
       threshold: 20,
       loop: true,
-      rtl: false
+      rtl: false,
+      onInit: function onInit() {
+        this.selector.style.overflow = 'hidden';
+      }
     } // '_experiments/popularFeed': {},
     // '_experiments/popularBox': {
     //   defaultToShow: 5
