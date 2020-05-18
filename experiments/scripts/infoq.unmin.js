@@ -628,7 +628,7 @@ var _default = {
       startIndex: 0,
       draggable: true,
       multipleDrag: true,
-      threshold: 200,
+      threshold: 20,
       loop: true,
       rtl: false
     } // '_experiments/popularFeed': {},
