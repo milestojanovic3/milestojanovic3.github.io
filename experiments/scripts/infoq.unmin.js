@@ -1862,8 +1862,6 @@ var _default = {
       if (next) next.addEventListener("click", function () {
         return mySiema.next(4);
       });
-    } else {
-      console.log("manje");
     }
   }
 };
