@@ -610,22 +610,7 @@ var _default = {
     /**
      * EXPERIMENTS AFTER THIS LINE
      */
-    '_experiments/rvcSlider': {
-      selector: '.rvcslider',
-      duration: 500,
-      easing: 'ease-out',
-      perPage: {
-        900: 5,
-        1100: 5,
-        1240: 6
-      },
-      startIndex: 0,
-      draggable: true,
-      multipleDrag: true,
-      threshold: 20,
-      loop: false,
-      rtl: false
-    } // '_experiments/popularFeed': {},
+    '_experiments/rvcSlider': {} // '_experiments/popularFeed': {},
     // '_experiments/popularBox': {
     //   defaultToShow: 5
     // },
@@ -1899,11 +1884,19 @@ var _default = {
         onInit: function onInit() {
           this.hideArrows(".prev", ".next");
         },
+        duration: 1000,
+        easing: 'ease-out',
         perPage: {
           900: 5,
           1000: 6,
           1240: 6
-        }
+        },
+        startIndex: 0,
+        draggable: true,
+        multipleDrag: true,
+        threshold: 20,
+        loop: false,
+        rtl: false
       });
       document.querySelector(".prev").addEventListener("click", function () {
         return siemaOne.prev(5);
