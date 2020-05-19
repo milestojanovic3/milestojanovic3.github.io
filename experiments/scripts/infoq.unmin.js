@@ -616,21 +616,15 @@ var _default = {
       easing: 'ease-out',
       perPage: {
         900: 5,
-        // 2 items for viewport wider than 800px
         1100: 5,
-        // 2 items for viewport wider than 800px
-        1240: 6 // 3 items for viewport wider than 1240px
-
+        1240: 6
       },
       startIndex: 0,
       draggable: true,
       multipleDrag: true,
       threshold: 20,
-      loop: true,
-      rtl: false,
-      onInit: function onInit() {
-        this.selector.style.overflow = 'hidden';
-      }
+      loop: false,
+      rtl: false
     } // '_experiments/popularFeed': {},
     // '_experiments/popularBox': {
     //   defaultToShow: 5
@@ -1842,25 +1836,80 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js"));
+
 var _siema = _interopRequireDefault(__webpack_require__(/*! siema */ "./node_modules/siema/dist/siema.min.js"));
+
+function _createSuper(Derived) { return function () { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 // import Debug from 'debug'
 var _default = {
-  init: function init(config, context) {
+  init: function init() {
+    var rvcSlider = document.getElementById('rvcSlider');
+    if (!rvcSlider) return;
     var checkScreenSize = window.matchMedia("(min-width: 900px)");
 
     if (checkScreenSize.matches) {
-      var slider = document.querySelector(".rvcslider");
-      if (!slider) return;
-      var mySiema = new _siema["default"](config);
-      var parentNode = slider.parentNode;
-      var prev = parentNode.querySelector(".prev");
-      var next = parentNode.querySelector(".next");
-      if (prev) prev.addEventListener("click", function () {
-        return mySiema.prev(4);
+      var CustomSiema = /*#__PURE__*/function (_Siema) {
+        (0, _inherits2["default"])(CustomSiema, _Siema);
+
+        var _super = _createSuper(CustomSiema);
+
+        function CustomSiema() {
+          (0, _classCallCheck2["default"])(this, CustomSiema);
+          return _super.apply(this, arguments);
+        }
+
+        (0, _createClass2["default"])(CustomSiema, [{
+          key: "hideArrows",
+          value: function hideArrows(prevArrowSelector, nextArrowSelector) {
+            if (this.currentSlide === 0) {
+              document.querySelector(prevArrowSelector).style.visibility = "hidden";
+            } else {
+              document.querySelector(prevArrowSelector).style.visibility = "visible";
+            }
+
+            var index = this.currentSlide;
+
+            if (index === this.innerElements.length + 1 || index + this.perPage >= this.innerElements.length) {
+              document.querySelector(nextArrowSelector).style.visibility = "hidden";
+            } else {
+              document.querySelector(nextArrowSelector).style.visibility = "visible";
+            }
+          }
+        }]);
+        return CustomSiema;
+      }(_siema["default"]);
+
+      var siemaOne = new CustomSiema({
+        selector: ".rvcslider",
+        onChange: function onChange() {
+          this.hideArrows(".prev", ".next");
+        },
+        onInit: function onInit() {
+          this.hideArrows(".prev", ".next");
+        },
+        perPage: {
+          900: 5,
+          1000: 6,
+          1240: 6
+        }
       });
-      if (next) next.addEventListener("click", function () {
-        return mySiema.next(4);
+      document.querySelector(".prev").addEventListener("click", function () {
+        return siemaOne.prev(5);
+      });
+      document.querySelector(".next").addEventListener("click", function () {
+        return siemaOne.next(5);
       });
     }
   }
@@ -18495,6 +18544,25 @@ module.exports = _arrayWithoutHoles;
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+module.exports = _assertThisInitialized;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js":
 /*!*****************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
@@ -18612,6 +18680,52 @@ module.exports = _defineProperty;
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/getPrototypeOf.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _getPrototypeOf(o) {
+  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+module.exports = _getPrototypeOf;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/inherits.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/inherits.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf */ "./node_modules/@babel/runtime/helpers/setPrototypeOf.js");
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) setPrototypeOf(subClass, superClass);
+}
+
+module.exports = _inherits;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js":
 /*!**********************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/interopRequireDefault.js ***!
@@ -18721,6 +18835,49 @@ function _nonIterableSpread() {
 }
 
 module.exports = _nonIterableSpread;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _typeof = __webpack_require__(/*! ../helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js");
+
+var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return assertThisInitialized(self);
+}
+
+module.exports = _possibleConstructorReturn;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/setPrototypeOf.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/setPrototypeOf.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _setPrototypeOf(o, p) {
+  module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+module.exports = _setPrototypeOf;
 
 /***/ }),
 
