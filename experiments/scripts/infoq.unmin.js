@@ -615,9 +615,6 @@ var _default = {
       duration: 500,
       easing: 'ease-out',
       perPage: {
-        200: 2,
-        600: 3,
-        // 2 items for viewport wider than 800px
         900: 5,
         // 2 items for viewport wider than 800px
         1100: 5,
@@ -1850,18 +1847,24 @@ var _siema = _interopRequireDefault(__webpack_require__(/*! siema */ "./node_mod
 // import Debug from 'debug'
 var _default = {
   init: function init(config, context) {
-    var slider = document.querySelector('.rvcslider');
-    if (!slider) return;
-    var mySiema = new _siema["default"](config);
-    var parentNode = slider.parentNode;
-    var prev = parentNode.querySelector('.prev');
-    var next = parentNode.querySelector('.next');
-    if (prev) prev.addEventListener('click', function () {
-      return mySiema.prev(4);
-    });
-    if (next) next.addEventListener('click', function () {
-      return mySiema.next(4);
-    });
+    var checkScreenSize = window.matchMedia("(min-width: 900px)");
+
+    if (checkScreenSize.matches) {
+      var slider = document.querySelector(".rvcslider");
+      if (!slider) return;
+      var mySiema = new _siema["default"](config);
+      var parentNode = slider.parentNode;
+      var prev = parentNode.querySelector(".prev");
+      var next = parentNode.querySelector(".next");
+      if (prev) prev.addEventListener("click", function () {
+        return mySiema.prev(4);
+      });
+      if (next) next.addEventListener("click", function () {
+        return mySiema.next(4);
+      });
+    } else {
+      console.log("manje");
+    }
   }
 };
 exports["default"] = _default;
@@ -3433,7 +3436,7 @@ var _default = {
     }
 
     classList.add('carousel');
-    var nav = document.createElement('NAV');
+    var nav = document.createElement('li');
     nav.classList.add('carousel__paginator');
     var activeIndex = 1;
     this.slideIndexes = Math.ceil(length / 4);
@@ -7266,6 +7269,7 @@ var handleTabChange = function handleTabChange(state, event) {
       var tabSwitchEl = _step.value;
       if (!tabSwitchEl) continue;
       tabSwitchEl.setAttribute('aria-selected', false);
+      tabSwitchEl.setAttribute('aria-hidden', true);
     } // Remove active class on all children
 
   } catch (err) {
@@ -7293,6 +7297,7 @@ var handleTabChange = function handleTabChange(state, event) {
   tab.classList.add('active');
   var switcherItem = switcherEls.item(index);
   if (switcherItem) switcherItem.setAttribute('aria-selected', true);
+  switcherItem.setAttribute('aria-hidden', true);
   if (id) history.replaceState({
     instance: instance,
     id: id,

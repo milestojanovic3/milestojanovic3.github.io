@@ -1847,9 +1847,9 @@ var _siema = _interopRequireDefault(__webpack_require__(/*! siema */ "./node_mod
 // import Debug from 'debug'
 var _default = {
   init: function init(config, context) {
-    var mq = window.matchMedia("(min-width: 900px)");
+    var checkScreenSize = window.matchMedia("(min-width: 900px)");
 
-    if (mq.matches) {
+    if (checkScreenSize.matches) {
       var slider = document.querySelector(".rvcslider");
       if (!slider) return;
       var mySiema = new _siema["default"](config);
