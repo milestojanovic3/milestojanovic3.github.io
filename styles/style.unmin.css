@@ -10032,7 +10032,7 @@ a.video-block {
     grid-area: swf
 }
 
-.grid[data-type=presentation]>.event__list {
+.grid[data-type=presentation]>.event__list-box {
     -ms-grid-row: 18;
     -ms-grid-column: 1;
     grid-area: eventList
@@ -10837,7 +10837,7 @@ a.video-block {
         -ms-grid-column-span: 2
     }
 
-    .grid[data-type=presentation].transcript>.event__list {
+    .grid[data-type=presentation].transcript>.event__list-box {
         -ms-grid-row: 10;
         -ms-grid-column: 1;
         -ms-grid-column-span: 2
@@ -16533,13 +16533,13 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
     padding-bottom: 20px
 }
 
-.event__list {
+.event__list-box {
     padding: 20px 15px;
     padding-bottom: 30px
 }
 
 @media only screen and (min-width:768px) {
-    .event__list {
+    .event__list-box {
         max-width: 350px !important;
         padding: 20px 30px;
         margin: 0 auto
@@ -16547,14 +16547,14 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
 }
 
 @media only screen and (min-width:1080px) {
-    .event__list {
+    .event__list-box {
         margin-right: 40px;
         margin-left: 0;
         max-width: 350px !important
     }
 }
 
-.event__list h3 {
+.event__list-box h3 {
     padding-bottom: 20px;
     text-align: center;
     margin: 0;
@@ -17250,7 +17250,8 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
     display: block;
     min-height: 210px;
     -webkit-transition: margin .15s ease;
-    transition: margin .15s ease
+    transition: margin .15s ease;
+    margin-top: 0 !important
 }
 
 .header--hide .header+main {
@@ -19382,7 +19383,7 @@ select {
         -ms-grid-column-span: 6
     }
 
-    .grid[data-type=presentation]>.event__list {
+    .grid[data-type=presentation]>.event__list-box {
         -ms-grid-row: 13;
         -ms-grid-column: 1;
         -ms-grid-column-span: 6
