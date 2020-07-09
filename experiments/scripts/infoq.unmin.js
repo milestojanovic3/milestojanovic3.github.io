@@ -610,7 +610,7 @@ var _default = {
     /**
      * EXPERIMENTS AFTER THIS LINE
      */
-    '_experiments/rvcSlider': {},
+    // '_experiments/rvcSlider': {},
     '_experiments/mustWatchSlider': {} // '_experiments/popularFeed': {},
     // '_experiments/popularBox': {
     //   defaultToShow: 5
