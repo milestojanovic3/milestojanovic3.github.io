@@ -1,0 +1,108 @@
+body {
+  font-family: Arial , Helvetica , Roboto , 'ヒラギノ角ゴ Pro W3' , 'Hiragino Kaku Gothic Pro' , 'Osaka' , 'メイリオ' , 'Meiryo' , 'ＭＳ Ｐゴシック' , 'MS PGothic' , sans-serif;
+}
+
+@media only screen and (min-width:1050px) {
+  .popular__cards > li {
+    padding: 8px 20px 8px 40px;
+  }
+}
+
+p {
+  line-height: 1.5rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Arial , Helvetica , Roboto , 'ヒラギノ角ゴ Pro W3' , 'Hiragino Kaku Gothic Pro' , 'Osaka' , 'メイリオ' , 'Meiryo' , 'ＭＳ Ｐゴシック' , 'MS PGothic' , sans-serif;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+@media only screen and (min-width:600px) {
+  h1 {
+    font-size: 26px;
+    line-height: 38px;
+  }
+}
+
+@media only screen and (min-width:800px) {
+  h1 {
+    font-size: 32px;
+    line-height: 42px;
+  }
+}
+
+h2,
+.h2 {
+  font-size: 18px;
+}
+
+@media only screen and (min-width:600px) {
+  h2,
+  .h2 {
+    font-size: 22px;
+    line-height: 28px;
+  }
+}
+
+@media only screen and (min-width:800px) {
+  h4,
+  .h4 {
+    font-size: 16px;
+  }
+}
+
+.section__heading,
+.widget.popular .heading,
+.widget__heading {
+  font-weight: 600;
+  letter-spacing: normal;
+}
+
+.tabs.vertical > .tab__switcher li {
+  font-size: 13px;
+}
+
+.oneP__container > div:first-child .heading {
+  padding-left: 65px;
+}
+
+.oneP__percent > em {
+  left: 75px;
+}
+
+@media only screen and (min-width:800px) {
+  .social__links > a:not(:first-child) {
+    margin-left: 0;
+  }
+}
+
+@media only screen and (min-width:1050px) {
+  .social__links {
+    justify-content: center;
+  }
+}
+
+.social__links > a {
+  flex: 0 1 70px;
+}
+
+button,
+.button {
+  font-size: 10px;
+  letter-spacing: normal;
+}
+
+.article__authors .author__follow {
+  padding: 0 4px;
+}
+
+/*# sourceMappingURL=style_ja.css.map */
