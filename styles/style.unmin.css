@@ -204,7 +204,25 @@ fieldset {
 .grid>.notice {
     -ms-grid-row: 2;
     -ms-grid-column: 1;
-    grid-area: notice
+    grid-area: notice;
+    background: 0 0 !important;
+    border: 0 !important;
+    padding: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+@media only screen and (min-width:768px) {
+    .grid>.notice {
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
+        justify-content: flex-end
+    }
+}
+
+.grid>.notice>.box--warning {
+    padding: 4px 8px !important
 }
 
 .grid>.slides {
@@ -1549,6 +1567,39 @@ h6 {
     display: inline-block;
     vertical-align: top;
     margin-right: 4px !important
+}
+
+.actions>.actions__right {
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end
+}
+
+@media only screen and (max-width:991px) {
+    .actions>.actions__right {
+        -ms-flex-preferred-size: 100%;
+        flex-basis: 100%
+    }
+}
+
+.actions>.actions__right .notice {
+    padding: 0;
+    border: 0;
+    background: 0 0;
+    white-space: normal
+}
+
+@media only screen and (min-width:1079px) {
+    .actions>.actions__right .notice {
+        margin-top: 6px;
+        max-width: 900px;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap
+    }
+}
+
+.actions>.actions__right .notice .box--warning {
+    padding: 4px 8px !important
 }
 
 hr {
@@ -9603,13 +9654,13 @@ a.video-block {
 
 @media only screen and (min-width:1080px) {
     .grid[data-type=guide] {
-        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category . . . notice notice''title title title title title title''buttons buttons . . . .''cover cover content content content content''sidebar sidebar content content content content''sidebar sidebar topics topics topics topics''sidebar sidebar rvc rvc rvc rvc'
+        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category . . notice notice notice''title title title title title title''buttons buttons . . . .''cover cover content content content content''sidebar sidebar content content content content''sidebar sidebar topics topics topics topics''sidebar sidebar rvc rvc rvc rvc'
     }
 
     .grid[data-type=guide]>.notice {
         -ms-grid-row: 2;
-        -ms-grid-column: 5;
-        -ms-grid-column-span: 2
+        -ms-grid-column: 4;
+        -ms-grid-column-span: 3
     }
 
     .grid[data-type=guide]>.topics {
@@ -9939,13 +9990,13 @@ a.video-block {
 
 @media only screen and (min-width:1080px) {
     .grid[data-type=presentation] {
-        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category . . . notice notice''title title title title title title''buttons buttons . . . .''playerControlsLeft playerControlsRight . . . .''player player slides slides slides slides''sidebar sidebar slides slides slides slides''sidebar sidebar aboveContent aboveContent aboveContent aside''sidebar sidebar bio bio bio aside''sidebar sidebar content content content aside''topics topics topics topics topics topics''sponsors sponsors rvc rvc rvc rvc'
+        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category . . notice notice notice''title title title title title title''buttons buttons . . . .''playerControlsLeft playerControlsRight . . . .''player player slides slides slides slides''sidebar sidebar slides slides slides slides''sidebar sidebar aboveContent aboveContent aboveContent aside''sidebar sidebar bio bio bio aside''sidebar sidebar content content content aside''topics topics topics topics topics topics''sponsors sponsors rvc rvc rvc rvc'
     }
 
     .grid[data-type=presentation]>.notice {
         -ms-grid-row: 2;
-        -ms-grid-column: 5;
-        -ms-grid-column-span: 2
+        -ms-grid-column: 4;
+        -ms-grid-column-span: 3
     }
 
     .grid>.slides {
@@ -10381,13 +10432,13 @@ a.video-block {
 
 @media only screen and (min-width:1080px) {
     .grid[data-type=presentation][data-layout=pres-1-col] {
-        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category . . . notice notice''title title title title title title''buttons buttons . . . .''playerControlsLeft . playerControlsRight . . .''player player player sidebar sidebar sidebar''player player player aboveContent aboveContent aboveContent''player player player . . .''slides slides slides slides slides slides''. bio bio bio bio aside''. content content content content aside''topics topics topics topics topics topics''sponsors sponsors rvc rvc rvc rvc'
+        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category . . notice notice notice''title title title title title title''buttons buttons . . . .''playerControlsLeft . playerControlsRight . . .''player player player sidebar sidebar sidebar''player player player aboveContent aboveContent aboveContent''player player player . . .''slides slides slides slides slides slides''. bio bio bio bio aside''. content content content content aside''topics topics topics topics topics topics''sponsors sponsors rvc rvc rvc rvc'
     }
 
     .grid[data-type=presentation][data-layout=pres-1-col]>.notice {
         -ms-grid-row: 2;
-        -ms-grid-column: 5;
-        -ms-grid-column-span: 2
+        -ms-grid-column: 4;
+        -ms-grid-column-span: 3
     }
 
     .grid[data-type=presentation][data-layout=pres-1-col]>.slides {
@@ -10637,13 +10688,13 @@ a.video-block {
 
 @media only screen and (min-width:1080px) {
     .grid[data-type=presentation].transcript[data-layout=pres-1-col] {
-        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category . . . notice notice''title title title title title title''buttons buttons . . . .''playerControlsLeft . playerControlsRight . . .''player player player sidebar sidebar sidebar''player player player aboveContent aboveContent aboveContent''player player player . . .''slides slides slides slides slides slides''. bio bio bio bio aside''. content content content content aside''topics topics topics topics topics topics''sponsors sponsors rvc rvc rvc rvc'
+        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category . . notice notice notice''title title title title title title''buttons buttons . . . .''playerControlsLeft . playerControlsRight . . .''player player player sidebar sidebar sidebar''player player player aboveContent aboveContent aboveContent''player player player . . .''slides slides slides slides slides slides''. bio bio bio bio aside''. content content content content aside''topics topics topics topics topics topics''sponsors sponsors rvc rvc rvc rvc'
     }
 
     .grid[data-type=presentation].transcript[data-layout=pres-1-col]>.notice {
         -ms-grid-row: 2;
-        -ms-grid-column: 5;
-        -ms-grid-column-span: 2
+        -ms-grid-column: 4;
+        -ms-grid-column-span: 3
     }
 
     .grid[data-type=presentation].transcript[data-layout=pres-1-col]>.slides {
@@ -10757,13 +10808,13 @@ a.video-block {
 
 @media only screen and (min-width:768px) and (min-width:1080px) {
     .grid[data-type=presentation].transcript {
-        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category . . . notice notice''title title title title title title''buttons buttons . . . .''playerControlsLeft playerControlsRight . . . .''player player slides slides slides slides''sidebar sidebar slides slides slides slides''aboveContent aboveContent content content content aside''bio bio content content content aside''eventList eventList content content content aside''. . content content content aside''topics topics topics topics topics topics''sponsors sponsors rvc rvc rvc rvc'
+        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category . . notice notice notice''title title title title title title''buttons buttons . . . .''playerControlsLeft playerControlsRight . . . .''player player slides slides slides slides''sidebar sidebar slides slides slides slides''aboveContent aboveContent content content content aside''bio bio content content content aside''eventList eventList content content content aside''. . content content content aside''topics topics topics topics topics topics''sponsors sponsors rvc rvc rvc rvc'
     }
 
     .grid[data-type=presentation].transcript>.notice {
         -ms-grid-row: 2;
-        -ms-grid-column: 5;
-        -ms-grid-column-span: 2
+        -ms-grid-column: 4;
+        -ms-grid-column-span: 3
     }
 
     .grid[data-type=presentation].transcript>.slides {
@@ -11240,13 +11291,13 @@ a.video-block {
     .grid[data-type=presentation].authenticated {
         -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category . . . notice notice''title title title title title title''swf swf swf swf swf swf''buttons buttons buttons buttons . .''announcement announcement announcement announcement announcement aside''player player player player player aside''sidebar sidebar sidebar sidebar sidebar aside''aboveContent aboveContent aboveContent aboveContent aboveContent aside''bio bio bio bio bio aside''content content content content content aside''topics topics topics topics topics topics''sponsors sponsors rvc rvc rvc rvc'
+        grid-template-areas: 'breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs breadcrumbs''category . . notice notice notice''title title title title title title''swf swf swf swf swf swf''buttons buttons buttons buttons . .''announcement announcement announcement announcement announcement aside''player player player player player aside''sidebar sidebar sidebar sidebar sidebar aside''aboveContent aboveContent aboveContent aboveContent aboveContent aside''bio bio bio bio bio aside''content content content content content aside''topics topics topics topics topics topics''sponsors sponsors rvc rvc rvc rvc'
     }
 
     .grid[data-type=presentation].authenticated>.notice {
         -ms-grid-row: 2;
-        -ms-grid-column: 5;
-        -ms-grid-column-span: 2
+        -ms-grid-column: 4;
+        -ms-grid-column-span: 3
     }
 
     .grid[data-type=presentation].authenticated>.topics {
@@ -11906,6 +11957,11 @@ a.video-block {
     background-position: 102% -20px
 }
 
+.event__container[data-bg][data-bg=infoQlive]:before,
+.newsletter[data-bg][data-bg=infoQlive]:before {
+    background-image: url(static/images/ui/footer/infoQlive.jpg)
+}
+
 .event__container[data-bg]:before,
 .newsletter[data-bg]:before {
     background-size: cover;
@@ -12046,6 +12102,66 @@ html[lang=br] .newsletter[data-bg=sp]:before {
 html[lang=cn] .event__container[data-bg=cn]:before,
 html[lang=cn] .newsletter[data-bg=cn]:before {
     background-image: url(static/images/ui/footer/cn-1x.jpg) !important
+}
+
+.infoq__events-slider .heading {
+    font-weight: 700;
+    font-size: 1.75rem;
+    line-height: 2.125rem
+}
+
+.infoq__events-slider .event__description {
+    font-weight: 700;
+    font-size: 2.625rem;
+    line-height: 3.125rem;
+    color: #fff
+}
+
+@media only screen and (max-width:991px) {
+    .infoq__events-slider .event__description {
+        font-size: 2rem;
+        margin: 0
+    }
+}
+
+.infoq__events-slider .intro {
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 1.8125rem;
+    color: #fff
+}
+
+@media only screen and (max-width:991px) {
+    .infoq__events-slider .intro {
+        font-size: 1.125rem;
+        line-height: 150%
+    }
+}
+
+.infoq__events-slider .date {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.1875rem;
+    color: #fff;
+    text-align: left;
+    display: block
+}
+
+.infoq__events-slider .date span {
+    color: #be4ec8
+}
+
+.infoq__events-slider .button__large {
+    display: inline-block;
+    float: left;
+    padding: 8px 40px;
+    margin-bottom: 20px
+}
+
+.infoq__events-slider .button__large:hover {
+    text-decoration: none;
+    color: #fff;
+    background: #a70d0f
 }
 
 .podcast__info {
@@ -16117,6 +16233,46 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
     margin-bottom: 16px
 }
 
+.cards li.rsb__webinar[data-type=webinar] .button__cta a {
+    text-transform: capitalize;
+    padding: 3px 17px;
+    margin: 0 auto;
+    margin-top: 7px;
+    border-radius: 4px;
+    display: table;
+    text-decoration: none;
+    color: #fff;
+    background: #0e5ef1;
+    border: 1px solid transparent;
+    font-size: .75rem;
+    line-height: 1.5625rem;
+    width: auto;
+    font-weight: 700
+}
+
+.cards li.rsb__webinar[data-type=webinar] .button__cta a:hover {
+    text-decoration: none;
+    opacity: .95
+}
+
+.cards li.rsb__webinar[data-type=webinar] .authors span a {
+    font-size: .6875rem;
+    line-height: 1 !important
+}
+
+.cards li.rsb__webinar[data-type=webinar] .authors span a:hover {
+    text-decoration: none !important
+}
+
+.cards li.rsb__webinar[data-type=webinar] .card__excerpt a {
+    font-size: .75rem;
+    line-height: 1 !important
+}
+
+.cards li.rsb__webinar[data-type=webinar] .card__excerpt a:hover {
+    text-decoration: none !important
+}
+
 .carousel__paginator {
     text-align: center;
     width: 100%;
@@ -16520,7 +16676,10 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
 }
 
 .webinarEvents::before {
-    background-image: url("data:image/svg+xml,%3csvg fill='none' height='75' viewBox='0 0 481 75' width='481' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3e %3cclipPath id='a'%3e %3cpath d='m0 0h245v75h-245z'/%3e %3c/clipPath%3e %3cg clip-path='url(%23a)'%3e %3cg fill='%232b6cad'%3e %3cpath d='m16.9232 1.55896h-16.401716v67.09014h16.401716z'/%3e %3cpath d='m27.6924 18.7715v49.8776h15.0009v-29.3705c0-3.5866.6391-6.1152 1.9174-7.5857 1.2783-1.4679 3.422-2.2045 6.4313-2.2045 2.5565 0 4.4233.7902 5.6057 2.3679 1.1823 1.5777 1.7709 4.0527 1.7709 7.4223v29.3705h15.0036v-30.1125c0-7.0821-1.3182-12.3428-3.9573-15.7741-2.6364-3.4339-6.655-5.1509-12.0583-5.1509-3.0225 0-5.7495.4795-8.1782 1.4384-2.426.959-4.6044 2.4134-6.5351 4.3607v-4.6392z'/%3e %3cpath d='m84.3939 29.1188v39.5303h15.0036v-39.5303h9.3095v-9.142h-9.3095v-1.9018c0-2.041.4394-3.4018 1.3265-4.0821.884-.6804 2.708-1.0205 5.475-1.0205h2.508v-10.44112c-1.443-.34018-2.828-.58661-4.157-.74196-1.328-.15536-2.636-.23036-3.914-.23036-5.8323 0-10.0292 1.16786-12.5911 3.50089-2.5618 2.33572-3.8427 6.15005-3.8427 11.43755 0 .3723.0053.7875.0239 1.2535.016.4634.0719 1.2054.1678 2.2259h-7.6216v9.142z'/%3e %3cpath clip-rule='evenodd' d='m116.398 62.9866c4.906 4.859 11.377 7.2858 19.419 7.2858 8.037 0 14.527-2.4349 19.462-7.3072 4.937-4.8723 7.406-11.2821 7.406-19.2321 0-7.9822-2.453-14.4054-7.358-19.2777-4.903-4.8723-11.409-7.3072-19.51-7.3072-8.01 0-14.473 2.4429-19.392 7.3286-4.921 4.8884-7.382 11.3063-7.382 19.2563 0 7.9794 2.453 14.4 7.355 19.2535zm11.097-8.4187c-2.074-2.6759-3.113-6.2866-3.113-10.8348 0-4.484 1.047-8.0893 3.137-10.8107 2.091-2.7215 4.855-4.0822 8.298-4.0822 3.502 0 6.293 1.3447 8.368 4.0366 2.074 2.6893 3.11 6.3081 3.11 10.8563 0 4.516-1.044 8.1187-3.134 10.8107-2.091 2.6919-4.871 4.0366-8.344 4.0366-3.475 0-6.247-1.3366-8.322-4.0125z' fill-rule='evenodd'/%3e %3c/g%3e %3cpath d='m202.465 56.2123c5.316 0 9.462-1.8455 12.442-5.5419 2.977-3.6965 4.466-8.8554 4.466-15.4742 0-6.6187-1.497-11.7937-4.493-15.5196-2.995-3.7286-7.131-5.5928-12.415-5.5928-5.249 0-9.379 1.8803-12.388 5.6383-3.012 3.7581-4.517 8.917-4.517 15.4741 0 6.5572 1.497 11.7 4.49 15.4259 2.996 3.7286 7.135 5.5902 12.415 5.5902zm17.728 9.8839c-2.479 1.3608-5.214 2.3974-8.207 3.1099-2.994.7098-6.165 1.066-9.513 1.066-10.268 0-18.484-3.1848-24.649-9.5571-6.162-6.3723-9.246-14.8795-9.246-25.5188 0-5.8151.94-11.0196 2.826-15.6133 1.882-4.5938 4.689-8.5152 8.423-11.76165 2.993-2.59821 6.38-4.54821 10.162-5.84732 3.782-1.299105 7.939-1.9473187 12.476-1.9473187 10.234 0 18.442 3.2008887 24.62 9.6053587 6.178 6.40183 9.268 14.92233 9.268 25.56423 0 4.4545-.514 8.4831-1.542 12.0858-1.031 3.6053-2.621 6.8598-4.778 9.766 1.931 1.7009 4.037 3.0563 6.32 4.0607 2.284 1.0045 4.729 1.6474 7.334 1.9259l-5.018 11.9706c-3.794-.3723-7.243-1.3072-10.346-2.8072-3.105-1.5026-5.813-3.5357-8.13-6.1018' fill='%231e8d44'/%3e %3c/g%3e %3cg fill='black'%3e %3cpath d='m261 19h1v38h-1z'/%3e %3cpath d='m298.353 33.8975 4.784 20.1025h3.728l5.571-32.4111h-3.751l-1.955 12.9824-1.954 13.499h-.247l-4.537-19.0693h-3.549l-4.537 19.0693h-.247l-1.954-13.499-1.954-12.9824h-3.751l5.57 32.4111h3.729l4.784-20.1025z'/%3e %3cpath d='m336.738 50.3613h-15.161v-11.1406h14.33v-3.4814h-14.33v-10.5118h15.161v-3.6386h-19.136v32.4111h19.136z'/%3e %3cpath d='m355.695 54c6.963 0 11.096-3.3691 11.096-9.0518 0-4.3349-2.853-7.5019-7.21-7.9287v-.3369c3.257-.5615 5.57-3.5039 5.57-7.0752 0-5.0312-3.593-8.0185-9.568-8.0185h-10.489v32.4111zm-6.671-28.9971h5.661c4.132 0 6.468 1.9092 6.468 5.3008 0 3.4141-2.47 5.2783-7.075 5.2783h-5.054zm0 25.5606v-11.6797h5.683c5.256 0 7.974 1.9766 7.974 5.7949 0 3.8633-2.696 5.8848-7.839 5.8848z'/%3e %3cpath d='m392.06 54v-3.5264h-6.559v-25.3584h6.559v-3.5263h-17.071v3.5263h6.559v25.3584h-6.559v3.5264z'/%3e %3cpath d='m404.75 54v-25.291h.314l13.926 25.291h3.751v-32.4111h-3.571v25.2236h-.315l-13.88-25.2236h-3.796v32.4111z'/%3e %3cpath d='m448.773 54h4.178l-10.444-32.4111h-4.223l-10.444 32.4111h4.02l2.83-9.2988h11.276zm-8.49-27.6494h.113l4.537 14.959h-9.209z'/%3e %3cpath d='m470.066 41.085 6.042 12.915h4.47l-6.603-13.7236c3.683-1.2129 6.042-4.6944 6.042-8.9395 0-6.0195-4.021-9.748-10.445-9.748h-10.871v32.4111h3.908v-12.915zm-7.457-15.9698h6.604c4.335 0 6.806 2.291 6.806 6.3116 0 4.0429-2.516 6.3115-6.986 6.3115h-6.424z'/%3e %3c/g%3e %3c/svg%3e")
+    background-image: url("data:image/svg+xml,%3csvg fill='none' height='75' viewBox='0 0 481 75' width='481' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3e %3cclipPath id='a'%3e %3cpath d='m0 0h245v75h-245z'/%3e %3c/clipPath%3e %3cg clip-path='url(%23a)'%3e %3cg fill='%232b6cad'%3e %3cpath d='m16.9232 1.55896h-16.401716v67.09014h16.401716z'/%3e %3cpath d='m27.6924 18.7715v49.8776h15.0009v-29.3705c0-3.5866.6391-6.1152 1.9174-7.5857 1.2783-1.4679 3.422-2.2045 6.4313-2.2045 2.5565 0 4.4233.7902 5.6057 2.3679 1.1823 1.5777 1.7709 4.0527 1.7709 7.4223v29.3705h15.0036v-30.1125c0-7.0821-1.3182-12.3428-3.9573-15.7741-2.6364-3.4339-6.655-5.1509-12.0583-5.1509-3.0225 0-5.7495.4795-8.1782 1.4384-2.426.959-4.6044 2.4134-6.5351 4.3607v-4.6392z'/%3e %3cpath d='m84.3939 29.1188v39.5303h15.0036v-39.5303h9.3095v-9.142h-9.3095v-1.9018c0-2.041.4394-3.4018 1.3265-4.0821.884-.6804 2.708-1.0205 5.475-1.0205h2.508v-10.44112c-1.443-.34018-2.828-.58661-4.157-.74196-1.328-.15536-2.636-.23036-3.914-.23036-5.8323 0-10.0292 1.16786-12.5911 3.50089-2.5618 2.33572-3.8427 6.15005-3.8427 11.43755 0 .3723.0053.7875.0239 1.2535.016.4634.0719 1.2054.1678 2.2259h-7.6216v9.142z'/%3e %3cpath clip-rule='evenodd' d='m116.398 62.9866c4.906 4.859 11.377 7.2858 19.419 7.2858 8.037 0 14.527-2.4349 19.462-7.3072 4.937-4.8723 7.406-11.2821 7.406-19.2321 0-7.9822-2.453-14.4054-7.358-19.2777-4.903-4.8723-11.409-7.3072-19.51-7.3072-8.01 0-14.473 2.4429-19.392 7.3286-4.921 4.8884-7.382 11.3063-7.382 19.2563 0 7.9794 2.453 14.4 7.355 19.2535zm11.097-8.4187c-2.074-2.6759-3.113-6.2866-3.113-10.8348 0-4.484 1.047-8.0893 3.137-10.8107 2.091-2.7215 4.855-4.0822 8.298-4.0822 3.502 0 6.293 1.3447 8.368 4.0366 2.074 2.6893 3.11 6.3081 3.11 10.8563 0 4.516-1.044 8.1187-3.134 10.8107-2.091 2.6919-4.871 4.0366-8.344 4.0366-3.475 0-6.247-1.3366-8.322-4.0125z' fill-rule='evenodd'/%3e %3c/g%3e %3cpath d='m202.465 56.2123c5.316 0 9.462-1.8455 12.442-5.5419 2.977-3.6965 4.466-8.8554 4.466-15.4742 0-6.6187-1.497-11.7937-4.493-15.5196-2.995-3.7286-7.131-5.5928-12.415-5.5928-5.249 0-9.379 1.8803-12.388 5.6383-3.012 3.7581-4.517 8.917-4.517 15.4741 0 6.5572 1.497 11.7 4.49 15.4259 2.996 3.7286 7.135 5.5902 12.415 5.5902zm17.728 9.8839c-2.479 1.3608-5.214 2.3974-8.207 3.1099-2.994.7098-6.165 1.066-9.513 1.066-10.268 0-18.484-3.1848-24.649-9.5571-6.162-6.3723-9.246-14.8795-9.246-25.5188 0-5.8151.94-11.0196 2.826-15.6133 1.882-4.5938 4.689-8.5152 8.423-11.76165 2.993-2.59821 6.38-4.54821 10.162-5.84732 3.782-1.299105 7.939-1.9473187 12.476-1.9473187 10.234 0 18.442 3.2008887 24.62 9.6053587 6.178 6.40183 9.268 14.92233 9.268 25.56423 0 4.4545-.514 8.4831-1.542 12.0858-1.031 3.6053-2.621 6.8598-4.778 9.766 1.931 1.7009 4.037 3.0563 6.32 4.0607 2.284 1.0045 4.729 1.6474 7.334 1.9259l-5.018 11.9706c-3.794-.3723-7.243-1.3072-10.346-2.8072-3.105-1.5026-5.813-3.5357-8.13-6.1018' fill='%231e8d44'/%3e %3c/g%3e %3cg fill='black'%3e %3cpath d='m261 19h1v38h-1z'/%3e %3cpath d='m298.353 33.8975 4.784 20.1025h3.728l5.571-32.4111h-3.751l-1.955 12.9824-1.954 13.499h-.247l-4.537-19.0693h-3.549l-4.537 19.0693h-.247l-1.954-13.499-1.954-12.9824h-3.751l5.57 32.4111h3.729l4.784-20.1025z'/%3e %3cpath d='m336.738 50.3613h-15.161v-11.1406h14.33v-3.4814h-14.33v-10.5118h15.161v-3.6386h-19.136v32.4111h19.136z'/%3e %3cpath d='m355.695 54c6.963 0 11.096-3.3691 11.096-9.0518 0-4.3349-2.853-7.5019-7.21-7.9287v-.3369c3.257-.5615 5.57-3.5039 5.57-7.0752 0-5.0312-3.593-8.0185-9.568-8.0185h-10.489v32.4111zm-6.671-28.9971h5.661c4.132 0 6.468 1.9092 6.468 5.3008 0 3.4141-2.47 5.2783-7.075 5.2783h-5.054zm0 25.5606v-11.6797h5.683c5.256 0 7.974 1.9766 7.974 5.7949 0 3.8633-2.696 5.8848-7.839 5.8848z'/%3e %3cpath d='m392.06 54v-3.5264h-6.559v-25.3584h6.559v-3.5263h-17.071v3.5263h6.559v25.3584h-6.559v3.5264z'/%3e %3cpath d='m404.75 54v-25.291h.314l13.926 25.291h3.751v-32.4111h-3.571v25.2236h-.315l-13.88-25.2236h-3.796v32.4111z'/%3e %3cpath d='m448.773 54h4.178l-10.444-32.4111h-4.223l-10.444 32.4111h4.02l2.83-9.2988h11.276zm-8.49-27.6494h.113l4.537 14.959h-9.209z'/%3e %3cpath d='m470.066 41.085 6.042 12.915h4.47l-6.603-13.7236c3.683-1.2129 6.042-4.6944 6.042-8.9395 0-6.0195-4.021-9.748-10.445-9.748h-10.871v32.4111h3.908v-12.915zm-7.457-15.9698h6.604c4.335 0 6.806 2.291 6.806 6.3116 0 4.0429-2.516 6.3115-6.986 6.3115h-6.424z'/%3e %3c/g%3e %3c/svg%3e");
+    margin: 0 auto;
+    margin-bottom: 19px;
+    margin-top: 0
 }
 
 .infoqLive::before,
@@ -16529,20 +16688,27 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
     background-position: bottom;
     background-size: contain;
     height: 41px;
-    width: 60%;
-    margin: 0 auto;
-    margin-bottom: 19px;
-    margin-top: 0
+    width: 60%
 }
 
 .infoqLive::before {
-    background-image: url("data:image/svg+xml,%3csvg fill='none' height='75' viewBox='0 0 394 75' width='394' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3e %3cclipPath id='a'%3e %3cpath d='m0 0h245v75h-245z'/%3e %3c/clipPath%3e %3cg clip-path='url(%23a)'%3e %3cg fill='%232b6cad'%3e %3cpath d='m16.9232 1.55896h-16.401716v67.09014h16.401716z'/%3e %3cpath d='m27.6924 18.7715v49.8776h15.0009v-29.3705c0-3.5866.6391-6.1152 1.9174-7.5857 1.2783-1.4679 3.422-2.2045 6.4313-2.2045 2.5565 0 4.4233.7902 5.6057 2.3679 1.1823 1.5777 1.7709 4.0527 1.7709 7.4223v29.3705h15.0036v-30.1125c0-7.0821-1.3182-12.3428-3.9573-15.7741-2.6364-3.4339-6.655-5.1509-12.0583-5.1509-3.0225 0-5.7495.4795-8.1782 1.4384-2.426.959-4.6044 2.4134-6.5351 4.3607v-4.6392z'/%3e %3cpath d='m84.3939 29.1188v39.5303h15.0036v-39.5303h9.3095v-9.142h-9.3095v-1.9018c0-2.041.4394-3.4018 1.3265-4.0821.884-.6804 2.708-1.0205 5.475-1.0205h2.508v-10.44112c-1.443-.34018-2.828-.58661-4.157-.74196-1.328-.15536-2.636-.23036-3.914-.23036-5.8323 0-10.0292 1.16786-12.5911 3.50089-2.5618 2.33572-3.8427 6.15005-3.8427 11.43755 0 .3723.0053.7875.0239 1.2535.016.4634.0719 1.2054.1678 2.2259h-7.6216v9.142z'/%3e %3cpath clip-rule='evenodd' d='m116.398 62.9866c4.906 4.859 11.377 7.2858 19.419 7.2858 8.037 0 14.527-2.4349 19.462-7.3072 4.937-4.8723 7.406-11.2821 7.406-19.2321 0-7.9822-2.453-14.4054-7.358-19.2777-4.903-4.8723-11.409-7.3072-19.51-7.3072-8.01 0-14.473 2.4429-19.392 7.3286-4.921 4.8884-7.382 11.3063-7.382 19.2563 0 7.9794 2.453 14.4 7.355 19.2535zm11.097-8.4187c-2.074-2.6759-3.113-6.2866-3.113-10.8348 0-4.484 1.047-8.0893 3.137-10.8107 2.091-2.7215 4.855-4.0822 8.298-4.0822 3.502 0 6.293 1.3447 8.368 4.0366 2.074 2.6893 3.11 6.3081 3.11 10.8563 0 4.516-1.044 8.1187-3.134 10.8107-2.091 2.6919-4.871 4.0366-8.344 4.0366-3.475 0-6.247-1.3366-8.322-4.0125z' fill-rule='evenodd'/%3e %3c/g%3e %3cpath d='m202.465 56.2123c5.316 0 9.462-1.8455 12.442-5.5419 2.977-3.6965 4.466-8.8554 4.466-15.4742 0-6.6187-1.497-11.7937-4.493-15.5196-2.995-3.7286-7.131-5.5928-12.415-5.5928-5.249 0-9.379 1.8803-12.388 5.6383-3.012 3.7581-4.517 8.917-4.517 15.4741 0 6.5572 1.497 11.7 4.49 15.4259 2.996 3.7286 7.135 5.5902 12.415 5.5902zm17.728 9.8839c-2.479 1.3608-5.214 2.3974-8.207 3.1099-2.994.7098-6.165 1.066-9.513 1.066-10.268 0-18.484-3.1848-24.649-9.5571-6.162-6.3723-9.246-14.8795-9.246-25.5188 0-5.8151.94-11.0196 2.826-15.6133 1.882-4.5938 4.689-8.5152 8.423-11.76165 2.993-2.59821 6.38-4.54821 10.162-5.84732 3.782-1.299105 7.939-1.9473187 12.476-1.9473187 10.234 0 18.442 3.2008887 24.62 9.6053587 6.178 6.40183 9.268 14.92233 9.268 25.56423 0 4.4545-.514 8.4831-1.542 12.0858-1.031 3.6053-2.621 6.8598-4.778 9.766 1.931 1.7009 4.037 3.0563 6.32 4.0607 2.284 1.0045 4.729 1.6474 7.334 1.9259l-5.018 11.9706c-3.794-.3723-7.243-1.3072-10.346-2.8072-3.105-1.5026-5.813-3.5357-8.13-6.1018' fill='%231e8d44'/%3e %3c/g%3e %3cg fill='black'%3e %3cpath d='m261 19h1v38h-1z'/%3e %3cpath d='m309.201 50.3164h-15.363v-28.7275h-3.931v32.4111h19.294z'/%3e %3cpath d='m335.188 54v-3.5264h-6.558v-25.3584h6.558v-3.5263h-17.07v3.5263h6.559v25.3584h-6.559v3.5264z'/%3e %3cpath d='m355.201 49.2383h-.112l-8.401-27.6494h-4.155l10.445 32.4111h4.222l10.445-32.4111h-3.999z'/%3e %3cpath d='m393.609 50.3613h-15.161v-11.1406h14.33v-3.4814h-14.33v-10.5118h15.161v-3.6386h-19.136v32.4111h19.136z'/%3e %3c/g%3e %3c/svg%3e")
+    background-image: url("data:image/svg+xml,%3csvg fill='none' height='75' viewBox='0 0 394 75' width='394' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3e %3cclipPath id='a'%3e %3cpath d='m0 0h245v75h-245z'/%3e %3c/clipPath%3e %3cg clip-path='url(%23a)'%3e %3cg fill='%232b6cad'%3e %3cpath d='m16.9232 1.55896h-16.401716v67.09014h16.401716z'/%3e %3cpath d='m27.6924 18.7715v49.8776h15.0009v-29.3705c0-3.5866.6391-6.1152 1.9174-7.5857 1.2783-1.4679 3.422-2.2045 6.4313-2.2045 2.5565 0 4.4233.7902 5.6057 2.3679 1.1823 1.5777 1.7709 4.0527 1.7709 7.4223v29.3705h15.0036v-30.1125c0-7.0821-1.3182-12.3428-3.9573-15.7741-2.6364-3.4339-6.655-5.1509-12.0583-5.1509-3.0225 0-5.7495.4795-8.1782 1.4384-2.426.959-4.6044 2.4134-6.5351 4.3607v-4.6392z'/%3e %3cpath d='m84.3939 29.1188v39.5303h15.0036v-39.5303h9.3095v-9.142h-9.3095v-1.9018c0-2.041.4394-3.4018 1.3265-4.0821.884-.6804 2.708-1.0205 5.475-1.0205h2.508v-10.44112c-1.443-.34018-2.828-.58661-4.157-.74196-1.328-.15536-2.636-.23036-3.914-.23036-5.8323 0-10.0292 1.16786-12.5911 3.50089-2.5618 2.33572-3.8427 6.15005-3.8427 11.43755 0 .3723.0053.7875.0239 1.2535.016.4634.0719 1.2054.1678 2.2259h-7.6216v9.142z'/%3e %3cpath clip-rule='evenodd' d='m116.398 62.9866c4.906 4.859 11.377 7.2858 19.419 7.2858 8.037 0 14.527-2.4349 19.462-7.3072 4.937-4.8723 7.406-11.2821 7.406-19.2321 0-7.9822-2.453-14.4054-7.358-19.2777-4.903-4.8723-11.409-7.3072-19.51-7.3072-8.01 0-14.473 2.4429-19.392 7.3286-4.921 4.8884-7.382 11.3063-7.382 19.2563 0 7.9794 2.453 14.4 7.355 19.2535zm11.097-8.4187c-2.074-2.6759-3.113-6.2866-3.113-10.8348 0-4.484 1.047-8.0893 3.137-10.8107 2.091-2.7215 4.855-4.0822 8.298-4.0822 3.502 0 6.293 1.3447 8.368 4.0366 2.074 2.6893 3.11 6.3081 3.11 10.8563 0 4.516-1.044 8.1187-3.134 10.8107-2.091 2.6919-4.871 4.0366-8.344 4.0366-3.475 0-6.247-1.3366-8.322-4.0125z' fill-rule='evenodd'/%3e %3c/g%3e %3cpath d='m202.465 56.2123c5.316 0 9.462-1.8455 12.442-5.5419 2.977-3.6965 4.466-8.8554 4.466-15.4742 0-6.6187-1.497-11.7937-4.493-15.5196-2.995-3.7286-7.131-5.5928-12.415-5.5928-5.249 0-9.379 1.8803-12.388 5.6383-3.012 3.7581-4.517 8.917-4.517 15.4741 0 6.5572 1.497 11.7 4.49 15.4259 2.996 3.7286 7.135 5.5902 12.415 5.5902zm17.728 9.8839c-2.479 1.3608-5.214 2.3974-8.207 3.1099-2.994.7098-6.165 1.066-9.513 1.066-10.268 0-18.484-3.1848-24.649-9.5571-6.162-6.3723-9.246-14.8795-9.246-25.5188 0-5.8151.94-11.0196 2.826-15.6133 1.882-4.5938 4.689-8.5152 8.423-11.76165 2.993-2.59821 6.38-4.54821 10.162-5.84732 3.782-1.299105 7.939-1.9473187 12.476-1.9473187 10.234 0 18.442 3.2008887 24.62 9.6053587 6.178 6.40183 9.268 14.92233 9.268 25.56423 0 4.4545-.514 8.4831-1.542 12.0858-1.031 3.6053-2.621 6.8598-4.778 9.766 1.931 1.7009 4.037 3.0563 6.32 4.0607 2.284 1.0045 4.729 1.6474 7.334 1.9259l-5.018 11.9706c-3.794-.3723-7.243-1.3072-10.346-2.8072-3.105-1.5026-5.813-3.5357-8.13-6.1018' fill='%231e8d44'/%3e %3c/g%3e %3cg fill='black'%3e %3cpath d='m261 19h1v38h-1z'/%3e %3cpath d='m309.201 50.3164h-15.363v-28.7275h-3.931v32.4111h19.294z'/%3e %3cpath d='m335.188 54v-3.5264h-6.558v-25.3584h6.558v-3.5263h-17.07v3.5263h6.559v25.3584h-6.559v3.5264z'/%3e %3cpath d='m355.201 49.2383h-.112l-8.401-27.6494h-4.155l10.445 32.4111h4.222l10.445-32.4111h-3.999z'/%3e %3cpath d='m393.609 50.3613h-15.161v-11.1406h14.33v-3.4814h-14.33v-10.5118h15.161v-3.6386h-19.136v32.4111h19.136z'/%3e %3c/g%3e %3c/svg%3e");
+    margin: 0 auto;
+    margin-bottom: 19px
 }
 
-.infoqLive {
-    border-bottom: 1px solid #e1e1e1;
-    margin-bottom: 20px;
-    padding-bottom: 20px
+.webinarEvents .card__topics span a:empty {
+    display: none
+}
+
+@media only screen and (max-width:1079px) {
+    .infoqLive {
+        margin-top: 0
+    }
+}
+
+.infoqLive .card__topics span a:empty {
+    display: none
 }
 
 .event__list-box {
@@ -16552,7 +16718,6 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
 
 @media only screen and (min-width:768px) {
     .event__list-box {
-        max-width: 350px !important;
         padding: 20px 30px;
         margin: 0 auto
     }
@@ -16566,12 +16731,81 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
     }
 }
 
+@media only screen and (max-width:1079px) {
+    .event__list-box {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center
+    }
+}
+
+@media only screen and (max-width:768px) {
+    .event__list-box {
+        width: 100%;
+        display: block
+    }
+}
+
+.event__list-box ul {
+    margin-bottom: 20px
+}
+
+@media only screen and (max-width:1079px) {
+    .event__list-box ul {
+        width: 50%;
+        display: inline-block;
+        padding: 1%;
+        vertical-align: text-top;
+        -ms-flex-preferred-size: 50%;
+        flex-basis: 50%;
+        margin-bottom: 0;
+        max-width: 360px
+    }
+}
+
+@media only screen and (max-width:768px) {
+    .event__list-box ul {
+        width: 100%;
+        display: block;
+        padding: 0;
+        -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+        margin-bottom: 40px;
+        max-width: 100%
+    }
+}
+
+.event__list-box ul:last-child {
+    margin-bottom: 0
+}
+
 .event__list-box>h3 {
     padding-bottom: 20px;
     text-align: center;
     margin: 0;
     display: block;
     width: 100%
+}
+
+@media only screen and (max-width:1079px) {
+    .event__list-box>h3 {
+        font-size: 1.4375rem;
+        margin-top: 20px;
+        padding-bottom: 20px
+    }
+}
+
+@media only screen and (max-width:768px) {
+    .event__list-box>h3 {
+        font-size: 1.125rem;
+        margin-top: 0;
+        padding-bottom: 20px
+    }
 }
 
 .cards li[data-type=webinar]:last-child {
@@ -16823,6 +17057,12 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
     }
 }
 
+@media only screen and (max-width:1400px) {
+    .footer__links {
+        margin-left: 0 !important
+    }
+}
+
 @media only screen and (min-width:768px) and (max-width:1400px) {
     .footer__links {
         -webkit-box-flex: 0;
@@ -16892,7 +17132,7 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
     left: 30px
 }
 
-@media only screen and (min-width:1200px) {
+@media only screen and (min-width:1249px) {
     .footer__links>a.new::before {
         left: -25px;
         top: 3px
@@ -17070,8 +17310,112 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
     }
 }
 
+.social__links__row {
+    display: block
+}
+
+.social__links__row>a {
+    text-align: left;
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-flex: 1 !important;
+    -ms-flex: 1 !important;
+    flex: 1 !important;
+    -webkit-box-orient: horizontal !important;
+    -webkit-box-direction: normal !important;
+    -ms-flex-direction: row !important;
+    flex-direction: row !important;
+    margin-bottom: 10px !important
+}
+
+.social__links__row>a span {
+    margin: 0 !important;
+    margin-right: 15px !important
+}
+
+.social__links__row>a div .social__count {
+    font-size: .9375rem;
+    line-height: 120%
+}
+
+.social__links__row>a div .social__followers {
+    font-size: .75rem;
+    line-height: 120%
+}
+
+.social__links__row>a div span {
+    text-align: left !important
+}
+
+.social__links__row .icon__large {
+    width: 32px !important;
+    height: 32px !important
+}
+
+.social__links__row .icon__large:before {
+    background-size: 20px !important
+}
+
+.social__links__row .icon__large.icon__fb:before {
+    background-size: 14px !important
+}
+
+.heading.text-left {
+    text-align: left
+}
+
 .contact__mail {
     color: #00791d
+}
+
+.stayIn_panel {
+    background: #fff;
+    border: 1px solid #dde2e5;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 10px 10px;
+    font-weight: 600;
+    font-size: .875rem;
+    line-height: 150%;
+    color: #000;
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-bottom: 10px !important
+}
+
+.stayIn_panel span {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    padding-right: 5px
+}
+
+@media only screen and (min-width:991px) and (max-width:1079px) {
+
+    .events__list,
+    .footer__links-wrap,
+    .footer__social-wrap,
+    .footer__stayin-wrap {
+        max-width: 22% !important
+    }
+}
+
+@media only screen and (min-width:500px) and (max-width:991px) {
+
+    .events__list,
+    .footer__links-wrap,
+    .footer__social-wrap,
+    .footer__stayin-wrap {
+        max-width: 50% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important
+    }
 }
 
 .content-greybox {
@@ -18857,8 +19201,8 @@ select {
     background-color: transparent;
     background-repeat: no-repeat;
     background-position: 0 0;
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
     top: 2px;
     left: 0
 }
@@ -20246,29 +20590,13 @@ html[lang=br] .profile .badges .editor {
 
 @media only screen and (min-width:1200px) {
     .events__list {
-        padding-left: 80px
+        padding-left: 0
     }
 }
 
 @media only screen and (min-width:400px) and (max-width:1079px) {
     .events__list .heading {
-        text-align: center
-    }
-}
-
-@media only screen and (min-width:400px) and (max-width:1079px) {
-    .events__list ul {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-        -webkit-box-align: baseline;
-        -ms-flex-align: baseline;
-        align-items: baseline;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center
+        text-align: left
     }
 }
 
@@ -20303,7 +20631,8 @@ html[lang=br] .profile .badges .editor {
 }
 
 .events__list ul .heading {
-    margin-bottom: 0
+    margin-bottom: 0;
+    text-align: left
 }
 
 .crit {
