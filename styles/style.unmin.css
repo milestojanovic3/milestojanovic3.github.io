@@ -17389,6 +17389,13 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
     margin-bottom: 10px !important
 }
 
+@media only screen and (max-width:500px) {
+    .stayIn_panel {
+        font-size: .75rem;
+        line-height: 120%
+    }
+}
+
 .stayIn_panel span {
     -webkit-box-flex: 1;
     -ms-flex: 1;
@@ -17406,7 +17413,7 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
     }
 }
 
-@media only screen and (min-width:500px) and (max-width:991px) {
+@media only screen and (min-width:350px) and (max-width:991px) {
 
     .events__list,
     .footer__links-wrap,
@@ -17415,6 +17422,13 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
         max-width: 50% !important;
         margin-left: 0 !important;
         margin-right: 0 !important
+    }
+}
+
+@media only screen and (max-width:1079px) {
+    .footer__links-wrap .footer__links {
+        -ms-flex-preferred-size: 100% !important;
+        flex-basis: 100% !important
     }
 }
 
@@ -22924,7 +22938,7 @@ body .tagify {
 }
 
 .social__links>a .icon__alexa .social__count .social__followers {
-    color: #00791d
+    color: #00791d !important
 }
 
 .social__followers {
