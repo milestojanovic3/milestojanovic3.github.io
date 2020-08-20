@@ -17419,7 +17419,7 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
     .footer__links-wrap,
     .footer__social-wrap,
     .footer__stayin-wrap {
-        max-width: 50% !important;
+        max-width: 49% !important;
         margin-left: 0 !important;
         margin-right: 0 !important
     }
