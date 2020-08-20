@@ -22923,7 +22923,7 @@ body .tagify {
     }
 }
 
-.social__links>a .icon__alexa+.social__count+.social__followers {
+.social__links>a .icon__alexa .social__count .social__followers {
     color: #00791d
 }
 
