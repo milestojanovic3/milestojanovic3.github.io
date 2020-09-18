@@ -11962,75 +11962,86 @@ a.video-block {
     background-image: url(static/images/ui/footer/infoQlive.jpg)
 }
 
-.event__container[data-bg]:before,
-.newsletter[data-bg]:before {
+.event__container[data-bg][data-bg=qconPlus]:before,
+.newsletter[data-bg][data-bg=qconPlus]:before {
+    background-image: url(static/images/ui/footer/qcon-plus.jpg)
+}
+
+.event__container[data-bg][data-bg=qconPlus] .heading,
+.event__container[data-bg][data-bg=qconPlus] h2,
+.event__container[data-bg][data-bg=qconPlus] li,
+.event__container[data-bg][data-bg=qconPlus] p.intro,
+.event__container[data-bg][data-bg=qconPlus] span,
+.newsletter[data-bg][data-bg=qconPlus] .heading,
+.newsletter[data-bg][data-bg=qconPlus] h2,
+.newsletter[data-bg][data-bg=qconPlus] li,
+.newsletter[data-bg][data-bg=qconPlus] p.intro,
+.newsletter[data-bg][data-bg=qconPlus] span {
+    color: #000
+}
+
+.event__container a,
+.event__container a:hover {
+    text-decoration: none !important
+}
+
+.event__container a:hover {
+    opacity: .9
+}
+
+.event__container[data-bg]:before {
     background-size: cover;
     background-position: 50% 50%
 }
 
-.event__container[data-bg] a,
-.newsletter[data-bg] a {
+.event__container[data-bg] a {
     font-weight: 400
 }
 
 .event__container[data-bg] .heading,
 .event__container[data-bg] a,
-.event__container[data-bg] p.intro,
-.newsletter[data-bg] .heading,
-.newsletter[data-bg] a,
-.newsletter[data-bg] p.intro {
+.event__container[data-bg] p.intro {
     color: #fff
 }
 
 .event__container[data-bg] li,
-.event__container[data-bg] p,
-.newsletter[data-bg] li,
-.newsletter[data-bg] p {
+.event__container[data-bg] p {
     color: rgba(255, 255, 255, .85)
 }
 
-.event__container[data-bg] .success a,
-.newsletter[data-bg] .success a {
+.event__container[data-bg] .success a {
     color: #0e5ef1
 }
 
 @media only screen and (min-width:768px) {
-
-    .event__container[data-col="1/2"],
-    .newsletter[data-col="1/2"] {
+    .event__container[data-col="1/2"] {
         -webkit-box-flex: 1;
         -ms-flex: 1 1 50%;
         flex: 1 1 50%
     }
 }
 
-.event__container[data-bg=infoq]:before,
-.newsletter[data-bg=infoq]:before {
+.event__container[data-bg=infoq]:before {
     background-image: url(static/images/ui/footer/infoq-2x.jpg)
 }
 
-.event__container[data-bg=architects]:before,
-.newsletter[data-bg=architects]:before {
+.event__container[data-bg=architects]:before {
     background-image: url(static/images/ui/footer/architects-2x.jpg)
 }
 
-.event__container[data-bg=sf]:before,
-.newsletter[data-bg=sf]:before {
+.event__container[data-bg=sf]:before {
     background-image: url(static/images/ui/footer/sf-2x.jpg)
 }
 
-.event__container[data-bg=ai]:before,
-.newsletter[data-bg=ai]:before {
+.event__container[data-bg=ai]:before {
     background-image: url(static/images/ui/footer/ai-2x.jpg)
 }
 
-.event__container[data-bg=london]:before,
-.newsletter[data-bg=london]:before {
+.event__container[data-bg=london]:before {
     background-image: url(static/images/ui/footer/london-2x.jpg)
 }
 
-.event__container[data-bg=ny]:before,
-.newsletter[data-bg=ny]:before {
+.event__container[data-bg=ny]:before {
     background-image: url(static/images/ui/footer/ny-2x.jpg)
 }
 
@@ -12162,6 +12173,85 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
     text-decoration: none;
     color: #fff;
     background: #a70d0f
+}
+
+.qconplus__events-slider {
+    text-align: left
+}
+
+.qconplus__events-slider .heading {
+    font-weight: 700;
+    font-size: 1.75rem;
+    margin-bottom: 64px;
+    line-height: 2.125rem
+}
+
+@media only screen and (max-width:1079px) {
+    .qconplus__events-slider .heading {
+        margin-bottom: 24px
+    }
+}
+
+.qconplus__events-slider .reg_label {
+    font-weight: 700;
+    font-size: .6875rem;
+    line-height: .8125rem;
+    background: #0e5ef1 !important;
+    color: #fff;
+    display: inline-block;
+    padding: 9px 14px;
+    margin-bottom: 20px
+}
+
+.qconplus__events-slider p.intro {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 150%;
+    color: #222
+}
+
+.qconplus__events-slider p.intro span {
+    color: #0e5ef1 !important
+}
+
+.qconplus__events-slider span.date {
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 1.4375rem;
+    color: #222
+}
+
+.qconplus__events-slider .newsletter__features li {
+    padding-left: 0 !important;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 150%;
+    color: #222
+}
+
+.qconplus__events-slider .newsletter__features li::before {
+    display: none
+}
+
+.qconplus__events-slider .logo-qcon-plus {
+    position: relative;
+    text-align: left
+}
+
+.qconplus__events-slider .logo-qcon-plus::before {
+    content: '';
+    background-image: url("data:image/svg+xml,%3csvg fill='none' height='43' viewBox='0 0 174 43' width='174' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3e %3cclipPath id='a'%3e %3cpath d='m0 5.44922h120.512v37.5508h-120.512z'/%3e %3c/clipPath%3e %3cg clip-path='url(%23a)'%3e %3cpath d='m25.4562 38.5964c-1.2197.6898-2.5632 1.1981-4.0303 1.5611-1.4673.363-3.0228.5264-4.6668.5264-5.0379 0-9.06826-1.5973-12.09109-4.7922-3.02282-3.1949-4.54301-7.4609-4.54301-12.7978 0-2.9223.459545-5.5184 1.37886-7.8236.91909-2.3055 2.29795-4.266 4.13636-5.89976 1.4673-1.30696 3.12882-2.28689 4.98478-2.92238 1.8566-.65359 3.907-.98039 6.1343-.98039 5.0204 0 9.0507 1.59755 12.0913 4.81053 3.0404 3.2129 4.543 7.4789 4.543 12.8156 0 2.2328-.2475 4.2479-.7602 6.063-.5126 1.8154-1.2904 3.4309-2.351 4.9012.9546.8532 1.9799 1.5249 3.0934 2.0332 1.1138.5083 2.3158.817 3.6062.9621l-2.4571 6.0086c-1.8561-.1815-3.553-.6536-5.0734-1.4161-1.5202-.7441-2.8635-1.7607-3.995-3.0495zm-8.6971-4.9556c2.6164 0 4.6492-.9258 6.0988-2.7775 1.4673-1.8515 2.1919-4.4292 2.1919-7.7513 0-3.3218-.7427-5.9176-2.2097-7.7693-1.4673-1.8877-3.5002-2.8135-6.0808-2.8135-2.581 0-4.5961.9437-6.081 2.8318-1.48505 1.8696-2.22748 4.4657-2.22748 7.7513s.74266 5.8631 2.20978 7.7331c1.4673 1.8693 3.5001 2.7954 6.0987 2.7954z' fill='%231e8d44'/%3e %3cpath d='m67.0853 32.1528c-1.5731 2.8678-3.553 5.0099-5.9041 6.444-2.3688 1.4342-5.1086 2.1421-8.2554 2.1421-4.9494 0-8.8738-1.5976-11.7729-4.7743-2.9166-3.1765-4.3839-7.4607-4.3839-12.8519 0-5.2826 1.5202-9.5484 4.5606-12.7794 3.0404-3.23132 7.0356-4.84697 11.9851-4.84697 3.1113 0 5.8159.72624 8.1138 2.17849 2.2982 1.45202 4.0835 3.55768 5.3561 6.31708l-6.3456 3.2675c-.7427-1.6159-1.7149-2.8319-2.9346-3.6669-1.2198-.8351-2.6337-1.2525-4.2424-1.2525-2.5101 0-4.4901.9619-5.9572 2.8681-1.4673 1.906-2.1919 4.538-2.1919 7.8963 0 3.3766.7246 6.0086 2.1741 7.8784 1.4496 1.8696 3.4649 2.7954 6.081 2.7954 1.644 0 3.0582-.3994 4.2602-1.18 1.2022-.7986 2.2097-1.9786 3.0052-3.576l6.4521 3.1404zm14.4777 8.5315c-3.9422 0-7.1241-1.2162-9.528-3.6486-2.4042-2.4324-3.6062-5.6456-3.6062-9.6572 0-3.9754 1.202-7.2065 3.6237-9.6572 2.4217-2.4506 5.5861-3.6668 9.528-3.6668 3.9775 0 7.1768 1.2162 9.5812 3.6668 2.4039 2.4507 3.6059 5.6637 3.6059 9.6572s-1.2198 7.2065-3.6417 9.6391c-2.4215 2.4505-5.6037 3.6667-9.5631 3.6667zm-5.6037-13.3058c0 2.2871.5125 4.0843 1.5202 5.4277 1.0253 1.3431 2.3864 2.0148 4.0835 2.0148 1.7146 0 3.0757-.6717 4.101-2.0148 1.0253-1.3434 1.538-3.1587 1.538-5.4277s-.5127-4.0843-1.5204-5.4458c-1.0251-1.3434-2.3864-2.0148-4.1011-2.0148-1.6968 0-3.0403.6898-4.0656 2.051-1.0431 1.3615-1.5556 3.1768-1.5556 5.4096zm22.0256 12.4891v-24.9963h7.3711v2.3236c.955-.9802 2.016-1.7064 3.2-2.1783 1.184-.4721 2.528-.7262 4.013-.7262 2.651 0 4.631.8532 5.921 2.5777 1.291 1.7245 1.945 4.3565 1.945 7.9146v15.0849h-7.371v-14.7217c0-1.6883-.283-2.9228-.867-3.7215-.583-.7989-1.502-1.18-2.757-1.18-1.485 0-2.528.3633-3.164 1.1074-.637.7443-.937 1.9967-.937 3.7939v14.7217h-7.3539z' fill='%232b6cad'/%3e %3c/g%3e %3cg fill='%23222'%3e %3cpath d='m130.974 24.181v-18.73177h2.829v.81214c1.205-.73355 2.332-1.10032 3.38-1.10032 1.729 0 2.995.53269 3.798 1.59809.804 1.04793 1.205 2.82067 1.205 5.31826 0 2.4801-.462 4.2266-1.388 5.2396-.908 1.013-2.402 1.5195-4.48 1.5195-.716 0-1.546-.0786-2.489-.2358v5.5803zm5.711-16.47873c-.821 0-1.642.18339-2.463.55017l-.393.18338v7.72848c.699.1397 1.467.2096 2.306.2096 1.187 0 2.008-.3406 2.462-1.0217.454-.6812.681-1.8427.681-3.4844 0-2.77702-.864-4.16553-2.593-4.16553z'/%3e %3cpath d='m144.416 18.5483v-18.5483h2.856v18.5483z'/%3e %3cpath d='m158.037 5.44923h2.83v13.09907h-2.83v-.8121c-1.275.7335-2.453 1.1003-3.536 1.1003-1.799 0-3.004-.4803-3.616-1.4409-.611-.9781-.917-2.6809-.917-5.1086v-6.83777h2.856v6.86397c0 1.5719.131 2.6285.393 3.1699.262.5415.873.8122 1.834.8122.943 0 1.807-.1747 2.593-.524l.393-.1572z'/%3e %3cpath d='m172.629 8.14764c-2.061-.27944-3.554-.41917-4.48-.41917s-1.572.11353-1.939.34058c-.349.20959-.524.55016-.524 1.02173s.193.80341.577.99552c.402.1921 1.327.4192 2.777.6812 1.467.2445 2.506.6375 3.117 1.1789.612.5414.917 1.502.917 2.8818s-.445 2.3928-1.336 3.039c-.873.6462-2.157.9693-3.851.9693-1.065 0-2.41-.1484-4.034-.4454l-.813-.1309.105-2.3841c2.096.2795 3.607.4192 4.533.4192.925 0 1.58-.1135 1.964-.3406.402-.227.603-.6025.603-1.1265s-.192-.882-.576-1.0741c-.367-.2096-1.267-.4279-2.699-.655-1.415-.2445-2.454-.62-3.117-1.1265-.664-.5065-.996-1.4322-.996-2.77703 0-1.34484.454-2.3491 1.362-3.01279.926-.66369 2.105-.99554 3.537-.99554 1.118 0 2.489.13973 4.113.41918l.812.15719z'/%3e %3c/g%3e %3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: contain;
+    height: 43px;
+    width: 175px;
+    margin: 0 auto;
+    margin-bottom: 0;
+    margin-top: 0;
+    display: inline-block;
+    text-align: left
 }
 
 .podcast__info {
