@@ -18473,8 +18473,8 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
 
     .header__nav .li-nav:not(:last-child),
     .header__nav>li:not(:last-child) {
-        margin-right: 26px;
-        margin-left: 26px
+        margin-right: 22px;
+        margin-left: 22px
     }
 }
 
@@ -18491,8 +18491,8 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
 
     .header__nav .li-nav:not(:last-child),
     .header__nav>li:not(:last-child) {
-        margin-right: 31px;
-        margin-left: 31px
+        margin-right: 27px;
+        margin-left: 27px
     }
 }
 
