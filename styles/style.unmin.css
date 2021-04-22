@@ -11664,8 +11664,8 @@ a.video-block {
 
 .header .header__events-all .header__event-slot {
     -webkit-box-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
+    -ms-flex: 1 auto;
+    flex: 1 auto;
     border-right: 1px solid #dde2e5;
     margin-top: 3px;
     margin-bottom: 3px;
@@ -11682,7 +11682,8 @@ a.video-block {
 }
 
 .header .header__events-all .header__event-slot img {
-    width: 40px
+    min-width: 40px;
+    height: 40px
 }
 
 .header .header__events-all .header__event-slot div {
