@@ -1221,15 +1221,43 @@ var popperHTML = function popperHTML(segment, data) {
   }),
       outerHTML = _createFollowButton2.outerHTML;
 
-  return segment === 'user' ? "\n      <div class=\"author__about author\">\n        <div class=\"author__card\">\n          <a href=\"".concat(link || url, "\" class=\"avatar author__avatar\">").concat(imgSrc ? "<img src=\"".concat(imgSrc, "\" />") : '', "</a>\n          <div class=\"author__info\">\n            <h3 class=\"author__name\"><a href=\"").concat(link || url, "\">").concat(name, "</a></h3>\n            ").concat(showShortBio ? "<p class=\"author__bio meta\">".concat(minibio, "</p>") : '', "\n            ").concat(outerHTML, "\n          </div>\n          ").concat(followers !== undefined ? "<p class=\"meta author__followstats\">".concat(followers, " ").concat(followLabels.followers, "</p>") : '', "\n        </div>\n      </div>") : "<h3 class=\"heading\"><a href=\"".concat(link || url, "\">").concat(name, "</a></h3>\n       ").concat(followers !== undefined ? "<p class=\"meta\">".concat(followLabels.followers || 'Followers', ": ").concat(followers, "</p>") : '', "\n       ").concat(outerHTML);
+  return segment === 'user' ? "\n      <div class=\"author__about author\">\n        <div class=\"author__card\">\n          <a href=\"".concat(link || url, "\" class=\"avatar author__avatar\">").concat(imgSrc ? "<img src=\"".concat(imgSrc, "\" />") : '', "</a>\n          <div class=\"author__info\">\n            <h3 class=\"author__name popup__author_name\"><a href=\"").concat(link || url, "\">").concat(name, "</a></h3>\n            ").concat(minibio ? "<p class=\"author__bio meta\">".concat(minibio, "</p>") : '', "\n            ").concat(outerHTML, "\n          </div>\n          ").concat(followers !== undefined ? "<p class=\"meta author__followstats\">".concat(followers, " ").concat(followLabels.followers, "</p>") : '', "\n        </div>\n      </div>") : "<h3 class=\"heading\"><a href=\"".concat(link || url, "\">").concat(name, "</a></h3>\n       ").concat(followers !== undefined ? "<p class=\"meta\">".concat(followLabels.followers || 'Followers', ": ").concat(followers, "</p>") : '', "\n       ").concat(outerHTML);
 };
+
+exports.popperHTML = popperHTML;
+
+for (var i = 0; i < usersInPage.length; i++) {
+  var userRef = usersInPage[i].ref;
+  var userMinibio = usersInPage[i].minibio;
+  var userPhoto = usersInPage[i].imgSrc;
+  var authorSelects = document.getElementsByClassName('authors');
+
+  if (authorSelects) {
+    for (var j = 0; j < authorSelects.length; j++) {
+      var authorSelectItems = authorSelects[j].getElementsByTagName('li');
+      var authorImg = authorSelects[j].getElementsByClassName('author__avatar');
+
+      for (var k = 0; k < authorSelectItems.length; k++) {
+        var authorSelectItem = authorSelectItems[k].getAttribute("data-id");
+
+        if (userRef == authorSelectItem) {
+          if (userMinibio) {
+            authorSelectItems[k].innerHTML += '<span class="author__shortbio">' + userMinibio + '</span>';
+          }
+
+          if (userPhoto) {
+            authorImg[k].innerHTML = '<img src="' + userPhoto + '" class="author__image"/>';
+          }
+        }
+      }
+    }
+  }
+}
 /**
  * Registers the event triggering for "hide item" where required
  * @returns void
  */
 
-
-exports.popperHTML = popperHTML;
 
 var hideItemHandler = function hideItemHandler(event) {
   document.addEventListener('click', function (e) {
@@ -3342,13 +3370,45 @@ function updateHiddens(_ref3) {
 var _default = {
   init: function init(config, _ref4) {
     var event = _ref4.event;
+    var labels = window.JSi18n.FE.labels;
+    var characterLimit = document.getElementsByClassName('inputCharacterLimit');
+    if (!characterLimit) return;
+
+    var _loop = function _loop() {
+      elemntWithLimit = characterLimit[i].id;
+      var characterLimitIds = document.getElementById(elemntWithLimit);
+      textEntered = characterLimitIds.value;
+      maxlength = characterLimitIds.maxLength;
+      counter = maxlength - textEntered.length;
+      countRemaining = characterLimitIds.nextElementSibling;
+      countRemaining.textContent = counter + " " + labels.characterLimit || 'Characters Remaining';
+
+      function countCharacters() {
+        textEntered = characterLimitIds.value;
+        maxlength = characterLimitIds.maxLength;
+        counter = maxlength - textEntered.length;
+        countRemaining = characterLimitIds.nextElementSibling;
+        countRemaining.textContent = counter + " " + labels.characterLimit || 'Characters Remaining';
+      }
+
+      characterLimitIds.addEventListener('keyup', countCharacters, false);
+      characterLimitIds.addEventListener('click', countCharacters, false);
+    };
+
+    for (var i = 0; i < characterLimit.length; i++) {
+      var elemntWithLimit;
+      var textEntered, countRemaining, counter, maxlength;
+
+      _loop();
+    }
+
     var formsWgdpr = document.querySelectorAll('form.gdpr');
 
     var _iterator = _createForOfIteratorHelper(formsWgdpr),
         _step;
 
     try {
-      var _loop = function _loop() {
+      var _loop2 = function _loop2() {
         var form = _step.value;
 
         var _hidden = void 0,
@@ -3489,7 +3549,7 @@ var _default = {
       };
 
       for (_iterator.s(); !(_step = _iterator.n()).done;) {
-        var _ret = _loop();
+        var _ret = _loop2();
 
         if (_ret === "continue") continue;
       }
@@ -6938,9 +6998,22 @@ var _default = {
 
 
     var notes = document.getElementById('presentationNotes');
-    if (notes) this.initPresentationNotes(notes, {
-      wrap: true
-    }); // opens the 'bundle' modal
+
+    if (notes) {
+      var h2Elements = notes.querySelectorAll('h2');
+      var h3Elements = notes.querySelectorAll('h3');
+
+      if (notes && h2Elements && h2Elements.length > 0) {
+        this.initPresentationNotes(notes, {
+          wrap: true
+        }, h2Elements, 'H2');
+      } else if (notes && h3Elements && h3Elements.length > 0) {
+        this.initPresentationNotes(notes, {
+          wrap: true
+        }, h3Elements, 'H3');
+      }
+    } // opens the 'bundle' modal
+
 
     event.on('download', function (e) {
       var targetType = e.targetType,
@@ -7160,9 +7233,12 @@ var _default = {
     reRenderAd(els.ad);
   },
   handlePresentationNotes: function handlePresentationNotes(target) {
-    var id = 'presentationNotes';
-    if (target.nodeName !== 'H2' || target.parentNode.id !== id) return;
-    target.classList.toggle('expanded');
+    var id = 'presentationNotes'; // if (target.nodeName !== 'H2' || target.parentNode.id !== id) return
+    // target.classList.toggle('expanded')
+
+    if ((target.nodeName === 'H2' || target.nodeName === 'H3') && target.parentNode.id === id) {
+      target.classList.toggle('expanded');
+    }
   },
 
   /**
@@ -7171,10 +7247,9 @@ var _default = {
    * @param {HTMLElement} notes
    * @param {any} config
    */
-  initPresentationNotes: function initPresentationNotes(notes, config) {
-    var h2s = notes.querySelectorAll('h2'); // skip for short articles
-
-    if (!h2s || h2s.length < 2) return; // const showMore = document.createElement('button')
+  initPresentationNotes: function initPresentationNotes(notes, config, element, elementName) {
+    // skip for short articles
+    if (!element || element.length < 2) return; // const showMore = document.createElement('button')
     // showMore.textContent = labels.showMore || 'Show More'
     // showMore.classList.add('button', 'more')
 
@@ -7196,7 +7271,7 @@ var _default = {
         _iterator2.f();
       }
 
-      notes.insertBefore(wrapper, h2s[index]);
+      notes.insertBefore(wrapper, element[index]);
     };
 
     if (config.wrap) {
@@ -7205,7 +7280,7 @@ var _default = {
       var i = 0;
 
       while (child) {
-        if (child.nodeName === 'H2') {
+        if (child.nodeName === elementName) {
           if (arr.length) toDiv(arr, i);
           arr = [];
           i++;

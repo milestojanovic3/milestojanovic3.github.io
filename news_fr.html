@@ -91,7 +91,8 @@
                     bookmarked: "Content Bookmarked",
                     unbookmarked: "Content Unbookmarked",
                     invalidShare: "Remove invalid emails first!",
-                    maxShare: "Maximum number of shares exceeded!"
+                    maxShare: "Maximum number of shares exceeded!",
+                    characterLimit: "Characters Remaining"
                 },
                 adbStrings: ["We notice you’re using an ad blocker", "We understand why you use ad blockers. However to keep InfoQ free we need your support. InfoQ will not provide your data to third parties without individual opt-in consent. We only work with advertisers relevant to our readers. Please consider whitelisting us."]
             }),
@@ -1083,26 +1084,27 @@
                 <div class="container__inner">
                     <div class="actions header__top">
                         <div class="actions__left">
-                            <p class="header__desc">Facilitating the spread of knowledge and innovation in professional software development</p>
-                            <div class="button__dropdown dropdown header__more dropdown__center"><button aria-label="More" class="button button__unstyled button__small">More </button>
+                            <p class="header__desc my-0">Facilitating the spread of knowledge and innovation in professional software development</p>
+                            <div class="button__dropdown dropdown header__more my-0 dropdown__center"><button aria-label="English edition" class="button button__unstyled button__small">English edition </button>
                                 <div class="dropdown__holder">
                                     <!---->
                                     <div class="dropdown__content">
-                                        <ul class="no-style dropdown__nav">
-                                            <li><a href="about-infoq.html">About InfoQ</a></li>
-                                            <li><a href="our-audience.html">Our Audience</a></li>
-                                            <li><a href="contribute.html">Contribute</a></li>
-                                            <li><a href="about-c4media.html">About C4Media</a></li>
+                                        <ul class="no-style dropdown__nav languagesEdition">
+                                            <li class="active"><a>English edition</a></li>
+                                            <li><a>Chinese edition</a></li>
+                                            <li><a>Japanese edition</a></li>
+                                            <li><a>French edition</a></li>
                                         </ul>
                                     </div>
                                     <!---->
                                 </div>
-                            </div><a href="contribute.html" class="button button__small">contribute</a>
+                            </div><a href="contribute.html" role="button" class="my-0 contribute-link">Contribute</a>
                         </div>
                         <div class="actions__right">
                             <div>
                                 <form id="searchForm" name="search-form" action="/search.action" enctype="multipart/form-data" class="search icon__search icon icon__green">
                                     <div class="field search__bar input__text input__no-label input__small"><label for="search" class="label field__label">Search<span class="input__req">*</span></label><input id="search" placeholder="Search" class="input field__input" type="text">
+                                        <!---->
                                         <!---->
                                         <!---->
                                         <!---->
@@ -1123,8 +1125,10 @@
                                                             <!---->
                                                             <!---->
                                                             <!---->
+                                                            <!---->
                                                         </div>
                                                         <div class="field form__row input__password input__small"><label for="password" class="label field__label">Password<span class="input__req">*</span></label><input type="password" id="password" placeholder class="input field__input">
+                                                            <!---->
                                                             <!---->
                                                             <!---->
                                                             <!---->
@@ -1133,6 +1137,7 @@
                                                     </form>
                                                     <form data-vv-scope="forgot" class="forgot__form form">
                                                         <div class="field form__row input__text input__small"><label for="email-forgot" class="label field__label">InfoQ Account Email<span class="input__req">*</span></label><input id="email-forgot" placeholder class="input field__input" type="text">
+                                                            <!---->
                                                             <!---->
                                                             <!---->
                                                             <!---->
@@ -1182,13 +1187,6 @@
                     </div>
                     <div class="header__middle">
                         <div class="logo header__logo"><a href="index.html" class="logo__symbol active">Logo - Back to homepage</a>
-                            <ul class="language__switcher no-style logo__languages">
-                                <li><a>En</a></li>
-                                <li><a>&#x4E2D;&#x6587;</a></li>
-                                <li><a>&#x65E5;&#x672C;</a></li>
-                                <li><a>Fr</a></li>
-                                <li class="active"><a>Br</a></li>
-                            </ul>
                             <div class="logo__data">1,309,499 Nov unique visitors</div>
                         </div>
                         <div class="content-items"><a href="news_.html" class="active icon icon__news">News</a><a href="articles_.html" class="icon icon__articles">Articles</a><a href="presentations_.html" class="icon icon__presentations">Presentations</a><a href="podcasts_.html" class="icon icon__podcasts">Podcasts</a><a href="guides_.html" class="icon icon__guides">Guides</a></div>
@@ -1436,49 +1434,38 @@
                                 </ul>
                             </div>
                             <div>
-                                <h3 class="widget__heading">QCons from around the world</h3>
-                                <div class="qcons">
-                                    <p>Upcoming Events</p>
-                                    <ul class="qcons__list no-style">
-                                        <li class="qcon"><a href="http://events.infoq.com/" target="_blank">LightStep Webinar<span class="qcon__date">Jun 12, 9AM EST</span></a></li>
-                                        <li class="qcon"><a href="http://events.infoq.com/" target="_blank">InfoQ Live Summer<span class="qcon__date">Jul 27 - Aug 27</span></a></li>
-                                        <li class="qcon"><a href="http://events.infoq.com/" target="_blank">React Workshop<span class="qcon__date">Aug 15 , 12PM EST</span></a></li>
-                                        <li class="qcon"><a href="https://qconsf.com" target="_blank">QCon San Francisco<span class="qcon__date">Nov 14 - 18</span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div>
                                 <h3 class="widget__heading">Choose your language</h3>
                                 <ul class="language__switcher no-style">
-                                    <li><a>En</a></li>
+                                    <li class="active"><a>En</a></li>
                                     <li><a>&#x4E2D;&#x6587;</a></li>
                                     <li><a>&#x65E5;&#x672C;</a></li>
                                     <li><a>Fr</a></li>
-                                    <li class="active"><a>Br</a></li>
+                                    <li><a>Br</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="actions header__bottom">
-                        <div class="actions__left"><span class="icon icon__trending trending__title">Featured:</span>
-                            <nav class="trending"><button id="trendingNav" class="button__unstyled trending__more">More</button>
-                                <ul class="no-style">
-                                    <li><a href="topic_mobile.html">Mobile</a></li>
-                                    <li><a href="topic_html5.html">HTML5</a></li>
-                                    <li><a href="topic_javascript.html">Javascript</a></li>
-                                    <li><a href="topic_apm.html">APM</a></li>
-                                    <li><a href="topic_devops.html">DevOps</a></li>
-                                    <li><a href="topic_cloud.html">Cloud</a></li>
-                                    <li><a href="topic_internet-of-things.html">IoT</a></li>
-                                    <li><a href="topic_dot-net.html">.NET</a></li>
-                                    <li><a href="topic_database.html">Database</a></li>
-                                    <li class="emphasis"><a href="topics.html">All topics</a></li>
-                                </ul>
-                            </nav>
+                    <div class="actions header__bottom header__bottom__events">
+                        <div class="actions__left">
+                            <div class="header__events-all">
+                                <div class="header__event-slot"><img src="styles/static/images/ui/header/infoq-live-april.jpeg">
+                                    <div><span>InfoQ Live April</span>
+                                        <p>Leverage the new Java 16 features and overcome upgrading challenges. Virtual Event on April 27, 2021, 9 am EDT / 3 pm CEST</p>
+                                    </div>
+                                </div>
+                                <div class="header__event-slot"><img src="styles/static/images/ui/header/qcon-may.jpeg">
+                                    <div><span>QCon plus May</span>
+                                        <p>Discover emerging software trends and validate your software roadmap. Virtual Event on May 17-28, 2021, 9 am EDT / 3 pm CEST</p>
+                                    </div>
+                                </div>
+                                <div class="header__event-slot"><img src="styles/static/images/ui/header/infoq-live-june.jpeg">
+                                    <div><span>InfoQ Live June</span>
+                                        <p>Prevent Cloud and Serverless security challenges Virtual Event on June 22, 2021, 9 am EDT / 3 pm CEST</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="actions__right">
-                            <div class="special"><a href="architects-newsletter?utm_source=greybar&amp;utm_medium=link&amp;utm_campaign=architectsnewsletter.html" class="special__link">The Architects&apos; Newsletter</a></div>
-                        </div>
+                        <!---->
                     </div>
                 </div>
             </div>
@@ -2026,6 +2013,7 @@
                                     <!---->
                                     <!---->
                                     <!---->
+                                    <!---->
                                 </div>
                                 <div class="hidden"><span aria-required="false" class="input__select field country"><label for="demo::replace" class="label field__label">Select your country
                                             <!----></label><select id="demo::replace" class="select field__input">
@@ -2075,29 +2063,29 @@
                     <div data-col="1/4" class="events__list">
                         <h4 class="heading footer__heading">Events</h4>
                         <ul class="qcons__list no-style">
-                            <li><span class="icon event__type webinar"></span>
-                                <div class="qcon__detail">
-                                    <h5 class="heading"><a href="http://events.infoq.com/" target="_blank">LightStep Webinar</a></h5><span class="meta date">Jun 12, 9AM EST</span>
-                                </div>
-                            </li>
                             <li><span class="icon event__type live"></span>
                                 <div class="qcon__detail">
-                                    <h5 class="heading"><a href="http://events.infoq.com/" target="_blank">InfoQ Live Summer</a></h5><span class="meta date">Jul 27 - Aug 27</span>
-                                </div>
-                            </li>
-                            <li><span class="icon event__type workshop"></span>
-                                <div class="qcon__detail">
-                                    <h5 class="heading"><a href="http://events.infoq.com/" target="_blank">React Workshop</a></h5><span class="meta date">Aug 15 , 12PM EST</span>
+                                    <h5 class="heading"><a href="http://live.infoq.com/" target="_blank">InfoQ Live</a></h5><span class="meta date">March 16, 2021</span>
                                 </div>
                             </li>
                             <li><span class="icon event__type conference"></span>
                                 <div class="qcon__detail">
-                                    <h5 class="heading"><a href="https://qconsf.com" target="_blank">QCon San Francisco</a></h5><span class="meta date">Nov 14 - 18</span>
+                                    <h5 class="heading"><a href="http://qconplus.com/" target="_blank">QCon Plus</a></h5><span class="meta date">May 17-28, 2021</span>
+                                </div>
+                            </li>
+                            <li><span class="icon event__type workshop"></span>
+                                <div class="qcon__detail">
+                                    <h5 class="heading"><a href="http://events.infoq.com/" target="_blank">React Workshop</a></h5><span class="meta date">Aug 17-28, 2021</span>
+                                </div>
+                            </li>
+                            <li><span class="icon event__type conference"></span>
+                                <div class="qcon__detail">
+                                    <h5 class="heading"><a href="https://qconsf.com" target="_blank">QCon San Francisco</a></h5><span class="meta date">Nov 15-18, 2021</span>
                                 </div>
                             </li>
                             <li><span class="icon event__type live"></span>
                                 <div class="qcon__detail">
-                                    <h5 class="heading"><a href="http://events.infoq.com/" target="_blank">InfoQ Live Autumn</a></h5><span class="meta date">SEP 27 - OCT 27</span>
+                                    <h5 class="heading"><a href="http://live.infoq.com/" target="_blank">InfoQ Live</a></h5><span class="meta date">Sep 17-28, 2021</span>
                                 </div>
                             </li>
                         </ul>
