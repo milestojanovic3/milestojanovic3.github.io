@@ -11681,6 +11681,11 @@ a.video-block {
     min-width: 300px
 }
 
+.header .header__events-all .header__event-slot:hover {
+    text-decoration: none !important;
+    opacity: .9
+}
+
 .header .header__events-all .header__event-slot img {
     min-width: 40px;
     height: 40px
