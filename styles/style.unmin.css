@@ -14309,6 +14309,12 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
     height: 30px
 }
 
+.author__image,
+.popup-avatar img {
+    -o-object-fit: cover;
+    object-fit: cover
+}
+
 .book {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -18789,7 +18795,9 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
 }
 
 .header__more.dropdown button {
-    color: #000 !important
+    color: #000 !important;
+    margin-right: -15px;
+    padding-right: 15px
 }
 
 .header__more.dropdown .dropdown__holder {
