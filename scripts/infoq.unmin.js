@@ -1230,7 +1230,7 @@ for (var i = 0; i < usersInPage.length; i++) {
   var userRef = usersInPage[i].ref;
   var userMinibio = usersInPage[i].minibio;
   var userPhoto = usersInPage[i].imgSrc;
-  var authorSelects = document.getElementsByClassName('authors');
+  var authorSelects = document.querySelectorAll('ul.authors');
 
   if (authorSelects) {
     for (var j = 0; j < authorSelects.length; j++) {

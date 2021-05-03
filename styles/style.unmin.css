@@ -11647,19 +11647,12 @@ a.video-block {
     margin: 0
 }
 
-.header .header__events-all::-webkit-scrollbar {
-    display: none
-}
-
 .header .header__events-all {
     margin: 0;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    overflow-x: scroll;
-    position: relative;
-    -ms-overflow-style: none;
-    scrollbar-width: none
+    position: relative
 }
 
 .header .header__events-all .header__event-slot {
@@ -11881,6 +11874,22 @@ a.video-block {
 
 .header__desc.my-0 {
     margin-left: 0
+}
+
+.header__bottom__events {
+    max-width: 100% !important;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none
+}
+
+.header__bottom__events::-webkit-scrollbar {
+    display: none
+}
+
+.header__bottom__events:-webkit-scrollbar-thumb {
+    background: #fff
 }
 
 [data-ms] {
@@ -18796,8 +18805,9 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
 
 .header__more.dropdown button {
     color: #000 !important;
-    margin-right: -15px;
-    padding-right: 15px
+    margin-right: -20px;
+    padding-right: 20px;
+    z-index: 1000
 }
 
 .header__more.dropdown .dropdown__holder {
