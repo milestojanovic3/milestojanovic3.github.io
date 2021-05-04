@@ -11878,7 +11878,8 @@ a.video-block {
 
 .header__bottom__events {
     overflow-x: hidden !important;
-    overflow-y: visible !important
+    overflow-y: visible !important;
+    scroll-behavior: smooth
 }
 
 .header__bottom__events .actions__left {
@@ -11887,6 +11888,7 @@ a.video-block {
     -ms-overflow-style: none;
     scrollbar-width: none;
     display: block;
+    scroll-behavior: smooth;
     min-width: 100%;
     width: 100%
 }
