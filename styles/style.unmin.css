@@ -11675,8 +11675,7 @@ a.video-block {
 }
 
 .header .header__events-all .header__event-slot:hover {
-    text-decoration: none !important;
-    opacity: .9
+    text-decoration: none !important
 }
 
 .header .header__events-all .header__event-slot img {
@@ -11877,9 +11876,7 @@ a.video-block {
 }
 
 .header__bottom__events {
-    overflow-x: hidden !important;
-    overflow-y: visible !important;
-    width: 900px
+    min-width: 900px
 }
 
 .header__bottom__events .actions__left {
@@ -11889,8 +11886,7 @@ a.video-block {
     scrollbar-width: none;
     display: block;
     scroll-behavior: smooth;
-    min-width: 100%;
-    -webkit-overflow-scrolling: touch
+    min-width: 100%
 }
 
 .header__bottom__events .actions__left::-webkit-scrollbar {
