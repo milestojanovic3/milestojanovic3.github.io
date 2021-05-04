@@ -11875,11 +11875,6 @@ a.video-block {
     margin-left: 0
 }
 
-.header__bottom__events {
-    overflow-x: visible !important;
-    min-width: 900px
-}
-
 .header__bottom__events .actions__left {
     max-width: 100% !important;
     overflow-x: scroll;
