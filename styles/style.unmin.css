@@ -11890,7 +11890,8 @@ a.video-block {
     display: block;
     scroll-behavior: smooth;
     min-width: 100%;
-    width: 100%
+    width: 900px;
+    -webkit-overflow-scrolling: touch
 }
 
 .header__bottom__events .actions__left::-webkit-scrollbar {
