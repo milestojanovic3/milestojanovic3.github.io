@@ -11877,17 +11877,25 @@ a.video-block {
 }
 
 .header__bottom__events {
+    overflow-x: hidden !important;
+    overflow-y: visible !important
+}
+
+.header__bottom__events .actions__left {
     max-width: 100% !important;
     overflow-x: scroll;
     -ms-overflow-style: none;
-    scrollbar-width: none
+    scrollbar-width: none;
+    display: block;
+    min-width: 100%;
+    width: 100%
 }
 
-.header__bottom__events::-webkit-scrollbar {
+.header__bottom__events .actions__left::-webkit-scrollbar {
     display: none
 }
 
-.header__bottom__events:-webkit-scrollbar-thumb {
+.header__bottom__events .actions__left:-webkit-scrollbar-thumb {
     background: #fff
 }
 
@@ -17830,6 +17838,10 @@ html[lang=cn] .newsletter[data-bg=cn]:before {
     -ms-flex: 1;
     flex: 1;
     padding-right: 5px
+}
+
+.stayIn_panel img {
+    width: 65px
 }
 
 @media only screen and (min-width:991px) and (max-width:1079px) {
