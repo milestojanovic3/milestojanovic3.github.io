@@ -11879,7 +11879,7 @@ a.video-block {
 .header__bottom__events {
     overflow-x: hidden !important;
     overflow-y: visible !important;
-    scroll-behavior: smooth
+    width: 900px
 }
 
 .header__bottom__events .actions__left {
@@ -11890,7 +11890,6 @@ a.video-block {
     display: block;
     scroll-behavior: smooth;
     min-width: 100%;
-    width: 900px;
     -webkit-overflow-scrolling: touch
 }
 
