@@ -11879,17 +11879,7 @@ a.video-block {
 .header__bottom__events {
     max-width: 100% !important;
     overflow-x: scroll;
-    overflow-y: hidden;
-    -ms-overflow-style: none;
-    scrollbar-width: none
-}
-
-.header__bottom__events::-webkit-scrollbar {
-    display: none
-}
-
-.header__bottom__events:-webkit-scrollbar-thumb {
-    background: #fff
+    overflow-y: hidden
 }
 
 [data-ms] {
